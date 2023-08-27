@@ -1,0 +1,23 @@
+{
+    "name": "x01/helpdesksiteur",
+    "description": "Heldesk para mesa de ayuda del SITEUR hecho por Guillermo Antonio Ortiz de los Corella",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models",
+            "Classes\\" : "./classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Guillermo Antonio Ortiz de los Corella"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.5",
+        "vlucas/phpdotenv": "^5.4",
+        "intervention/image": "^2.7"
+    }
+}
