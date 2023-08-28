@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'x01/helpdesksiteur',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '5f72e5d6650e642274c6661fb3630ed1965e70fa',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -131,9 +131,9 @@
             'dev_requirement' => false,
         ),
         'x01/helpdesksiteur' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '5f72e5d6650e642274c6661fb3630ed1965e70fa',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

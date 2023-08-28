@@ -1,0 +1,50 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.auth {
+    // background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0,  0.7)), url('/build/img/mesa2.jpg');
+    background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0,  0.7)), url('/build/img/mics.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    // border: 1px solid  rgba(0, 0, 0, 0.5);
+    padding-top: .1rem;
+ 
+
+
+    &__contenedor {
+        @include m.contenedor-smm;
+    }
+
+    &__heading {
+       
+        color: v.$blanco;
+
+    }
+
+
+    &__texto {
+        text-align: center;
+        color: v.$blanco;
+    }
+}
+
+.imagen {
+
+ 
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 5rem;
+    
+    
+    &__logo {
+        position: absolute;
+       
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+    }
+}
+
