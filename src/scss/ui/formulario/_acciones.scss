@@ -16,11 +16,28 @@
         justify-content: space-evenly;
         flex-direction: row;
     }
+
+    &.registro{
+        margin-top: 0;
+        padding-bottom: 3rem;
+    }
     
     &__enlace{
         color: v.$blanco;
         font-size: 1.6rem;
         font-weight: v.$delgada;
+
+        &.registro{
+            color: v.$negro;
+        }
+        
+        &.registro:hover{
+            color: v.$gris;
+        }
+    }
+
+    &__enlace:hover{
+        color: rgb(241, 227, 30);
     }
     
 }

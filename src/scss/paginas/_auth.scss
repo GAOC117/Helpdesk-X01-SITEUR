@@ -1,32 +1,58 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
 
-.auth {
+.auth.login{
     // background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0,  0.7)), url('/build/img/mesa2.jpg');
     background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0,  0.7)), url('/build/img/mics.jpg');
-    background-size: cover;
+    background-size:  cover;
     background-position: top center;
-    background-repeat: no-repeat;
+    background-repeat:repeat no-repeat;
     height: 100vh;
-    // border: 1px solid  rgba(0, 0, 0, 0.5);
-    padding-top: .1rem;
- 
+    //  border: 1px solid  rgba(0, 0, 0, 0.5);
+padding-top: .1rem;
+}
 
+.auth{
+
+    height: 100vh;
+
+&.registro{
+  padding-top: 6rem;
+}
 
     &__contenedor {
         @include m.contenedor-smm;
+        
+        &.registro{
+            
+            @include m.contenedor;
+            
+        }
     }
+
+    
 
     &__heading {
        
         color: v.$blanco;
 
+
+        &.registro{
+            color: v.$negro;
+            margin-top: 0;
+            text-align: center;
+           
+        }
     }
 
 
     &__texto {
         text-align: center;
         color: v.$blanco;
+
+        &.registro{
+            color: v.$negro;
+        }
     }
 }
 

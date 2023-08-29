@@ -1,4 +1,4 @@
-<main class="auth">
+<main class="auth login">
 <div class="auth__contenedor">
 
     <h2 class="auth__heading"><?php echo $titulo; ?></h2>
@@ -20,8 +20,9 @@
         <label for="password" class="formulario__label">Contraseña:</label>
         <input type="password" class="formulario__input" placeholder="Tu contraseña" id="password" name="password">
     </div>
-    
+   
     <input type="submit" class="formulario__submit" value="Iniciar sesión">
+
     
 </form>
 
