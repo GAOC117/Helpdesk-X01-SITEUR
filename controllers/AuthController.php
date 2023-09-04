@@ -9,6 +9,19 @@ use MVC\Router;
 
 class AuthController
 {
+
+
+    public static function index()
+    {
+        session_start();
+        if (!empty($_SESSION)) //si ya hay una sesión rediriccionarlo al dashboard
+            header('Location: /dashboard');
+        else 
+            header('Location: /login'); //de lo contrario redireccionarlo al login
+    }
+
+
+
     public static function login(Router $router)
     {
 
@@ -42,7 +55,7 @@ class AuthController
 
 
                         header('Location: /dashboard');
-                    
+
                         // //si es perfil administrador o helpdesk (mesa de ayuda) o soporte
                         // if ($usuario->idRol === '1')
                         //     header('Location: /admin/dashboard');
