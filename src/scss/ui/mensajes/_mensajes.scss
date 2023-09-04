@@ -1,0 +1,23 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.linkGmail{
+    color: darken(v.$verde,5%);
+    cursor: pointer;
+
+    &--alerta{
+        color: lighten(v.$verde,.5%);
+        text-decoration: underline;
+
+        
+        &:hover{
+
+            color: lighten(v.$verde,5%);
+        }
+    }
+    
+    &:hover{
+        color: lighten(v.$verde,5%);
+    }
+}

@@ -1,36 +1,38 @@
-<main class="auth login">
-<div class="auth__contenedor">
+<main class="authl login">
+    <div class="authl__contenedor">
 
-    <h2 class="auth__heading"><?php echo $titulo; ?></h2>
-    <p class="auth__texto">Inicia sesión en Helpdesk SITEUR</p>
-    
-    
-    <div class="imagen">
-        
-<img class="imagen__logo" src="/build/img/Logo_de_SITEUR_T.png" alt="logo siteur">
+        <h2 class="authl__heading"><?php echo $titulo; ?></h2>
+        <p class="authl__texto">Inicia sesión en Helpdesk SITEUR</p>
 
-</div>
-<form action="" class="formulario" method="POST"> 
-    <div class="formulario__campo">
-        <label for="email" class="formulario__label">Correo:</label>
-        <input type="email" class="formulario__input" placeholder="Tu correo electrónico" id="email" name="email">
+        <?php
+        require_once __DIR__ . '/../templates/alertas.php';
+        ?>
+
+        <div class="imagen">
+            <img class="imagen__logo" src="/build/img/Logo_de_SITEUR_T.png" alt="logo siteur">
+        </div>
+
+        <form action="/login" class="formulariol" method="POST">
+            <div class="formulariol__campo">
+                <label for="email" class="formulariol__label">Correo:</label>
+                <input type="email" class="formulariol__input" placeholder="Tu correo electrónico" id="email" name="email" value="<?php echo $email; ?>">
+            </div>
+
+            <div class="formulariol__campo">
+                <label for="password" class="formulariol__label">Contraseña:</label>
+                <input type="password" class="formulariol__input" placeholder="Tu contraseña" id="password" name="password">
+            </div>
+
+            <input type="submit" class="formulariol__submit" value="Iniciar sesión">
+
+
+        </form>
+
     </div>
-    
-    <div class="formulario__campo">
-        <label for="password" class="formulario__label">Contraseña:</label>
-        <input type="password" class="formulario__input" placeholder="Tu contraseña" id="password" name="password">
+
+    <div class="accionesl">
+        <a href="/registro" class="accionesl__enlace">¿Aún no tienes cuenta? Obtener una</a>
+        <a href="/olvide" class="accionesl__enlace">¿Olvidaste tu contraseña? Recuperar</a>
     </div>
-   
-    <input type="submit" class="formulario__submit" value="Iniciar sesión">
-
-    
-</form>
-
-</div>
-
-<div class="acciones">
-    <a href="/registro" class="acciones__enlace">¿Aún no tienes cuenta? Obtener una</a>
-    <a href="/olvide" class="acciones__enlace">¿Olvidaste tu contraseña? Recuperar</a>
-</div>
 
 </main>

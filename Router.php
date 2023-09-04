@@ -29,25 +29,32 @@ class Router
             $fn = $this->postRoutes[$url_actual] ?? null;
         }
 
-        if ( $fn ) {
+        if ($fn) {
             call_user_func($fn, $this);
         } else {
-            echo "Página No Encontrada o Ruta no válida";
+            echo "Página no encontrada o ruta no válida";
         }
     }
 
-    public function render($view, $datos = [])
+    public function renderView($view, $datos = [])
     {
         foreach ($datos as $key => $value) {
-            $$key = $value; 
+            $$key = $value;
         }
 
-        ob_start(); 
+        ob_start(); //inicia almacenamiento en memoria para el siguiente include, GUARDAR EN MEMORIA A QUE SE LE DA RENDER
+        include __DIR__ . '/views/' . $view . '.php';
+        //y lo almacena en $contenido
+        $contenido = ob_get_clean();
 
-        include_once __DIR__ . "/views/$view.php";
+        //Utilizar el layout de acuerdo a la URL
+        $urlActual = $_SERVER['PATH_INFO'] ?? '/';
 
-        $contenido = ob_get_clean(); // Limpia el Buffer
-
-        include_once __DIR__ . '/views/layout.php';
+        //    if(str_contains($urlActual, '/admin') || str_contains($urlActual, '/helpdesk') || str_contains($urlActual, '/soporte')
+        //    ||str_contains($urlActual, '/colaborador'))
+        if (str_contains($urlActual, '/dashboard'))
+            include_once __DIR__ . '/views/dashboard-layout.php';
+        else
+            include_once __DIR__ . '/views/layout.php';
     }
 }

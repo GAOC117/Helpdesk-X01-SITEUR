@@ -1,0 +1,37 @@
+@use 'base/variables' as v;
+
+body{
+    //para que el footer se mantenga abajo
+    position: relative;
+    min-height: 100vh;
+}
+
+.footer{
+    height: 5rem;
+    background-color: v.$azul-siteur;
+    padding-bottom: .1rem;
+    align-items: center;
+
+    //con esto se mantiene en el fondo
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+
+    &__texto{
+        margin: 0;
+        padding: 1rem 0 0 0;
+        text-align: center;
+        color: v.$blanco;
+        font-size: 1.4rem;
+
+        &__nombre{
+            margin: 0;
+            padding: .5rem 0;
+            font-size: 1rem;
+            color: v.$blanco;
+            text-align: center;
+
+        }
+    }
+}

@@ -36,8 +36,18 @@
     display: inline-block;
 
     &:hover {
+        animation: pulsate 1s ease-in-out;
         background-color: darken( $bgColor, 10% );
         cursor: pointer;
+    }
+
+
+    @keyframes pulsate {
+        0%{
+            box-shadow: 0 0 25px #378499,
+            // box-shadow: 0 0 25px white,
+            0 0 50px v.$azul-siteur;
+        }
     }
 }
 

@@ -1,153 +1,137 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
 
-.formulario {
-    
+.formulariol {
     display: flex;
     flex-direction: column;
-    background-color: rgba(255,255,255,1);
-    // background-color: v.$blanco;
+    background-color: rgba(255, 255, 255, 1);
     padding: 5rem 2rem 2rem;
     margin-bottom: 2rem;
     border-radius: 2rem;
 
-    &.registro{
-        // border: 1px solid red;
-        margin: 6rem auto 0;
-        padding-bottom: 0;
-
-       
-    }
-
-
-    &__datos-empleado{
-      
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-       
-        
-      @include m.tablet { 
-        flex-direction: row;
-        
-      }
-
-      & input{
-       
-
-        @include m.tablet { 
-            width: 20rem;
-        }
-
-        @include m.desktop { 
-            width: 30rem;
-        }
-        
-     
-    }
-      
-    
-    }
-
-    &__campo{
+    &__campo {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         margin: 1.5rem 0;
 
-        &.registro{
-            margin-bottom: 1rem;
-            display: flex;
-           
-            @include m.tablet { 
-                margin-bottom: 2rem;
-            }
-
-            &.exp {
-                width: auto;
-                @include m.tablet { 
-                    width: 20rem;
-                    
-                }
-            }
-        }
-
-        &.select{
-            
-            width: 100%;
-
-            @include m.tablet { 
-                width: 50%;
-            }
-        }
     }
 
-    &__label{
-        
+    &__label {
         display: block;
         color: rgba(v.$negro, .8);
         font-size: 1.8rem;
-        
     }
 
-    &__input{
+    &__input {
         padding: 1rem;
         border: none;
-        border-bottom: 1px solid  rgba(v.$negro, .5);
-        // border-radius: 1rem;
-
-
-        &.registro{
-            border: 1px solid rgba(v.$negro, .5);
-            border-radius: 1rem;
-            
-        }
+        border-bottom: 1px solid rgba(v.$negro, .5);
     }
 
-    
-    
-    &__input:focus{
-        
+    &__input:focus {
         outline: none;
-        background-color:rgba(255,255,255,1);
+        background-color: rgba(255, 255, 255, 1);
     }
-    
-    &__submit{
+
+    &__submit {
         @include m.boton(v.$azul-siteur, v.$blanco);
+        // @include m.boton(v.$blanco, v.$negro);
+        // border: 5px solid v.$azul-siteur;
         margin: 3rem 0 2rem 0;
         width: auto;
         align-self: center;
         border-radius: 1rem;
     }
 
-    &__submit:hover{
-        color: rgb(241, 227, 30);
+    // &__submit:hover {
+    //     color: rgb(241, 227, 30);
+    // }
+}
+
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 5rem 2rem 2rem;
+
+    &__fieldset {
+        padding: 2rem 2rem;
     }
 
-   
+    &__datos-empleado {
+        @include m.desktop {
+            @include m.grid(3, 2rem);
+        }
+    }
+
+    &__campo {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+
+        &.select {
+            width: 100%;
+
+            @include m.desktop {
+                width: 50%;
+            }
+        }
+    }
+
+    &__label {
+        display: block;
+        color: rgba(v.$negro, .8);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    &__input {
+        padding: 1rem;
+        border: 1px solid rgba(v.$negro, .5);
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    &__input:focus {
+        outline: none;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    &__submit {
+        @include m.boton(v.$azul-siteur, v.$blanco);
+        // @include m.boton(v.$blanco, v.$negro);
+        // border: 5px solid v.$azul-siteur;
+        margin: 3rem 0 2rem 0;
+        width: auto;
+        align-self: center;
+        border-radius: 1rem;
+    }
+
+    // &__submit:hover {
+    //     color: rgb(241, 227, 30);
+    // }
 }
 
-.rigistro-fieldset{
-    // margin-top: 3rem;
-
-}
 
 
 input[type="email"],
-input[type="password"]
-{
+input[type="password"] {
 
-    background-color:rgba(255,255,255,1);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 input[type="email"]:-webkit-autofill,
-input[type="password"]:-webkit-autofill
-{
+input[type="password"]:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
-   
-
 }
 
+.expediente-extension {
+    display: flex;
+    flex-direction: column;
 
-
+    @include m.desktop {
+        @include m.grid(3, 2rem);
+    }
+}

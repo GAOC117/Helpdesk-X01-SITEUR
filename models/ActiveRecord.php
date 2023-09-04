@@ -71,6 +71,16 @@ class ActiveRecord {
         return $atributos;
     }
 
+    public function atributosEmpleado() {
+        $atributos = [];
+        foreach(static::$columnasDB as $columna) {
+         
+            $atributos[$columna] = $this->$columna;
+        }
+        return $atributos;
+    }
+
+
     // Sanitizar los datos antes de guardarlos en la BD
     public function sanitizarAtributos() {
         $atributos = $this->atributos();
@@ -80,6 +90,17 @@ class ActiveRecord {
         }
         return $sanitizado;
     }
+
+
+    public function sanitizarAtributosEmpleado() {
+        $atributos = $this->atributosEmpleado();
+        $sanitizado = [];
+        foreach($atributos as $key => $value ) {
+            $sanitizado[$key] = self::$db->escape_string($value);
+        }
+        return $sanitizado;
+    }
+
 
     // Sincroniza BD con Objetos en memoria
     public function sincronizar($args=[]) { 
@@ -98,6 +119,7 @@ class ActiveRecord {
             $resultado = $this->actualizar();
         } else {
             // Creando un nuevo registro
+           
             $resultado = $this->crear();
         }
         return $resultado;
@@ -106,6 +128,11 @@ class ActiveRecord {
     // Obtener todos los Registros
     public static function all() {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+    public static function allOrderBy($columnToOrder) {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY $columnToOrder ASC";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -126,7 +153,13 @@ class ActiveRecord {
 
     // Busqueda Where con Columna 
     public static function where($columna, $valor) {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}'";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor'";
+        $resultado = self::consultarSQL($query);
+        return array_shift( $resultado ) ;
+    }
+
+    public static function whereAnd($columna1, $valor1, $columna2, $valor2) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna1 = '$valor1' AND $columna2 = '$valor2' ";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -143,10 +176,33 @@ class ActiveRecord {
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
 
-        // debuguear($query); // Descomentar si no te funciona algo
+         //debuguear($query); // Descomentar si no te funciona algo
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);
+       
+        return [
+           'resultado' =>  $resultado,
+           'id' => self::$db->insert_id
+        ];
+    }
+    // crea un nuevo registro
+    public function crearEmpleado() {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarAtributosEmpleado();
+
+        // Insertar en la base de datos
+        $query = " INSERT INTO " . static::$tabla . " ( ";
+        $query .= join(', ', array_keys($atributos));
+        $query .= " ) VALUES (' "; 
+        $query .= join("', '", array_values($atributos));
+        $query .= "') ";
+
+         //debuguear($query); // Descomentar si no te funciona algo
+
+        // Resultado de la consulta
+        $resultado = self::$db->query($query);
+       
         return [
            'resultado' =>  $resultado,
            'id' => self::$db->insert_id
@@ -157,6 +213,26 @@ class ActiveRecord {
     public function actualizar() {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
+
+        // Iterar para ir agregando cada campo de la BD
+        $valores = [];
+        foreach($atributos as $key => $value) {
+            $valores[] = "{$key}='{$value}'";
+        }
+
+        // Consulta SQL
+        $query = "UPDATE " . static::$tabla ." SET ";
+        $query .=  join(', ', $valores );
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1 "; 
+
+        // Actualizar BD
+        $resultado = self::$db->query($query);
+        return $resultado;
+    }
+    public function actualizarEmpleado() {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarAtributosEmpleado();
 
         // Iterar para ir agregando cada campo de la BD
         $valores = [];

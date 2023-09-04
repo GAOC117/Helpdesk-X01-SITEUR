@@ -1,0 +1,1 @@
+{"version":3,"sources":["helpdeskLayout/_layout.scss"],"names":[],"mappings":"AAAA;EACI","file":"helpdesk.css","sourcesContent":["body{\r\n    background-color: red;\r\n    \r\n}"]}

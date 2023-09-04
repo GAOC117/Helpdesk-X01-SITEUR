@@ -1,15 +1,56 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.acciones{
+.accionesl{
     @include m.contenedor-sm;
-    margin: 3rem  auto 0;
+    // margin: 3rem  auto 0;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    // gap: 2rem;
     text-align: center;
     
+    @include m.tablet {     
+        justify-content: space-evenly;
+        flex-direction: row;
+        margin-top: 5rem;
+    }
+
     
+    &__enlace{
+        color: v.$blanco;
+        font-size: 1.6rem;
+        font-weight: v.$delgada;
+        margin: 1rem auto 2rem;
+
+        &:nth-child(1){
+            margin: 2rem auto;
+        }
+        @include m.tablet { 
+            margin: 1rem auto 5rem;  
+           
+            &:nth-child(1){
+                margin: 1rem auto 5rem;
+            }
+        }
+    }
+
+    &__enlace:hover{
+        color: rgb(241, 227, 30);
+    }
+    
+}
+
+
+.acciones{
+
+    @include m.contenedor-sm;
+    // margin: 3rem  auto 0;
+    display: flex;
+    flex-direction: column;
+    // gap: 2rem;
+    text-align: center;
+    margin-top: 0;
+    padding-bottom: 5rem;
     
     @include m.tablet { 
         
@@ -17,27 +58,29 @@
         flex-direction: row;
     }
 
-    &.registro{
-        margin-top: 0;
-        padding-bottom: 3rem;
-    }
-    
     &__enlace{
-        color: v.$blanco;
+        color: v.$negro;
         font-size: 1.6rem;
         font-weight: v.$delgada;
-
-        &.registro{
-            color: v.$negro;
+        margin: 1rem auto 5rem;
+        
+        &:nth-child(1){
+            margin: 2rem auto;
+        }
+        @include m.tablet { 
+            margin: 1rem auto 5rem;  
+           
+            &:nth-child(1){
+                margin: 1rem auto 5rem;
+            }
         }
         
-        &.registro:hover{
-            color: v.$gris;
-        }
+
+       
     }
 
     &__enlace:hover{
-        color: rgb(241, 227, 30);
+        color: v.$gris;
     }
     
 }
