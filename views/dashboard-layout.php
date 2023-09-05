@@ -52,7 +52,8 @@
             </main>
         </div>
 
-    <script src="/build/js/bundle.min.js" defer></script>
+    <script src="/build/js/app.js" defer></script>
+    <script src="/build/js/dashboardjs" defer></script>
 </body>
 
 </html>

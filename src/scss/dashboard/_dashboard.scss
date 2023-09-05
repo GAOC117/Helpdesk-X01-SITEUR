@@ -1,0 +1,110 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.dashboard{
+    &__empleado {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding-right: 2rem;
+
+        &--nombre{
+             font-size: 1.7rem;
+        }
+        
+
+    &--texto{
+        display: flex;
+        flex-direction: column;     
+        line-height: 0;   
+
+    }
+
+    &--foto {
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 50%;
+        overflow: hidden;
+    
+    }
+    
+    }
+
+    &__submit--logout {
+    
+        background-color: transparent;
+        color: white;
+        border: none;
+        // text-decoration: underline;
+        font-size: 1.4rem;
+        padding: 0;
+        // text-underline-offset: .23rem;
+
+
+        &:hover{
+            cursor: pointer;
+            color: v.$azul;
+        }
+    }
+
+
+    &__header-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem 0 1rem;
+
+        @include m.tablet {
+            flex-direction: row;
+        }
+
+    }
+
+    &__logo {
+        width: 15rem;
+        display: none;
+
+        @include m.tablet { 
+            display: block;
+        }
+
+    }
+
+
+    &__form{
+        display: flex;
+        justify-content: flex-start;
+        margin-top: -0.5rem;
+
+        @include m.tablet { 
+            justify-content: flex-end;
+        }
+    }
+
+    &__notification {
+        position: absolute;
+
+        &--pop{
+            background-color: red;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            left: 39rem;
+            bottom: 1.5rem;
+        
+            & a {
+                color: white;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+        }
+    }
+
+}

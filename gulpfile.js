@@ -33,14 +33,21 @@ function css() {
         .pipe( sourcemaps.write('.'))
         .pipe(  dest('public/build/css') );
 }
+// function javascript() {
+//     return src(paths.js)
+//       .pipe(sourcemaps.init())
+//       .pipe(concat('bundle.js')) 
+//       .pipe(terser())
+//       .pipe(sourcemaps.write('.'))
+//       .pipe(rename({ suffix: '.min' }))
+//       .pipe(dest('./public/build/js'))
+// }
+
 function javascript() {
     return src(paths.js)
-      .pipe(sourcemaps.init())
-      .pipe(concat('bundle.js')) 
       .pipe(terser())
       .pipe(sourcemaps.write('.'))
-      .pipe(rename({ suffix: '.min' }))
-      .pipe(dest('./public/build/js'))
+      .pipe(dest('public/build/js'));
 }
 
 function imagenes() {
