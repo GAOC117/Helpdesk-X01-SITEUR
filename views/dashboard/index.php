@@ -4,4 +4,4 @@
 <?php if($id === 4) {?> <p>colaborador</p><?php }?>
     
 
-<h1><?php echo $titulo ?></h1>
+<!-- <h1><?php //echo $titulo ?></h1> -->

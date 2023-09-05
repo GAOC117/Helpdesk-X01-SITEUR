@@ -14,7 +14,8 @@ function iniciarApp() {
     titleScroller(titulo);
     //obtenerDepartamentosApi();
     filtrarSelect();
-   // desplazarTitulo();
+    // desplazarTitulo();
+    dropdown();
 }
 
 
@@ -55,7 +56,7 @@ async function obtenerDepartamentosApi() {
 
 
 
-function filtrarSelect(){
+function filtrarSelect() {
     //con jquery para filtrar en el select con select2
     $("select").select2();
 }
@@ -65,8 +66,22 @@ function filtrarSelect(){
 
 function titleScroller(text) {
     document.title = text;
-    console.log(text);
+
     setTimeout(function () {
         titleScroller(text.substring(1) + text.substring(0, 1));
     }, 200);
 }
+
+
+function dropdown() {
+    const fotoEmpleado = document.querySelector('.foto-empleado');
+    const cerrarSesion = document.querySelector('.dropdown');
+    cerrarSesion.style.display = 'flex';
+    fotoEmpleado.addEventListener('click', () => {
+        if (cerrarSesion.style.display === 'flex')
+            cerrarSesion.style.display = 'none';
+        else
+            cerrarSesion.style.display = 'flex';
+    })
+}
+
