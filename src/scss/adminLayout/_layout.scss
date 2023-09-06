@@ -4,9 +4,15 @@
 .dashboard {
       &__header {
         background-color: v.$admin;
-        color: white;
-        padding:.5rem 0;
+        color: lighten(v.$gris-oscuro,40);
+
     }
+
+    &__sidebar{
+      // background-color: v.$admin
+      background-color: v.$gris-oscuro
+    }
+
 } //dashboard
 
 

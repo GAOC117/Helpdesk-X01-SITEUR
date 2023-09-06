@@ -29,7 +29,7 @@ class Email {
          $mail->Username = $_ENV['EMAIL_USER'];
          $mail->Password = $_ENV['EMAIL_PASS'];
      
-         $mail->setFrom($_ENV['EMAIL_USER']);
+         $mail->setFrom($_ENV['EMAIL_USER'], 'Helpdesk - SITEUR');
          $mail->addAddress($this->email, $this->nombre);
          $mail->Subject = 'Confirma tu cuenta de HelpDesk SITEUR';
 
@@ -38,7 +38,7 @@ class Email {
          $mail->CharSet = 'UTF-8';
 
          $contenido = '<html>';
-         $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong>. Has registrado correctamente tu cuenta en HelpDesk SITEUr; pero es necesario confirmarla.</p>";
+         $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong>. Has registrado correctamente tu cuenta en HelpDesk SITEUR; pero es necesario confirmarla.</p>";
          $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['HOST'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar cuenta</a>";       
          $contenido .= "<p>Si tu no creaste esta cuenta; puedes ignorar el mensaje</p>";
          $contenido .= '</html>';

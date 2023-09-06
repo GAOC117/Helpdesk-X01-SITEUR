@@ -53,7 +53,7 @@
         </div>
 
     <script src="/build/js/app.js" defer></script>
-    <script src="/build/js/dashboardjs" defer></script>
+    <script src="/build/js/dashboard.js" defer></script>
 </body>
 
 </html>

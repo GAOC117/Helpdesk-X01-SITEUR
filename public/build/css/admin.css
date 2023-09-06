@@ -1,7 +1,9 @@
 /** Media Queries **/
 .dashboard__header {
   background-color: black;
-  color: white;
-  padding: 0.5rem 0;
+  color: #6f8ab6;
+}
+.dashboard__sidebar {
+  background-color: #1E293B;
 }
 /*# sourceMappingURL=admin.css.map */
