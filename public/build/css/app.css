@@ -751,7 +751,7 @@ body {
   }
 }
 .dashboard__sidebar {
-  width: 25rem;
+  width: 29.5rem;
 }
 .dashboard__header {
   padding: 0.7rem 0;
@@ -784,6 +784,16 @@ body {
   padding: 0;
 }
 .dashboard__submit--logout:hover {
+  cursor: pointer;
+  color: #fff;
+}
+.dashboard__logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+}
+.dashboard__logout:hover {
   cursor: pointer;
   color: #fff;
 }
@@ -853,7 +863,7 @@ body {
   padding: 2rem 1rem 2rem 1rem;
   transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out, 0.3s border-radius ease-in-out;
   text-align: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 .dashboard__enlace:hover {
   background-color: #333333;
@@ -861,7 +871,7 @@ body {
   border-radius: 1rem;
 }
 .dashboard__menu-texto {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
   font-weight: 700;
   margin-top: 0.5rem;
@@ -871,5 +881,17 @@ body {
   padding: 0;
   padding-left: 1.5rem;
   margin: 0;
+}
+
+.menu-principal:hover {
+  cursor: pointer;
+}
+
+ul[class*=-hidden] {
+  display: none;
+}
+
+ul[class*=-visible] {
+  display: block;
 }
 /*# sourceMappingURL=app.css.map */

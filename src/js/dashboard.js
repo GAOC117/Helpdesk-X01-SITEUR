@@ -1,6 +1,7 @@
 const titulo = document.querySelector('#tituloDashboard').textContent + ' - '
 const animacion = 'fa-bounce';
-
+const up = 'fa-chevron-up';
+const down = 'fa-chevron-down';
 document.addEventListener('DOMContentLoaded', function () {
 
     iniciarApp();
@@ -13,7 +14,28 @@ function iniciarApp() {
     
     titleScroller(titulo);
     hover();
+    inicializador();
+    clickSubmenu('ticket.dashboard__enlace', 'ul-tickets');
    
+}
+
+function inicializador(){
+    const ticket = document.querySelector('.i-ticket');
+    const empleado = document.querySelector('.i-user');
+    const incidente = document.querySelector('.i-incidente');
+    const departamento = document.querySelector('.i-departamentos');
+    
+    
+    
+    ticket.classList.add(down);
+    empleado.classList.add(down);
+    incidente.classList.add(down);
+    departamento.classList.add(down);
+
+
+
+
+
 }
 
 
@@ -36,7 +58,7 @@ function hover()
                clase = '.'+e.target.className.split(' ')[0]+'-icono';
                
                  const icono = document.querySelector(clase);
-                console.log(icono);
+              //  console.log(icono);
                 icono.classList.add(animacion);
 
             })
@@ -48,7 +70,7 @@ function hover()
                clase = '.'+e.target.className.split(' ')[0]+'-icono';
                
                  const icono = document.querySelector(clase);
-                console.log(icono);
+                // console.log(icono);
                 icono.classList.remove(animacion);
 
             })
@@ -56,17 +78,31 @@ function hover()
 }
 
 
+function clickSubmenu(claseMenu, claseSubmenu){
+    const menu = document.querySelector('.'+claseMenu);
+    const elemento = document.querySelector('.'+claseSubmenu);
+    const menuIcono = document.querySelector('i-'+menu);
 
+    // console.log(elemento);
+    menu.addEventListener('click', function(){
 
-
-// function dropdown() {
-//     const fotoEmpleado = document.querySelector('.foto-empleado');
-//     const cerrarSesion = document.querySelector('.dropdown');
-//     cerrarSesion.style.display = 'flex';
-//     fotoEmpleado.addEventListener('click', () => {
-//         if (cerrarSesion.style.display === 'flex')
-//             cerrarSesion.style.display = 'none';
-//         else
-//             cerrarSesion.style.display = 'flex';
-//     })
-// }
+        for(var i =0; i<=elemento.classList.length;i++)
+        {
+            if(elemento.classList[i].includes('-hidden')){
+                // console.log("ya duermete");
+                console.log(elemento.classList[i]+' '+i);
+                elemento.classList.remove(claseSubmenu+'-hidden');
+                elemento.classList.add(claseSubmenu+'-visible');
+                
+                break;
+            }
+            else if(elemento.classList[i].includes('-visible'))
+            {
+                console.log(elemento.classList[i]+' '+i);
+                // console.log("no duermete");
+                elemento.classList.add(claseSubmenu+'-hidden');
+                elemento.classList.remove(claseSubmenu+'-visible');
+                break;
+            }
+        }
+ 

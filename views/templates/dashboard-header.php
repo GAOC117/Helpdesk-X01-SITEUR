@@ -13,7 +13,10 @@
                         <p><?php echo $nombre . ' - ' . $expediente ?></p>
                     </div>
                     <form action="" class="dashboard__form">
-                        <input type="submit" class="dashboard__submit--logout" value="Cerrar sesión">
+                        <div class="dashboard__logout">
+                            <input type="submit" class="dashboard__submit--logout" value="Cerrar sesión">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
                     </form>
                 </div>
                 <div class="dashboard__empleado--foto">
