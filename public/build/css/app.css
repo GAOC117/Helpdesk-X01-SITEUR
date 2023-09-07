@@ -860,7 +860,7 @@ body {
   color: #6f8ab6;
   display: flex;
   align-items: center;
-  padding: 2rem 1rem 2rem 1rem;
+  padding: 1.5rem 1rem 2rem 1rem;
   transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out, 0.3s border-radius ease-in-out;
   text-align: center;
   gap: 1rem;
@@ -879,8 +879,10 @@ body {
 .dashboard__lista {
   list-style: none;
   padding: 0;
-  padding-left: 1.5rem;
+  padding-left: 0.8rem;
   margin: 0;
+  border-left: 1px solid #fff;
+  margin-left: 1.7rem;
 }
 
 .menu-principal:hover {
@@ -888,10 +890,7 @@ body {
 }
 
 ul[class*=-hidden] {
-  display: none;
-}
-
-ul[class*=-visible] {
-  display: block;
+  height: 0;
+  overflow: hidden;
 }
 /*# sourceMappingURL=app.css.map */

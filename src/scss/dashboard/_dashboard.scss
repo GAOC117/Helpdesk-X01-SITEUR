@@ -170,7 +170,7 @@
         display: flex;
         // flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem 2rem 1rem;
+        padding: 1.5rem 1rem 2rem 1rem;
         transition: .3s background-color ease-in-out, .3s color ease-in-out, .3s border-radius ease-in-out;
         text-align: center;
       
@@ -207,8 +207,10 @@
     &__lista{
        list-style: none;
        padding: 0;
-       padding-left: 1.5rem;
+       padding-left: .8rem;
        margin: 0;
+       border-left: 1px solid v.$blanco;
+       margin-left: 1.7rem;
 
        }
 
@@ -223,11 +225,8 @@
 
 
 ul[class*='-hidden']{
-  display: none;
+  height: 0;
+  overflow: hidden;
+
 }
 
-
-ul[class*='-visible']
-{
-    display: block;
-}
