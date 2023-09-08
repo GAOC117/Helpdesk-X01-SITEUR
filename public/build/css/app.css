@@ -741,9 +741,9 @@ body {
   flex: 1;
 }
 .dashboard__contenido {
+  background-color: #eee;
   padding: 1rem 1rem 3rem 1rem;
   width: 100%;
-  background-color: lightblue;
 }
 @media (min-width: 768px) {
   .dashboard__contenido {
@@ -778,24 +778,15 @@ body {
 }
 .dashboard__submit--logout {
   background-color: transparent;
-  color: #6f8ab6;
   border: none;
   font-size: 1.4rem;
   padding: 0;
-}
-.dashboard__submit--logout:hover {
-  cursor: pointer;
-  color: #fff;
 }
 .dashboard__logout {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.5rem;
-}
-.dashboard__logout:hover {
-  cursor: pointer;
-  color: #fff;
 }
 .dashboard__header-grid {
   display: flex;
@@ -857,18 +848,12 @@ body {
   gap: 1rem;
 }
 .dashboard__enlace {
-  color: #6f8ab6;
   display: flex;
   align-items: center;
   padding: 1.5rem 1rem 2rem 1rem;
   transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out, 0.3s border-radius ease-in-out;
   text-align: center;
   gap: 1rem;
-}
-.dashboard__enlace:hover {
-  background-color: #333333;
-  color: #fff;
-  border-radius: 1rem;
 }
 .dashboard__menu-texto {
   font-size: 1.1rem;
@@ -891,6 +876,13 @@ body {
 
 ul[class*=-hidden] {
   height: 0;
+  overflow: hidden;
+}
+
+.empleado__imagen {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
   overflow: hidden;
 }
 /*# sourceMappingURL=app.css.map */

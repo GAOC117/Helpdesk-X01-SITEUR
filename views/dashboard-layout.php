@@ -49,6 +49,7 @@
                 <?php 
                     echo $contenido; 
                 ?> 
+              
             </main>
         </div>
 

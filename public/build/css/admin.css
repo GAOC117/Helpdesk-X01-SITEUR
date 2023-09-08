@@ -1,9 +1,28 @@
 /** Media Queries **/
 .dashboard__header {
-  background-color: black;
-  color: #6f8ab6;
+  background-color: #212121;
+  color: #fff;
+}
+.dashboard__submit--logout {
+  color: #fff;
+}
+.dashboard__submit--logout:hover {
+  cursor: pointer;
+}
+.dashboard__logout:hover {
+  cursor: pointer;
+  text-shadow: 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f;
 }
 .dashboard__sidebar {
-  background-color: #1E293B;
+  background-color: #212121;
+}
+.dashboard__enlace {
+  color: #fff;
+}
+.dashboard__enlace:hover {
+  background-color: black;
+  border-radius: 1rem;
+  color: #fff;
+  text-shadow: 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f;
 }
 /*# sourceMappingURL=admin.css.map */

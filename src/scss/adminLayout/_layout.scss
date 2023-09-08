@@ -3,16 +3,59 @@
 
 .dashboard {
       &__header {
-        background-color: v.$admin;
-        color: lighten(v.$gris-oscuro,40);
+        background-color: v.$admin-barra;
+        color: v.$blanco;
 
     }
+
+
+
+    &__submit--logout {
+
+      
+      color:v.$blanco;
+      
+      
+
+      &:hover {
+          cursor: pointer;
+          // color: v.$negro;
+          // text-shadow: v.$anakin;
+      }
+      
+  }
+
+
+  &__logout{
+    &:hover {
+      cursor: pointer;
+      // color: v.$negro;
+      text-shadow: v.$anakin;
+  }
+  }
 
     &__sidebar{
       // background-color: v.$admin
-      background-color: v.$gris-oscuro
+      background-color: v.$admin-barra
     }
 
+
+
+    &__enlace{
+      color: v.$blanco;
+
+      &:hover{
+        background-color:black;//lighten(v.$admin-barra, 20);
+        // color: v.$admin-color-hover;
+        border-radius: 1rem;
+        color: v.$blanco;
+        text-shadow: v.$anakin;
+        
+       
+
+
+      }
+    }
 } //dashboard
 
 
