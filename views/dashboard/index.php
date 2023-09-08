@@ -1,42 +1,46 @@
-<main class="empleado">
+<main class="dash-empleado">
 
-    <div class="empleado__imagen">
+    <div class="dash-empleado__imagen">
         <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expediente; ?>.jpg" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
     </div>
 
-    <div class="empleado__informacion">
+    <!-- <div class="dash-empleado__informacion"> -->
 
-        <div class="empleado__informacion-tickets">
+        <div class="dash-empleado__informacion-tickete">
             <!-- si es colaborador solo ver abiertos y cerrados -->
             <a href="">
-                <div class="empleado__informacion-tickets tickets--total">
-                    <p class="tickets--texto">Total de tickets</p>
-                    <p class="tickets--texto tickets--cantidad">2</p>
+                <div class="dash-empleado__informacion-tickete--total tickete--info">
+                    <p class="tickete--texto">Total de tickets</p>
+                    <p class="tickete--texto tickets--cantidad">53</p>
                 </div>
             </a>
             <a href="">
-                <div class="empleado__informacion-tickets tickets--abiertos">
-                    <p class="tickets--texto">Tickets abiertos</p>
-                    <p class="tickets--texto tickets--cantidad">2</p>
+                <div class="dash-empleado__informacion-tickete--abiertos tickete--info">
+                    <p class="tickete--texto">Tickets abiertos</p>
+                    <p class="tickete--texto tickets--cantidad">22</p>
                 </div>
             </a>
             <a href="">
-                <div class="empleado__informacion-tickets tickets-pausados">
-                    <p class="tickets--texto">Tickets pausados</p>
-                    <p class="tickets--texto tickets--cantidad">2</p>
+                <div class="dash-empleado__informacion-tickete--pausados tickete--info">
+                    <p class="tickete--texto">Tickets pausados</p>
+                    <p class="tickete--texto tickets--cantidad">3</p>
                 </div>
             </a>
             <a href="">
-                <div class="empleado__informacion-tickets tickets-cerrados">
-                    <p class="tickets--texto">Tickets cerrados</p>
-                    <p class="tickets--texto tickets--cantidad">2</p>
+                <div class="dash-empleado__informacion-tickete--cerrados tickete--info">
+                    <p class="tickete--texto">Tickets cerrados</p>
+                    <p class="tickete--texto tickets--cantidad">28</p>
                 </div>
             </a>
         </div> <!-- .empleado__informacion-tickets -->
-        <div class="empleado__informacion-texto">
-            <p class="empleado__informacion-texto--leyenda">La información mostrada corresponde al mes en curso</p>
-        </div>
+<div>
 
-    </div><!-- .empleado__informacion -->
+    <div class="dash-empleado__informacion-texto">
+      <p class="dash-empleado__informacion-texto--leyenda">La información mostrada corresponde al mes en curso</p>
+    </div>
+</div>
+
+    <!-- </div> -->
+    <!-- .empleado__informacion -->
 
 </main>

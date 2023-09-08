@@ -10,7 +10,8 @@
             <div class="dashboard__empleado">
                 <div class="dashboard__empleado--texto">
                     <div class="dashboard__empleado--nombre">
-                        <p><?php echo $nombre . ' - ' . $expediente ?></p>
+                        <p><?php echo $nombre;?></p>
+                        <p><?php echo $expediente ?></p>
                     </div>
                     <form action="" class="dashboard__form">
                         <div class="dashboard__logout">

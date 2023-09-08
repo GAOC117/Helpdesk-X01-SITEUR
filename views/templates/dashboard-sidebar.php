@@ -1,4 +1,9 @@
 <aside class="dashboard__sidebar">
+
+    <!-- <div class="dashboard__menus"> -->
+    <!-- <div class="dashboard__navegacion"> -->
+
+
     <nav class="dashboard__menu">
 
         <a href="/dashboard" class="house dashboard__enlace house-menu">
@@ -65,7 +70,7 @@
                     </span>
                 </a>
             </li>
- 
+
 
 
 
@@ -194,4 +199,12 @@
         <!-- </nav> -->
 
     </nav>
+    <!-- </div> -->
+    <div class="dashboard__ip">
+        <p class="dashboard__ip--texto">TU IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
+    </div>
+
+    <!-- </div> -->
+
+
 </aside>
