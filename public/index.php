@@ -41,6 +41,11 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 //Area de dashboard
 $router->get('/dashboard', [DashboardController::class, 'index']);
 
+//generar-ticket
+$router->get('/dashboard/capturar-ticket', [DashboardController::class, 'capturarTicket']);
+$router->post('/dashboard/capturar-ticket', [DashboardController::class, 'capturarTicket']);
+
+
 
 // $router->get('/admin/dashboard', [DashboardController::class, 'index']);
 // $router->get('/helpdesk/dashboard', [DashboardController::class, 'index']);

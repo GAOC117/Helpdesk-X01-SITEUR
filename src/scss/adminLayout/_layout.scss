@@ -20,16 +20,16 @@
       &:hover {
           cursor: pointer;
           // color: v.$negro;
-          // text-shadow: v.$anakin;
+          text-shadow: v.$anakin;
       }
       
   }
 
 
-  &__logout{
+  &__submit{
     &:hover {
       cursor: pointer;
-      // color: v.$negro;
+      //  color: v.$negro;
       text-shadow: v.$anakin;
   }
   }
@@ -58,8 +58,18 @@
     }
 } //dashboard
 
+ul[class*='ul']{
+  width: 25rem;
+  background-color: v.$admin-barra;
+  position: fixed;
+  border-radius: 0 1rem 1rem 0;
+  left: -.4rem;
 
-
+ @include m.tablet { 
+  position: unset;
+  width: auto;
+ }
+}
 
 
 

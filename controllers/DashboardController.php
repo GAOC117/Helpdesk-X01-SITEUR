@@ -9,7 +9,7 @@ use MVC\Router;
 
 class DashboardController
 {
-
+    
     public static function index(Router $router)
     {
         session_start();
@@ -29,4 +29,28 @@ class DashboardController
             'nombre' => $nombre
         ]);
     }
+
+public static function capturarTicket(Router $router) {
+    session_start();
+    $idRol = $_SESSION['idRol'];
+    $nombre = $_SESSION['nombre'].' '.$_SESSION['apellidoPaterno']. ' '.$_SESSION['apellidoMaterno'];
+    $expediente = $_SESSION['id'];
+    
+ 
+    
+      $titulo = 'Capturar nuevo ticket';
+
+    
+      $router->renderView('dashboard/capturar-ticket', [
+          'titulo'=> $titulo,
+          'idRol' => $idRol,
+          'expediente' => $expediente,
+          'nombre' => $nombre
+      ]);
+
+
 }
+
+
+}
+

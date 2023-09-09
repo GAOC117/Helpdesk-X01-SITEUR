@@ -735,6 +735,30 @@ body {
   flex-direction: column;
   background-color: #fff;
 }
+.dashboard__employee-id {
+  display: block;
+}
+@media (min-width: 768px) {
+  .dashboard__employee-id {
+    display: none;
+  }
+}
+.dashboard__employee-exp {
+  display: none;
+}
+@media (min-width: 768px) {
+  .dashboard__employee-exp {
+    display: block;
+  }
+}
+.dashboard__employee-exp::before {
+  content: "-";
+  display: block;
+  width: 0.1rem;
+  height: 0.1rem;
+  position: relative;
+  right: 0.9rem;
+}
 .dashboard__grid {
   display: flex;
   flex: 1;
@@ -746,7 +770,7 @@ body {
 }
 @media (min-width: 768px) {
   .dashboard__contenido {
-    padding: 1rem 3rem;
+    padding: 0 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -760,11 +784,13 @@ body {
 }
 @media (min-width: 768px) {
   .dashboard__sidebar {
-    width: 29.5rem;
+    width: 30rem;
   }
 }
 .dashboard__header {
   padding: 0.7rem 0;
+  position: sticky;
+  top: 0;
 }
 .dashboard__empleado {
   display: flex;
@@ -774,10 +800,10 @@ body {
 }
 .dashboard__empleado--nombre {
   font-size: 1.5rem;
-  display: grid;
 }
 @media (min-width: 768px) {
   .dashboard__empleado--nombre {
+    display: flex;
     font-size: 1.7rem;
     gap: 1rem;
   }
@@ -804,6 +830,8 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-size: 1.5rem;
+  justify-content: space-between;
+  width: 100%;
 }
 .dashboard__header-grid {
   display: flex;
@@ -845,8 +873,13 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  left: 38.5rem;
+  left: 29.5rem;
   bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .dashboard__notification--pop {
+    left: 38rem;
+  }
 }
 .dashboard__notification--pop a {
   color: white;
@@ -855,6 +888,8 @@ body {
 }
 .dashboard__ip {
   display: none;
+  position: sticky;
+  bottom: 0;
 }
 @media (min-width: 768px) {
   .dashboard__ip {
@@ -866,6 +901,10 @@ body {
     font-weight: 700;
   }
 }
+.dashboard__menu {
+  position: sticky;
+  top: 6.5rem;
+}
 .dashboard__enlace {
   display: flex;
   align-items: center;
@@ -873,6 +912,7 @@ body {
   transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out, 0.3s border-radius ease-in-out;
   text-align: center;
   gap: 2.5rem;
+  overflow: hidden;
 }
 .dashboard__icono {
   width: 1rem;
@@ -888,7 +928,6 @@ body {
   padding: 0;
   padding-left: 0.8rem;
   margin: 0;
-  border-left: 1px solid #fff;
   margin-left: 1.7rem;
 }
 .dashboard__menus {
@@ -910,7 +949,7 @@ ul[class*=-hidden] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 5rem;
+  gap: 3rem;
 }
 .dash-empleado__imagen {
   width: 10rem;

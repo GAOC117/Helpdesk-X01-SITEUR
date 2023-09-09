@@ -5,7 +5,9 @@
 
 
     <nav class="dashboard__menu">
-
+        <!-- <a  class="hamburguesas dashboard__enlace hamburguesa-menu">
+            <i class="hamburguesa hamburguesa-menu fa-solid fa-bars "></i>
+        </a> -->
         <a href="/dashboard" class="house dashboard__enlace house-menu">
             <i class="house house-icono fa-solid fa-house dashboard__icono"></i>
             <span class="house dashboard__menu-texto">
@@ -35,7 +37,7 @@
             </li>
 
             <li class="dashboard__lista-boton">
-                <a href="/dashboard/generar-ticket" class="generar-ticket dashboard__enlace">
+                <a href="/dashboard/capturar-ticket" class="generar-ticket dashboard__enlace">
                     <i class="generar-ticket generar-ticket-icono fa-solid fa-file-circle-plus dashboard__icono"></i>
                     <span class="generar-ticket dashboard__menu-texto">
                         Generar ticket

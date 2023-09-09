@@ -8,8 +8,9 @@
 }
 .dashboard__submit--logout:hover {
   cursor: pointer;
+  text-shadow: 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f;
 }
-.dashboard__logout:hover {
+.dashboard__submit:hover {
   cursor: pointer;
   text-shadow: 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f;
 }
@@ -24,5 +25,19 @@
   border-radius: 1rem;
   color: #fff;
   text-shadow: 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f;
+}
+
+ul[class*=ul] {
+  width: 25rem;
+  background-color: #212121;
+  position: fixed;
+  border-radius: 0 1rem 1rem 0;
+  left: -0.4rem;
+}
+@media (min-width: 768px) {
+  ul[class*=ul] {
+    position: unset;
+    width: auto;
+  }
 }
 /*# sourceMappingURL=admin.css.map */

@@ -10,6 +10,33 @@
     background-color: v.$blanco;
     //LAYOUT
 
+    &__employee-id{
+        display: block;
+        @include m.tablet { 
+            display: none;
+        }
+    }
+
+    &__employee-exp{
+        display: none;
+
+        @include m.tablet { 
+            display: block;
+        }
+
+        &::before{
+            content: '-';
+            display: block;
+            width: .1rem;
+            height: .1rem;
+            position: relative;
+            right: .9rem;
+        }
+    }
+
+
+
+
     &__grid {
         display: flex;
         flex: 1;
@@ -21,10 +48,10 @@
         background-color: v.$contenido;
         padding: 1rem 1rem 3rem 1rem;
         width: 100%;
-
+       
 
         @include m.tablet {
-            padding: 1rem 3rem;
+            padding: 0 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,8 +65,9 @@
         flex-direction: column;
         justify-content: space-between;
 
+       
         @include m.tablet {
-            width: 29.5rem;
+            width: 30rem;
         }
     }
 
@@ -49,6 +77,9 @@
 
     &__header {
         padding: .7rem 0;
+        position: sticky;
+        top: 0;
+     
     }
 
     &__empleado {
@@ -59,10 +90,12 @@
 
         &--nombre {
             font-size: 1.5rem;
-            display: grid; 
+            
+
           
             
             @include m.tablet { 
+                display: flex;
                 font-size: 1.7rem;
                 gap: 1rem;
             }
@@ -103,6 +136,10 @@
         align-items: center;
         gap: .5rem;
         font-size: 1.5rem;
+        justify-content: space-between;
+        width: 100%;
+
+        
 
 
     }
@@ -156,8 +193,13 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            left: 38.5rem;
+            left: 29.5rem;
             bottom: 1.5rem;
+            
+            @include m.tablet { 
+                
+                left: 38rem;
+            }
 
             & a {
                 color: white;
@@ -169,6 +211,8 @@
 
     &__ip {
         display: none;
+        position: sticky;
+        bottom: 0;
 
         @include m.tablet {
             display: block;
@@ -181,9 +225,10 @@
         }
     }
 
-    // &__menu {
-    //  position: absolute;
-    // }
+    &__menu {
+     position: sticky;
+     top: 6.5rem;
+    }
 
 
     //SIDEBAR
@@ -199,6 +244,9 @@
         text-align: center;
 
         gap: 2.5rem;
+        overflow: hidden;
+
+        
 
         // &:hover{
         //     background-color: lighten(v.$admin, 20);
@@ -233,7 +281,7 @@
         padding: 0;
         padding-left: .8rem;
         margin: 0;
-        border-left: 1px solid v.$blanco;
+        // border-left: 1px solid v.$blanco;
         margin-left: 1.7rem;
 
     }
@@ -256,18 +304,21 @@
 }
 
 
+
 ul[class*='-hidden'] {
     height: 0;
     overflow: hidden;
 
 }
 
+
+
 .dash-empleado {
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 5rem;
+    gap: 3rem;
 
     &__imagen {
 
@@ -389,7 +440,7 @@ ul[class*='-hidden'] {
     }
 
     &--texto {
-        color: white;
+        color: white;    
         margin: 1rem;
 
 
@@ -397,3 +448,4 @@ ul[class*='-hidden'] {
     }
 
 }
+
