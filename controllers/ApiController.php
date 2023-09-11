@@ -7,6 +7,7 @@ namespace Controllers;
 use Model\Departamento;
 use Model\Empleado;
 use Model\Subclasificacion;
+use Model\Tickets;
 
 class ApiController
 {
@@ -28,6 +29,23 @@ class ApiController
         // debuguear($subclasificacion);
 
         echo json_encode($subclasificacion);
+    }
+
+
+    public static function generarTicket(){
+        
+        $ticket = new Tickets;
+        $ticket->sincronizar($_POST);
+        $resultado =  $ticket->guardar();
+
+debuguear($resultado);
+
+        echo json_encode($resultado);
+
+
+        
+        
+
     }
 
 }

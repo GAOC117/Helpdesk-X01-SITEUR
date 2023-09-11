@@ -24,7 +24,7 @@
             <i class="tickets i-tickets fa-solid fa-chevron-right icono"></i>
         </a>
 
-        <ul class="dashboard__lista tickets ul-tickets-hidden ul-tickets">
+        <ul class="dashboard__lista tickets ul-tickets-hidden ul-tickets ull">
 
             <li class="dashboard__lista-boton">
                 <a href="/dashboard/ver-tickets" class="ver-ticket dashboard__enlace">
@@ -54,7 +54,7 @@
             <i class="empleado i-empleado fa-solid fa-chevron-right icono"></i>
         </a>
         <!-- <nav class="dashboard__menu"> -->
-        <ul class="dashboard__lista empleado ul-empleado ul-empleado-hidden">
+        <ul class="dashboard__lista empleado ul-empleado ul-empleado-hidden ull">
             <li class="dashboard__lista-boton">
                 <a href="/dashboard/nuevo-empleado" class="nuevo-empleado dashboard__enlace">
                     <i class="nuevo-empleado nuevo-empleado-icono fa-solid fa-user-plus dashboard__icono"></i>
@@ -100,7 +100,7 @@
         </a>
 
 
-        <ul class="dashboard__lista incidentes ul-incidentes ul-incidentes-hidden">
+        <ul class="dashboard__lista incidentes ul-incidentes ul-incidentes-hidden ull">
             <li class="dashboard__lista-boton">
                 <a href="/dashboard/nuevo-incidentes" class="nuevo-incidentes dashboard__enlace">
                     <i class="nuevo-incidentes nuevo-incidentes-icono fa-solid fa-circle-plus dashboard__icono"></i>
@@ -169,7 +169,7 @@
         </a>
 
 
-        <ul class="dashboard__lista departamento ul-departamento ul-departamento-hidden">
+        <ul class="dashboard__lista departamento ul-departamento ul-departamento-hidden ull">
             <li class="dashboard__lista-boton">
                 <a href="/dashboard/nuevo-departamento" class="nuevo-departamento dashboard__enlace">
                     <i class="nuevo-departamento nuevo-departamento-icono fa-solid fa-building-circle-arrow-right dashboard__icono"></i>

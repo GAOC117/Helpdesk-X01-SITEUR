@@ -27,14 +27,15 @@
   text-shadow: 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f, 0 0 0.5rem #08f;
 }
 
-ul[class*=ul] {
+ul[class*=ull] {
   width: 25rem;
+  background-color: #212121;
   position: fixed;
   border-radius: 0 1rem 1rem 0;
   left: -0.4rem;
 }
 @media (min-width: 768px) {
-  ul[class*=ul] {
+  ul[class*=ull] {
     position: unset;
     width: auto;
   }

@@ -41,12 +41,12 @@ ticketNuevo = 1 *
 
 
                                 <label for="idEmpReporta" class="formulario__label">Expediente</label>
-                                <?php if ($expedienteReporta === '') { ?>
+                                <?php //if ($expedienteReporta === '') { ?>
                                     <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>">
-                                <?php } ?>
-                                <?php if ($expedienteReporta !== '') { ?>
-                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteReporta); ?>">
-                                <?php } ?>
+                                <?php //} ?>
+                                <?php //if ($expedienteReporta !== '') { ?>
+                                    <!-- <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php //echo s($expedienteReporta); ?>"> -->
+                                <?php// } ?>
 
 
                             </div>
@@ -73,15 +73,15 @@ ticketNuevo = 1 *
 
 
                             <div class="empleado--ids">
-                                <?php if ($expedienteRequiere === '') { ?>
+                                <?php //if ($expedienteRequiere === '') { ?>
                                     <label for="idEmpRequiere" class="formulario__label">Expediente</label>
                                     <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php echo s($expedienteLogueado); ?>">
-                                <?php } ?>
+                                <?php// } ?>
 
-                                <?php if ($expedienteRequiere !== '') { ?>
-                                    <label for="idEmpRequiere" class="formulario__label">Expediente</label>
-                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php echo s($expedienteRequiere); ?>">
-                                <?php } ?>
+                                <?php //if ($expedienteRequiere !== '') { ?>
+                                    <!-- <label for="idEmpRequiere" class="formulario__label">Expediente</label>
+                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php //echo s($expedienteRequiere); ?>"> -->
+                                <?php //} ?>
 
                             </div>
                             <div class="empleado--ids">
@@ -102,7 +102,7 @@ ticketNuevo = 1 *
                     <div class="formulario__fieldset--selects">
 
 
-                        <div class="formulario__fieldset--categoria">
+                        <div class="formulario__fieldset--categoria" id="formulario-fieldset--clasificacion">
                             <label for="idClasificacionProblema">Clasificación:</label>
                             <select class="formulario__campo select" name="idClasificacionProblema" id="idClasificacionProblema" autocomplete="on">
                                 <option  disabled selected>--Seleccionar--</option>
@@ -115,7 +115,7 @@ ticketNuevo = 1 *
                             </select>
                         </div>
 
-                        <div class="formulario__fieldset--categoria">
+                        <div class="formulario__fieldset--categoria" id="formulario-fieldset--subclasificacion">
                             <label for="idsubClasificacionProblema">Subclasificación:</label>
                             <select class="formulario__campo select" name="idSubclasificacionProblema" id="idSubclasificacionProblema" autocomplete="on">
                                 <option disabled selected>--Seleccionar--</option>

@@ -1,6 +1,20 @@
 
 
-const botonRegistrar = document.querySelector('#botonRegistrar');
+
+const ticket = {
+    expedienteReporte: '',
+    extensionReporta: '',
+    nombreReporta: '',
+    expedienteRequiere: '',
+    extensionRequiere: '',
+    nombreRequiere: '',
+    idClasificacion: '',
+    idSubclasificacion: '',
+    comentarios: ''
+
+}
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
@@ -18,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     obtenerSubclasificacionAlInicio();
     obtenerSubclasificacionIniciando();
 
-
+    registrarTicket();
+    eliminarBordeComentario()
     iniciarApp();
 
 
@@ -30,6 +45,13 @@ function iniciarApp() {
 
 }
 
+function eliminarBordeComentario(){
+    const comentariosReporte = document.querySelector('#comentariosReporte');
+    comentariosReporte.addEventListener('input',()=>{
+        comentariosReporte.style.outline = 'none';
+    })
+
+}
 
 function buscarEmpleado(campoExpediente, campoExtension, campoNombre) {
     const expediente = document.querySelector(campoExpediente);
@@ -38,7 +60,7 @@ function buscarEmpleado(campoExpediente, campoExtension, campoNombre) {
 
     expediente.addEventListener('input', () => {
         obtenerEmpleado(campoExpediente, campoExtension, campoNombre);
-        
+
     });
 }
 
@@ -55,7 +77,8 @@ async function obtenerEmpleado(campoExpediente, campoExtension, campoNombre) {
         try {
 
             // par.innerHTML = '';
-            const url = 'http://localhost:3000/api/obtenerEmpleado?idEmp=' + expedienteEmpleado.value;
+            // const url = 'http://'+direccion+':3000/api/obtenerEmpleado?idEmp=' + expedienteEmpleado.value;
+            const url = '/api/obtenerEmpleado?idEmp=' + expedienteEmpleado.value;
 
             const resultado = await fetch(url);
             const empleado = await resultado.json();
@@ -66,8 +89,8 @@ async function obtenerEmpleado(campoExpediente, campoExtension, campoNombre) {
                 ExtensionEmpleado.value = extension;
                 NombreEmpleado.value = nombre + ' ' + apellidoPaterno + ' ' + apellidoMaterno;
                 expedienteEmpleado.style.outline = 'none';
-                ExtensionEmpleado.style.outline = 'none';
-                NombreEmpleado.style.outline = 'none';
+                // ExtensionEmpleado.style.outline = 'none';
+                // NombreEmpleado.style.outline = 'none';
 
             }
             else {
@@ -76,8 +99,8 @@ async function obtenerEmpleado(campoExpediente, campoExtension, campoNombre) {
                 ExtensionEmpleado.value = '';
                 NombreEmpleado.value = '';
                 expedienteEmpleado.style.outline = '1px solid red';
-                ExtensionEmpleado.style.outline = '1px solid red';
-                NombreEmpleado.style.outline = '1px solid red';
+                // ExtensionEmpleado.style.outline = '1px solid red';
+                // NombreEmpleado.style.outline = '1px solid red';
 
             }
 
@@ -96,13 +119,22 @@ async function obtenerEmpleado(campoExpediente, campoExtension, campoNombre) {
 
 async function obtenerSubclasificacion() {
 
+    const padreClasificacion = document.querySelector('#formulario-fieldset--clasificacion');
+    const hijoClasificacion = padreClasificacion.querySelector('#formulario-fieldset--clasificacion > span');
+
+    hijoClasificacion.style.outline = 'none';
+    
+
+    
+
     try {
         const Clasificacion = document.querySelector('#idClasificacionProblema').value;
         console.log(Clasificacion);
         const subClasificacion = document.querySelector('#idSubclasificacionProblema');
 
         // par.innerHTML = '';
-        const url = 'http://localhost:3000/api/obtenerSubclasificacion?idClasificacion=' + Clasificacion;
+        // const url = 'http://'+direccion+':3000/api/obtenerSubclasificacion?idClasificacion=' + Clasificacion;
+        const url = '/api/obtenerSubclasificacion?idClasificacion=' + Clasificacion;
 
 
         const resultado = await fetch(url);
@@ -144,36 +176,168 @@ function obtenerSubclasificacionAlInicio() {
             obtenerSubclasificacion();
         }
 
-       
-            
+
+
 
 
     }, 100);
 
 }
 
-function obtenerSubclasificacionIniciando()
-{
-     const idSubC = sessionStorage.getItem('idClasificacion');
-        if(idSubC){
-         
-         setTimeout(()=>{
+function obtenerSubclasificacionIniciando() {
+    const idSubC = sessionStorage.getItem('idClasificacion');
+    if (idSubC) {
 
-             $('#idSubclasificacionProblema').val(idSubC).trigger('change'); //si es exito reiniciar el sessionStorage
-         },200);
+        setTimeout(() => {
 
-        }
+            $('#idSubclasificacionProblema').val(idSubC).trigger('change'); //si es exito reiniciar el sessionStorage
+        }, 300);
+
+    }
 }
 
 
 $('#idClasificacionProblema').on('select2:select', obtenerSubclasificacion);
-$('#idSubclasificacionProblema').on('select2:select',getIdSubclasificacion);
+$('#idSubclasificacionProblema').on('select2:select', getIdSubclasificacion);
 
-function getIdSubclasificacion(){
+function getIdSubclasificacion() {
+
+    const padreSublasificacion = document.querySelector('#formulario-fieldset--subclasificacion');
+    const hijoSubclasificacion = padreSublasificacion.querySelector('#formulario-fieldset--subclasificacion > span');
+
+    hijoSubclasificacion.style.outline = 'none';
+
     const idSub = document.querySelector('#idSubclasificacionProblema').value;
-    
 
-    sessionStorage.setItem('idClasificacion',idSub);
+
+    sessionStorage.setItem('idClasificacion', idSub);
     // $('#idSubclasificacionProblema').select2('val','1')
 
 }
+
+
+function registrarTicket() {
+    const botonRegistrar = document.querySelector('#botonRegistrar');
+    botonRegistrar.addEventListener('click', obtenerDatosTicket);
+}
+
+
+async function obtenerDatosTicket() {
+    
+    var mensaje = "Los siguientes campos (marcados en rojo) deben ser llenados:<br><br>";
+    const expReporta = document.querySelector('#idEmpReporta');
+    const extReporta = document.querySelector('#extensionReporta');
+    const nombreReporta = document.querySelector('#nombreReporta');
+    const expRequiere = document.querySelector('#idEmpRequiere');
+    const extRequiere = document.querySelector('#extensionRequiere');
+    const nombreRequiere = document.querySelector('#extensionRequiere');
+    const idClasificacion = document.querySelector('#idClasificacionProblema');
+    const idSubclasificacion = document.querySelector('#idSubclasificacionProblema');
+    const comentariosReporte = document.querySelector('#comentariosReporte');
+
+    const padreClasificacion = document.querySelector('#formulario-fieldset--clasificacion');
+    const hijoClasificacion = padreClasificacion.querySelector('#formulario-fieldset--clasificacion > span');
+    
+    const padreSublasificacion = document.querySelector('#formulario-fieldset--subclasificacion');
+    const hijoSubclasificacion = padreSublasificacion.querySelector('#formulario-fieldset--subclasificacion > span');
+
+
+    const text = expReporta + " " + extReporta + " " + nombreReporta + " " + expRequiere + " " + extRequiere + " " + nombreRequiere;
+
+    if (expReporta.value == "")
+    {
+    mensaje+="-Expediente de quién reporta.<br>";
+    expReporta.style.outline = '1px solid red';
+    }
+    
+
+    if (expRequiere.value == "")
+    {
+    mensaje+="-Expediente de quién requiere.<br>";
+    expRequiere.style.outline = '1px solid red';
+    }
+
+    if (idClasificacion.value == "--Seleccionar--")
+    {
+    mensaje+="-Clasificación del problema presentado.<br>";
+    hijoClasificacion.style.outline = '1px solid red';
+    }
+
+    if (idSubclasificacion.value == "--Seleccionar--"|| idSubclasificacion.value == "")
+    {
+    mensaje+="-Subclasificación del problema presentado.<br>";
+    hijoSubclasificacion.style.outline = '1px solid red';
+    }
+
+    if (comentariosReporte.value == "")
+    {
+    mensaje+="-Un comentario sobre el problema presentado.<br>";
+    comentariosReporte.style.outline = '1px solid red';
+    }
+
+    
+
+
+    if (expReporta.value !== "" && extReporta.value !== "" && nombreReporta.value !== "" && expRequiere.value !== "" && extRequiere.value !== "" && nombreRequiere.value && idClasificacion.value !== "--Seleccionar--" && idSubclasificacion.value !=="--Seleccionar--" && comentariosReporte.value!="") 
+    {
+     
+        const datos = new FormData();
+        datos.append('expReporta', expReporta);
+        datos.append('extReporta', extReporta);
+        datos.append('idClasificacion', idClasificacion);
+        datos.append('idSubclasificacion', idSubclasificacion);
+        datos.append('comentariosReporte', comentariosReporte);
+
+        datos.forEach(dato =>{
+            console.log(dato);
+        })
+
+        try{
+            const url ='/api/generar-ticket';
+
+            const respuesta = await fetch(url,{
+                method: 'POST',
+                body: datos
+            });
+
+            const resultado = await respuesta.json();
+            alert(resultado);
+            if(true){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Exito',
+                    text: 'Cita creada con éxito con el id',//+resultado.id,
+                    button: 'OK'    
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                }).then(()=>{
+                    setTimeout(() => {
+                        window.location.replace("https://www.google.com");
+                        // window.location.replace("Pagina a redirigir")
+                        
+                    }, 3000);
+                })
+
+
+            }
+
+
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    else{
+        Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            html: mensaje,//+resultado.id,
+            button: 'OK'    
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+    }
+
+
+
+}
+
+

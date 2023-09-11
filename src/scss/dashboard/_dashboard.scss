@@ -47,7 +47,7 @@
 
     &__contenido {
         background-color: v.$contenido;
-        padding: 1rem 1rem 3rem 1rem;
+        padding: 1rem 3rem 3rem 2rem;
         width: 100%;
 
 
@@ -78,8 +78,10 @@
 
     &__header {
         padding: .7rem 0;
-        position: sticky;
+        position: fixed;
         top: 0;
+        width: 100%;
+
 
     }
 

@@ -58,9 +58,9 @@
     }
 } //dashboard
 
-ul[class*='ul']{
+ul[class*='ull']{
   width: 25rem;
-  // background-color: v.$admin-barra;
+  background-color: v.$admin-barra;
   position: fixed;
   border-radius: 0 1rem 1rem 0;
   left: -.4rem;

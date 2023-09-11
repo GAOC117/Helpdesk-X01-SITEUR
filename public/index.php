@@ -78,6 +78,7 @@ $router->post('/dashboard/generar-ticket', [DashboardController::class, 'generar
 //API's
 $router->get('/api/obtenerEmpleado', [ApiController::class, 'obtenerEmpleado']);
 $router->get('/api/obtenerSubclasificacion', [ApiController::class, 'obtenerSubclasificacion']);
+$router->get('/api/generar-ticket', [ApiController::class, 'generarTicket']);
 
 
 $router->comprobarRutas();
