@@ -11,11 +11,11 @@
                 <div class="dashboard__empleado--texto">
                     <div class="dashboard__empleado--nombre">
                         <p class="dashboard__employee-name"><?php echo $nombre; ?></p>
-                        <p class="dashboard__employee-exp"><?php echo $expediente ?></p>
+                        <p class="dashboard__employee-exp"><?php echo $expedienteLogueado ?></p>
                     </div>
                     <form action="" class="dashboard__form">
                         <div class="dashboard__logout">
-                            <p class="dashboard__employee-id"><?php echo $expediente ?></p>
+                            <p class="dashboard__employee-id"><?php echo $expedienteLogueado ?></p>
                             <div class="dashboard__submit">
                                 <input type="submit" class="dashboard__submit--logout" value="Cerrar sesión">
                                 <i class="fa-solid fa-right-from-bracket"></i>
@@ -26,7 +26,7 @@
                 <div class="dashboard__empleado--foto">
 
 
-                    <img class="dashboard__empleado--foto-empleado" src="http://skynet.siteur.gob.mx/fotos/<?php echo $expediente; ?>.jpg" alt="imagen empleado">
+                    <img class="dashboard__empleado--foto-empleado" src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="imagen empleado">
 
                 </div>
                 <div class="dashboard__notification">

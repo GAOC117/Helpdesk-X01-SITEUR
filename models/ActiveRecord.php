@@ -106,7 +106,7 @@ class ActiveRecord {
     public function sincronizar($args=[]) { 
         foreach($args as $key => $value) {
           if(property_exists($this, $key) && !is_null($value)) {
-            $this->$key = $value;
+            $this->$key =  s($value);
           }
         }
     }
@@ -131,8 +131,16 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
-    public static function allOrderBy($columnToOrder) {
-        $query = "SELECT * FROM " . static::$tabla . " ORDER BY $columnToOrder ASC";
+
+    public static function allWhere($columna, $valor, $orden) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' ORDER BY $orden";
+        $resultado = self::consultarSQL($query);
+        return  $resultado  ;
+    }
+
+
+    public static function allOrderBy($order) {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY $order";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }

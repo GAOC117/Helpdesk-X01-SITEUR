@@ -60,7 +60,7 @@
 
 ul[class*='ul']{
   width: 25rem;
-  background-color: v.$admin-barra;
+  // background-color: v.$admin-barra;
   position: fixed;
   border-radius: 0 1rem 1rem 0;
   left: -.4rem;
@@ -71,6 +71,15 @@ ul[class*='ul']{
  }
 }
 
+
+.formulario__submit--nuevo-ticket{
+  @include m.boton(v.$admin-sidebar, v.$blanco);
+  margin: 3rem 0 2rem 0;
+  width: auto;
+  align-self: center;
+  border-radius: 1rem;
+
+}
 
 
 

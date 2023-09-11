@@ -1,7 +1,7 @@
 <main class="dash-empleado">
 
     <div class="dash-empleado__imagen">
-        <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expediente; ?>.jpg" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+        <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
     </div>
 
     <!-- <div class="dash-empleado__informacion"> -->

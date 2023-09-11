@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     iniciarApp();
+    filtrarSelect();
     
 
 
@@ -13,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function iniciarApp() {
 
-    filtrarSelect();
   
 }
 
@@ -70,6 +70,9 @@ function filtrarSelect() {
           }
         }
       });
+
+
+      
    
 }
 

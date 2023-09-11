@@ -72,6 +72,12 @@ class Empleado extends ActiveRecord {
         if(!$this->apellidoMaterno) {
             self::$alertas['error'][] = 'El apellido materno es obligatorio';
         }
+        if(!$this->id) {
+            self::$alertas['error'][] = 'El expediente es obligatorio';
+        }
+        if(!$this->extension) {
+            self::$alertas['error'][] = 'La extensión es obligatoria';
+        }
         if(!$this->email) {
             self::$alertas['error'][] = 'El correo es obligatorio';
         }

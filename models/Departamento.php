@@ -16,12 +16,12 @@ class Departamento extends ActiveRecord {
     }
 
     // Validar que se digite el departamento
-    public function validarLogin() {
-        if(!$this->descripcion) {
-            self::$alertas['error'][] = 'Debe indicar el departamento';
-        }  
-        return self::$alertas;
+    // public function validarLogin() {
+    //     if(!$this->descripcion) {
+    //         self::$alertas['error'][] = 'Debe indicar el departamento';
+    //     }  
+    //     return self::$alertas;
 
-    }
+    // }
 
 }

@@ -1,3 +1,79 @@
-body{
-    background-color: blue;
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.dashboard {
+      &__header {
+        background-color: v.$colaborador-barra;
+        color: v.$blanco;
+
+    }
+
+
+
+    &__submit--logout {
+
+      
+      color:v.$blanco;
+      
+      
+
+      &:hover {
+          cursor: pointer;
+           color: v.$colaborador-color-hover;
+          text-shadow: v.$colaborador-blur;
+      }
+      
+  }
+
+
+  &__submit{
+    &:hover {
+      cursor: pointer;
+      color: v.$colaborador-color-hover;
+      text-shadow: v.$colaborador-blur;
+  }
+  }
+
+    &__sidebar{
+      // background-color: v.$admin
+      background-color: v.$colaborador-barra
+    }
+
+
+
+    &__enlace{
+      color: v.$blanco;
+
+      &:hover{
+        background-color:v.$colaborador-hover;//lighten(v.$admin-barra, 20);
+        // color: v.$admin-color-hover;
+        border-radius: 1rem;
+        color: v.$colaborador-color-hover;
+        text-shadow: v.$colaborador-blur;
+        
+       
+
+
+      }
+    }
+} //dashboard
+
+ul[class*='ul']{
+  width: 25rem;
+  // background-color: v.$admin-barra;
+  position: fixed;
+  border-radius: 0 1rem 1rem 0;
+  left: -.4rem;
+
+ @include m.tablet { 
+  position: unset;
+  width: auto;
+ }
 }
+
+
+
+
+
+
+

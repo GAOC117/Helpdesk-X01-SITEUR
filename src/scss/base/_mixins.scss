@@ -44,9 +44,9 @@
 
     @keyframes pulsate {
         0%{
-            box-shadow: 0 0 25px #378499,
+            box-shadow: 0 0 25px $bgColor,
             // box-shadow: 0 0 25px white,
-            0 0 50px v.$azul-siteur;
+            0 0 50px $bgColor;
         }
     }
 }

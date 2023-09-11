@@ -1,4 +1,44 @@
-body {
-  background-color: blue;
+/** Media Queries **/
+.dashboard__header {
+  background-color: #213461;
+  color: #fff;
+}
+.dashboard__submit--logout {
+  color: #fff;
+}
+.dashboard__submit--logout:hover {
+  cursor: pointer;
+  color: #213461;
+  text-shadow: 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C;
+}
+.dashboard__submit:hover {
+  cursor: pointer;
+  color: #213461;
+  text-shadow: 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C;
+}
+.dashboard__sidebar {
+  background-color: #213461;
+}
+.dashboard__enlace {
+  color: #fff;
+}
+.dashboard__enlace:hover {
+  background-color: #38435C;
+  border-radius: 1rem;
+  color: #213461;
+  text-shadow: 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C;
+}
+
+ul[class*=ul] {
+  width: 25rem;
+  position: fixed;
+  border-radius: 0 1rem 1rem 0;
+  left: -0.4rem;
+}
+@media (min-width: 768px) {
+  ul[class*=ul] {
+    position: unset;
+    width: auto;
+  }
 }
 /*# sourceMappingURL=colaborador.css.map */

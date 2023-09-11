@@ -42,8 +42,8 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 $router->get('/dashboard', [DashboardController::class, 'index']);
 
 //generar-ticket
-$router->get('/dashboard/capturar-ticket', [DashboardController::class, 'capturarTicket']);
-$router->post('/dashboard/capturar-ticket', [DashboardController::class, 'capturarTicket']);
+$router->get('/dashboard/generar-ticket', [DashboardController::class, 'generarTicket']);
+$router->post('/dashboard/generar-ticket', [DashboardController::class, 'generarTicket']);
 
 
 
@@ -76,7 +76,8 @@ $router->post('/dashboard/capturar-ticket', [DashboardController::class, 'captur
 
 
 //API's
-// $router->get('/api/departamentos', [ApiController::class, 'index']);
+$router->get('/api/obtenerEmpleado', [ApiController::class, 'obtenerEmpleado']);
+$router->get('/api/obtenerSubclasificacion', [ApiController::class, 'obtenerSubclasificacion']);
 
 
 $router->comprobarRutas();

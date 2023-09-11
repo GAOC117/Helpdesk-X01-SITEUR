@@ -1,0 +1,136 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.generar-ticket {
+
+    &__alertas{
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__datos {
+        padding: 2rem 2rem;
+
+        @include m.desktop {
+
+            padding: 2rem 5rem;
+        }
+    }
+
+    &__grid {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        @include m.desktop {
+            @include m.grid(4, 3rem);
+        }
+    }
+
+
+    & .formulario__campo--grid:nth-child(1) {
+        grid-column: 1 / 3;
+    }
+
+    & .formulario__campo--grid:nth-child(2) {
+        grid-column: 3 / 5;
+    }
+
+}
+
+
+.formulario {
+
+    &__input {
+
+        &--nombre-reporta,
+        &--nombre-requiere {
+            width: 100%;
+        }
+
+        &--expediente,
+        &--extension {
+            width: 80%;
+        }
+
+    }
+
+    &__campo {
+
+        &--ids {
+            display: flex;
+            gap: 1rem;
+
+
+        }
+
+
+        &.select {
+
+            width: 100%;
+
+        }
+
+    }
+}
+
+.formulario__fieldset {
+
+    &--tickets {
+        grid-column: 1 / 5;
+    }
+
+    &--selects {
+        @include m.grid(4, 2rem);
+
+        & .formulario__fieldset--categoria {
+            
+            &:nth-child(1) {
+                grid-column: 1/3;
+
+                @include m.desktop { 
+                    padding-right: 3rem;
+                    
+                }
+            }
+            
+            &:nth-child(2) {
+                grid-column: 3/5;
+                @include m.desktop { 
+                    padding-left: 3rem;
+                    
+                }
+            }
+
+
+        }
+
+    }
+
+}
+
+.formulario {
+
+    &__comentarios {
+        margin-top: 2rem;
+        display: grid;
+        grid-column: 1 / 5;
+
+        &-text-area {
+            grid-column: 1 / 5;
+            resize: none;
+            height: 15rem;
+        }
+    }
+
+    &__submit-contenedor{
+       display: flex;
+       justify-content: center;
+    }
+}

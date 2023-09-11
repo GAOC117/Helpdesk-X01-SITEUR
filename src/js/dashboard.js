@@ -65,7 +65,7 @@ function hover() {
             // console.log(clase);
 
             const icono = document.querySelector(clase);
-            //  console.log(icono);
+            //   console.log(icono);
             icono.classList.add(animacion);
 
         })

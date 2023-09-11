@@ -37,7 +37,7 @@
             </li>
 
             <li class="dashboard__lista-boton">
-                <a href="/dashboard/capturar-ticket" class="generar-ticket dashboard__enlace">
+                <a href="/dashboard/generar-ticket" class="generar-ticket dashboard__enlace">
                     <i class="generar-ticket generar-ticket-icono fa-solid fa-file-circle-plus dashboard__icono"></i>
                     <span class="generar-ticket dashboard__menu-texto">
                         Generar ticket

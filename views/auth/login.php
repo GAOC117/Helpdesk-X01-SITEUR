@@ -15,7 +15,7 @@
         <form action="/login" class="formulariol" method="POST">
             <div class="formulariol__campo">
                 <label for="email" class="formulariol__label">Correo:</label>
-                <input type="email" class="formulariol__input" placeholder="Tu correo electrónico" id="email" name="email" value="<?php echo $email; ?>">
+                <input type="email" class="formulariol__input" placeholder="Tu correo electrónico" id="email" name="email" value="<?php echo s($email); ?>">
             </div>
 
             <div class="formulariol__campo">

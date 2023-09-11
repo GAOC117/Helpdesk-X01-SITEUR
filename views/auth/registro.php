@@ -79,8 +79,12 @@
                     <select  class="formulario__campo select" name="idDepartamento" id="idDepartamento" autocomplete="on">
                         <option value="" disabled selected>--Seleccionar--</option>
                         <?php foreach ($departamentos as $departamento) { ?>
-                            <option <?php echo  $usuario->idDepartamento === $departamento->id ? ' selected' : '' ?> value="<?php echo s($departamento->id); ?>"><?php echo s($departamento->descripcion) ; ?>
-
+                            
+                            <option
+                             <?php echo  $usuario->idDepartamento === $departamento->id ? ' selected' : '' ?>
+                              value="<?php echo s($departamento->id); ?>"><?php echo s($departamento->descripcion) ; ?>
+                        
+                        </option>
                         <?php } ?>
                     </select>
                 </fieldset>

@@ -52,6 +52,7 @@ class AuthController
                         $_SESSION['idDepartamento'] = $usuario->idDepartamento;
                         $_SESSION['idRol'] = $usuario->idRol;
                         $_SESSION['extension'] = $usuario->extension;
+                       
 
 
                         header('Location: /dashboard');
@@ -98,31 +99,34 @@ class AuthController
     {
         $alertas = [];
         $usuario = new Empleado;
-        $departamentos =  Departamento::allOrderBy('id');
+        $departamentos =  Departamento::allOrderBy('descripcion asc');
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //sincroniza los datos de post con los de la base de datos
             $usuario->sincronizar($_POST);
+           
             $alertas = $usuario->validar_cuenta();
 
-
-
-            if (empty($alertas)) {
-                $existeUsuarioCorreo = Empleado::whereAnd('id', $usuario->id, 'email', $usuario->email);
+            $existeUsuarioCorreo = Empleado::whereAnd('id', $usuario->id, 'email', $usuario->email);
                 $existeExpediente = Empleado::where('id', $usuario->id);
                 $existeCorreo = Empleado::where('email', $usuario->email);
 
                 if ($existeUsuarioCorreo) {
                     Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente y correo');
-                    $alertas = Empleado::getAlertas();
+                  
                 } else if ($existeExpediente) {
                     Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente');
-                    $alertas = Empleado::getAlertas();
+                   
                 } else if ($existeCorreo) {
                     Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
-                    $alertas = Empleado::getAlertas();
-                } else {
+                   
+                } 
+
+                $alertas = Empleado::getAlertas();
+
+            if (empty($alertas)) {
+                
 
 
                     // Hashear el password
@@ -147,8 +151,8 @@ class AuthController
                     if ($resultado) {
                         header('Location: /mensaje');
                     }
-                }
-            }
+                
+            }//if alertas
         }
 
         // Render a la vista
