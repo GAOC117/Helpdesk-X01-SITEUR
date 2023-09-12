@@ -63,6 +63,7 @@
 
 .formulario {
 
+    background-color: transparent;
     &__input {
 
         &--nombre-reporta,
@@ -165,3 +166,14 @@
         justify-content: center;
     }
 }
+
+div[class$='tickets__header']{
+    text-align: center;
+
+    & span{
+        color: green;
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+}
+

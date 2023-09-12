@@ -45,34 +45,13 @@ $router->get('/dashboard', [DashboardController::class, 'index']);
 $router->get('/dashboard/generar-ticket', [DashboardController::class, 'generarTicket']);
 $router->post('/dashboard/generar-ticket', [DashboardController::class, 'generarTicket']);
 
+//ver-tickets
+$router->get('/dashboard/ver-tickets', [DashboardController::class, 'verTickets']);
+$router->post('/dashboard/ver-tickets', [DashboardController::class, 'verTickets']);
 
-
-// $router->get('/admin/dashboard', [DashboardController::class, 'index']);
-// $router->get('/helpdesk/dashboard', [DashboardController::class, 'index']);
-// $router->get('/soporte/dashboard', [DashboardController::class, 'index']);
-// $router->get('/colaborador/dashboard', [DashboardController::class, 'index']);
-
-
-// $router->get('/admin/dashboard', [AdminController::class, 'indexAdmin']);
-// $router->get('/helpdesk/dashboard', [AdminController::class, 'indexHelpdesk']);
-// $router->get('/soporte/dashboard', [AdminController::class, 'indexSoporte']);
-// $router->get('/colaborador/dashboard', [AdminController::class, 'indexColaborador']);
-
-
-// //Area de admin
-// $router->get('/admin/dashboard', [AdminController::class, 'index']);
-
-
-// //Area de helpdesk
-// $router->get('/helpdesk/dashboard', [HelpdeskController::class, 'index']);
-
-
-// //Area de soporte
-// $router->get('/soporte/dashboard', [SoporteController::class, 'index']);
-
-
-// //Area de colaborador
-// $router->get('/colaborador/dashboard', [ColaboradorController::class, 'index']);
+//asignar-ticket
+$router->get('/dashboard/asignar-tickets', [DashboardController::class, 'asignarTickets']);
+$router->post('/dashboard/asignar-tickets', [DashboardController::class, 'asignarTickets']);
 
 
 //API's

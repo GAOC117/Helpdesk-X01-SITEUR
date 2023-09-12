@@ -81,6 +81,15 @@ class ActiveRecord {
     }
 
 
+    public static function SQL($query)
+    {
+        $resultado = self::consultarSQL($query);
+
+        return  $resultado;
+        
+    }
+
+
     // Sanitizar los datos antes de guardarlos en la BD
     public function sanitizarAtributos() {
         $atributos = $this->atributos();
@@ -134,12 +143,24 @@ class ActiveRecord {
         return $resultado;
     }
 
+
+
+   
+   
+
+
     public static function allWhere($columna, $valor, $orden) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' ORDER BY $orden";
         $resultado = self::consultarSQL($query);
-        return  $resultado  ;
+        return  $resultado;
     }
 
+    public static function allInformatica($columna,  $orden) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna in (52,87,32) ORDER BY nombre $orden";
+       
+        $resultado = self::consultarSQL($query);
+        return  $resultado;
+    }
 
     public static function allOrderBy($order) {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY $order";
@@ -198,6 +219,32 @@ class ActiveRecord {
            'id' => self::$db->insert_id
         ];
     }
+
+
+        // crea un nuevo registro
+        public function crearHistorico() {
+            // Sanitizar los datos
+            $atributos = $this->sanitizarAtributos();
+    
+            // Insertar en la base de datos
+            $query = " INSERT INTO " . static::$tabla . " ( ";
+            $query .= join(', ', array_keys($atributos));
+            $query .= " ) VALUES (' "; 
+            $query .= join("', '", array_values($atributos));
+            $query .= "') ";
+            
+          
+    
+            //    debuguear($query); // Descomentar si no te funciona algo
+    
+            // Resultado de la consulta
+            $resultado = self::$db->query($query);
+           
+            return [
+               'resultado' =>  $resultado,
+               'id' => self::$db->insert_id
+            ];
+        }
     // crea un nuevo registro
     public function crearEmpleado() {
         // Sanitizar los datos
@@ -269,4 +316,6 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
         return $resultado;
     }
+
+
 }

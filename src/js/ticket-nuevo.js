@@ -318,7 +318,7 @@ async function obtenerDatosTicket() {
                     // footer: '<a href="">Why do I have this issue?</a>'
                 }).then(()=>{
                     setTimeout(() => {
-                        window.location.replace("/dashboard");
+                        window.location.replace("/dashboard/asignar-tickets?id="+resultado.id);
                         // window.location.replace("Pagina a redirigir")
                         
                     }, 1000);
