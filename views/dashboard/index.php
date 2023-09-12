@@ -1,7 +1,12 @@
 <main class="dash-empleado">
 
     <div class="dash-empleado__imagen">
+        <?php if($expedienteLogueado==='4486') { ?>
+        <img src="/build/img/memocle.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+        <?php } ?>
+        <?php if($expedienteLogueado!=='4486') { ?>
         <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+        <?php } ?>
     </div>
 
     <!-- <div class="dash-empleado__informacion"> -->

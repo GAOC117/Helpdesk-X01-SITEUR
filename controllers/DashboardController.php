@@ -44,18 +44,18 @@ class DashboardController
  
 
     //     $alertas = [];
-         $ticket = new Tickets;  
+        //  $ticket = new Tickets;  
     //     $expedienteReporta = $ticket->idEmpReporta;
     //     $expedienteRequiere = $ticket->idEmpRequiere;     
         $clasificaciones = Clasificacion::allOrderBy('descripcion asc');
         
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
-            $ticket->sincronizar($_POST);
+            // $ticket->sincronizar($_POST);
             
     //         $expedienteRequiere = $ticket->idEmpRequiere;
     //         $expedienteReporta = $ticket->idEmpReporta;
-              debuguear($ticket);
+            //   debuguear($ticket);
 
     //         $alertas = $ticket->validarTicketNuevo();
     //         $existeExpReporta = Empleado::find($ticket->idEmpReporta);
@@ -75,7 +75,7 @@ class DashboardController
            
 
       
-     }
+    //  }
 
 
         $titulo = 'Generar nuevo ticket';

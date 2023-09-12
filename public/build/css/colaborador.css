@@ -29,16 +29,45 @@
   text-shadow: 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C, 0 0 0.3rem #F1D02C;
 }
 
-ul[class*=ul] {
+ul[class*=ull] {
   width: 25rem;
+  background-color: #213461;
   position: fixed;
   border-radius: 0 1rem 1rem 0;
   left: -0.4rem;
 }
 @media (min-width: 768px) {
-  ul[class*=ul] {
+  ul[class*=ull] {
     position: unset;
     width: auto;
+  }
+}
+
+.formulario__submit--nuevo-ticket {
+  background-color: #424242;
+  padding: 1.5rem 4rem;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  margin: 3rem 0 2rem 0;
+  width: auto;
+  align-self: center;
+  border-radius: 1rem;
+}
+.formulario__submit--nuevo-ticket:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: #292929;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px #424242, 0 0 50px #424242;
   }
 }
 /*# sourceMappingURL=colaborador.css.map */

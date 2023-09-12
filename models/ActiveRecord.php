@@ -114,11 +114,13 @@ class ActiveRecord {
     // Registros - CRUD
     public function guardar() {
         $resultado = '';
+
         if(!is_null($this->id)) {
-            // actualizar
+           
             $resultado = $this->actualizar();
         } else {
             // Creando un nuevo registro
+            
            
             $resultado = $this->crear();
         }
@@ -182,9 +184,11 @@ class ActiveRecord {
         $query .= join(', ', array_keys($atributos));
         $query .= " ) VALUES (' "; 
         $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
+        $query .= "') ";
+        
+      
 
-         //debuguear($query); // Descomentar si no te funciona algo
+        //    debuguear($query); // Descomentar si no te funciona algo
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);

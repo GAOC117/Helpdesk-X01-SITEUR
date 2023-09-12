@@ -41,12 +41,17 @@ ticketNuevo = 1 *
 
 
                                 <label for="idEmpReporta" class="formulario__label">Expediente</label>
-                                <?php //if ($expedienteReporta === '') { ?>
-                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>">
-                                <?php //} ?>
-                                <?php //if ($expedienteReporta !== '') { ?>
-                                    <!-- <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php //echo s($expedienteReporta); ?>"> -->
-                                <?php// } ?>
+                                <?php //if ($expedienteReporta === '') { 
+                                ?>
+                                <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>" disabled>
+                                <?php //} 
+                                ?>
+                                <?php //if ($expedienteReporta !== '') { 
+                                ?>
+                                <!-- <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php //echo s($expedienteReporta); 
+                                                                                                                                                                                                ?>"> -->
+                                <? php // } 
+                                ?>
 
 
                             </div>
@@ -73,15 +78,20 @@ ticketNuevo = 1 *
 
 
                             <div class="empleado--ids">
-                                <?php //if ($expedienteRequiere === '') { ?>
-                                    <label for="idEmpRequiere" class="formulario__label">Expediente</label>
-                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php echo s($expedienteLogueado); ?>">
-                                <?php// } ?>
+                                <?php //if ($expedienteRequiere === '') { 
+                                ?>
+                                <label for="idEmpRequiere" class="formulario__label">Expediente</label>
+                                <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php echo s($expedienteLogueado); ?>">
+                                <? php // } 
+                                ?>
 
-                                <?php //if ($expedienteRequiere !== '') { ?>
-                                    <!-- <label for="idEmpRequiere" class="formulario__label">Expediente</label>
-                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php //echo s($expedienteRequiere); ?>"> -->
-                                <?php //} ?>
+                                <?php //if ($expedienteRequiere !== '') { 
+                                ?>
+                                <!-- <label for="idEmpRequiere" class="formulario__label">Expediente</label>
+                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php //echo s($expedienteRequiere); 
+                                                                                                                                                                                                    ?>"> -->
+                                <?php //} 
+                                ?>
 
                             </div>
                             <div class="empleado--ids">
@@ -105,13 +115,12 @@ ticketNuevo = 1 *
                         <div class="formulario__fieldset--categoria" id="formulario-fieldset--clasificacion">
                             <label for="idClasificacionProblema">Clasificación:</label>
                             <select class="formulario__campo select" name="idClasificacionProblema" id="idClasificacionProblema" autocomplete="on">
-                                <option  disabled selected>--Seleccionar--</option>
+                                <option disabled selected>--Seleccionar--</option>
 
                                 <?php foreach ($clasificaciones as $clasificacion) { ?>
-                                    <option <?php echo  $ticket->idClasificacionProblema === $clasificacion->id ? ' selected' : '' ?> 
-                                    value="<?php echo s($clasificacion->id); ?>"><?php echo s($clasificacion->descripcion); ?>
+                                    <option <?php echo  $ticket->idClasificacionProblema === $clasificacion->id ? ' selected' : '' ?> value="<?php echo s($clasificacion->id); ?>"><?php echo s($clasificacion->descripcion); ?>
                                     </option>
-                                    <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
 
@@ -137,16 +146,16 @@ ticketNuevo = 1 *
 
 
 
-            <div class="formulario__submit-contenedor">
 
-
-                <input type="submit" class="formulario__submit formulario__submit--nuevo-ticket" value="Generar ticket nuevo" id="botonRegistrar">
-
-            </div>
 
         </form>
 
+        <div class="formulario__submit-contenedor">
 
+            <button class="formulario__submit formulario__submit--nuevo-ticket" id="botonRegistrar">
+                Generar nuevo ticket
+            </button>
+        </div>
     </div>
 
 

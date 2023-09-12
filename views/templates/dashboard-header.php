@@ -25,15 +25,15 @@
                 </div>
                 <div class="dashboard__empleado--foto">
 
-
+                
                     <img class="dashboard__empleado--foto-empleado" src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="imagen empleado">
-
-                </div>
-                <div class="dashboard__notification">
-                    <div class="dashboard__notification--pop">
-                        <a href="https://www.google.com">99+</a>
+                 
+                    <div class="dashboard__notification">
+                        <div class="dashboard__notification--pop">
+                            <a href="https://www.google.com">99+</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-</header>
+</header> 

@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', function () {
     obtenerSubclasificacionAlInicio();
     obtenerSubclasificacionIniciando();
 
-    registrarTicket();
     eliminarBordeComentario()
     iniciarApp();
-
-
-
+    registrarTicket();
+    
+    
+    
 })
 
 function iniciarApp() {
-
+    
 
 }
 
@@ -58,8 +58,12 @@ function buscarEmpleado(campoExpediente, campoExtension, campoNombre) {
     const extension = document.querySelector(campoExtension);
     const nombre = document.querySelector(campoNombre);
 
+   
     expediente.addEventListener('input', () => {
-        obtenerEmpleado(campoExpediente, campoExtension, campoNombre);
+        if(expediente.value!=='' && expediente.value !='0'){
+            console.log("de aqui soy");
+            obtenerEmpleado(campoExpediente, campoExtension, campoNombre);
+        }
 
     });
 }
@@ -220,6 +224,9 @@ function registrarTicket() {
     const botonRegistrar = document.querySelector('#botonRegistrar');
     botonRegistrar.addEventListener('click', obtenerDatosTicket);
 }
+function msg(){
+    alert("el mesnaej");
+}
 
 
 async function obtenerDatosTicket() {
@@ -282,11 +289,11 @@ async function obtenerDatosTicket() {
     {
      
         const datos = new FormData();
-        datos.append('expReporta', expReporta);
-        datos.append('extReporta', extReporta);
-        datos.append('idClasificacion', idClasificacion);
-        datos.append('idSubclasificacion', idSubclasificacion);
-        datos.append('comentariosReporte', comentariosReporte);
+        datos.append('idEmpReporta', expReporta.value);
+        datos.append('idEmpRequiere', expRequiere.value);
+        datos.append('idClasificacionProblema', idClasificacion.value);
+        datos.append('idSubclasificacionProblema', idSubclasificacion.value);
+        datos.append('comentariosReporte', comentariosReporte.value);
 
         datos.forEach(dato =>{
             console.log(dato);
@@ -301,20 +308,20 @@ async function obtenerDatosTicket() {
             });
 
             const resultado = await respuesta.json();
-            alert(resultado);
-            if(true){
+            console.log(resultado);
+            if(resultado){
                 Swal.fire({
                     icon: 'success',
-                    title: 'Exito',
-                    text: 'Cita creada con éxito con el id',//+resultado.id,
+                    title: 'Éxito',
+                    html: 'El ticket fue registrado con éxito con el folio #<span class="folio">'+resultado.id+'</span> guardalo para cualquier duda o aclaración',
                     button: 'OK'    
                     // footer: '<a href="">Why do I have this issue?</a>'
                 }).then(()=>{
                     setTimeout(() => {
-                        window.location.replace("https://www.google.com");
+                        window.location.replace("/dashboard");
                         // window.location.replace("Pagina a redirigir")
                         
-                    }, 3000);
+                    }, 1000);
                 })
 
 

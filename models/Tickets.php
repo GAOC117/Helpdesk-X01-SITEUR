@@ -6,7 +6,7 @@ class Tickets extends ActiveRecord
 {
     protected static $tabla = 'tickets';
     protected static $columnasDB = [
-        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte','fechaAsignacion', 'fechaCierre', 'idEstado', 'idEmpReporta', 'idEmpRequiere', 'extensionReporta','extensionRequiere', 'idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo'
+        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte','fechaAsignacion', 'fechaCierra', 'idEstado', 'idEmpReporta', 'idEmpRequiere','idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo'
     ];
 
 
@@ -17,35 +17,31 @@ class Tickets extends ActiveRecord
     public $comentariosReporte;
     public $comentariosSoporte;
     public $fechaAsignacion;
-    public $fechaCierre;
+    public $fechaCierra;
     public $idEstado;
     public $idEmpReporta;
     public $idEmpRequiere;
-    public $extensionReporta;
-    public $extensionRequiere;
     public $idClasificacionProblema;
     public $idSubclasificacionProblema;
     public $ticketNuevo;
 
 
 
-    public function __construct($arg = [])
+    public function __construct($args = [])
     {
 
-        $this->id = $args['id'] ?? '';
-        $this->idEmpAsigna = $args['idEmpAsigna'] ?? '';
-        $this->idEmpAsignado = $args['idEmpAsignado'] ?? '';
+        $this->id = $args['id'] ?? null;
+        $this->idEmpAsigna = $args['idEmpAsigna'] ?? 0;
+        $this->idEmpAsignado = $args['idEmpAsignado'] ?? 0;
         $this->comentariosReporte = $args['comentariosReporte'] ?? '';
         $this->comentariosSoporte = $args['comentariosSoporte'] ?? '';
-        $this->fechaAsignacion = $args['fechaAsignacion'] ?? '';
-        $this->fechaCierre = $args['fechaCierre'] ?? '';
+        $this->fechaAsignacion = $args['fechaAsignacion'] ??  date('0000-00-00');
+        $this->fechaCierra = $args['fechaCierra'] ?? date('0000-00-00');
         $this->idEstado = $args['idEstado'] ?? 1;
-        $this->idEmpReporta = $args['idEmpReporta'] ?? '';
-        $this->idEmpRequiere = $args['idEmpRequiere'] ?? '';
-        $this->idClasificacionProblema = $args['idClasificacionProblema'] ?? '';
-        $this->extensionReporta = $args['extensionReporta'] ?? '';
-        $this->extensionRequiere = $args['extensionRequiere'] ?? '';
-        $this->idSubclasificacionProblema = $args['idSubclasificacionProblema'] ?? '';
+        $this->idEmpReporta = $args['idEmpReporta'] ?? 0;
+        $this->idEmpRequiere = $args['idEmpRequiere'] ?? 0;
+        $this->idClasificacionProblema = $args['idClasificacionProblema'] ?? 0;
+        $this->idSubclasificacionProblema = $args['idSubclasificacionProblema'] ?? 0;
         $this->ticketNuevo = $args['ticketNuevo'] ?? 1;
     }
 

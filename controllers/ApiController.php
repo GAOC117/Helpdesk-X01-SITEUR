@@ -6,6 +6,7 @@ namespace Controllers;
 
 use Model\Departamento;
 use Model\Empleado;
+use Model\HistoricoTicket;
 use Model\Subclasificacion;
 use Model\Tickets;
 
@@ -33,14 +34,23 @@ class ApiController
 
 
     public static function generarTicket(){
+    
         
         $ticket = new Tickets;
+        $historico = new HistoricoTicket;
+
         $ticket->sincronizar($_POST);
+        
+        // $ticket->sincronizar($_POST);
         $resultado =  $ticket->guardar();
+        
+        $historico->idTicket = $resultado['id'];
+        $historico->comentarios = $ticket->comentariosReporte;
+        $historico->idEstado = $ticket->idEstado;
+        // debuguear($historico);
+        $historico->guardar();
 
-debuguear($resultado);
-
-        echo json_encode($resultado);
+         echo json_encode($resultado);
 
 
         

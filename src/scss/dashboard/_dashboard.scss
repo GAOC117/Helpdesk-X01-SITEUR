@@ -47,12 +47,12 @@
 
     &__contenido {
         background-color: v.$contenido;
-        padding: 1rem 3rem 3rem 2rem;
+        padding: 10rem 3rem 3rem 2rem;
         width: 100%;
 
 
         @include m.tablet {
-            padding: 2rem 1rem 0 1rem;
+            padding: 10rem 1rem 0 1rem;
             // display: flex;
             // justify-content: center;
             // align-items: center;
@@ -195,14 +195,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            left: 29.5rem;
-            bottom: 1.5rem;
+            position: absolute;
+            left: 3.5rem;
+            bottom: 5rem;
 
-            @include m.tablet {
+            // @include m.tablet {
 
-                left: 38rem;
-            }
+            //     right: 2.5rem;
+            // }
 
             & a {
                 color: white;
@@ -458,4 +458,10 @@ ul[class*='-hidden'] {
 
     }
 
+}
+
+.folio{
+    color: green;
+    font-weight: v.$bold;
+    font-size: 2rem;
 }

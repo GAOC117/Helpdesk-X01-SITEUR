@@ -765,12 +765,12 @@ body {
 }
 .dashboard__contenido {
   background-color: #eee;
-  padding: 1rem 3rem 3rem 2rem;
+  padding: 10rem 3rem 3rem 2rem;
   width: 100%;
 }
 @media (min-width: 768px) {
   .dashboard__contenido {
-    padding: 2rem 1rem 0 1rem;
+    padding: 10rem 1rem 0 1rem;
   }
 }
 .dashboard__sidebar {
@@ -870,14 +870,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  left: 29.5rem;
-  bottom: 1.5rem;
-}
-@media (min-width: 768px) {
-  .dashboard__notification--pop {
-    left: 38rem;
-  }
+  position: absolute;
+  left: 3.5rem;
+  bottom: 5rem;
 }
 .dashboard__notification--pop a {
   color: white;
@@ -1035,6 +1030,12 @@ ul[class*=-hidden] {
   margin: 1rem;
 }
 
+.folio {
+  color: green;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
 .swal2-popup {
   font-size: 1.2rem;
 }
@@ -1057,7 +1058,6 @@ ul[class*=-hidden] {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-top: 3.5rem;
 }
 .generar-ticket__datos {
   padding: 2rem 2rem;
