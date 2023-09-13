@@ -1,80 +1,28 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-   
-    // filtrarTabla();
-    // filtrarTablaComentario();
-    busqueda();
-    // x();
+ 
+
+//   busqueda();
+
     
     
 })
 
 
 function busqueda(){
-    const   input = document.getElementById("myInput");
-    input.addEventListener('keyup', memo);
+    const   input = document.getElementById("inputBusqueda");
+    input.addEventListener('keyup', filtarTabla);
    
 }
 
-// function x(){
-//     const   input1 = document.getElementById("myInput1");
-//     input1.addEventListener('input', filtrarTablaClas);
-// }
-
-// function filtrarTablaComentario()
-// {
-
-//     const tabla = document.querySelector('#tabla-tickets-body');
-//     const tablaAux = document.querySelector('#tabla-tickets-body');
-   
-//     var input, filter, table, tr, td, i, txtValue;
-//     input = document.getElementById("myInput");
-//     filter = input.value.toUpperCase();
-//     table = document.getElementById("tabla-tickets-body");
-//     tr = table.getElementsByTagName("tr");
-//     for (i = 0; i < tr.length; i++) {
-//       td = tr[i].getElementsByTagName("td")[7]; //columna a buscar
-//       if (td) {
-//         txtValue = td.textContent || td.innerText;
-//         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//           tr[i].style.display = "";
-//         } else {
-//           tr[i].style.display = "none";
-//         }
-//       }       
-//     }
-    
-// }
 
 
-
-// function filtrarTablaClas()
-// {
-
-//     const tabla = document.querySelector('#tabla-tickets');
-//     // tabla.innerHTML = "";
-//     var input1, filter, table, tr, td, i, txtValue;
-//     input1 = document.getElementById("myInput1");
-//     filter = input1.value.toUpperCase();
-//     table = document.getElementById("tabla-tickets-body");
-//     tr = table.getElementsByTagName("tr");
-//     for (i = 0; i < tr.length; i++) {
-//       td = tr[i].getElementsByTagName("td")[3]; //columna a buscar
-//       if (td) {
-//         txtValue = td.textContent || td.innerText;
-//         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//           tr[i].style.display = "";
-//         } else {
-//           tr[i].style.display = "none";
-//         }
-//       }       
-//     }
-    
-// }
 
 
 
 // single column
+
+
 // var searchBox_1 = document.getElementById("searchBox-1");
 // searchBox_1.addEventListener("keyup", function(){
 // 	var keyword = this.value;
@@ -103,7 +51,7 @@ function busqueda(){
 // 	var table_2 = document.getElementById("table-2");
 // 	var all_tr = table_2.getElementsByTagName("tr");
 // 	for(var i=0; i<all_tr.length; i++){
-// 			var name_column = all_tr[i].getElementsByTagName("td")[0];
+// 			var name_column = all_tr[i].getElementsByTagName("td")[0]; ///aqui agregar las columnas
 // 		  var email_column = all_tr[i].getElementsByTagName("td")[1];
 // 			if(name_column && email_column){
 // 				var name_value = name_column.textContent || name_column.innerText;
@@ -122,12 +70,12 @@ function busqueda(){
 
 
 // All column
-function memo(){
+function filtarTabla(){
 
-	var keyword = this.value;
-	keyword = keyword.toUpperCase();
-	var table_3 = document.getElementById("tabla-tickets-body");
-	var all_tr = table_3.getElementsByTagName("tr");
+	var textoBuscado = this.value;
+	textoBuscado = textoBuscado.toUpperCase();
+	var tablaTickets = document.getElementById("tabla-tickets__body");
+	var all_tr = tablaTickets.getElementsByTagName("tr");
 	for(var i=0; i<all_tr.length; i++){
 			var all_columns = all_tr[i].getElementsByTagName("td");
 		  for(j=0;j<all_columns.length; j++){
@@ -135,7 +83,7 @@ function memo(){
 					var column_value = all_columns[j].textContent || all_columns[j].innerText;
 					
 					column_value = column_value.toUpperCase();
-					if(column_value.indexOf(keyword) > -1){
+					if(column_value.indexOf(textoBuscado) > -1){
 						all_tr[i].style.display = ""; // show
 						break;
 					}else{
@@ -147,3 +95,75 @@ function memo(){
 
     }
 
+
+
+
+
+	(function($) {
+		"use strict";
+		$.fn.multifilter = function(options) {
+		  var settings = $.extend( {
+			'target'        : $('table'),
+			'method'    : 'thead' // This can be thead or class
+		  }, options);
+	  
+		  jQuery.expr[":"].Contains = function(a, i, m) {
+			return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+		  };
+	  
+		  this.each(function() {
+			var $this = $(this);
+			var container = settings.target;
+			var row_tag = 'tr';
+			var item_tag = 'td';
+			var rows = container.find($(row_tag));
+	  
+			if (settings.method === 'thead') {
+			  // Match the data-col attribute to the text in the thead
+			  var col = container.find('th:Contains(' + $this.data('col') + ')');
+			  var col_index = container.find($('thead th')).index(col);
+			};
+	  
+			if (settings.method === 'class') {
+			  // Match the data-col attribute to the class on each column
+			  var col = rows.first().find('td.' + $this.data('col') + '');
+			  var col_index = rows.first().find('td').index(col);
+			};
+	  
+			$this.change(function() {
+			  var filter = $this.val();
+			  rows.each(function() {
+				var row = $(this);
+				var cell = $(row.children(item_tag)[col_index]);
+				if (filter) {
+				  if (cell.text().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+					cell.attr('data-filtered', 'positive');
+				  } else {
+					cell.attr('data-filtered', 'negative');
+				  }
+				  if (row.find(item_tag + "[data-filtered=negative]").size() > 0) {
+					 row.hide();
+				  } else {
+					if (row.find(item_tag + "[data-filtered=positive]").size() > 0) {
+					  row.show();
+					}
+				  }
+				} else {
+				  cell.attr('data-filtered', 'positive');
+				  if (row.find(item_tag + "[data-filtered=negative]").size() > 0) {
+					row.hide();
+				  } else {
+					if (row.find(item_tag + "[data-filtered=positive]").size() > 0) {
+					  row.show();
+					}
+				  }
+				}
+			  });
+			  return false;
+			}).keyup(function() {
+			  $this.change();
+			});
+		  });
+		};
+	  })(jQuery);
+	  

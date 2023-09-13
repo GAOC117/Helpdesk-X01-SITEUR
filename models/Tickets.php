@@ -6,7 +6,7 @@ class Tickets extends ActiveRecord
 {
     protected static $tabla = 'tickets';
     protected static $columnasDB = [
-        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte', 'fechaAsignacion', 'fechaCierra', 'idEstado', 'idEmpReporta', 'idEmpRequiere', 'idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo'
+        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte', 'fechaAsignacion', 'fechaCierra', 'idEstado', 'idEmpReporta', 'idEmpRequiere', 'idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo','fechaCaptura'
     ];
 
 
@@ -24,6 +24,7 @@ class Tickets extends ActiveRecord
     public $idClasificacionProblema;
     public $idSubclasificacionProblema;
     public $ticketNuevo;
+    public $fechaCaptura;
 
 
 
@@ -43,6 +44,7 @@ class Tickets extends ActiveRecord
         $this->idClasificacionProblema = $args['idClasificacionProblema'] ?? 0;
         $this->idSubclasificacionProblema = $args['idSubclasificacionProblema'] ?? 0;
         $this->ticketNuevo = $args['ticketNuevo'] ?? 1;
+        $this->fechaCaptura = $args['fechaCaptura'] ?? date('0000-00-00');
     }
 
 

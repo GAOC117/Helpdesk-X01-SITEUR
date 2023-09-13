@@ -48,6 +48,9 @@ class ApiController
         // $email = new Email();
 
         $ticket->sincronizar($_POST);
+        $ticket->fechaCaptura = date('Y-m-d');
+
+       
 
        
         $empleadoReporta = $empReporta->find($ticket->idEmpReporta);

@@ -10,6 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/build/css/app.css">
+    
+
+
+
+
+
+
+
+
+
+
+
 
     <?php if ($idRol === '1') { ?>
         <link rel="stylesheet" href="/build/css/admin.css">
@@ -34,8 +46,37 @@
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
+    
+    
+    
+    
+    
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src='/build/js/multifilter.js'></script>
+    <title>jQuery multifilter Plugin Demo</title>
+    <link href='style.css' media='screen' rel='stylesheet' type='text/css' />
+</head>
+<script type='text/javascript'>
+    //<![CDATA[
+        $(document).ready(function() {
+            $('.filter').multifilter()
+        })
+        //]]>
+        </script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
+
+
+
+
+
+
 
 </head>
 

@@ -76,9 +76,9 @@ class DashboardController
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 //si el rol es de administrador o de mesa de ayuda
 
-        $query ="SELECT t.id as idTicket, t.fechaAsignacion as fecha,";
-        $query.= " CASE e.nombre WHEN '0' THEN 'Aun sin asignar' ELSE e.nombre END AS nombreAsigna,";
-        $query.= " CASE e2.nombre WHEN '0' THEN 'Aun sin asignar' ELSE e2.nombre END AS atiende,";
+        $query ="SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
+        $query.= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
+        $query.= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
         $query.= " e4.nombre AS nombreRequiere,";
         $query.= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios";
         $query.= " FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";

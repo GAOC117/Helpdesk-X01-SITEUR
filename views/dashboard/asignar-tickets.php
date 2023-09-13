@@ -13,18 +13,18 @@
 
         <div class="tickets__informacion">
 
-            <div class="ticekts__informacion__encabezado">
+            <div class="tickets__informacion__encabezado">
                 <p class="texto">Detalles del ticket</p>
             </div>
 
             <div class="tickets__informacion-desglose">
-
-                <p class="texto"><span>Nombre: </span><?php echo $nombreRequiere; ?></p>
-                <p class="texto"><span>Extensión: </span><?php echo $extensionRequiere; ?></p>
-                <p class="texto"><span>Departamento: </span><?php echo $departamentoRequiere; ?></p>
-                <p class="texto"><span>Clasificación: </span><?php echo $clasificacion; ?></p>
-                <p class="texto"><span>Subclasificación: </span><?php echo $subclasificacion; ?></p>
-                <p class="texto"><span>Comentario: </span><?php echo $comentarios; ?></p>
+                
+                <p class="tickets__informacion--texto"><span>Nombre:  </span><?php echo $nombreRequiere; ?></p>
+                <p class="tickets__informacion--texto"><span>Extensión:  </span><?php echo $extensionRequiere; ?></p>
+                <p class="tickets__informacion--texto"><span>Departamento:  </span><?php echo $departamentoRequiere; ?></p>
+                <p class="tickets__informacion--texto"><span>Clasificación:  </span><?php echo $clasificacion; ?></p>
+                <p class="tickets__informacion--texto"><span>Subclasificación:  </span><?php echo $subclasificacion; ?></p>
+                <p class="tickets__informacion--texto"><span>Comentario:  </span><?php echo $comentarios; ?></p>
             </div>
         </div>
 
@@ -51,3 +51,10 @@
 
 
 </main>
+
+<?php $script = "
+<script src='/build/js/dashboard.js' defer></script>
+
+"
+
+?>
