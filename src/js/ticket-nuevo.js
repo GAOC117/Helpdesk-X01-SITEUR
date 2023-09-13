@@ -1,18 +1,18 @@
 
 
 
-const ticket = {
-    expedienteReporte: '',
-    extensionReporta: '',
-    nombreReporta: '',
-    expedienteRequiere: '',
-    extensionRequiere: '',
-    nombreRequiere: '',
-    idClasificacion: '',
-    idSubclasificacion: '',
-    comentarios: ''
+// const ticket = {
+//     expedienteReporte: '',
+//     extensionReporta: '',
+//     nombreReporta: '',
+//     expedienteRequiere: '',
+//     extensionRequiere: '',
+//     nombreRequiere: '',
+//     idClasificacion: '',
+//     idSubclasificacion: '',
+//     comentarios: ''
 
-}
+// }
 
 
 
@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     eliminarBordeComentario()
     iniciarApp();
     registrarTicket();
+  
     
     
     
@@ -318,6 +319,7 @@ async function obtenerDatosTicket() {
                     // footer: '<a href="">Why do I have this issue?</a>'
                 }).then(()=>{
                     setTimeout(() => {
+                        sessionStorage.clear;
                         window.location.replace("/dashboard/asignar-tickets?id="+resultado.id);
                         // window.location.replace("Pagina a redirigir")
                         
@@ -346,5 +348,4 @@ async function obtenerDatosTicket() {
 
 
 }
-
 

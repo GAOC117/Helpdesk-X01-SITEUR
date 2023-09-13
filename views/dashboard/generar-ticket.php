@@ -162,3 +162,11 @@ ticketNuevo = 1 *
 
 
 </main>
+
+<?php $script = "
+<script src='/build/js/app.js' defer></script>
+<script src='/build/js/dashboard.js' defer></script>
+<script src='/build/js/ticket-nuevo.js' defer></script>
+"
+
+?>

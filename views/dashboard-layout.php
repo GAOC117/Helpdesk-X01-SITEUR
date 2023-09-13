@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, maximum-scale = 1.0">
+    <meta name="viewport" content="width=device-width, maximum-scale = 1.0 lang='es_MX'">
     <title id="tituloDashboard" behavior="scroll" direction="left">Helpdesk SITEUR - <?php echo $titulo; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,9 +56,11 @@
             </main>
         </div>
 
-    <script src="/build/js/app.js" defer></script>
+
+        <?php echo $script ?? '' ?>
+    <!-- <script src="/build/js/app.js" defer></script>
     <script src="/build/js/dashboard.js" defer></script>
-    <script src="/build/js/ticket-nuevo.js" defer></script>
+    <script src="/build/js/ticket-nuevo.js" defer></script> -->
 </body>
 
 </html>

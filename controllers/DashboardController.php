@@ -9,6 +9,7 @@ use Model\Empleado;
 use Model\HistoricoTicket;
 use Model\Subclasificacion;
 use Model\Tickets;
+use Model\VerTickets;
 use MVC\Router;
 
 class DashboardController
@@ -72,22 +73,30 @@ class DashboardController
         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $extension = $_SESSION['extension'];
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+//si el rol es de administrador o de mesa de ayuda
 
-        $query ="SELECT t.id as dTicket,";
-        $query.= "CASE e.nombre WHEN '0' THEN 'Aun sin asignar' ELSE e.nombre END AS nombreAsigna,";
-        $query.= "CASE e2.nombre WHEN '0' THEN 'Aun sin asignar' ELSE e2.nombre END AS atiende,";
-        $query.= "e4.nombre AS nombreRequiere,";
-        $query.= "e5.descripcion AS estadoTicket, cp.descripcion AS clasificación , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios";
-        $query.= "FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
-        $query.= "LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
-        $query.= "LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
-        $query.= "LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
-        $query.= "LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-        $query.= "LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema";
+        $query ="SELECT t.id as idTicket, t.fechaAsignacion as fecha,";
+        $query.= " CASE e.nombre WHEN '0' THEN 'Aun sin asignar' ELSE e.nombre END AS nombreAsigna,";
+        $query.= " CASE e2.nombre WHEN '0' THEN 'Aun sin asignar' ELSE e2.nombre END AS atiende,";
+        $query.= " e4.nombre AS nombreRequiere,";
+        $query.= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios";
+        $query.= " FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
+        $query.= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
+        $query.= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
+        $query.= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
+        $query.= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
+        $query.= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema";
+  
+        //si el perfil es de soporte ver solo los suyos (asignados a él)
 
-        $tickets = Tickets::SQL($query);
 
-        debuguear($tickets);
+        //si el perfil es de colaborador ver solo los registrados por él
+        $tickets = VerTickets::SQL($query);
+
+
+        // debuguear($tickets);
+
 
 
         $titulo = 'Ver tickets';
@@ -100,7 +109,8 @@ class DashboardController
             'expedienteLogueado' => $expedienteLogueado,
             'nombre' => $nombre,
             'extension' => $extension,
-            'tickets' =>$tickets
+            'tickets' =>$tickets,
+            'meses'=>$meses
 
         ]);
     }
