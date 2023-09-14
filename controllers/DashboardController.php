@@ -86,7 +86,7 @@ class DashboardController
         $query.= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
         $query.= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
         $query.= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-        $query.= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema";
+        $query.= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema order by t.id desc";
   
         //si el perfil es de soporte ver solo los suyos (asignados a él)
 
@@ -169,7 +169,7 @@ class DashboardController
            
             $idAsignado = $_POST['idEmpAsignado'];
 
-
+            // debuguear($idAsignado);
             
             $fechaAsignacion = date('Y-m-d');
             

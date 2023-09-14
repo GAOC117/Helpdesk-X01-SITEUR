@@ -1,0 +1,168 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.tabla {
+
+
+    &__body {
+
+        background-color: white;
+    }
+
+    &__contenedor {
+        @include m.tablet {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        // margin: 0 auto;
+        overflow-x:auto;
+    }
+
+    // border: 1px solid red;
+
+    &__header {
+        background-color: v.$azul-siteur;
+        color: v.$blanco;
+        font-size: 1.3rem;
+
+        @include m.tablet {
+            font-size: 2rem;
+
+        }
+    }
+
+    &__td {
+        padding: 1rem 2rem;
+        text-align: center;
+        border-bottom: 1px solid v.$azul-siteur;
+        font-size: 1.2rem;
+
+        @include m.tablet {
+            font-size: 1.8rem;
+        }
+    }
+
+    &__th {
+        padding: 1rem 2rem;
+        text-align: center;
+
+    }
+
+    &__row:nth-child(2n) {
+        background-color: lighten(v.$azul-siteur, 70);
+    }
+
+    &__contenedor {
+
+        overflow-x: auto;
+    }
+
+    &__boton {
+        //    padding: 0 1rem;
+        //     display: flex;
+        //     // justify-content: center;
+        //     align-items: center;
+
+
+        &-azul {
+            @include m.boton(#108dbf, white);
+            // padding: 1.2rem 0rem;
+            padding: 2rem 2rem;
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        &-naranja {
+            @include m.boton(#F6A215, white);
+            padding: 2rem 2rem;
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        &-verde {
+            @include m.boton(#4EAE51, white);
+            // padding: 1.2rem 0rem;
+            padding: 2rem 2rem;
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        &-verde-limon {
+            @include m.boton(#9eec50, white);
+            // padding: 1.2rem 0rem;
+            padding: 2rem 2rem;
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+
+    }
+
+    &__tickets {
+
+        &--botones {
+            display: flex;
+            // flex-direction: column;
+            gap: 2rem;
+            height: 5rem;
+            justify-content: space-between;
+
+
+            @include m.tablet {
+
+                gap: 1rem;
+            }
+        }
+    }
+&__cerrado{
+    text-align: center;
+    width: 100%;
+    font-size: 2.8rem;
+    font-weight: v.$bold;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  
+}
+}
+
+.filters {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    padding: 0 2rem;
+
+    @include m.tablet {
+
+        @include m.grid(5, 5rem);
+    }
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 2.5rem;
+
+    @include m.tablet {
+
+        gap: 1rem;
+        margin-bottom: 0rem;
+    }
+}

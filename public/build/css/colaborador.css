@@ -55,6 +55,7 @@ ul[class*=ull] {
   text-align: center;
   width: 100%;
   display: inline-block;
+  border-radius: 1rem;
   margin: 3rem 0 2rem 0;
   width: auto;
   align-self: center;

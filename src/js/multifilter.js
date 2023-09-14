@@ -1,3 +1,8 @@
+
+
+
+
+
 (function($) {
     "use strict";
     $.fn.multifilter = function(options) {
@@ -29,7 +34,7 @@
           var col_index = rows.first().find('td').index(col);
         };
   
-        $this.change(function() {
+       $this.change(function() {
           var filter = $this.val();
           rows.each(function() {
             var row = $(this);
@@ -65,4 +70,3 @@
       });
     };
   })(jQuery);
-  

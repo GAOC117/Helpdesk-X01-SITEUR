@@ -4,14 +4,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //   busqueda();
 
+// mostrarMesEnCurso();
     
     
 })
 
 
+
+
+
+
+
+function mostrarMesEnCurso(){
+    const fecha = new Date();
+    var mes = fecha.getMonth()+1;
+    const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+    
+    
+    const inputFecha = document.querySelector('#idFecha');
+
+    inputFecha.addEventListener()
+    
+    inputFecha.value = meses[mes-1];
+
+   
+
+}
+
+
+
+
+
+
+
 function busqueda(){
-    const   input = document.getElementById("inputBusqueda");
-    input.addEventListener('keyup', filtarTabla);
+    const   input = document.querySelector("#idfolio");
+    input.addEventListener('keyup', kha);
    
 }
 
@@ -20,6 +48,9 @@ function busqueda(){
 
 
 
+function kha(){
+	alert("memo");
+}
 // single column
 
 
@@ -69,101 +100,120 @@ function busqueda(){
 
 
 
-// All column
-function filtarTabla(){
-
-	var textoBuscado = this.value;
-	textoBuscado = textoBuscado.toUpperCase();
-	var tablaTickets = document.getElementById("tabla-tickets__body");
-	var all_tr = tablaTickets.getElementsByTagName("tr");
-	for(var i=0; i<all_tr.length; i++){
-			var all_columns = all_tr[i].getElementsByTagName("td");
-		  for(j=0;j<all_columns.length; j++){
-				if(all_columns[j]){
-					var column_value = all_columns[j].textContent || all_columns[j].innerText;
-					
-					column_value = column_value.toUpperCase();
-					if(column_value.indexOf(textoBuscado) > -1){
-						all_tr[i].style.display = ""; // show
-						break;
-					}else{
-						all_tr[i].style.display = "none"; // hide
-					}
-				}
-			}
-		}
-
-    }
 
 
 
 
 
-	(function($) {
-		"use strict";
-		$.fn.multifilter = function(options) {
-		  var settings = $.extend( {
-			'target'        : $('table'),
-			'method'    : 'thead' // This can be thead or class
-		  }, options);
-	  
-		  jQuery.expr[":"].Contains = function(a, i, m) {
-			return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
-		  };
-	  
-		  this.each(function() {
-			var $this = $(this);
-			var container = settings.target;
-			var row_tag = 'tr';
-			var item_tag = 'td';
-			var rows = container.find($(row_tag));
-	  
-			if (settings.method === 'thead') {
-			  // Match the data-col attribute to the text in the thead
-			  var col = container.find('th:Contains(' + $this.data('col') + ')');
-			  var col_index = container.find($('thead th')).index(col);
-			};
-	  
-			if (settings.method === 'class') {
-			  // Match the data-col attribute to the class on each column
-			  var col = rows.first().find('td.' + $this.data('col') + '');
-			  var col_index = rows.first().find('td').index(col);
-			};
-	  
-			$this.change(function() {
-			  var filter = $this.val();
-			  rows.each(function() {
-				var row = $(this);
-				var cell = $(row.children(item_tag)[col_index]);
-				if (filter) {
-				  if (cell.text().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
-					cell.attr('data-filtered', 'positive');
-				  } else {
-					cell.attr('data-filtered', 'negative');
-				  }
-				  if (row.find(item_tag + "[data-filtered=negative]").size() > 0) {
-					 row.hide();
-				  } else {
-					if (row.find(item_tag + "[data-filtered=positive]").size() > 0) {
-					  row.show();
-					}
-				  }
-				} else {
-				  cell.attr('data-filtered', 'positive');
-				  if (row.find(item_tag + "[data-filtered=negative]").size() > 0) {
-					row.hide();
-				  } else {
-					if (row.find(item_tag + "[data-filtered=positive]").size() > 0) {
-					  row.show();
-					}
-				  }
-				}
-			  });
-			  return false;
-			}).keyup(function() {
-			  $this.change();
-			});
-		  });
-		};
-	  })(jQuery);
-	  
+
+
+
+
+
+// 	  $.fn.pageMe = function(opts){
+//     var $this = this,
+//         defaults = {
+//             perPage: 10,
+//             showPrevNext: false,
+//             hidePageNumbers: false
+//         },
+//         settings = $.extend(defaults, opts);
+    
+//     var listElement = $this.find('tbody');
+//     var perPage = settings.perPage; 
+//     var children = listElement.children();
+//     var pager = $('.pager');
+    
+//     if (typeof settings.childSelector!="undefined") {
+//         children = listElement.find(settings.childSelector);
+//     }
+    
+//     if (typeof settings.pagerSelector!="undefined") {
+//         pager = $(settings.pagerSelector);
+//     }
+    
+//     var numItems = children.size();
+//     var numPages = Math.ceil(numItems/perPage);
+
+//     pager.data("curr",0);
+    
+//     if (settings.showPrevNext){
+//         $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+//     }
+    
+//     var curr = 0;
+//     while(numPages > curr && (settings.hidePageNumbers==false)){
+//         $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
+//         curr++;
+//     }
+    
+//     if (settings.showPrevNext){
+//         $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+//     }
+    
+//     pager.find('.page_link:first').addClass('active');
+//     pager.find('.prev_link').hide();
+//     if (numPages<=1) {
+//         pager.find('.next_link').hide();
+//     }
+//   	pager.children().eq(1).addClass("active");
+    
+//     children.hide();
+//     children.slice(0, perPage).show();
+    
+//     pager.find('li .page_link').click(function(){
+//         var clickedPage = $(this).html().valueOf()-1;
+//         goTo(clickedPage,perPage);
+//         return false;
+//     });
+//     pager.find('li .prev_link').click(function(){
+//         previous();
+//         return false;
+//     });
+//     pager.find('li .next_link').click(function(){
+//         next();
+//         return false;
+//     });
+    
+//     function previous(){
+//         var goToPage = parseInt(pager.data("curr")) - 1;
+//         goTo(goToPage);
+//     }
+     
+//     function next(){
+//         goToPage = parseInt(pager.data("curr")) + 1;
+//         goTo(goToPage);
+//     }
+    
+//     function goTo(page){
+//         var startAt = page * perPage,
+//             endOn = startAt + perPage;
+        
+//         children.css('display','none').slice(startAt, endOn).show();
+        
+//         if (page>=1) {
+//             pager.find('.prev_link').show();
+//         }
+//         else {
+//             pager.find('.prev_link').hide();
+//         }
+        
+//         if (page<(numPages-1)) {
+//             pager.find('.next_link').show();
+//         }
+//         else {
+//             pager.find('.next_link').hide();
+//         }
+        
+//         pager.data("curr",page);
+//       	pager.children().removeClass("active");
+//         pager.children().eq(page+1).addClass("active");
+    
+//     }
+// };
+
+// $(document).ready(function(){
+    
+//   $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
+    
+// });
