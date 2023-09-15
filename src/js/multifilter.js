@@ -2,7 +2,6 @@
 
 
 
-
 (function($) {
     "use strict";
     $.fn.multifilter = function(options) {
@@ -70,3 +69,5 @@
       });
     };
   })(jQuery);
+
+

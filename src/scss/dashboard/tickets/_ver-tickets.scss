@@ -122,6 +122,10 @@
             height: 5rem;
             justify-content: space-between;
 
+            &--colaborador{
+                justify-content: center;
+            }
+
 
             @include m.tablet {
 
@@ -147,10 +151,11 @@
     flex-direction: column;
     margin-bottom: 5rem;
     padding: 0 2rem;
-
+    
     @include m.tablet {
-
+        
         @include m.grid(5, 5rem);
+        padding: 0 3.8rem;
     }
 }
 

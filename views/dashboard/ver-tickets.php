@@ -21,7 +21,7 @@
         <div class='filters'>
             <div class='filter-container'>
                 <label>Folio: </label>
-                <input autocomplete='off' class='filter' name='folio' placeholder='Buscar folio' data-col='folio' id="idFolio" />
+                <input type="number" autocomplete='off' class='filter' name='folio' placeholder='Buscar folio' data-col='folio' id="idFolio" />
             </div>
             <div class='filter-container'>
                 <label>Quién asigna: </label>
@@ -33,7 +33,7 @@
             </div>
             <div class='filter-container'>
                 <label>Fecha: </label>
-                <input autocomplete='off' class='filter' name='fecha' placeholder='Buscar fecha de captura de ticket' data-col='fecha' id="idFecha" />
+                <input  autocomplete='off' class='filter' name='fecha' placeholder='Buscar fecha de captura de ticket' data-col='fecha' id="idFecha"/>
             </div>
             <div class='filter-container'>
                 <label>Quién requiere: </label>
@@ -41,7 +41,7 @@
             </div>
             <div class='filter-container'>
                 <label>Estado: </label>
-                <input autocomplete='off' class='filter' name='estado' placeholder='Buscar estado del ticket' data-col='estado' id="idEstado" />
+                <input autocomplete='off' class='filter' name='estado' placeholder='Buscar estado del ticket' data-col='estado' id="idEstado">
             </div>
             <div class='filter-container'>
             <label>Clasificación: </label>
@@ -67,9 +67,9 @@
         <table id="myTable" class="table table-hover tabla" cellspacing="0" cellpadding="0">
             <thead class="tabla__header">
                 <th class="tabla__th">Folio#</th>
+                <th class="tabla__th">Fecha de captura</th>
                 <th class="tabla__th">Asigna</th>
                 <th class="tabla__th">Atiende</th>
-                <th class="tabla__th">Fecha de captura</th>
                 <th class="tabla__th">Requiere</th>
                 <th class="tabla__th">Estado</th>
                 <th class="tabla__th">Clasificación</th>
@@ -84,9 +84,9 @@
 
                     <tr class="tabla__row">
                         <td class="tabla__td"><?php echo $ticket->idTicket; ?></td>
+                        <td class="tabla__td"><?php echo date('d', strtotime($ticket->fechaCaptura)) . '/' . $meses[date('m', strtotime($ticket->fechaCaptura)) - 1] . '/' . date('Y', strtotime($ticket->fechaCaptura)); ?></td>
                         <td class="tabla__td"><?php echo $ticket->nombreAsigna; ?></td>
                         <td class="tabla__td"><?php echo $ticket->atiende; ?></td>
-                        <td class="tabla__td"><?php echo date('d', strtotime($ticket->fechaCaptura)) . '/' . $meses[date('m', strtotime($ticket->fechaCaptura)) - 1] . '/' . date('Y', strtotime($ticket->fechaCaptura)); ?></td>
                         <td class="tabla__td"><?php echo $ticket->nombreRequiere; ?></td>
                         <td class="tabla__td"><?php echo $ticket->estadoTicket; ?></td>
                         <td class="tabla__td"><?php echo $ticket->clasificacion; ?></td>
@@ -94,7 +94,7 @@
                         <td class="tabla__td"><?php echo $ticket->comentarios; ?></td>
 
                         <td class="tabla__td">
-                            <div class="tabla__tickets--botones ">
+                            <div class="tabla__tickets--botones  <?php if($idRol==='4') echo 'tabla__tickets--botones--colaborador'; ?> ">
                                 <a href="/dashboard/historial-tickets?id=<?php echo $ticket->idTicket; ?>" title='Historial del ticket' class="tabla__boton-azul tabla__boton"><i class="fa-solid fa-clock fa-xl"></i></a>
                                 <?php if ($idRol === '1' || $idRol === '2') { ?>
                                     <?php if ($ticket->estadoTicket === 'Abierto' || $ticket->estadoTicket === 'Pausado' || $ticket->estadoTicket === 'Escalado') { ?>

@@ -101,12 +101,12 @@ class Email
 
         $mail->setFrom($_ENV['EMAIL_USER'],"Mesa de ayuda - #$folio");
         $mail->addAddress($this->correoMesa);
-        $mail->addAddress($this->email, $this->nombre); //quien reporta
+        $mail->addAddress($this->email); //quien reporta
         if ($this->email !== $correoRequiere)//si el que reporta es diferente a quien requiere
-            $mail->addAddress($correoRequiere, $nombreRequiere); //quien requiere
+            $mail->addAddress($correoRequiere); //quien requiere
             
         
-        $mail->Subject = 'Nuevo ticket registrado, folio #:' . $folio;
+        $mail->Subject = 'Nuevo ticket registrado, folio #' . $folio;
 
         // Set HTML
         $mail->isHTML(TRUE);
@@ -114,17 +114,20 @@ class Email
 
         $contenido = '<html>';
         $contenido .= "<p>Hola</p><br>";
-        $contenido .= "<p>Se ha registrado un nuevo ticket con el folio <strong style = 'color: green; font-weight: bold';>#$folio</strong> para <strong>$nombreRequiere</strong></p>";
+        $contenido .= "<p>Se ha registrado un nuevo ticket con el folio <strong style = 'color: green; font-weight: bold';>#$folio</strong></p>";
         if ($this->email !== $correoRequiere){
 
             $contenido .= "<p><strong>Nombre de quién reporta:</strong> $this->nombre</p>";
             $contenido .= "<p><strong>Extensión de quién reporta:</strong> $extensionReporta</p>";
+            $contenido .= "<p><strong>Departamento de quién reporta:</strong> $departamentoReporta</p><br>";
+
+            $contenido .= "<p><strong>Nombre de quién requiere:</strong> $nombreRequiere</p>";
             $contenido .= "<p><strong>Extensión de quién requiere:</strong> $extensionRequiere</p>";
-            $contenido .= "<p><strong>Departamento de quién reporta:</strong> $departamentoReporta</p>";
             $contenido .= "<p><strong>Departamento de quién requiere:</strong> $departamentoRequiere</p>";
         }
         else
         {
+            $contenido .= "<p><strong>Nombre de quién requiere:</strong> $this->nombre</p>";
             $contenido .= "<p><strong>Extensión:</strong> $extensionReporta</p>";
             $contenido .= "<p><strong>Departamento de quién requiere:</strong> $departamentoRequiere</p>";
         }
@@ -132,7 +135,72 @@ class Email
         $contenido .= "<p><strong>Clasificación:</strong> $clasificacion</p>";
         $contenido .= "<p><strong>Subclasificación:</strong> $subclasificacion</p>";
         $contenido .= "<p><strong>Comentario del reporte:</strong> $comentarios</p><br>";
-        $contenido .= "<p>En breve atenderemos la solicitud</p>";
+
+        $contenido .= "<p>En breve se asignará a alguien para atender la solicitud</p>";
+        $contenido .= "<p><strong>Saludos</strong></p><br><br>";
+        $contenido .= '</html>';
+        $mail->Body = $contenido;
+
+        //Enviar el mail
+        // $mail->send();
+    }
+
+
+
+
+    public function nuevaAsignacionColaborador($nombreAsignado, $correoAsignado, $correoRequiere, $nombreRequiere, $folio, $clasificacion, $subclasificacion, $comentarios, $extensionReporta, $extensionRequiere, $departamentoReporta, $departamentoRequiere)
+    {
+
+        // create a new object
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV['EMAIL_HOST'];
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
+
+        $mail->setFrom($_ENV['EMAIL_USER'],"Mesa de ayuda - #$folio");
+        $mail->addAddress($this->correoMesa);
+        $mail->addAddress($this->email); //quien reporta
+        $mail->addAddress($correoAsignado); //quien atiende
+        if ($this->email !== $correoRequiere)//si el que reporta es diferente a quien requiere
+            $mail->addAddress($correoRequiere); //quien requiere
+            
+        
+        $mail->Subject = 'El folio #' . $folio.' a sido asignado';
+
+        // Set HTML
+        $mail->isHTML(TRUE);
+        $mail->CharSet = 'UTF-8';
+
+        $contenido = '<html>';
+        $contenido .= "<p>Hola</p><br>";
+        $contenido .= "<p>Se ha asignado a <strong>".$nombreAsignado."</strong> para atender el ticket con el folio <strong style = 'color: green; font-weight: bold';>#$folio</strong></p><br>";
+        $contenido .= "<p>Información del ticket</p><br>";
+        if ($this->email !== $correoRequiere){
+
+            $contenido .= "<p><strong>Nombre de quién reporta:</strong> $this->nombre</p>";
+            $contenido .= "<p><strong>Extensión de quién reporta:</strong> $extensionReporta</p>";
+            $contenido .= "<p><strong>Departamento de quién reporta:</strong> $departamentoReporta</p><br>";
+
+            $contenido .= "<p><strong>Nombre de quién requiere:</strong> $nombreRequiere</p>";
+            $contenido .= "<p><strong>Extensión de quién requiere:</strong> $extensionRequiere</p>";
+            $contenido .= "<p><strong>Departamento de quién requiere:</strong> $departamentoRequiere</p>";
+        }
+        else
+        {
+            $contenido .= "<p><strong>Nombre de quién requiere:</strong> $this->nombre</p>";
+            $contenido .= "<p><strong>Extensión:</strong> $extensionReporta</p>";
+            $contenido .= "<p><strong>Departamento de quién requiere:</strong> $departamentoRequiere</p>";
+        }
+        
+        $contenido .= "<p><strong>Clasificación:</strong> $clasificacion</p>";
+        $contenido .= "<p><strong>Subclasificación:</strong> $subclasificacion</p>";
+        $contenido .= "<p><strong>Comentario del reporte:</strong> $comentarios</p><br>";
+
+        $contenido .= "<p>En breve se atendera la solicitud</p>";
         $contenido .= "<p><strong>Saludos</strong></p><br><br>";
         $contenido .= '</html>';
         $mail->Body = $contenido;

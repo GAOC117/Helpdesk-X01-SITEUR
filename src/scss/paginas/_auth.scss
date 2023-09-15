@@ -21,6 +21,7 @@
 
     &__contenedor {
         @include m.contenedor-smm;
+        margin-top: 10rem;
     }
 
     &__heading {
@@ -53,6 +54,7 @@
 
     &__contenedor {
         @include m.contenedor;
+        margin-top: 10rem;
 
         &__confirmar{
             @include m.contenedor-sm;
@@ -62,6 +64,7 @@
         &.olvide,
         &.reestablecer {
             @include m.contenedor-sm;
+            margin-top: 10rem;
         }
     }
 
