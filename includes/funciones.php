@@ -20,3 +20,9 @@ function isLogged()
     if (empty($_SESSION))
         header('Location: /');
 }
+
+
+function idNotNumeric(){
+    if (!is_numeric($_GET['id']))
+    header('Location: /dashboard/ver-tickets');
+}

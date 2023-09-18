@@ -2,7 +2,7 @@
 
     <div class="asignar-tickets__header">
         <h2 class="asignar-tickets__heading"><?php echo $titulo; ?></h2>
-        <p class="asignar-tickets__texto">Selecciona un empleado para asignar el <span>ticket #<?php echo $idTicket; ?></span></p>
+        <p class="asignar-tickets__texto">Selecciona un empleado para escalar el <span>ticket #<?php echo $idTicket; ?></span></p>
 
         <?php
         require_once __DIR__ . '/../templates/alertas.php';
@@ -25,24 +25,33 @@
                 <p class="tickets__informacion--texto"><span>Clasificación:  </span><?php echo $clasificacion; ?></p>
                 <p class="tickets__informacion--texto"><span>Subclasificación:  </span><?php echo $subclasificacion; ?></p>
                 <p class="tickets__informacion--texto"><span>Comentario:  </span><?php echo $comentarios; ?></p>
+                <p class="tickets__informacion--texto"><span>ASIGNADO ANTERIORMENTE A:  </span><?php echo $empleadoAnterior->nombre. ' '.$empleadoAnterior->apellidoPaterno.' '.$empleadoAnterior->apellidoMaterno; ?></p>
             </div>
         </div>
 
         <div class="tickets__asignacion">
-            <form action="/dashboard/asignar-tickets?id=<?php echo $idTicket; ?>" class="formulario" method="POST">
+            <form action="/dashboard/escalar-tickets?id=<?php echo $idTicket; ?>" class="formulario" method="POST">
                 <fieldset class="formulario__fieldset">
-                    <legend>Seleccione el empleado al que se le asignara el ticket</legend>
+                    <legend>Seleccione el empleado al que se le escalara el ticket</legend>
                     <select class="formulario__campo select" name="idEmpAsignado" id="idEmpAsignado" autocomplete="on">
                         <option value="" disabled selected>--Seleccionar--</option>
                         <?php foreach ($empleadosInformatica as $empleadoInformatica) { ?>
-
-                            <option value="<?php echo s($empleadoInformatica->id); ?>"><?php echo s($empleadoInformatica->nombre . ' ' . $empleadoInformatica->apellidoPaterno . ' ' . $empleadoInformatica->apellidoMaterno); ?>
+                            <?php if($empleadoInformatica->id === $empleadoAnterior->id) continue; ?>
+                            <option <?php echo  $ticket->idEmpAsignado === $empleadoInformatica->id ? 'selected': '' ?>
+                            value="<?php echo s($empleadoInformatica->id); ?>"><?php echo s($empleadoInformatica->nombre . ' ' 
+                            .$empleadoInformatica->apellidoPaterno . ' ' . $empleadoInformatica->apellidoMaterno); ?>
 
                             </option>
                         <?php } ?>
                     </select>
+
+                    <div class="formulario__comentarios">
+                    <textarea class="formulario__comentarios-text-area" name="comentariosSoporte" id="comentarios" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentariosSoporte; ?></textarea>
+                </div>
+
+
                 </fieldset>
-                <input type="submit" class="formulario__submit" value="Asignar ticket">
+                <input type="submit" class="boton-escalar-ticket" value="Escalar ticket">
             </form>
         </div>
 

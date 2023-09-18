@@ -144,15 +144,16 @@ class ActiveRecord {
     }
 
 
-
-   
-   
-
-
     public static function allWhere($columna, $valor, $orden) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' ORDER BY $orden";
         $resultado = self::consultarSQL($query);
         return  $resultado;
+    }
+    //solo un valor
+    public static function OneWhere($columna, $valor, $orden) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' ORDER BY $orden";
+        $resultado = self::consultarSQL($query);
+        return  array_shift($resultado);
     }
 
     public static function allInformatica($columna,  $orden) {
@@ -187,6 +188,11 @@ class ActiveRecord {
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor'";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
+    }
+    public static function whereAll($columna, $valor) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor'";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
     }
 
     public static function whereAnd($columna1, $valor1, $columna2, $valor2) {

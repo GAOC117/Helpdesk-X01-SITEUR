@@ -16,7 +16,17 @@
         @content;
     }
 }
+@mixin desktop2 {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
 @mixin xl_desktop {
+    @media (min-width: v.$xl_desktop) {
+        @content;
+    }
+}
+@mixin xl_desktop2 {
     @media (min-width: v.$xl_desktop) {
         @content;
     }

@@ -1,17 +1,5 @@
 <main class="generar-ticket">
 
-
-    <!-- 
-comentariosReporte
-idEstado (abierto) *
-idEmpReporta *
-idEmpRequiere *
-extensionReporta *
-extensionRequiere *
-idClasificacionProblema *
-idsubclasificacionProblema *
-ticketNuevo = 1 *
- -->
     <div class="generar-ticket__header">
         <h2 class="generar-ticket__heading"><?php echo $titulo; ?></h2>
         <p class="generar-ticket__texto">Rigistra un nuevo incidente para mesa de ayuda</p>

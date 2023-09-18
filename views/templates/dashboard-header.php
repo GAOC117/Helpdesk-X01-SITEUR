@@ -17,7 +17,8 @@
                         <div class="dashboard__logout">
                             <p class="dashboard__employee-id"><?php echo $expedienteLogueado ?></p>
                             <div class="dashboard__submit">
-                                <input type="submit" class="dashboard__submit--logout" value="Cerrar sesión">
+                                <!-- <input type="submit" class="dashboard__submit--logout" value="Cerrar sesión"> -->
+                                <a href="/logout" class="dashboard__submit--logout">Cerrar sesión</a>
                                 <i class="fa-solid fa-right-from-bracket"></i>
                             </div>
                         </div>

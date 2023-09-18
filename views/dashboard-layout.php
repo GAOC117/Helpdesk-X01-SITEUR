@@ -13,17 +13,6 @@
     <link rel="stylesheet" href="/build/css/dashboardPrincipal.css">
     
 
-
-
-
-
-
-
-
-
-
-
-
     <?php if ($idRol === '1') { ?>
         <link rel="stylesheet" href="/build/css/admin.css">
     <?php } ?>
@@ -52,20 +41,15 @@
     
     
     
-    
-    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!--     
+    <!-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
     <script src='/build/js/multifilter.js'></script>
-    <title>jQuery multifilter Plugin Demo</title>
+   
     <link href='style.css' media='screen' rel='stylesheet' type='text/css' />
 </head>
-<script type='text/javascript'>
-    //<![CDATA[
-        $(document).ready(function() {
-            $('.filter').multifilter()
-        })
-        //]]>
-        </script>
+
+
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -100,9 +84,6 @@
 
 
         <?php echo $script ?? '' ?>
-    <!-- <script src="/build/js/app.js" defer></script>
-    <script src="/build/js/dashboard.js" defer></script>
-    <script src="/build/js/ticket-nuevo.js" defer></script> -->
 </body>
 
 </html>

@@ -6,7 +6,7 @@ class Tickets extends ActiveRecord
 {
     protected static $tabla = 'tickets';
     protected static $columnasDB = [
-        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte', 'fechaAsignacion', 'fechaCierra', 'idEstado', 'idEmpReporta', 'idEmpRequiere', 'idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo','fechaCaptura'
+        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte', 'fechaAsignacion', 'fechaCierra', 'idEstado', 'idEmpReporta', 'idEmpRequiere', 'idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo', 'fechaCaptura'
     ];
 
 
@@ -73,9 +73,26 @@ class Tickets extends ActiveRecord
 
 
     public function validarAsignarTicketNuevo()
-    {  
+    {
         if (!$this->idEmpAsignado)
             self::$alertas['error'][] = 'Debe seleccionar a un empleado para asignar el ticket';
+
+        return self::$alertas;
+    }
+
+    public function validarEscalarTicket()
+    {
+        if (!$this->idEmpAsignado) {
+            self::$alertas['error'][] = 'Debe seleccionar a un empleado para escalar el ticket';
+        }
+
+        if (!$this->comentariosSoporte) {
+            self::$alertas['error'][] = 'De una breve explicación del motivo por el cual se escala el ticket';
+        }
+
+        if (strlen($this->comentariosSoporte) > 250) {
+            self::$alertas['error'][] = 'La descripción debe ser breve, no debe exceder los 250 carácteres';
+        }
 
         return self::$alertas;
     }

@@ -1,34 +1,55 @@
 
 document.addEventListener('DOMContentLoaded', function () {
- 
 
-//   busqueda();
 
-// mostrarMesEnCurso();
-    
-    
+    //   busqueda();
+
+    // mostrarMesEnCurso();
+
+    llenarTablaTickets();
+    // obtenerRol();
+
+
 })
 
+const folio = document.querySelector('#idFolio');
+const asigna = document.querySelector('#idAsigna');
+const atiende = document.querySelector('#idAtiende');
+const fecha = document.querySelector('#idFecha');
+const requiere = document.querySelector('#idRequiere');
+const estado = document.querySelector('#idEstado');
+const clasificacion = document.querySelector('#idClasificacion');
+const subclasificacion = document.querySelector('#idSubclasificacion');
+const comentarios = document.querySelector('#idComentarios');
+const comentariosSoporte = document.querySelector('#idComentariosSoporte');
+
+setInterval(function () {
+    if (folio.value === '' && asigna.value === '' && atiende.value === '' && fecha.value === '' && requiere.value === '' && estado.value === '' && clasificacion.value === '' && subclasificacion.value === '' && comentarios.value === '' && comentariosSoporte.value === '') {
+        // alert("vacio");
+        llenarTablaTickets();
+    }
+
+}, 2000);
 
 
-  
 
 
 
 
-function mostrarMesEnCurso(){
+
+function mostrarMesEnCurso() {
     const fecha = new Date();
-    var mes = fecha.getMonth()+1;
-    const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
-    
-    
+    var mes = fecha.getMonth() + 1;
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+
+
     const inputFecha = document.querySelector('#idFecha');
 
     inputFecha.addEventListener()
-    
-    inputFecha.value = meses[mes-1];
 
-   
+    inputFecha.value = meses[mes - 1];
+
+
 
 }
 
@@ -38,183 +59,177 @@ function mostrarMesEnCurso(){
 
 
 
-function busqueda(){
-    const   input = document.querySelector("#idfolio");
+function busqueda() {
+    const input = document.querySelector("#idfolio");
     input.addEventListener('keyup', kha);
-   
+
+}
+
+
+async function llenarTablaTickets() {
+
+    const tBody = document.querySelector('.tabla__body.tickets');
+
+    const empleadoPromise = obtenerRol();
+
+    try {
+
+        const empleado = await empleadoPromise;
+        const idRol = empleado.idRol;
+
+
+
+        const url = '/api/obtenerTablaTickets';
+
+
+        const resultado = await fetch(url);
+        const tablaRows = await resultado.json();
+        const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+
+        tBody.innerHTML = "";
+
+
+        tablaRows.forEach(row => {
+            //  console.log(row);
+            const tr = document.createElement('tr');
+            const td_idTicket = document.createElement('td');
+            const td_fechaCaptura = document.createElement('td');
+            const td_nombreAsigna = document.createElement('td');
+            const td_atiende = document.createElement('td');
+            const td_nombreRequiere = document.createElement('td');
+            const td_estadoTicket = document.createElement('td');
+            const td_clasificacion = document.createElement('td');
+            const td_subclasificacion = document.createElement('td');
+            const td_comentarios = document.createElement('td');
+            const td_comentariosSoporte = document.createElement('td');
+            const td_acciones = document.createElement('td');
+            const div_acciones = document.createElement('DIV');
+
+            const { idTicket, fechaCaptura, nombreAsigna, atiende, nombreRequiere, estadoTicket, clasificacion, subclasificacion, comentarios, comentariosSoporte } = row;
+            
+            // console.log(fechaCaptura);
+            tr.classList.add('tabla__row');
+
+           
+
+            var mes;
+            if (fechaCaptura.split('-')[1] < 10)
+                mes = fechaCaptura.split('-')[1][1];
+            else
+                mes = fechaCaptura.split('-')[1];
+
+
+            td_idTicket.textContent = idTicket;
+            // td_fechaCaptura.textContent = fechaCaptura.split('-')[2] + '/' + meses[mes - 1] + '/' + fechaCaptura.split('-')[0];
+            td_fechaCaptura.textContent = fechaCaptura.split('-')[2] + '/' + fechaCaptura.split('-')[1] + '/' + fechaCaptura.split('-')[0];
+            td_nombreAsigna.textContent = nombreAsigna;
+            td_atiende.textContent = atiende;
+            td_nombreRequiere.textContent = nombreRequiere;
+            td_estadoTicket.textContent = estadoTicket;
+            td_clasificacion.textContent = clasificacion;
+            td_subclasificacion.textContent = subclasificacion;
+            td_comentarios.textContent = comentarios;
+            td_comentariosSoporte.textContent = comentariosSoporte;
+
+            td_idTicket.classList.add('tabla__td');
+            td_fechaCaptura.classList.add('tabla__td');
+            td_nombreAsigna.classList.add('tabla__td');
+            td_atiende.classList.add('tabla__td');
+            td_nombreRequiere.classList.add('tabla__td');
+            td_estadoTicket.classList.add('tabla__td');
+            td_clasificacion.classList.add('tabla__td');
+            td_subclasificacion.classList.add('tabla__td');
+            td_comentarios.classList.add('tabla__td');
+            td_comentariosSoporte.classList.add('tabla__td');
+            td_acciones.classList.add('tabla__td');
+
+            div_acciones.classList.add('tabla__tickets--botones');
+            if (idRol === '4')
+                div_acciones.classList.add('tabla__tickets--botones--colaborador');
+
+            div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-clock fa-xl'></i></a>";
+
+
+            if (idRol === '1' || idRol === '2') {
+                if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
+                    if (atiende === 'Sin asignar') {
+                        div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='tabla__boton-verde-limon tabla__boton'><i class='fa-solid fa-person-walking-arrow-loop-left fa-xl'></i></i></a>";
+                    }
+                    if (atiende !== 'Sin asignar') {
+                        div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a>";
+                        div_acciones.innerHTML += "<a href='/dashboard/escalar-tickets?id=" + idTicket + "' title='Escalar ticket' class='tabla__boton-naranja tabla__boton'><i class='fa-solid fa-arrow-trend-up fa-xl'></i></a><a href='/dashboard/cerrar-tickets?id=" + idTicket + "'title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>"
+                    }
+                }
+                else {
+                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
+                }
+            }
+            if (idRol === '3') {
+                if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
+                    div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a><a href='/dashboard/cerrar-tickets?id=" + idTicket + "' title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>";
+                }
+            }
+
+
+
+
+
+            tr.appendChild(td_idTicket);
+            tr.appendChild(td_fechaCaptura);
+            tr.appendChild(td_nombreAsigna);
+            tr.appendChild(td_atiende);
+            tr.appendChild(td_nombreRequiere);
+            tr.appendChild(td_estadoTicket);
+            tr.appendChild(td_clasificacion);
+            tr.appendChild(td_subclasificacion);
+            tr.appendChild(td_comentarios);
+            tr.appendChild(td_comentariosSoporte);
+            td_acciones.appendChild(div_acciones);
+
+            tr.appendChild(td_acciones);
+            tBody.appendChild(tr);
+
+
+
+        });
+
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
+    $(document).ready(function () {
+        $('.filter').multifilter()
+    })
+
+
 }
 
 
 
 
+async function obtenerRol() {
+
+    let empleado;
+    try {
+
+        const url = '/api/obtenerEmpleadoRol';
 
 
-function kha(){
-	alert("memo");
+        const resultado = await fetch(url);
+        empleado = await resultado.json();
+
+
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
+    return new Promise((res, rej) => res(empleado))
+
 }
-// single column
 
 
-// var searchBox_1 = document.getElementById("searchBox-1");
-// searchBox_1.addEventListener("keyup", function(){
-// 	var keyword = this.value;
-// 	keyword = keyword.toUpperCase();
-// 		var table_1 = document.getElementById("table-1");
-// 		var all_tr = table_1.getElementsByTagName("tr");
-// 		for(var i=0; i<all_tr.length; i++){
-// 			var name_column = all_tr[i].getElementsByTagName("td")[0];
-// 			if(name_column){
-// 				var name_value = name_column.textContent || name_column.innerText;
-// 				name_value = name_value.toUpperCase();
-// 				if(name_value.indexOf(keyword) > -1){
-// 					all_tr[i].style.display = ""; // show
-// 				}else{
-// 					all_tr[i].style.display = "none"; // hide
-// 				}
-// 			}
-// 		}
-// });
-
-// multiple column
-// var searchBox_2 = document.getElementById("searchBox-2");
-// searchBox_2.addEventListener("keyup",function(){
-// 	var keyword = this.value;
-// 	keyword = keyword.toUpperCase();
-// 	var table_2 = document.getElementById("table-2");
-// 	var all_tr = table_2.getElementsByTagName("tr");
-// 	for(var i=0; i<all_tr.length; i++){
-// 			var name_column = all_tr[i].getElementsByTagName("td")[0]; ///aqui agregar las columnas
-// 		  var email_column = all_tr[i].getElementsByTagName("td")[1];
-// 			if(name_column && email_column){
-// 				var name_value = name_column.textContent || name_column.innerText;
-// 				var email_value = email_column.textContent || email_column.innerText;
-// 				name_value = name_value.toUpperCase();
-// 				email_value = email_value.toUpperCase();
-// 				if((name_value.indexOf(keyword) > -1) || (email_value.indexOf(keyword) > -1)){
-// 					all_tr[i].style.display = ""; // show
-// 				}else{
-// 					all_tr[i].style.display = "none"; // hide
-// 				}
-// 			}
-// 		}
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 	  $.fn.pageMe = function(opts){
-//     var $this = this,
-//         defaults = {
-//             perPage: 10,
-//             showPrevNext: false,
-//             hidePageNumbers: false
-//         },
-//         settings = $.extend(defaults, opts);
-    
-//     var listElement = $this.find('tbody');
-//     var perPage = settings.perPage; 
-//     var children = listElement.children();
-//     var pager = $('.pager');
-    
-//     if (typeof settings.childSelector!="undefined") {
-//         children = listElement.find(settings.childSelector);
-//     }
-    
-//     if (typeof settings.pagerSelector!="undefined") {
-//         pager = $(settings.pagerSelector);
-//     }
-    
-//     var numItems = children.size();
-//     var numPages = Math.ceil(numItems/perPage);
-
-//     pager.data("curr",0);
-    
-//     if (settings.showPrevNext){
-//         $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
-//     }
-    
-//     var curr = 0;
-//     while(numPages > curr && (settings.hidePageNumbers==false)){
-//         $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
-//         curr++;
-//     }
-    
-//     if (settings.showPrevNext){
-//         $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
-//     }
-    
-//     pager.find('.page_link:first').addClass('active');
-//     pager.find('.prev_link').hide();
-//     if (numPages<=1) {
-//         pager.find('.next_link').hide();
-//     }
-//   	pager.children().eq(1).addClass("active");
-    
-//     children.hide();
-//     children.slice(0, perPage).show();
-    
-//     pager.find('li .page_link').click(function(){
-//         var clickedPage = $(this).html().valueOf()-1;
-//         goTo(clickedPage,perPage);
-//         return false;
-//     });
-//     pager.find('li .prev_link').click(function(){
-//         previous();
-//         return false;
-//     });
-//     pager.find('li .next_link').click(function(){
-//         next();
-//         return false;
-//     });
-    
-//     function previous(){
-//         var goToPage = parseInt(pager.data("curr")) - 1;
-//         goTo(goToPage);
-//     }
-     
-//     function next(){
-//         goToPage = parseInt(pager.data("curr")) + 1;
-//         goTo(goToPage);
-//     }
-    
-//     function goTo(page){
-//         var startAt = page * perPage,
-//             endOn = startAt + perPage;
-        
-//         children.css('display','none').slice(startAt, endOn).show();
-        
-//         if (page>=1) {
-//             pager.find('.prev_link').show();
-//         }
-//         else {
-//             pager.find('.prev_link').hide();
-//         }
-        
-//         if (page<(numPages-1)) {
-//             pager.find('.next_link').show();
-//         }
-//         else {
-//             pager.find('.next_link').hide();
-//         }
-        
-//         pager.data("curr",page);
-//       	pager.children().removeClass("active");
-//         pager.children().eq(page+1).addClass("active");
-    
-//     }
-// };
-
-// $(document).ready(function(){
-    
-//   $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
-    
-// });

@@ -39,7 +39,7 @@
 }
 @media (min-width: 768px) {
   .dashboard__contenido {
-    padding: 10rem 1rem 0 1rem;
+    padding: 10rem 1rem 0 26rem;
   }
 }
 .dashboard__sidebar {
@@ -50,7 +50,10 @@
 }
 @media (min-width: 768px) {
   .dashboard__sidebar {
-    width: 30rem;
+    width: 25rem;
+    position: fixed;
+    bottom: 0;
+    top: 6rem;
   }
 }
 .dashboard__header {
@@ -484,24 +487,17 @@ div[class$=tickets__header] span {
 .tabla__contenedor {
   overflow-x: auto;
 }
-@media (min-width: 768px) {
-  .tabla__contenedor {
-    display: flex;
-    justify-content: center;
-  }
+.tabla__contenedor-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
-.tabla__header {
-  background-color: rgb(33, 52, 92);
-  color: #fff;
-  font-size: 1.3rem;
-}
-@media (min-width: 768px) {
-  .tabla__header {
-    font-size: 2rem;
-  }
+.tabla__header__pegar {
+  position: sticky;
+  top: 0;
 }
 .tabla__td {
-  padding: 1rem 2rem;
+  padding: 1rem;
   text-align: center;
   border-bottom: 1px solid rgb(33, 52, 92);
   font-size: 1.2rem;
@@ -514,6 +510,14 @@ div[class$=tickets__header] span {
 .tabla__th {
   padding: 1rem 2rem;
   text-align: center;
+  background-color: rgb(33, 52, 92);
+  color: #fff;
+  font-size: 1.3rem;
+}
+@media (min-width: 768px) {
+  .tabla__th {
+    font-size: 2rem;
+  }
 }
 .tabla__row:nth-child(2n) {
   background-color: #eaeff8;
@@ -548,6 +552,35 @@ div[class$=tickets__header] span {
 @keyframes pulsate {
   0% {
     box-shadow: 0 0 25px #108dbf, 0 0 50px #108dbf;
+  }
+}
+.tabla__boton-gris {
+  background-color: #999999;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  padding: 2rem 2rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tabla__boton-gris:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: gray;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px #999999, 0 0 50px #999999;
   }
 }
 .tabla__boton-naranja {
@@ -641,7 +674,7 @@ div[class$=tickets__header] span {
   display: flex;
   gap: 2rem;
   height: 5rem;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .tabla__tickets--botones--colaborador {
   justify-content: center;
@@ -664,15 +697,17 @@ div[class$=tickets__header] span {
 .filters {
   display: flex;
   flex-direction: column;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   padding: 0 2rem;
 }
 @media (min-width: 768px) {
   .filters {
     display: grid;
     gap: 5rem;
-    grid-template-columns: repeat(5, 1fr);
-    padding: 0 3.8rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    column-gap: 3rem;
+    padding: 0 2rem;
   }
 }
 
@@ -686,6 +721,51 @@ div[class$=tickets__header] span {
   .filter-container {
     gap: 1rem;
     margin-bottom: 0rem;
+  }
+}
+
+.historico-tickets__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .historico-tickets__header {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.volver-ver-tickets {
+  background-color: rgb(33, 52, 92);
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  padding: 0 0 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+  width: 20rem;
+}
+.volver-ver-tickets:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: #141f36;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
   }
 }
 /*# sourceMappingURL=dashboardPrincipal.css.map */

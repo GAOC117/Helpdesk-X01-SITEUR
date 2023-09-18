@@ -10,31 +10,36 @@
     }
 
     &__contenedor {
-        @include m.tablet {
+        overflow-x: auto;
+
+        &-container {
+
             display: flex;
             justify-content: center;
+            padding: 2rem;
+        }
 
+        @include m.tablet {
+
+            // padding-left: 14rem;
         }
 
         // margin: 0 auto;
-        overflow-x:auto;
     }
 
     // border: 1px solid red;
 
     &__header {
-        background-color: v.$azul-siteur;
-        color: v.$blanco;
-        font-size: 1.3rem;
 
-        @include m.tablet {
-            font-size: 2rem;
-
+        &__pegar {
+            position: sticky;
+            top: 0;
         }
+
     }
 
     &__td {
-        padding: 1rem 2rem;
+        padding: 1rem;
         text-align: center;
         border-bottom: 1px solid v.$azul-siteur;
         font-size: 1.2rem;
@@ -47,6 +52,14 @@
     &__th {
         padding: 1rem 2rem;
         text-align: center;
+        background-color: v.$azul-siteur;
+        color: v.$blanco;
+        font-size: 1.3rem;
+
+        @include m.tablet {
+            font-size: 2rem;
+
+        }
 
     }
 
@@ -57,6 +70,8 @@
     &__contenedor {
 
         overflow-x: auto;
+
+        // height: 50rem;
     }
 
     &__boton {
@@ -68,6 +83,18 @@
 
         &-azul {
             @include m.boton(#108dbf, white);
+            // padding: 1.2rem 0rem;
+            padding: 2rem 2rem;
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        &-gris {
+            @include m.boton(#999999, white);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
             width: 5rem;
@@ -99,6 +126,7 @@
             align-items: center;
 
         }
+
         &-verde-limon {
             @include m.boton(#9eec50, white);
             // padding: 1.2rem 0rem;
@@ -120,9 +148,10 @@
             // flex-direction: column;
             gap: 2rem;
             height: 5rem;
-            justify-content: space-between;
+            // justify-content: space-between;
+            justify-content: flex-start;
 
-            &--colaborador{
+            &--colaborador {
                 justify-content: center;
             }
 
@@ -133,29 +162,32 @@
             }
         }
     }
-&__cerrado{
-    text-align: center;
-    width: 100%;
-    font-size: 2.8rem;
-    font-weight: v.$bold;
-    margin: 0;
-    display: flex;
-    align-items: center;
-  
-}
+
+    &__cerrado {
+        text-align: center;
+        width: 100%;
+        font-size: 2.8rem;
+        font-weight: v.$bold;
+        margin: 0;
+        display: flex;
+        align-items: center;
+
+    }
 }
 
 .filters {
 
     display: flex;
     flex-direction: column;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     padding: 0 2rem;
-    
+
     @include m.tablet {
-        
-        @include m.grid(5, 5rem);
-        padding: 0 3.8rem;
+
+        @include m.grid(4, 5rem);
+        gap: 2rem;
+        column-gap: 3rem;
+        padding: 0 2rem;
     }
 }
 
@@ -170,4 +202,35 @@
         gap: 1rem;
         margin-bottom: 0rem;
     }
+}
+
+
+.historico-tickets__header {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    
+    @include m.tablet {
+        @include m.grid(3, 2rem);
+    }
+
+}
+
+.volver-ver-tickets {
+    @include m.boton(v.$azul-siteur, white);
+    padding: 0 0 0 2rem;
+
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 2rem;
+    width: 20rem;
+
+}
+
+.boton-regresar {
+    //    background-color: v.$azul-siteur;
+
 }
