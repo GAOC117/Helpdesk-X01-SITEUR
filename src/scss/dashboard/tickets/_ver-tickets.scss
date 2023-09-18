@@ -234,3 +234,14 @@
     //    background-color: v.$azul-siteur;
 
 }
+
+
+td,
+th {
+    writing-mode: vertical-lr;
+    
+    @include m.tablet { 
+      writing-mode: horizontal-tb;
+    
+  }
+}

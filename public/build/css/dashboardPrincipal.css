@@ -768,4 +768,15 @@ div[class$=tickets__header] span {
     box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
   }
 }
+
+td,
+th {
+  writing-mode: vertical-lr;
+}
+@media (min-width: 768px) {
+  td,
+  th {
+    writing-mode: horizontal-tb;
+  }
+}
 /*# sourceMappingURL=dashboardPrincipal.css.map */
