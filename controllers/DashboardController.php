@@ -581,7 +581,10 @@ class DashboardController
 
         $idTicket = $_GET['id'];
 
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        
 
             $historico = new HistoricoTicket;
             $tickets = new Tickets;
@@ -593,23 +596,24 @@ class DashboardController
 
             $historicoTicket = $historico->OneWhere('idTicket', $idTicket, 'id desc');
 
-
+            
             $historicoTicket->comentarios = $_POST['comentarios'];
+            
+            // debuguear($historicoTicket);
 
 
-
-            $alertas = $historicoTicket->validarComentarioTicketPausado();
+            $alertas = $historicoTicket->validarComentarioTicketCerrado();
 
 
             if (empty($alertas)) {
                 $historicoTicket->id = null;
                 date_default_timezone_set('America/Mexico_City');
                 $historicoTicket->fechaRegistro = date('Y-m-d');
-                $historicoTicket->idEstado = 2;
+                $historicoTicket->idEstado = 4;
 
                 $ticketToUpdate = $tickets->find($idTicket);
 
-                $ticketToUpdate->idEstado = 2;
+                $ticketToUpdate->idEstado = 4;
                 $ticketToUpdate->ticketNuevo = 0;
                 $ticketToUpdate->comentariosSoporte = $_POST['comentarios'];
 
@@ -623,14 +627,15 @@ class DashboardController
                 $clasificacion = $cla->find($ticketToUpdate->idClasificacionProblema);
                 $subClasificacion = $sub->find($ticketToUpdate->idSubclasificacionProblema);
                 $motivo = $_POST['comentarios'];
+                
 
 
 
-                $resultadoTicket = $ticketToUpdate->guardar();
-                $resultadoHistorico = $historicoTicket->crearHistorico();
+                 $resultadoTicket = $ticketToUpdate->guardar();
+                 $resultadoHistorico = $historicoTicket->crearHistorico();
 
                 $email = new Email($empleadoReporta->email, $empleadoAsignado->nombre . ' ' . $empleadoReporta->apellidoPaterno . ' ' . $empleadoReporta->apellidoMaterno, '');
-                $email->pausarTicket(
+                $email->cerrarTicket(
                     $empleadoAsignado->nombre . ' ' . $empleadoAsignado->apellidoPaterno . ' ' . $empleadoAsignado->apellidoMaterno,
                     $empleadoAsignado->email,
                     $empleadoRequiere->email,
@@ -643,7 +648,7 @@ class DashboardController
                     $empleadoRequiere->extension,
                     $departamentoReporta->descripcion,
                     $departamentoRequiere->descripcion,
-                    $motivo
+                 $motivo
                 );
 
                 $_SESSION['mensaje'] = "El ticket #$idTicket fue cerrado";

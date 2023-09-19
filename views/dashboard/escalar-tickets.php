@@ -51,7 +51,7 @@
 
 
                 </fieldset>
-                <input type="submit" class="boton-escalar-ticket" value="Escalar ticket">
+                <input type="submit" class="formulario__submit--escalar-ticket" value="Escalar ticket">
             </form>
         </div>
 

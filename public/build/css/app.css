@@ -486,6 +486,7 @@ h3 {
   flex-direction: column;
   background-color: rgb(255, 255, 255);
   padding: 5rem 2rem 2rem;
+  width: 70rem;
 }
 .formulario__fieldset {
   padding: 2rem 2rem;
@@ -552,6 +553,118 @@ h3 {
 @keyframes pulsate {
   0% {
     box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
+  }
+}
+.formulario__submit--asignar-ticket {
+  background-color: #9eec50;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  margin: 3rem 0 2rem 0;
+  width: auto;
+  align-self: center;
+  border-radius: 1rem;
+}
+.formulario__submit--asignar-ticket:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: #85e722;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px #9eec50, 0 0 50px #9eec50;
+  }
+}
+.formulario__submit--pausar-ticket {
+  background-color: #999999;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  margin: 3rem 0 2rem 0;
+  width: auto;
+  align-self: center;
+  border-radius: 1rem;
+}
+.formulario__submit--pausar-ticket:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: gray;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px #999999, 0 0 50px #999999;
+  }
+}
+.formulario__submit--escalar-ticket {
+  background-color: #F6A215;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  margin: 3rem 0 2rem 0;
+  width: auto;
+  align-self: center;
+  border-radius: 1rem;
+}
+.formulario__submit--escalar-ticket:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: #d08508;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px #F6A215, 0 0 50px #F6A215;
+  }
+}
+.formulario__submit--cerrar-ticket {
+  background-color: #4EAE51;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  margin: 3rem 0 2rem 0;
+  width: auto;
+  align-self: center;
+  border-radius: 1rem;
+}
+.formulario__submit--cerrar-ticket:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: #3e8b41;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px #4EAE51, 0 0 50px #4EAE51;
   }
 }
 

@@ -50,7 +50,7 @@ class ApiController
             // debuguear("primer if");
             
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-            $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
+            // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
             $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
             $query .= " e4.nombre AS nombreRequiere,";
             $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
@@ -64,7 +64,7 @@ class ApiController
         {
             // debuguear("segundo if");
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-            $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
+            // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
             $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
             $query .= " e4.nombre AS nombreRequiere,";
             $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
@@ -77,7 +77,7 @@ class ApiController
         } else if ($idRol === '4') { //si es colaborador ver los reportados por el
             // debuguear("tercer if");
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-            $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
+            // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
             $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
             $query .= " e4.nombre AS nombreRequiere,";
             $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
@@ -96,10 +96,11 @@ class ApiController
 
 
         //  debuguear($tickets);
+        $resultado['tablaRows'] = $tickets;
+        $resultado['idRol'] = $idRol;
 
 
-
-        echo json_encode($tickets);
+        echo json_encode($resultado);
     }
 
 

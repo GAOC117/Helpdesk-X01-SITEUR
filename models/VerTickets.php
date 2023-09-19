@@ -6,13 +6,13 @@ class VerTickets extends ActiveRecord
 {
     protected static $tabla = 'tickets';
     protected static $columnasDB = [
-        'idTicket', 'fechaCaptura','nombreAsigna', 'atiende', 'nombreRequiere', 'estadoTicket', 'clasificacion', 'subclasificacion', 'comentarios','comentariosSoporte','fechaAsignacion','fechaCierra'];
+        'idTicket', 'fechaCaptura','atiende', 'nombreRequiere', 'estadoTicket', 'clasificacion', 'subclasificacion', 'comentarios','comentariosSoporte','fechaAsignacion','fechaCierra'];
 
 
 
     public $idTicket;
     public $fechaCaptura;
-    public $nombreAsigna;
+    // public $nombreAsigna;
     public $atiende;
     public $nombreRequiere;
     public $estadoTicket;
@@ -29,7 +29,7 @@ class VerTickets extends ActiveRecord
     {
 
         $this->idTicket = $args['idTicket'] ?? null;
-        $this->nombreAsigna = $args['nombreAsigna'] ?? '';
+        // $this->nombreAsigna = $args['nombreAsigna'] ?? '';
         $this->fechaCaptura = $args['fechaCaptura'] ?? '';
         $this->atiende = $args['atiende'] ?? '';
         $this->nombreRequiere = $args['nombreRequiere'] ?? '';

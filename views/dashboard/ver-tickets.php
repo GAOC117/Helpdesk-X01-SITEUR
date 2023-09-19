@@ -31,10 +31,10 @@
                 <label>Folio: </label>
                 <input type="number" autocomplete='off' class='filter' name='folio' placeholder='Buscar folio' data-col='folio' id="idFolio" />
             </div>
-            <div class='filter-container'>
+            <!-- <div class='filter-container'>
                 <label>Quién asigna: </label>
                 <input autocomplete='off' class='filter' name='asigna' placeholder='Buscar quién asigna el ticket' data-col='asigna' id="idAsigna" />
-            </div>
+            </div> -->
             <div class='filter-container'>
                 <label>Quién atiende: </label>
                 <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende el servicio' data-col='atiende' id="idAtiende" />
@@ -81,15 +81,15 @@
                     <tr class="tabla__header__pegar">
 
                         <th class="tabla__th">Folio#</th>
-                        <th class="tabla__th">Fecha de registro</th>
-                        <th class="tabla__th">Asigna</th>
+                        <th class="tabla__th">Fecha registro</th>
+                        <!-- <th class="tabla__th">Asigna</th> -->
                         <th class="tabla__th">Atiende</th>
                         <th class="tabla__th">Requiere</th>
                         <th class="tabla__th">Estado</th>
                         <th class="tabla__th">Clasificación</th>
                         <th class="tabla__th">Subclasificación</th>
                         <th class="tabla__th">Comentarios de captura</th>
-                        <th class="tabla__th">Comentarios de soporte técnico</th>
+                        <th class="tabla__th">Comentarios de soporte</th>
                         <th class="tabla__th">Acciones</th>
                     </tr>
                 </thead>

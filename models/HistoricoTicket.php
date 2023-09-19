@@ -41,5 +41,15 @@ class HistoricoTicket extends ActiveRecord
             }
         return self::$alertas;
     }
+    public function validarComentarioTicketCerrado()
+    {
+        if (!$this->comentarios)
+            self::$alertas['error'][] = 'Debe agregar un comentario mencionando el motivo por el cuál se cierra el ticket';
+
+        else if(strlen($this->comentarios) > 250) {
+                self::$alertas['error'][] = 'Los comentarios no pueden contener mas de 250 caracteres';
+            }
+        return self::$alertas;
+    }
    
 }

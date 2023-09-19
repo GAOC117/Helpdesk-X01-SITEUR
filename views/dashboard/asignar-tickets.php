@@ -42,7 +42,7 @@
                         <?php } ?>
                     </select>
                 </fieldset>
-                <input type="submit" class="formulario__submit" value="Asignar ticket">
+                <input type="submit" class="formulario__submit--asignar-ticket" value="Asignar ticket">
             </form>
         </div>
 

@@ -31,7 +31,7 @@
                     <i class="ver-ticket ver-ticket-icono fa-solid fa-eye dashboard__icono"></i>
                     <span class="ver-ticket dashboard__menu-texto">
                         <?php if ($idRol === '1') echo 'Ver tickets'; ?>
-                        <?php if ($idRol !== '1') echo 'Ver mis tickets'; ?>
+                        <?php if ($idRol !== '1') echo 'Mis tickets'; ?>
                     </span>
                 </a>
             </li>
@@ -45,7 +45,7 @@
                 </a>
             </li>
         </ul>
-
+<?php if($idRol === '1') { ?>
         <a class="empleado dashboard__enlace menu-principal  empleado-menu">
             <i class="empleado empleado-icono fa-solid fa-user dashboard__icono"></i>
             <span class="empleado dashboard__menu-texto">
@@ -201,6 +201,8 @@
         <!-- </nav> -->
 
     </nav>
+
+    <?php } ?>
     <!-- </div> -->
     <div class="dashboard__ip">
         <p class="dashboard__ip--texto">TU IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>

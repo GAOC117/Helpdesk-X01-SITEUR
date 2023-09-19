@@ -15,7 +15,17 @@
     position: relative;
 }
 
-.generar-ticket {
+.pausar-ticket,
+.cerrar-ticket{
+
+    &__submit{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.generar-ticket,
+.pausar-ticket {
 
     &__alertas {
         width: 70%;

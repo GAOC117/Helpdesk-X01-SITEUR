@@ -49,7 +49,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        $mail->send();
+        // $mail->send();
     }
 
     public function enviarInstrucciones()
@@ -81,7 +81,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        $mail->send();
+        // $mail->send();
     }
 
 
@@ -142,7 +142,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        $mail->send();
+        // $mail->send();
     }
 
 
@@ -206,7 +206,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        $mail->send();
+        // $mail->send();
     }
 
 
@@ -270,7 +270,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        $mail->send();
+        // $mail->send();
     }
 
     public function pausarTicket($nombreAsignado, $correoAsignado, $correoRequiere, $nombreRequiere, $folio, $clasificacion, $subclasificacion, $comentarios, $extensionReporta, $extensionRequiere, $departamentoReporta, $departamentoRequiere, $motivo)
@@ -332,6 +332,69 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        $mail->send();
+        // $mail->send();
+    }
+
+
+    public function cerrarTicket($nombreAsignado, $correoAsignado, $correoRequiere, $nombreRequiere, $folio, $clasificacion, $subclasificacion, $comentarios, $extensionReporta, $extensionRequiere, $departamentoReporta, $departamentoRequiere, $motivo)
+    {
+
+        // create a new object
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV['EMAIL_HOST'];
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
+
+        $mail->setFrom($_ENV['EMAIL_USER'],"Mesa de ayuda - #$folio");
+        $mail->addAddress($this->correoMesa);
+        $mail->addAddress($this->email); //quien reporta
+        $mail->addAddress($correoAsignado); //quien atiende
+        if ($this->email !== $correoRequiere)//si el que reporta es diferente a quien requiere
+            $mail->addAddress($correoRequiere); //quien requiere
+            
+        
+        $mail->Subject = 'El folio #' . $folio.' ha sido cerrado';
+
+        // Set HTML
+        $mail->isHTML(TRUE);
+        $mail->CharSet = 'UTF-8';
+
+        $contenido = '<html>';
+        $contenido .= "<p>Hola</p><br>";
+        $contenido .= "<p>El ticket con el folio <strong style = 'color: green; font-weight: bold';>#$folio</strong> atendido por <strong>$nombreAsignado</strong> ha sido cerrado.</p><br>";
+        $contenido .= "<p><strong>Motivo por el cual se cerró el ticket: </strong>$motivo</p><br>";
+        $contenido .= "<p>Información del ticket</p><br>";
+        if ($this->email !== $correoRequiere){
+
+            $contenido .= "<p><strong>Nombre de quién reporta:</strong> $this->nombre</p>";
+            $contenido .= "<p><strong>Extensión de quién reporta:</strong> $extensionReporta</p>";
+            $contenido .= "<p><strong>Departamento de quién reporta:</strong> $departamentoReporta</p><br>";
+
+            $contenido .= "<p><strong>Nombre de quién requiere:</strong> $nombreRequiere</p>";
+            $contenido .= "<p><strong>Extensión de quién requiere:</strong> $extensionRequiere</p>";
+            $contenido .= "<p><strong>Departamento de quién requiere:</strong> $departamentoRequiere</p>";
+        }
+        else
+        {
+            $contenido .= "<p><strong>Nombre de quién requiere:</strong> $this->nombre</p>";
+            $contenido .= "<p><strong>Extensión:</strong> $extensionRequiere</p>";
+            $contenido .= "<p><strong>Departamento de quién requiere:</strong> $departamentoRequiere</p>";
+        }
+        
+        $contenido .= "<p><strong>Clasificación:</strong> $clasificacion</p>";
+        $contenido .= "<p><strong>Subclasificación:</strong> $subclasificacion</p>";
+        $contenido .= "<p><strong>Comentario del reporte:</strong> $comentarios</p><br>";
+
+        $contenido .= "<p>Gracias</p>";
+        $contenido .= "<p><strong>Saludos</strong></p><br><br>";
+        $contenido .= '</html>';
+        $mail->Body = $contenido;
+
+        //Enviar el mail
+         $mail->send();
     }
 }

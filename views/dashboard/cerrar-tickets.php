@@ -15,21 +15,21 @@
     </div>
     <div class="generar-ticket__datos">
 
-        <form action="/dashboard/cerrar-tickets?id=<?php echo $idTicket;?>" class="generar-ticket__formulario" method="POST">
+        <form action="/dashboard/cerrar-tickets?id=<?php echo $idTicket; ?>" class="generar-ticket__formulario" method="POST">
 
-                <div class="formulario__comentarios">
-                    <textarea class="formulario__comentarios-text-area" name="comentarios" id="comentarios" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentarios; ?></textarea>
-                </div>
+            <div class="formulario__comentarios">
+                <textarea class="formulario__comentarios-text-area" name="comentarios" id="comentarios" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentarios; ?></textarea>
+            </div>
 
-            </div><!-- grid -->
+    </div><!-- grid -->
+
+    <div class="cerrar-ticket__submit">
+
+        <input type="submit" class="formulario__submit--cerrar-ticket" value="Cerrar ticket">
+    </div>
+    </form>
 
 
-            
-            <input type="submit" class="boton-cerrar-ticket" value="Cerrar ticket">
-
-        </form>
-
-       
     </div>
 
 

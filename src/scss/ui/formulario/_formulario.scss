@@ -42,6 +42,9 @@
         width: auto;
         align-self: center;
         border-radius: 1rem;
+
+
+       
     }
 
     // &__submit:hover {
@@ -55,6 +58,7 @@
     flex-direction: column;
     background-color: rgba(255, 255, 255, 1);
     padding: 5rem 2rem 2rem;
+    width: 70rem;
 
     &__fieldset {
         padding: 2rem 2rem;
@@ -107,6 +111,51 @@
         width: auto;
         align-self: center;
         border-radius: 1rem;
+
+        &--asignar-ticket{
+
+            @include m.boton(#9eec50, white);
+            // @include m.boton(v.$blanco, v.$negro);
+            // border: 5px solid v.$azul-siteur;
+            margin: 3rem 0 2rem 0;
+            width: auto;
+            align-self: center;
+            border-radius: 1rem;
+
+        }
+        &--pausar-ticket{
+
+            @include m.boton(#999999, white);
+            // @include m.boton(v.$blanco, v.$negro);
+            // border: 5px solid v.$azul-siteur;
+            margin: 3rem 0 2rem 0;
+            width: auto;
+            align-self: center;
+            border-radius: 1rem;
+
+        }
+        &--escalar-ticket{
+
+            @include m.boton(#F6A215, white);
+            // @include m.boton(v.$blanco, v.$negro);
+            // border: 5px solid v.$azul-siteur;
+            margin: 3rem 0 2rem 0;
+            width: auto;
+            align-self: center;
+            border-radius: 1rem;
+
+        }
+        &--cerrar-ticket{
+
+            @include m.boton(#4EAE51, white);
+            // @include m.boton(v.$blanco, v.$negro);
+            // border: 5px solid v.$azul-siteur;
+            margin: 3rem 0 2rem 0;
+            width: auto;
+            align-self: center;
+            border-radius: 1rem;
+
+        }
     }
 
     // &__submit:hover {
@@ -135,3 +184,5 @@ input[type="password"]:-webkit-autofill {
         @include m.grid(3, 2rem);
     }
 }
+
+
