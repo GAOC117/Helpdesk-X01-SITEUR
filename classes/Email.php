@@ -395,6 +395,6 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-         $mail->send();
+        //  $mail->send();
     }
 }

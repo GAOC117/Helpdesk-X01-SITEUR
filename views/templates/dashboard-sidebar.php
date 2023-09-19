@@ -30,12 +30,12 @@
                 <a href="/dashboard/ver-tickets" class="ver-ticket dashboard__enlace">
                     <i class="ver-ticket ver-ticket-icono fa-solid fa-eye dashboard__icono"></i>
                     <span class="ver-ticket dashboard__menu-texto">
-                        <?php if ($idRol === '1') echo 'Ver tickets'; ?>
-                        <?php if ($idRol !== '1') echo 'Mis tickets'; ?>
+                        <?php if ($idRol === '1'|| $idRol === '2') echo 'Ver tickets'; else { ?>
+                        <?php echo 'Mis tickets'; }?>
                     </span>
                 </a>
             </li>
-
+            <?php if ($idRol === '1'|| $idRol === '2') { ?>     
             <li class="dashboard__lista-boton">
                 <a href="/dashboard/generar-ticket" class="generar-ticket dashboard__enlace">
                     <i class="generar-ticket generar-ticket-icono fa-solid fa-file-circle-plus dashboard__icono"></i>
@@ -44,6 +44,7 @@
                     </span>
                 </a>
             </li>
+            <?php }?>
         </ul>
 <?php if($idRol === '1') { ?>
         <a class="empleado dashboard__enlace menu-principal  empleado-menu">

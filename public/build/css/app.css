@@ -312,7 +312,7 @@ html {
 }
 
 body {
-  font-family: "Outfit", sans-serif;
+  font-family: "Righteous", sans-serif;
   font-size: 1.8rem;
 }
 
@@ -326,7 +326,7 @@ img {
 }
 
 h1, h2, h3 {
-  font-family: "Outfit", sans-serif;
+  font-family: "Righteous", sans-serif;
   font-weight: 900;
   margin: 2rem 0;
 }
@@ -348,7 +348,7 @@ h3 {
 }
 
 [class$=__heading] {
-  font-family: "Outfit", sans-serif;
+  font-family: "Righteous", sans-serif;
   font-weight: 900;
   margin: 2rem 0;
   margin: 1rem 0 3rem 0;

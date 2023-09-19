@@ -31,7 +31,7 @@
                                 <label for="idEmpReporta" class="formulario__label">Expediente</label>
                                 <?php //if ($expedienteReporta === '') { 
                                 ?>
-                                <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>" disabled>
+                                <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>" <?php if($idRol !== '1' && $idRol !== '2') echo 'disabled'; ?>>
                                 <?php //} 
                                 ?>
                                 <?php //if ($expedienteReporta !== '') { 

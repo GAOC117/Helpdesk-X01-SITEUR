@@ -40,7 +40,8 @@ class ApiController
     public static function verTickets(){
          session_start();
         $idRol = $_SESSION['idRol'];
-        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $nombreLogueado = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        
         $expedienteLogueado = $_SESSION['id'];
         $extension = $_SESSION['extension'];
         $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
@@ -51,8 +52,8 @@ class ApiController
             
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
             // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-            $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
-            $query .= " e4.nombre AS nombreRequiere,";
+            $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+            $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
             $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
             $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
             $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
@@ -65,21 +66,21 @@ class ApiController
             // debuguear("segundo if");
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
             // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-            $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
-            $query .= " e4.nombre AS nombreRequiere,";
+            $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+            $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
             $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
             $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
             $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
             $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
             $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
             $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-            $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpAsignado = $expedienteLogueado order by t.id desc";
+            $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado order by t.id desc";
         } else if ($idRol === '4') { //si es colaborador ver los reportados por el
             // debuguear("tercer if");
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
             // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-            $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
-            $query .= " e4.nombre AS nombreRequiere,";
+            $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+            $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
             $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
             $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
             $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
@@ -98,6 +99,7 @@ class ApiController
         //  debuguear($tickets);
         $resultado['tablaRows'] = $tickets;
         $resultado['idRol'] = $idRol;
+        $resultado['nombreLogueado'] = $nombreLogueado;
 
 
         echo json_encode($resultado);

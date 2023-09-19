@@ -4,8 +4,11 @@
         <?php if($expedienteLogueado==='4486') { ?>
         <img src="/build/img/vader.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
         <?php } ?>
-        <?php if($expedienteLogueado!=='4486') { ?>
+        <?php if($expedienteLogueado==='4485') { ?>
         <img src="/build/img/koala.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+        <?php } else {?>
+       
+            <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
         <?php } ?>
     </div>
 

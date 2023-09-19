@@ -24,9 +24,9 @@ const comentarios = document.querySelector('#idComentarios');
 const comentariosSoporte = document.querySelector('#idComentariosSoporte');
 
 setInterval(function () {
-    if (folio.value === '' &&  atiende.value === '' && fecha.value === '' && requiere.value === '' && estado.value === '' && clasificacion.value === '' && subclasificacion.value === '' && comentarios.value === '' && comentariosSoporte.value === '') {
+    if (folio.value === '' && atiende.value === '' && fecha.value === '' && requiere.value === '' && estado.value === '' && clasificacion.value === '' && subclasificacion.value === '' && comentarios.value === '' && comentariosSoporte.value === '') {
         // alert("vacio");
-        llenarTablaTickets();
+        // llenarTablaTickets();
     }
 
 }, 2000);
@@ -77,19 +77,20 @@ async function llenarTablaTickets() {
         // const empleado = await empleadoPromise;
         // const idRol = empleado.idRol;
 
-        
-        
-        
+
+
+
         const url = '/api/obtenerTablaTickets';
-        
-        
+
+
         const resultado = await fetch(url);
         const result = await resultado.json();
         const tablaRows = result.tablaRows;
         const idRol = result.idRol;
-        
+        const nombreLogueado = result.nombreLogueado;
+
         const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        
+
         // alert(idRol);
 
         tBody.innerHTML = "";
@@ -111,12 +112,12 @@ async function llenarTablaTickets() {
             const td_acciones = document.createElement('td');
             const div_acciones = document.createElement('DIV');
 
-            const { idTicket, fechaCaptura,  atiende, nombreRequiere, estadoTicket, clasificacion, subclasificacion, comentarios, comentariosSoporte } = row;
-            
+            const { idTicket, fechaCaptura, atiende, nombreRequiere, estadoTicket, clasificacion, subclasificacion, comentarios, comentariosSoporte } = row;
+
             // console.log(fechaCaptura);
             tr.classList.add('tabla__row');
 
-           
+
 
             var mes;
             if (fechaCaptura.split('-')[1] < 10)
@@ -149,7 +150,9 @@ async function llenarTablaTickets() {
             td_comentariosSoporte.classList.add('tabla__td');
             td_acciones.classList.add('tabla__td');
 
-           
+            //aqui designar clases para los colores de abierto, cerrado, escalado, cerrado
+
+
 
             div_acciones.classList.add('tabla__tickets--botones');
             if (idRol === '4')
@@ -158,34 +161,64 @@ async function llenarTablaTickets() {
             div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-clock fa-xl'></i></a>";
 
 
-            if (idRol === '1' || idRol === '2') {
-                if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
-                    if (atiende === 'Sin asignar') {
+            if (idRol === '1' || idRol === '2') 
+            {
+                if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') 
+                {
+                    if (atiende === 'Sin asignar')
+                     {
                         div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='tabla__boton-verde-limon tabla__boton'><i class='fa-solid fa-person-walking-arrow-loop-left fa-xl'></i></i></a>";
                     }
-                    if (atiende !== 'Sin asignar') {
+                    if (atiende !== 'Sin asignar') 
+                    {
+                       
                         div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a>";
-                        div_acciones.innerHTML += "<a href='/dashboard/escalar-tickets?id=" + idTicket + "' title='Escalar ticket' class='tabla__boton-naranja tabla__boton'><i class='fa-solid fa-arrow-trend-up fa-xl'></i></a><a href='/dashboard/cerrar-tickets?id=" + idTicket + "'title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>"
+                        div_acciones.innerHTML += "<a href='/dashboard/escalar-tickets?id=" + idTicket + "' title='Escalar ticket' class='tabla__boton-naranja tabla__boton'><i class='fa-solid fa-arrow-trend-up fa-xl'></i></a>";
+
+                        div_acciones.innerHTML += "<a href='/dashboard/cerrar-tickets?id=" + idTicket + "' title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>";
+
                     }
+                    
                 }
-                else {
+                else 
+                {
                     div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
                 }
             }
-            if (idRol === '3') {
-                if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
-                    div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a><a href='/dashboard/cerrar-tickets?id=" + idTicket + "' title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>";
-                }
-                else{
-                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
-                }
-            }
-            if (idRol === '4') {
-                if (estadoTicket === 'Cerrado') {
-                   
-                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
-                }
+            if (idRol === '3')
+             {
+                 if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') 
+                 {
                 
+
+                    if (atiende !== 'Sin asignar') 
+                    {
+                        
+                        if(atiende === nombreLogueado)
+                        {
+                        div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a>";
+                        
+
+                        div_acciones.innerHTML += "<a href='/dashboard/cerrar-tickets?id=" + idTicket + "' title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>";
+                        }
+                    }
+                    // if (atiende !== 'Sin asignar') {
+                    //     div_acciones.innerHTML += "<a href='/dashboard/cerrar-tickets?id=" + idTicket + "' title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>";
+                    // }
+                }
+                else 
+                {
+                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
+                }
+            }
+            if (idRol === '4') 
+            {
+                if (estadoTicket === 'Cerrado')
+                 {
+
+                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
+                }
+
             }
 
 
