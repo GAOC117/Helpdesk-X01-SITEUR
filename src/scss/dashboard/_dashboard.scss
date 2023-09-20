@@ -1,26 +1,36 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
 
-.dashboard{
+.dashboard {
 
-    &__grid{
-
+    &__grid {
         display: grid;
-        grid-template-areas: "side contenido";
-        grid-template-columns: 30rem 1fr;
+        grid-template-rows: 8rem 1fr;
+        grid-template-columns: unset;
+        grid-template-areas: "side"
+                            "contenido";
+        
+        @include m.telefono {
+            grid-template-columns: 30rem 1fr;
+            grid-template-rows: unset;
+            grid-template-areas: "side contenido";
+            
+        }
+        
+      
     }
 
-    &__sidebar-contenedor{
+    &__sidebar-contenedor {
         grid-area: side;
         background-color: red;
-        
+
     }
-    
-    &__contenido{
+
+    &__contenido {
         grid-area: contenido;
         background-color: green;
     }
- 
+
 }
 
 
@@ -95,7 +105,7 @@
 //         display: flex;
 //         flex-direction: column;
 //         justify-content: space-between;
-      
+
 
 
 //         @include m.tablet {
@@ -353,7 +363,7 @@
 // ul[class*='-hidden'] {
 //     height: 0;
 //     overflow: hidden;
-    
+
 // }
 
 

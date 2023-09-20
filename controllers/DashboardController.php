@@ -25,7 +25,7 @@ class DashboardController
 
 
 
-        $titulo = 'Dashboard de ' . $nombre . ' - ' . $expedienteLogueado;
+        $titulo = 'Inicio';
 
 
         $router->renderView('dashboard/index', [
@@ -50,7 +50,7 @@ class DashboardController
 
 
 
-        $titulo = 'Generar nuevo ticket';
+        $titulo = 'Nuevo ticket';
 
 
         $router->renderView('dashboard/generar-ticket', [

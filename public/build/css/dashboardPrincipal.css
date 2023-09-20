@@ -1,8 +1,16 @@
 /** Media Queries **/
 .dashboard__grid {
   display: grid;
-  grid-template-areas: "side contenido";
-  grid-template-columns: 30rem 1fr;
+  grid-template-rows: 8rem 1fr;
+  grid-template-columns: unset;
+  grid-template-areas: "side" "contenido";
+}
+@media (min-width: 501px) {
+  .dashboard__grid {
+    grid-template-columns: 30rem 1fr;
+    grid-template-rows: unset;
+    grid-template-areas: "side contenido";
+  }
 }
 .dashboard__sidebar-contenedor {
   grid-area: side;
@@ -15,7 +23,7 @@
 
 .dashboard__sidebar {
   border-radius: 0 3rem 3rem 0;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #eee;
 }
 .dashboard__sidebar-contenedor {
@@ -24,9 +32,10 @@
 }
 .dashboard__sidebar--header {
   width: 80%;
-  padding-top: 5rem;
+  padding-top: 2rem;
   box-shadow: 0px 18px 15px -20px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
+  margin-bottom: 5rem;
 }
 .dashboard__sidebar--empleado {
   display: flex;
@@ -40,7 +49,7 @@
   align-items: center;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid gray;
+  border: 1px solid #757575;
 }
 .dashboard__sidebar--empleado-imagen--foto {
   width: 100%;
@@ -55,9 +64,57 @@
 .dashboard__sidebar--empleado-nombre--texto {
   margin-bottom: 0.5rem;
 }
+.dashboard__sidebar-nav {
+  max-width: 28rem;
+}
 .dashboard__sidebar-nav--menu ul li {
   list-style: none;
   margin-bottom: 0.5rem;
+}
+.dashboard__sidebar-nav--menu ul li .dashboard__sidebar-nav--arrow {
+  font-size: 1.4rem;
+  transition: all 0.2s;
+}
+.dashboard__sidebar-nav--menu ul li.activo .dashboard__sidebar-nav--arrow {
+  transform: rotate(450deg);
+}
+.dashboard__sidebar-nav--menu ul li a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #757575;
+  text-decoration: none;
+  padding: 1.2rem 0.8rem;
+  border-radius: 0.8rem;
+  transition: all 0.3s;
+}
+.dashboard__sidebar-nav--menu ul li > a:hover, .dashboard__sidebar-nav--menu ul li.activo > a {
+  color: #000;
+  background-color: white;
+}
+.dashboard__sidebar-nav--menu.dark ul li > a:hover, .dashboard__sidebar-nav--menu.dark ul li.activo > a {
+  color: #fff;
+  background-color: #bababa;
+}
+.dashboard__sidebar-nav--icono {
+  font-size: 2rem;
+}
+.dashboard__sidebar-nav--texto {
+  flex: 1;
+  padding-top: 0.3rem;
+}
+.dashboard__sidebar-nav--menu .dashboard__sidebar-nav--sub-menu {
+  margin-left: 2rem;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  border-left: 0.1rem solid #757575;
+  display: none;
+}
+.dashboard__sidebar-nav--menu .dashboard__sidebar-nav--sub-menu li a {
+  padding: 1rem 0.8rem;
+  font-size: 1.2rem;
 }
 
 .swal2-popup {

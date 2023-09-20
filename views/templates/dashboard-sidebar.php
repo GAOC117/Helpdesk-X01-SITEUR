@@ -1,5 +1,8 @@
 <aside class="dashboard__sidebar-contenedor">
     <div class="dashboard__sidebar">
+    <div class="dashboard__sidebar__ip">
+        <p class="dashboard__sidebar__ip--texto">TU IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
+    </div>
         <div class="dashboard__sidebar--header">
             <div class="dashboard__sidebar--empleado">
                 <div class="dashboard__sidebar--empleado-imagen">
@@ -23,12 +26,159 @@
         <div class="dashboard__sidebar-nav">
             <div class="dashboard__sidebar-nav--menu">
                 <ul>
-                    <li>
-                        <a class="dashboard__sidebar-nav--enlace" href="">
-                            <i class="house house-icono fa-solid fa-house dashboard__icono"></i>
+                    <li >
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-house"></i>
                             <span class="dashboard__sidebar-nav--texto">Inicio</span>
                         </a>
                     </li>
+
+                    <li >
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-ticket"></i>
+                            <span class="dashboard__sidebar-nav--texto">Tickets</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                        </a>
+                        
+                        <ul class="dashboard__sidebar-nav--sub-menu tickets">
+                            <li class="ver-tickets">
+                                <a class="dashboard__sidebar-nav--enlace" href="/dashboard/ver-tickets">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-eye"></i>
+                                    <span class="dashboard__sidebar-nav--texto"> <?php if ($idRol === '1' || $idRol === '2') echo 'Ver tickets'; else { ?>
+                                    <?php echo 'Mis tickets'; } ?></span>
+                                </a>
+                            </li>
+                            <li class="nuevo-ticket">
+                                <a href="/dashboard/generar-ticket">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-file-circle-plus"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Nuevo ticket</span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li >
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-user"></i>
+                            <span class="dashboard__sidebar-nav--texto">Empleado</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                        </a>
+                        
+                        <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-user-plus"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Agregar empleado</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-user-pen"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Editar empleado</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-solid fa-user-xmark"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Eliminar empleado</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li >
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-brands fa-jedi-order"></i>
+                            <span class="dashboard__sidebar-nav--texto">Clasificación incidentes</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                        </a>
+                        
+                        <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-plus"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Agregar clasificación</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-pen"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Editar clasificación</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-xmark"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Eliminar clasificación</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li >
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-brands fa-empire"></i>
+                            <span class="dashboard__sidebar-nav--texto">Subclasificación incidentes</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                        </a>
+                        
+                        <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-plus"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Agregar subclasificacion</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-pen"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Editar subclasificacion</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-xmark"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Eliminar subclasificacion</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li >
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-building"></i>
+                            <span class="dashboard__sidebar-nav--texto">Departamentos</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                        </a>
+                        
+                        <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-building-circle-arrow-right"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Agregar departamento</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-building-circle-exclamation"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Editar departamento</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-building-circle-xmark"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Eliminar departamento</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    
+
                 </ul>
             </div>
         </div>
@@ -38,3 +188,8 @@
 
 
 </aside>
+
+
+<?php $script = "
+<script src='/build/js/sidebar.js' defer></script>
+"?>
