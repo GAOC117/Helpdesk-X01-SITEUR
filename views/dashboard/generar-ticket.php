@@ -29,17 +29,10 @@
 
 
                                 <label for="idEmpReporta" class="formulario__label">Expediente</label>
-                                <?php //if ($expedienteReporta === '') { 
-                                ?>
+                               
                                 <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>" <?php if($idRol !== '1' && $idRol !== '2') echo 'disabled'; ?>>
-                                <?php //} 
-                                ?>
-                                <?php //if ($expedienteReporta !== '') { 
-                                ?>
-                                <!-- <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php //echo s($expedienteReporta); 
-                                                                                                                                                                                                ?>"> -->
-                                <? php // } 
-                                ?>
+                              
+                                
 
 
                             </div>
@@ -66,20 +59,10 @@
 
 
                             <div class="empleado--ids">
-                                <?php //if ($expedienteRequiere === '') { 
-                                ?>
+                                
                                 <label for="idEmpRequiere" class="formulario__label">Expediente</label>
                                 <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php echo s($expedienteLogueado); ?>">
-                                <? php // } 
-                                ?>
-
-                                <?php //if ($expedienteRequiere !== '') { 
-                                ?>
-                                <!-- <label for="idEmpRequiere" class="formulario__label">Expediente</label>
-                                    <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php //echo s($expedienteRequiere); 
-                                                                                                                                                                                                    ?>"> -->
-                                <?php //} 
-                                ?>
+                               
 
                             </div>
                             <div class="empleado--ids">

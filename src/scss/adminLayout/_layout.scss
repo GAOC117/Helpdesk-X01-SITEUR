@@ -1,85 +1,85 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
 
-.dashboard {
-      &__header {
-        background-color: v.$admin-barra;
-        color: v.$blanco;
+// .dashboard {
+//       &__header {
+//         background-color: v.$admin-barra;
+//         color: v.$blanco;
 
-    }
+//     }
 
 
 
-    &__submit--logout {
+//     &__submit--logout {
 
       
-      color:v.$blanco;
+//       color:v.$blanco;
       
       
 
-      &:hover {
-          cursor: pointer;
-          // color: v.$negro;
-          text-shadow: v.$anakin;
-      }
+//       &:hover {
+//           cursor: pointer;
+//           // color: v.$negro;
+//           text-shadow: v.$anakin;
+//       }
       
-  }
+//   }
 
 
-  &__submit{
-    &:hover {
-      cursor: pointer;
-      //  color: v.$negro;
-      text-shadow: v.$anakin;
-  }
-  }
+//   &__submit{
+//     &:hover {
+//       cursor: pointer;
+//       //  color: v.$negro;
+//       text-shadow: v.$anakin;
+//   }
+//   }
 
-    &__sidebar{
-      // background-color: v.$admin
-      background-color: v.$admin-barra
-    }
+//     &__sidebar{
+//       // background-color: v.$admin
+//       background-color: v.$admin-barra
+//     }
 
 
 
-    &__enlace{
-      color: v.$blanco;
+//     &__enlace{
+//       color: v.$blanco;
 
-      &:hover{
-        background-color:black;//lighten(v.$admin-barra, 20);
-        // color: v.$admin-color-hover;
-        border-radius: 1rem;
-        color: v.$blanco;
-        text-shadow: v.$anakin;
+//       &:hover{
+//         background-color:black;//lighten(v.$admin-barra, 20);
+//         // color: v.$admin-color-hover;
+//         border-radius: 1rem;
+//         color: v.$blanco;
+//         text-shadow: v.$anakin;
         
        
 
 
-      }
-    }
-} //dashboard
+//       }
+//     }
+// } //dashboard
 
-ul[class*='ull']{
-  width: 25rem;
-  background-color: v.$admin-barra;
-  position: fixed;
-  border-radius: 0 1rem 1rem 0;
-  left: -.4rem;
+// ul[class*='ull']{
+//   width: 25rem;
+//   background-color: v.$admin-barra;
+//   position: fixed;
+//   border-radius: 0 1rem 1rem 0;
+//   left: -.4rem;
 
- @include m.tablet { 
-  position: unset;
-  width: auto;
- }
-}
+//  @include m.tablet { 
+//   position: unset;
+//   width: auto;
+//  }
+// }
 
 
-.formulario__submit--nuevo-ticket{
-  @include m.boton(v.$admin-sidebar, v.$blanco);
-  margin: 3rem 0 2rem 0;
-  width: auto;
-  align-self: center;
-  border-radius: 1rem;
+// .formulario__submit--nuevo-ticket{
+//   @include m.boton(v.$admin-sidebar, v.$blanco);
+//   margin: 3rem 0 2rem 0;
+//   width: auto;
+//   align-self: center;
+//   border-radius: 1rem;
 
-}
+// }
 
 
 

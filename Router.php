@@ -54,6 +54,7 @@ class Router
         //    ||str_contains($urlActual, '/colaborador'))
         if (str_contains($urlActual, '/dashboard'))
             include_once __DIR__ . '/views/dashboard-layout.php';
+            // include_once __DIR__ . '/views/layout-dashboard.php';
         else
             include_once __DIR__ . '/views/layout.php';
     }
