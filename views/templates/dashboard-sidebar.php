@@ -1,7 +1,10 @@
 <aside class="dashboard__sidebar-contenedor">
     <div class="dashboard__sidebar">
+        <div class="dashboard__sidebar__menu-btn">
+            <div class="dashboard__sidebar__menu-btn--burger"></div>
+        </div>
     <div class="dashboard__sidebar__ip">
-        <p class="dashboard__sidebar__ip--texto">TU IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
+        <p class="dashboard__sidebar__ip--texto">IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
     </div>
         <div class="dashboard__sidebar--header">
             <div class="dashboard__sidebar--empleado">
@@ -181,6 +184,27 @@
 
                 </ul>
             </div>
+        </div>
+
+        <div class="dashboard__sidebar-nav--menu menu-footer">
+            
+
+                <ul class="menu--footer">
+                    <li class="notificaciones" >
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-bell"></i>
+                            <span class="dashboard__sidebar-nav--texto">Notificaciones</span>
+                        </a>
+                    </li>
+                    
+                    <li class="logout" >
+                        <a class="dashboard__sidebar-nav--enlace enlace-logout" href="/logout">
+                            <i class="dashboard__sidebar-nav--icono icono-logout fa-solid fa-arrow-right-from-bracket"></i>
+                            <span class="dashboard__sidebar-nav--texto">Cerrar sesión</span>
+                        </a>
+                    </li>
+                </ul>
+            
         </div>
 
     </div>

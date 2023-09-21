@@ -6,15 +6,124 @@
 
     &__sidebar {
 
+
+        &__ip {
+            text-align: center;
+            transition: all .5s;
+        }
+
+
+
+
+
+        position: relative;
         border-radius: 0 3rem 3rem 0;
         min-height: 100vh;
 
         background-color: #eee;
+        display: flex;
+        flex-direction: column;
+
 
 
         &-contenedor {
             min-height: 100vh;
-            background-color: #eee;
+            // width: 100%;
+            // transition: width 1s ease;
+
+            &.activo {
+                // width: 8rem;
+
+                & .dashboard {
+
+                    &__sidebar {
+
+                        &--header {
+                            margin-bottom: 0;
+                            padding-bottom: 0;
+                        }
+
+                        &__ip {
+                            visibility: hidden;
+                            opacity: 0;
+                        }
+
+                        &--empleado {
+
+                            &-imagen {
+                                width: 5rem;
+                            }
+
+                            &-nombre {
+                                opacity: 0;
+                                font-size: 0;
+                            }
+                        }
+
+
+                        &-nav {
+
+                            &--menu ul {
+                                padding-left: 1rem;
+
+                                & li{
+                                    background-color: red;
+                                }
+                            }
+
+                            &--menu>ul>li>a {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+
+                                & .dashboard__sidebar-nav--texto {
+                                    position: absolute;
+                                    left: 9rem;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    padding: 1rem;
+                                    border-radius: 0.4rem;
+                                    color: #fff;
+                                    background-color: #000;
+
+
+                                }
+                            }
+
+                            // &--menu ul {
+                            //     padding: 2rem;
+
+                            //     & li {
+                            //         overflow: hidden;
+
+                            //         &:hover{
+                            //             overflow: visible;
+                            //               position: absolute;
+
+                            //         }
+
+                            //         & a {
+                            //             gap: 4rem;
+                            //             padding-left: 1rem;
+                            //         }
+                            //     }
+                            // }
+
+                            &--arrow {
+                                opacity: 0;
+                            }
+                        }
+
+                    }
+                }
+
+                //dashboard
+
+
+            }
+
+            //activo
 
 
         }
@@ -23,11 +132,12 @@
         &--header {
 
             width: 80%;
-            padding-top: 2rem;
             // border-bottom: .15rem solid rgba(65, 64, 64, 0.1);
-            box-shadow: 0px 18px 15px -20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 18px 15px -28px rgba(0, 0, 0, 0.3);
             margin: 0 auto;
-            margin-bottom: 5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 2rem;
+            transition: all .1s;
 
 
         }
@@ -36,18 +146,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-
+            gap: .5rem;
 
 
 
             &-imagen {
-                width: 18rem;
+                width: 15rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 border-radius: 50%;
                 overflow: hidden;
                 border: 1px solid v.$grisLight;
+                transition: width .5s;
 
                 &--foto {
                     width: 100%; //esta en globales
@@ -57,11 +168,15 @@
                 // background-color: blue;
             }
 
+
+
+
             &-nombre {
                 color: grey;
                 text-align: center;
                 font-size: 1.3rem;
                 font-weight: v.$bold;
+                transition: all .1s ease-in-out;
 
                 &--texto {
                     margin-bottom: .5rem;
@@ -74,6 +189,18 @@
         &-nav {
 
             max-width: 28rem;
+            box-shadow: 0px 18px 15px -28px rgba(0, 0, 0, 0.3);
+
+
+            flex: 1;
+
+            &-arrow {
+                transition: opacity .1s ease-in-out;
+            }
+
+            &--menu ul {
+                transition: all .1s;
+            }
 
             &--menu ul li {
                 list-style: none;
@@ -81,11 +208,13 @@
                 // padding-right: 1.5rem; 
 
             }
-            &--menu ul li .dashboard__sidebar-nav--arrow  {
-              font-size: 1.4rem;
-               transition: all .2s; 
+
+            &--menu ul li .dashboard__sidebar-nav--arrow {
+                font-size: 1.4rem;
+                transition: all .2s;
             }
-            &--menu ul li.activo .dashboard__sidebar-nav--arrow  {
+
+            &--menu ul li.activo .dashboard__sidebar-nav--arrow {
                 transform: rotate(450deg);
 
             }
@@ -105,16 +234,16 @@
 
             }
 
-            &--menu ul li > a:hover,
-            &--menu ul li.activo > a {
+            &--menu ul li>a:hover,
+            &--menu ul li.activo>a {
                 color: #000;
                 background-color: lighten(v.$grisLight, 60);
             }
 
 
 
-            &--menu.dark ul li > a:hover,
-            &--menu.dark ul li.activo > a {
+            &--menu.dark ul li>a:hover,
+            &--menu.dark ul li.activo>a {
                 color: #fff;
                 background-color: lighten(v.$admin-barra, 60);
             }
@@ -132,7 +261,7 @@
             //     font-size: 1.4rem;
             // }
 
-            
+
 
             &--menu .dashboard__sidebar-nav--sub-menu {
                 margin-left: 2rem;
@@ -155,10 +284,69 @@
 
 
 
-    }
 
-    //sidebar
+        &__menu-btn {
+
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 8rem;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+            top: -1.5rem;
+            right: 0;
+
+            &--burger {
+                width: 2.5rem;
+                height: .5rem;
+                background: v.$grisLight;
+                border-radius: .5rem;
+                box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+                transition: all .3s ease-in-out;
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    width: 2.5rem;
+                    height: .5rem;
+                    background: v.$grisLight;
+                    border-radius: .5rem;
+                    box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+                    transition: all .3s ease-in-out;
+                }
+
+
+                &::before {
+                    transform: translateY(-1rem);
+                }
+
+                &::after {
+                    transform: translateY(1rem);
+                }
+            }
+
+        }
+
+        //sidebar
+    }
 
 }
 
-//dahboard
+
+.dashboard__sidebar__menu-btn.open .dashboard__sidebar__menu-btn--burger {
+    transform: translateX(-5rem);
+    background: transparent;
+    box-shadow: none;
+}
+
+
+.dashboard__sidebar__menu-btn.open .dashboard__sidebar__menu-btn--burger::before {
+    transform: rotate(45deg) translate(3.5rem, -3.5rem);
+}
+
+.dashboard__sidebar__menu-btn.open .dashboard__sidebar__menu-btn--burger::after {
+    transform: rotate(-45deg) translate(3.5rem, 3.5rem);
+}

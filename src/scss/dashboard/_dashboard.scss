@@ -11,12 +11,21 @@
                             "contenido";
         
         @include m.telefono {
+   
             grid-template-columns: 30rem 1fr;
             grid-template-rows: unset;
             grid-template-areas: "side contenido";
-            
+            transition: grid-template-columns .5s ease-in-out;         
         }
-        
+
+        &.activo{
+            @include m.telefono {
+                grid-template-columns: 8rem 1fr;
+                grid-template-rows: unset;
+                grid-template-areas: "side contenido";
+                
+            }
+        }
       
     }
 
