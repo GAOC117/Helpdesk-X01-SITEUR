@@ -1,21 +1,24 @@
 const titulo = document.querySelector('#tituloDashboard').textContent;
-console.log(titulo.split('-')[1].trim());
+
 
 const menuBtn = document.querySelector('.dashboard__sidebar__menu-btn');
-let menuOpen = false;
+let menuClosed = false;
 
 menuBtn.addEventListener('click',()=>{
-    if(!menuOpen){
-        menuBtn.classList.add('open');
-        menuOpen=true;
+    if(!menuClosed){
+        menuBtn.classList.add('close');
+        menuClosed=true;
     }
     else{
-        menuBtn.classList.remove('open');
-        menuOpen=false;
+        menuBtn.classList.remove('close');
+        menuClosed=false;
     }
+
 
     $(".dashboard__sidebar-contenedor").toggleClass("activo");
     $(".dashboard__grid").toggleClass("activo");
+    
+    
 
 })
 

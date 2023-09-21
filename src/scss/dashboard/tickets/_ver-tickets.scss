@@ -1,6 +1,32 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
 
+.alerta{
+    padding-left:  5rem;
+    padding-right:  5rem;
+}
+
+.ver-tickets{
+    
+    
+ 
+
+ &__header{
+    
+    background-color: red;
+    width: max-content;
+    margin: 0 auto;
+    padding-top: 2rem;
+ }
+
+&--alerta{
+ 
+    margin: 0 auto;
+    width: max-content;
+}
+
+}
+
 .tabla {
 
 
@@ -11,23 +37,17 @@
 
     &__contenedor {
         overflow-x: auto;
+        overflow-y: auto;
+        max-height: 70vh;
+
 
         &-container {
 
-            display: flex;
-            justify-content: center;
             padding: 2rem;
         }
 
-        @include m.tablet {
-
-            // padding-left: 14rem;
-        }
-
-        // margin: 0 auto;
     }
 
-    // border: 1px solid red;
 
     &__header {
 
@@ -39,25 +59,26 @@
     }
 
     &__td {
-        padding: 1rem;
+        padding: 0 1rem;
         text-align: center;
         border-bottom: 1px solid v.$azul-siteur;
         font-size: 1.2rem;
 
         @include m.tablet {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            // font-weight: v.$bold;
         }
     }
 
     &__th {
-        padding: 1rem 2rem;
+        padding: 1rem 1rem;
         text-align: center;
         background-color: v.$azul-siteur;
         color: v.$blanco;
         font-size: 1.3rem;
 
         @include m.tablet {
-            font-size: 2rem;
+            font-size: 1.5rem;
 
         }
 
@@ -85,7 +106,8 @@
             @include m.boton(#108dbf, white);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
-            width: 5rem;
+            width: 3rem;
+            height: 3rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -97,7 +119,8 @@
             @include m.boton(#999999, white);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
-            width: 5rem;
+            width: 3rem;
+            height: 3rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -108,7 +131,8 @@
         &-naranja {
             @include m.boton(#F6A215, white);
             padding: 2rem 2rem;
-            width: 5rem;
+            width: 3rem;
+            height: 3rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -120,7 +144,8 @@
             @include m.boton(#4EAE51, white);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
-            width: 5rem;
+            width: 3rem;
+            height: 3rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -131,7 +156,8 @@
             @include m.boton(#9eec50, white);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
-            width: 5rem;
+            width: 3rem;
+            height: 3rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -175,6 +201,14 @@
     }
 }
 
+
+.contenedor{
+    background-color: red;
+    max-width: 120rem;
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
+
 .filters {
 
     display: flex;
@@ -184,18 +218,18 @@
 
     @include m.tablet {
 
-        @include m.grid(4, 5rem);
-        gap: 2rem;
-        column-gap: 3rem;
-        padding: 0 2rem;
+        @include m.grid(3, 1rem);
+        column-gap: 1rem;
+        padding: 0;
+        margin-bottom: 0;
+       
     }
 }
 
 .filter-container {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: end;
 
     @include m.tablet {
 

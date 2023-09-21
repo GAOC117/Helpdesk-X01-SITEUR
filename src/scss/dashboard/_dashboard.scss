@@ -5,7 +5,7 @@
 
     &__grid {
         display: grid;
-        grid-template-rows: 8rem 1fr;
+        grid-template-rows: 5rem 1fr;
         grid-template-columns: unset;
         grid-template-areas: "side"
                             "contenido";
@@ -36,6 +36,10 @@
     }
 
     &__contenido {
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+       
         grid-area: contenido;
         background-color: green;
     }

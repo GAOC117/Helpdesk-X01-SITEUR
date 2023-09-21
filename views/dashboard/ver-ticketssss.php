@@ -1,30 +1,31 @@
-<main class="ver-tickets">
 
-    <div class="ver-tickets__header">
-        <h2 class="ver-tickets__texto"><?php echo $titulo; ?></h2>
-    </div>
-
-
-
-
-    <?php
-    if ($_SESSION['mensaje']) { 
+<?php
+    if ($_SESSION['mensaje']) { ?>
+<p class="alerta alerta__exito">
+   <?php
+        echo $_SESSION['mensaje'];
+        $_SESSION['mensaje'] = '';
     ?>
-    <div class="ver-tickets--alerta">
+</p>
 
-        <p class="alerta alerta__exito">
-            <?php
-             echo $_SESSION['mensaje'];
-            $_SESSION['mensaje'] = '';
-            ?>
-        </p>
-    </div>
-
-    <?php } 
-    ?>
+<?php } ?>
 
 
-<div class='contenedor'>
+
+
+
+<div class="asignar-tickets__header">
+    <h2 class="asignar-tickets__heading"><?php echo $titulo; ?></h2>
+</div>
+
+<body>
+
+
+
+
+
+
+    <div class='containerrrr'>
         <div class='filters'>
             <div class='filter-container'>
                 <label>Folio: </label>
@@ -36,15 +37,15 @@
             </div> -->
             <div class='filter-container'>
                 <label>Quién atiende: </label>
-                <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende' data-col='atiende' id="idAtiende" />
+                <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende el servicio' data-col='atiende' id="idAtiende" />
             </div>
             <div class='filter-container'>
                 <label>Fecha: </label>
-                <input autocomplete='off' class='filter' name='fecha' placeholder='Fecha captura(dd/mm/aaaa)' data-col='fecha' id="idFecha" />
+                <input autocomplete='off' class='filter' name='fecha' placeholder='Buscar fecha de captura (dd/mm/aaaa)' data-col='fecha' id="idFecha" />
             </div>
             <div class='filter-container'>
                 <label>Quién requiere: </label>
-                <input autocomplete='off' class='filter' name='requiere' placeholder='Buscar quién requiere' data-col='requiere' id="idRequiere" />
+                <input autocomplete='off' class='filter' name='requiere' placeholder='Buscar quién requiere el servicio' data-col='requiere' id="idRequiere" />
             </div>
             <div class='filter-container'>
                 <label>Estado: </label>
@@ -52,23 +53,22 @@
             </div>
             <div class='filter-container'>
                 <label>Clasificación: </label>
-                <input autocomplete='off' class='filter' name='clasificacion' placeholder='Buscar clasificacion' data-col='clasificación' id="idClasificacion" />
+                <input autocomplete='off' class='filter' name='clasificacion' placeholder='Buscar clasificacion del ticket' data-col='clasificación' id="idClasificacion" />
             </div>
             <div class='filter-container'>
                 <label>Subclasificación: </label>
-                <input autocomplete='off' class='filter' name='subclasificacion' placeholder='Buscar subclasificacion' data-col='subclasificación' id="idSubclasificacion" />
+                <input autocomplete='off' class='filter' name='subclasificacion' placeholder='Buscar subclasificacion del ticket' data-col='subclasificación' id="idSubclasificacion" />
             </div>
             <div class='filter-container'>
                 <label>Comentarios de ticket: </label>
-                <input autocomplete='off' class='filter' name='captura' placeholder='Buscar comentarios' data-col='captura' id="idComentarios" />
+                <input autocomplete='off' class='filter' name='captura' placeholder='Buscar comentarios del ticket' data-col='captura' id="idComentarios" />
             </div>
             <div class='filter-container'>
                 <label>Comentarios de soporte: </label>
-                <input autocomplete='off' class='filter' name='soporte' placeholder='Buscar comentarios' data-col='soporte' id="idComentariosSoporte" />
+                <input autocomplete='off' class='filter' name='soporte' placeholder='Buscar comentarios de soporte' data-col='soporte' id="idComentariosSoporte" />
             </div>
         </div>
     </div>
-
 
     <div class="tabla__contenedor-container">
 
@@ -82,7 +82,7 @@
 
                         <th class="tabla__th">Folio#</th>
                         <th class="tabla__th">Fecha registro</th>
-                        
+                        <!-- <th class="tabla__th">Asigna</th> -->
                         <th class="tabla__th">Atiende</th>
                         <th class="tabla__th">Requiere</th>
                         <th class="tabla__th">Estado</th>
@@ -104,20 +104,12 @@
 
    
 
+</body>
 
-
-
-
-
-
-
-
-
-</main>
-
+</html>
 
 <?php $script = "
-<script src='/build/js/sidebar.js' defer></script>
+<script src='/build/js/dashboard.js' defer></script>
 <script src='/build/js/ver-tickets.js' defer></script>
 
 "

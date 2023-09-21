@@ -26,7 +26,7 @@ const comentariosSoporte = document.querySelector('#idComentariosSoporte');
 setInterval(function () {
     if (folio.value === '' && atiende.value === '' && fecha.value === '' && requiere.value === '' && estado.value === '' && clasificacion.value === '' && subclasificacion.value === '' && comentarios.value === '' && comentariosSoporte.value === '') {
         // alert("vacio");
-        // llenarTablaTickets();
+        //  llenarTablaTickets();
     }
 
 }, 2000);
@@ -85,6 +85,7 @@ async function llenarTablaTickets() {
 
         const resultado = await fetch(url);
         const result = await resultado.json();
+        console.log("memocle");
         const tablaRows = result.tablaRows;
         const idRol = result.idRol;
         const nombreLogueado = result.nombreLogueado;

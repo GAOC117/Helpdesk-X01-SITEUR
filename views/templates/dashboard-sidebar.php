@@ -3,10 +3,10 @@
         <div class="dashboard__sidebar__menu-btn">
             <div class="dashboard__sidebar__menu-btn--burger"></div>
         </div>
-    <div class="dashboard__sidebar__ip">
-        <p class="dashboard__sidebar__ip--texto">IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
-    </div>
         <div class="dashboard__sidebar--header">
+            <div class="dashboard__sidebar__ip">
+                <p class="dashboard__sidebar__ip--texto">IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
+            </div>
             <div class="dashboard__sidebar--empleado">
                 <div class="dashboard__sidebar--empleado-imagen">
                     <?php if ($expedienteLogueado === '4486') { ?>
@@ -30,9 +30,10 @@
             <div class="dashboard__sidebar-nav--menu">
                 <ul>
                     <li >
-                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                        <a class="dashboard__sidebar-nav--enlace" href="/">
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-house"></i>
                             <span class="dashboard__sidebar-nav--texto">Inicio</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                     </li>
 
@@ -44,14 +45,14 @@
                         </a>
                         
                         <ul class="dashboard__sidebar-nav--sub-menu tickets">
-                            <li class="ver-tickets">
+                            <li>
                                 <a class="dashboard__sidebar-nav--enlace" href="/dashboard/ver-tickets">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-eye"></i>
                                     <span class="dashboard__sidebar-nav--texto"> <?php if ($idRol === '1' || $idRol === '2') echo 'Ver tickets'; else { ?>
                                     <?php echo 'Mis tickets'; } ?></span>
                                 </a>
                             </li>
-                            <li class="nuevo-ticket">
+                            <li>
                                 <a href="/dashboard/generar-ticket">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-file-circle-plus"></i>
                                     <span class="dashboard__sidebar-nav--texto">Nuevo ticket</span>
@@ -214,6 +215,3 @@
 </aside>
 
 
-<?php $script = "
-<script src='/build/js/sidebar.js' defer></script>
-"?>
