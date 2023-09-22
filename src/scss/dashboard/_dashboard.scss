@@ -10,16 +10,16 @@
         grid-template-areas: "side"
                             "contenido";
         
-        @include m.telefono {
+        @include m.tablet {
    
             grid-template-columns: 30rem 1fr;
             grid-template-rows: unset;
             grid-template-areas: "side contenido";
-            transition: grid-template-columns .5s ease-in-out;         
+            transition: grid-template-columns .4s ease-in-out;         
         }
 
         &.activo{
-            @include m.telefono {
+            @include m.tablet {
                 grid-template-columns: 8rem 1fr;
                 grid-template-rows: unset;
                 grid-template-areas: "side contenido";
@@ -31,7 +31,7 @@
 
     &__sidebar-contenedor {
         grid-area: side;
-        background-color: red;
+        background-color: #eee;
 
     }
 
@@ -41,7 +41,7 @@
         // align-items: center;
        
         grid-area: contenido;
-        background-color: green;
+        background-color: #eee;
     }
 
 }

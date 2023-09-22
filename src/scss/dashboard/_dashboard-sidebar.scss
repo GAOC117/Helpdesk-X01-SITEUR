@@ -10,31 +10,29 @@
 
         &__ip {
             text-align: center;
-            transition: all .5s;
+            transition: all .4s ease-in-out;
+            color: white;
         }
 
-
+        // border: 1px solid white;
 
         position: relative;
-        background-color: #eee;
+        background-color: v.$azul-siteur;
         padding-top: 1rem;
-
-        @include m.telefono {
+        z-index: 1;
+        border-radius: 0  0 3rem 3rem;
+        @include m.tablet {
             min-height: 100vh;
             border-radius: 0 3rem 3rem 0;
 
-        }
-
-
-
-        @include m.telefono {
+     
 
             padding-top: 0;
             display: flex;
             flex-direction: column;
             position: sticky;
             top: 0;
-            z-index: 1;
+           
         }
 
 
@@ -52,7 +50,8 @@
                         &-nav {
                             display: block;
                             padding-bottom: 5rem;
-                        
+
+                          
                             &--menu{
 
                                 &.menu-footer{
@@ -65,7 +64,7 @@
 
                 }
 
-                @include m.telefono {
+                @include m.tablet {
 
 
 
@@ -121,8 +120,8 @@
                                             width: max-content;
                                             border-radius: 0 2rem 2rem 0;
                                             padding: 1rem 2rem;
-                                            border: 1px solid white;
-                                            background-color: #eee;
+                                            border: 1px solid v.$blanco;
+                                            background-color: v.$azul-siteur;
                                             box-shadow: 0 1rem .8rem rgba(0, 0, 0, 0.3);
 
                                         }
@@ -136,6 +135,7 @@
                                     left: 7rem;
                                     opacity: 1;
                                     visibility: visible;
+                                    
                                 }
 
 
@@ -156,13 +156,13 @@
                                             padding: 1rem;
                                             border-radius: 0.4rem;
                                             color: #fff;
-                                            background-color: v.$grisLight;
+                                            background-color: v.$azul-siteur;
                                             opacity: 0;
                                             visibility: hidden;
-                                            transition: all .3s;
+                                            transition: all .4s ease-in-out;
                                             width: max-content;
                                             margin-left: 1rem;
-                                            z-index: -90;
+                                            z-index: 3;
                                         }
 
                                         &--texto::after {
@@ -173,9 +173,9 @@
                                             width: 2rem;
                                             height: 2rem;
                                             border-radius: .2rem;
-                                            background-color: v.$grisLight;
+                                            background-color: v.$azul-siteur;
                                             transform: rotate(45deg);
-                                            z-index: -99;
+                                            z-index: -1;
                                         }
 
 
@@ -228,7 +228,7 @@
             box-shadow: 0px 18px 15px -28px rgba(0, 0, 0, 0.3);
             margin: 0 auto;
     
-            transition: all .1s;
+            transition: all .4s ease-in-out;
 
             display: flex;
             flex-direction: row-reverse;
@@ -236,7 +236,7 @@
             align-items: center;
             padding-right: 5rem;
 
-            @include m.telefono {
+            @include m.tablet {
                 margin-bottom: 1rem;
                 padding-bottom: 2rem;
                 padding-right: 0;
@@ -258,7 +258,7 @@
 
                 width: 5rem;
 
-                @include m.telefono {
+                @include m.tablet {
 
                     width: 15rem;
                     display: flex;
@@ -266,8 +266,8 @@
                     align-items: center;
                     border-radius: 50%;
                     overflow: hidden;
-                    border: 1px solid v.$grisLight;
-                    transition: width .5s;
+                    border: 2px solid v.$blanco;
+                    transition: width .4s ease-in-out;
                 }
 
                 &--foto {
@@ -284,13 +284,13 @@
             &-nombre {
                 display: none;
 
-                color: grey;
+                color: white;
                 text-align: center;
                 font-size: 1.3rem;
                 font-weight: v.$bold;
-                transition: all .1s ease-in-out;
+                transition: all .4s ease-in-out;
 
-                @include m.telefono {
+                @include m.tablet {
                     display: block;
                 }
 
@@ -311,13 +311,13 @@
             flex: 1;
             display: none;
 
-            @include m.telefono {
+            @include m.tablet {
                 display: unset;
             }
 
 
             &-arrow {
-                transition: opacity .1s ease-in-out;
+                transition: opacity .4s ease-in-out;
             }
 
             &--menu {
@@ -325,14 +325,14 @@
                     
                     display: none;
 
-                    @include m.telefono {
+                    @include m.tablet {
                         display: unset;
                     }
                 }
             }
 
             &--menu ul {
-                transition: all .1s;
+                transition: all .4s ease-in-out;
             }
 
             &--menu ul li {
@@ -345,7 +345,7 @@
 
             &--menu ul li .dashboard__sidebar-nav--arrow {
                 font-size: 1.4rem;
-                transition: all .2s;
+                transition: all .4s ease-in-out;
             }
 
             &--menu ul li.activo .dashboard__sidebar-nav--arrow {
@@ -360,27 +360,27 @@
                 gap: 1rem;
                 font-size: 1.3rem;
                 font-weight: v.$bold;
-                color: v.$grisLight;
+                color: v.$blanco;
                 text-decoration: none;
                 padding: 1.2rem .8rem;
                 border-radius: .8rem;
-                transition: all .3s;
+                transition: all .4s ease-in-out;
 
             }
 
             &--menu ul li>a:hover,
             &--menu ul li.activo>a {
-                color: #000;
-                background-color: lighten(v.$grisLight, 60);
+                color: white;
+                background-color: lighten(v.$azul-siteur, 20);
             }
 
 
 
-            &--menu.dark ul li>a:hover,
-            &--menu.dark ul li.activo>a {
-                color: #fff;
-                background-color: lighten(v.$admin-barra, 60);
-            }
+            // &--menu.dark ul li>a:hover,
+            // &--menu.dark ul li.activo>a {
+            //     color: #fff;
+            //     background-color: lighten(v.$admin-barra, 60);
+            // }
 
             &--icono {
                 font-size: 2rem;
@@ -428,19 +428,19 @@
             width: 5rem;
             height: 8rem;
             cursor: pointer;
-            transition: all .3s ease-in-out;
+            transition: all .5s ease-in-out;
             top: -1.5rem;
             right: 0;
 
             &--burger {
                 width: 2.5rem;
                 height: .5rem;
-                background: v.$grisLight;
+                background: v.$blanco;
                 border-radius: .5rem;
                 box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-                transition: all .3s ease-in-out;
+                transition: all .5s ease-in-out;
 
-                @include m.telefono { 
+                @include m.tablet { 
                     background: transparent;
                 }
 
@@ -450,13 +450,13 @@
                     position: absolute;
                     width: 2.5rem;
                     height: .5rem;
-                    background: v.$grisLight;
+                    background: v.$blanco;
                     border-radius: .5rem;
                     box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-                    transition: all .3s ease-in-out;
+                    transition: all .5s ease-in-out;
 
-                    @include m.telefono { 
-                        background: v.$grisLight;
+                    @include m.tablet { 
+                        background: v.$blanco;
                         box-shadow: none;
                     }
                 }
@@ -465,7 +465,7 @@
                 &::before {
                     transform: translateY(-1rem);
 
-                    @include m.telefono { 
+                    @include m.tablet { 
                         transform: rotate(45deg);
                     }
 
@@ -473,7 +473,7 @@
 
                 &::after {
                     transform: translateY(1rem);
-                    @include m.telefono { 
+                    @include m.tablet { 
                         transform: rotate(-45deg);
                     }
                 }
@@ -492,9 +492,9 @@
     background: transparent;
     box-shadow: none;
 
-    @include m.telefono { 
+    @include m.tablet { 
         transform: unset;
-        background-color: #757575;
+        background-color: v.$blanco;
 
     }
 }
@@ -503,7 +503,7 @@
 .dashboard__sidebar__menu-btn.close .dashboard__sidebar__menu-btn--burger::before {
     transform: rotate(45deg) translate(3.5rem, -3.5rem);
 
-    @include m.telefono { 
+    @include m.tablet { 
         transform: rotate(0) translateY(-1rem);
     }
 }
@@ -511,7 +511,7 @@
 .dashboard__sidebar__menu-btn.close .dashboard__sidebar__menu-btn--burger::after {
     transform: rotate(-45deg) translate(3.5rem, 3.5rem);
 
-    @include m.telefono { 
+    @include m.tablet { 
         transform: rotate(0) translateY(1rem);
     }
 }

@@ -26,7 +26,7 @@ const comentariosSoporte = document.querySelector('#idComentariosSoporte');
 setInterval(function () {
     if (folio.value === '' && atiende.value === '' && fecha.value === '' && requiere.value === '' && estado.value === '' && clasificacion.value === '' && subclasificacion.value === '' && comentarios.value === '' && comentariosSoporte.value === '') {
         // alert("vacio");
-        //  llenarTablaTickets();
+         llenarTablaTickets();
     }
 
 }, 2000);

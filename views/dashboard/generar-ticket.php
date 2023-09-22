@@ -29,10 +29,10 @@
 
 
                                 <label for="idEmpReporta" class="formulario__label">Expediente</label>
-                               
-                                <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>" <?php if($idRol !== '1' && $idRol !== '2') echo 'disabled'; ?>>
-                              
-                                
+
+                                <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente reporta" id="idEmpReporta" name="idEmpReporta" value="<?php echo s($expedienteLogueado); ?>" <?php if ($idRol !== '1' && $idRol !== '2') echo 'disabled'; ?>>
+
+
 
 
                             </div>
@@ -59,10 +59,10 @@
 
 
                             <div class="empleado--ids">
-                                
+
                                 <label for="idEmpRequiere" class="formulario__label">Expediente</label>
                                 <input type="number" class="formulario__input formulario__input--expediente" placeholder="Expediente requiere" id="idEmpRequiere" name="idEmpRequiere" value="<?php echo s($expedienteLogueado); ?>">
-                               
+
 
                             </div>
                             <div class="empleado--ids">
@@ -136,6 +136,7 @@
 
 <?php $script = "
 <script src='/build/js/app.js' defer></script>
+<script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/dashboard.js' defer></script>
 <script src='/build/js/ticket-nuevo.js' defer></script>
 "
