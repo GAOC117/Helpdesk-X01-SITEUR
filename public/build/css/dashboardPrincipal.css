@@ -53,6 +53,7 @@
     flex-direction: column;
     position: sticky;
     top: 0;
+    z-index: 1;
   }
 }
 .dashboard__sidebar-contenedor {
@@ -120,6 +121,7 @@
     transition: all 0.3s;
     width: max-content;
     margin-left: 1rem;
+    z-index: -90;
   }
   .dashboard__sidebar-contenedor.activo .dashboard__sidebar-nav--menu > ul > li > a .dashboard__sidebar-nav--texto::after {
     content: "";
@@ -567,19 +569,28 @@ div[class$=tickets__header] span {
   background-color: white;
 }
 .tabla__contenedor {
+  background-color: red;
   overflow-x: auto;
-  overflow-y: auto;
-  max-height: 70vh;
+  width: 75rem;
+}
+@media (min-width: 768px) {
+  .tabla__contenedor {
+    overflow-y: auto;
+    max-height: 70vh;
+    width: 100%;
+  }
 }
 .tabla__contenedor-container {
   padding: 2rem;
 }
-.tabla__header__pegar {
-  position: sticky;
-  top: 0;
+@media (min-width: 768px) {
+  .tabla__header__pegar {
+    position: sticky;
+    top: 0;
+  }
 }
 .tabla__td {
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
   border-bottom: 1px solid rgb(33, 52, 92);
   font-size: 1.2rem;
@@ -762,6 +773,7 @@ div[class$=tickets__header] span {
   gap: 2rem;
   height: 5rem;
   justify-content: flex-start;
+  align-items: center;
 }
 .tabla__tickets--botones--colaborador {
   justify-content: center;
@@ -774,11 +786,12 @@ div[class$=tickets__header] span {
 .tabla__cerrado {
   text-align: center;
   width: 100%;
-  font-size: 2.8rem;
+  font-size: 2rem;
   font-weight: 700;
   margin: 0;
   display: flex;
   align-items: center;
+  color: #3e8b41;
 }
 
 .contenedor {
@@ -815,6 +828,27 @@ div[class$=tickets__header] span {
     gap: 1rem;
     margin-bottom: 0rem;
   }
+}
+
+.estado-abierto {
+  color: red;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.estado-pausado {
+  color: #999999;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.estado-escalado {
+  color: #F6A215;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.estado-cerrado {
+  color: #3e8b41;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
 .historico-tickets__header {
@@ -859,17 +893,6 @@ div[class$=tickets__header] span {
 @keyframes pulsate {
   0% {
     box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
-  }
-}
-
-td,
-th {
-  writing-mode: vertical-lr;
-}
-@media (min-width: 768px) {
-  td,
-  th {
-    writing-mode: horizontal-tb;
   }
 }
 /*# sourceMappingURL=dashboardPrincipal.css.map */

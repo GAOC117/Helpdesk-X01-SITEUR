@@ -60,8 +60,9 @@
 
 
 <?php $script = "
-<script src='/build/js/app.js' defer></script>
+<script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/dashboard.js' defer></script>
 "
 
 ?>
+

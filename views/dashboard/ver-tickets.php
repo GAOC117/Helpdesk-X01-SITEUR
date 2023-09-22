@@ -88,7 +88,7 @@
                         <th class="tabla__th">Estado</th>
                         <th class="tabla__th">Clasificación</th>
                         <th class="tabla__th">Subclasificación</th>
-                        <th class="tabla__th">Comentarios de captura</th>
+                        <th class="tabla__th">Comentarios de ticket</th>
                         <th class="tabla__th">Comentarios de soporte</th>
                         <th class="tabla__th">Acciones</th>
                     </tr>

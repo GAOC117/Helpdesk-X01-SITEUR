@@ -34,6 +34,7 @@
             flex-direction: column;
             position: sticky;
             top: 0;
+            z-index: 1;
         }
 
 
@@ -161,6 +162,7 @@
                                             transition: all .3s;
                                             width: max-content;
                                             margin-left: 1rem;
+                                            z-index: -90;
                                         }
 
                                         &--texto::after {

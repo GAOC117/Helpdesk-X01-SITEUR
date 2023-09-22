@@ -85,7 +85,6 @@ async function llenarTablaTickets() {
 
         const resultado = await fetch(url);
         const result = await resultado.json();
-        console.log("memocle");
         const tablaRows = result.tablaRows;
         const idRol = result.idRol;
         const nombreLogueado = result.nombreLogueado;
@@ -151,6 +150,16 @@ async function llenarTablaTickets() {
             td_comentariosSoporte.classList.add('tabla__td');
             td_acciones.classList.add('tabla__td');
 
+            if(estadoTicket==='Abierto')
+            td_estadoTicket.classList.add('estado-abierto');
+            if(estadoTicket==='Pausado')
+            td_estadoTicket.classList.add('estado-pausado');
+            if(estadoTicket==='Escalado')
+            td_estadoTicket.classList.add('estado-escalado');
+            if(estadoTicket==='Cerrado')
+            td_estadoTicket.classList.add('estado-cerrado');
+
+
             //aqui designar clases para los colores de abierto, cerrado, escalado, cerrado
 
 
@@ -159,8 +168,8 @@ async function llenarTablaTickets() {
             if (idRol === '4')
                 div_acciones.classList.add('tabla__tickets--botones--colaborador');
 
-            div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-clock fa-xl'></i></a>";
-
+            div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-calendar-days fa-xl'></i></a>";
+            // div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-clock fa-xl'></i></a>";
 
             if (idRol === '1' || idRol === '2') 
             {

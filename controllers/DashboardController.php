@@ -28,7 +28,7 @@ class DashboardController
         $titulo = 'Inicio';
 
 
-        $router->renderView('dashboard/index', [
+        $router->renderView('dashboard/dashboard', [
             'titulo' => $titulo,
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
