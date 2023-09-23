@@ -237,8 +237,8 @@
             padding-right: 5rem;
 
             @include m.tablet {
-                margin-bottom: 1rem;
-                padding-bottom: 2rem;
+                // margin-bottom: 1rem; //afecta la imagen, si se pone reducir tamaño de imagen
+                // padding-bottom: 2rem;  //afecta la imagen, si se pone reducir tamaño de imagen
                 padding-right: 0;
                 display: unset;
             }
@@ -260,6 +260,7 @@
 
                 @include m.tablet {
 
+                    // width: 10rem;
                     width: 15rem;
                     display: flex;
                     justify-content: center;

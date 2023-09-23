@@ -150,8 +150,6 @@
 }
 @media (min-width: 768px) {
   .dashboard__sidebar--header {
-    margin-bottom: 1rem;
-    padding-bottom: 2rem;
     padding-right: 0;
     display: unset;
   }
