@@ -219,9 +219,6 @@
     display: unset;
   }
 }
-.dashboard__sidebar-nav--menu ul {
-  transition: all 0.5s ease;
-}
 .dashboard__sidebar-nav--menu ul li {
   position: relative;
   list-style: none;
