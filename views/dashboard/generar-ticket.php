@@ -14,11 +14,11 @@
 
     </div>
     <div class="generar-ticket__datos">
-
         <form action="/dashboard/generar-ticket" class="generar-ticket__formulario" method="POST">
 
-            <div class="generar-ticket__grid">
-                <div class="formulario__campo formulario__campo--grid">
+
+            <div class="formulario__superior">
+                <div class="formulario__empleado">
                     <fieldset class="formulario__fieldset">
                         <legend>Datos de quién reporta</legend>
 
@@ -45,12 +45,12 @@
 
 
                         </div>
-                        <label for="" class="formulario__campo">Nombre empleado</label>
-                        <input type="text" class="formulario__input formulario__input--nombre-reporta" placeholder="Nombre quien reporta" id="nombreReporta" disabled>
+                        <label for="" class="formulario__campo formulario__label">Nombre empleado</label>
+                        <input type="text" class="formulario__input formulario__input--nombre" placeholder="Nombre quien reporta" id="nombreReporta" disabled>
 
                     </fieldset>
                 </div>
-                <div class="formulario__campo formulario__campo--grid">
+                <div class="formulario__empleado">
                     <fieldset class="formulario__fieldset">
 
                         <legend>Datos de quién requiere</legend>
@@ -70,19 +70,18 @@
                                 <input type="number" class="formulario__input formulario__input--extension" placeholder="Extensión requiere" id="extensionRequiere" name="extensionRequiere" disabled>
                             </div>
                         </div>
-                        <label for="" class="formulario__campo">Nombre empleado</label>
-                        <input type="text" class="formulario__input formulario__input--nombre-requiere" placeholder="Nombre quien requiere" id="nombreRequiere" disabled>
+                        <label for="" class="formulario__campo formulario__label">Nombre empleado</label>
+                        <input type="text" class="formulario__input formulario__input--nombre" placeholder="Nombre quien requiere" id="nombreRequiere" disabled>
 
                     </fieldset>
 
                 </div>
+            </div>
 
+            <div class="formulario__inferior">
                 <fieldset class="formulario__fieldset formulario__fieldset--tickets">
                     <legend>Seleccionar categoria del ticket</legend>
-
                     <div class="formulario__fieldset--selects">
-
-
                         <div class="formulario__fieldset--categoria" id="formulario-fieldset--clasificacion">
                             <label for="idClasificacionProblema">Clasificación:</label>
                             <select class="formulario__campo select" name="idClasificacionProblema" id="idClasificacionProblema" autocomplete="on">
@@ -102,36 +101,21 @@
 
                             </select>
                         </div>
-
                     </div>
-
-
-
                 </fieldset>
-
                 <div class="formulario__comentarios">
-                    <textarea class="formulario__comentarios-text-area" name="comentariosReporte" id="comentariosReporte" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentariosReporte; ?></textarea>
+                    <textarea class="formulario__comentarios--text-area" name="comentariosReporte" id="comentariosReporte" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentariosReporte; ?></textarea>
                 </div>
-
-            </div><!-- grid -->
-
-
-
-
-
+            </div>
         </form>
+    </div><!-- generar-ticekt__datos -->
 
-        <div class="formulario__submit-contenedor">
+    <div class="formulario__submit-contenedor">
 
-            <button class="formulario__submit formulario__submit--nuevo-ticket" id="botonRegistrar">
-                Generar nuevo ticket
-            </button>
-        </div>
+        <button class="formulario__submit formulario__submit--nuevo-ticket" id="botonRegistrar">
+            Generar nuevo ticket
+        </button>
     </div>
-
-
-
-
 </main>
 
 <?php $script = "

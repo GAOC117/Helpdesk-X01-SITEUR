@@ -314,7 +314,7 @@ async function obtenerDatosTicket() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Éxito',
-                    html: 'El ticket fue registrado con éxito con el folio #<span class="folio">'+resultado.id+'</span> guardalo para cualquier duda o aclaración',
+                    html: 'El ticket fue registrado con éxito con el folio <span class="folio">#'+resultado.id+'</span> guardalo para cualquier duda o aclaración',
                     button: 'OK'    
                     // footer: '<a href="">Why do I have this issue?</a>'
                 }).then(()=>{

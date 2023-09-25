@@ -16,6 +16,11 @@
         @content;
     }
 }
+@mixin desktop1 {
+    @media (min-width: v.$desktop1) {
+        @content;
+    }
+}
 @mixin desktop2 {
     @media (min-width: v.$desktop) {
         @content;

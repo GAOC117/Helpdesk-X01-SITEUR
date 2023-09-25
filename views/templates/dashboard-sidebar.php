@@ -1,4 +1,4 @@
-<aside class="dashboard__sidebar-contenedor">
+<aside class="dashboard__sidebar-contenedor activo">
     <div class="dashboard__sidebar">
         <div class="dashboard__sidebar__menu-btn">
             <div class="dashboard__sidebar__menu-btn--burger"></div>
@@ -62,7 +62,7 @@
                         </ul>
 
                     </li>
-
+<?php if($idRol==='1') { ?>
                     <li >
                         <a class="dashboard__sidebar-nav--enlace" href="#">
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-user"></i>
@@ -179,7 +179,7 @@
                             </li>
                         </ul>
                     </li>
-
+<?php } ?>
 
                     
 

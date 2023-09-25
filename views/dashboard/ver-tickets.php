@@ -27,7 +27,7 @@
 <div class='contenedor'>
         <div class='filters'>
             <div class='filter-container'>
-                <label>Folio: </label>
+                <label class="filter-label">Folio: </label>
                 <input type="number" autocomplete='off' class='filter' name='folio' placeholder='Buscar folio' data-col='folio' id="idFolio" />
             </div>
             <!-- <div class='filter-container'>
@@ -35,35 +35,35 @@
                 <input autocomplete='off' class='filter' name='asigna' placeholder='Buscar quién asigna el ticket' data-col='asigna' id="idAsigna" />
             </div> -->
             <div class='filter-container'>
-                <label>Quién atiende: </label>
+                <label class="filter-label">Quién atiende: </label>
                 <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende' data-col='atiende' id="idAtiende" />
             </div>
             <div class='filter-container'>
-                <label>Fecha: </label>
+                <label class="filter-label">Fecha: </label>
                 <input autocomplete='off' class='filter' name='fecha' placeholder='Fecha captura(dd/mm/aaaa)' data-col='fecha' id="idFecha" />
             </div>
             <div class='filter-container'>
-                <label>Quién requiere: </label>
+                <label class="filter-label">Quién requiere: </label>
                 <input autocomplete='off' class='filter' name='requiere' placeholder='Buscar quién requiere' data-col='requiere' id="idRequiere" />
             </div>
             <div class='filter-container'>
-                <label>Estado: </label>
+                <label class="filter-label">Estado: </label>
                 <input autocomplete='off' class='filter' name='estado' placeholder='Buscar estado del ticket' data-col='estado' id="idEstado">
             </div>
             <div class='filter-container'>
-                <label>Clasificación: </label>
+                <label class="filter-label">Clasificación: </label>
                 <input autocomplete='off' class='filter' name='clasificacion' placeholder='Buscar clasificacion' data-col='clasificación' id="idClasificacion" />
             </div>
             <div class='filter-container'>
-                <label>Subclasificación: </label>
+                <label class="filter-label">Subclasificación: </label>
                 <input autocomplete='off' class='filter' name='subclasificacion' placeholder='Buscar subclasificacion' data-col='subclasificación' id="idSubclasificacion" />
             </div>
             <div class='filter-container'>
-                <label>Comentarios de ticket: </label>
+                <label class="filter-label">Comentarios de ticket: </label>
                 <input autocomplete='off' class='filter' name='captura' placeholder='Buscar comentarios' data-col='captura' id="idComentarios" />
             </div>
             <div class='filter-container'>
-                <label>Comentarios de soporte: </label>
+                <label class="filter-label">Comentarios de soporte: </label>
                 <input autocomplete='off' class='filter' name='soporte' placeholder='Buscar comentarios' data-col='soporte' id="idComentariosSoporte" />
             </div>
         </div>

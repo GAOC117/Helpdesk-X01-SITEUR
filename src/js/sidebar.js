@@ -1,4 +1,4 @@
-const titulo = document.querySelector('#tituloDashboard').textContent;
+// const titulo = document.querySelector('#tituloDashboard').textContent;
 
 
 const menuBtn = document.querySelector('.dashboard__sidebar__menu-btn');
@@ -54,7 +54,7 @@ $(".dashboard__sidebar-nav--menu > ul > li").click(function (e) {
     //agrega "activo" a lo clickeado
     $(this).toggleClass("activo");
     //si tiene un submenu abrelo
-    $(this).find("ul").slideToggle(200);
+    $(this).find("ul").slideToggle();
     //cerrar otro submenu si esta abierto
     $(this).siblings().find("ul").slideUp();
     //remover clase activo de sub menu

@@ -6,11 +6,11 @@
 
     &__sidebar {
 
-   
+       
 
         &__ip {
             text-align: center;
-            transition: all .4s ease-in-out;
+            transition: all v.$tiempo v.$animacion;
             color: white;
         }
 
@@ -21,6 +21,8 @@
         padding-top: 1rem;
         z-index: 1;
         border-radius: 0  0 3rem 3rem;
+
+   
         @include m.tablet {
             min-height: 100vh;
             border-radius: 0 3rem 3rem 0;
@@ -55,7 +57,7 @@
                             &--menu{
 
                                 &.menu-footer{
-                                    display: unset;
+                                    // display: unset;
                                 }
                             }
                         
@@ -150,8 +152,10 @@
 
                                         &--texto {
                                             position: absolute;
-                                            left: 9rem;
-                                            top: 50%;
+                                            // left: 9rem;
+                                            // top: 50%;
+                                            left: 7rem;
+                                            top: 0;
                                             transform: translateY(-50%);
                                             padding: 1rem;
                                             border-radius: 0.4rem;
@@ -159,7 +163,7 @@
                                             background-color: v.$azul-siteur;
                                             opacity: 0;
                                             visibility: hidden;
-                                            transition: all .4s ease-in-out;
+                                            transition: all .1s v.$animacion;
                                             width: max-content;
                                             margin-left: 1rem;
                                             z-index: 3;
@@ -228,7 +232,7 @@
             box-shadow: 0px 18px 15px -28px rgba(0, 0, 0, 0.3);
             margin: 0 auto;
     
-            transition: all .4s ease-in-out;
+            transition: all v.$tiempo v.$animacion;
 
             display: flex;
             flex-direction: row-reverse;
@@ -260,15 +264,19 @@
 
                 @include m.tablet {
 
-                    // width: 10rem;
                     width: 15rem;
+                    @media (height<750px) {
+                        width: 10rem;
+                        
+                    }
+
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border-radius: 50%;
                     overflow: hidden;
                     border: 2px solid v.$blanco;
-                    transition: width .4s ease-in-out;
+                    transition: width v.$tiempo v.$animacion;
                 }
 
                 &--foto {
@@ -289,8 +297,7 @@
                 text-align: center;
                 font-size: 1.3rem;
                 font-weight: v.$bold;
-                transition: all .4s ease-in-out;
-
+                transition: all v.$tiempo v.$animacion;
                 @include m.tablet {
                     display: block;
                 }
@@ -318,7 +325,7 @@
 
 
             &-arrow {
-                transition: opacity .4s ease-in-out;
+                transition: opacity .1s v.$animacion;
             }
 
             &--menu {
@@ -333,7 +340,7 @@
             }
 
             &--menu ul {
-                transition: all .4s ease-in-out;
+                transition: all v.$tiempo v.$animacion;
             }
 
             &--menu ul li {
@@ -346,11 +353,11 @@
 
             &--menu ul li .dashboard__sidebar-nav--arrow {
                 font-size: 1.4rem;
-                transition: all .4s ease-in-out;
+                transition: all .5s v.$animacion;
             }
 
             &--menu ul li.activo .dashboard__sidebar-nav--arrow {
-                transform: rotate(450deg);
+                transform: rotate(90deg);
 
             }
 
@@ -365,7 +372,7 @@
                 text-decoration: none;
                 padding: 1.2rem .8rem;
                 border-radius: .8rem;
-                transition: all .4s ease-in-out;
+                transition: all v.$tiempo v.$animacion;
 
             }
 
@@ -419,7 +426,6 @@
 
 
 
-
         &__menu-btn {
 
             position: absolute;
@@ -429,9 +435,9 @@
             width: 5rem;
             height: 8rem;
             cursor: pointer;
-            transition: all .5s ease-in-out;
+            transition: all v.$tiempo v.$animacion;
             top: -1.5rem;
-            right: 0;
+            right: 1.5rem;
 
             &--burger {
                 width: 2.5rem;
@@ -439,11 +445,12 @@
                 background: v.$blanco;
                 border-radius: .5rem;
                 box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-                transition: all .5s ease-in-out;
+                transition: all v.$tiempo v.$animacion;
+                // background: transparent;
 
-                @include m.tablet { 
-                    background: transparent;
-                }
+                // @include m.tablet { 
+                //     background: transparent;
+                // }
 
                 &::before,
                 &::after {
@@ -454,34 +461,41 @@
                     background: v.$blanco;
                     border-radius: .5rem;
                     box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-                    transition: all .5s ease-in-out;
+                    transition: all v.$tiempo v.$animacion;
 
-                    @include m.tablet { 
-                        background: v.$blanco;
-                        box-shadow: none;
-                    }
+                    // @include m.tablet { 
+                    //     background: v.$blanco;
+                    //     box-shadow: none;
+                    // }
                 }
 
 
                 &::before {
                     transform: translateY(-1rem);
+                    // transform: rotate(45deg);
 
-                    @include m.tablet { 
-                        transform: rotate(45deg);
-                    }
+                    // @include m.tablet { 
+                    //     transform: rotate(45deg);
+                    // }
 
                 }
 
                 &::after {
                     transform: translateY(1rem);
-                    @include m.tablet { 
-                        transform: rotate(-45deg);
-                    }
+                    // transform: rotate(-45deg);
+                    // @include m.tablet { 
+                    //     transform: rotate(-45deg);
+                    // }
                 }
             }
 
         }
 
+
+        &__menu-btn.close{
+            right: 0;
+        }
+        
         //sidebar
     }
 
@@ -492,27 +506,75 @@
     transform: translateX(-5rem);
     background: transparent;
     box-shadow: none;
+    // transform: unset;
+    // background-color: v.$blanco;
 
-    @include m.tablet { 
-        transform: unset;
-        background-color: v.$blanco;
+    // @include m.tablet { 
+    //     transform: unset;
+    //     background-color: v.$blanco;
 
-    }
+    // }
 }
 
 
 .dashboard__sidebar__menu-btn.close .dashboard__sidebar__menu-btn--burger::before {
     transform: rotate(45deg) translate(3.5rem, -3.5rem);
+    // transform: rotate(0) translateY(-1rem);
 
-    @include m.tablet { 
-        transform: rotate(0) translateY(-1rem);
-    }
+    // @include m.tablet { 
+    //     transform: rotate(0) translateY(-1rem);
+    // }
 }
 
 .dashboard__sidebar__menu-btn.close .dashboard__sidebar__menu-btn--burger::after {
     transform: rotate(-45deg) translate(3.5rem, 3.5rem);
+    // transform: rotate(0) translateY(1rem);
+
+    // @include m.tablet { 
+    //     transform: rotate(0) translateY(1rem);
+    // }
+}
+
+
+.dashboard__sidebar-contenedor.activo .dashboard__sidebar-nav{
+    display: none;
+
 
     @include m.tablet { 
-        transform: rotate(0) translateY(1rem);
+        display: block;
+    }
+}
+
+.dashboard__sidebar-contenedor.activo .dashboard__sidebar-nav--menu.menu-footer{
+    display: none;
+
+    @include m.tablet { 
+        display: block;
+       width: auto;
+    }
+}
+
+
+.dashboard__sidebar-contenedor .dashboard__sidebar-nav{
+    display: block;
+
+
+    @include m.tablet { 
+        display: block;
+    }
+}
+
+
+
+.dashboard__sidebar-contenedor .dashboard__sidebar-nav--menu.menu-footer{
+    display: block;
+    padding: 3rem 0 1rem 0;
+    width: 28rem;
+
+   
+
+    @include m.tablet { 
+        display: block;
+        
     }
 }
