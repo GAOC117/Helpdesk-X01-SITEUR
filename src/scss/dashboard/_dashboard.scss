@@ -18,6 +18,8 @@
             transition: grid-template-columns .4s ease-in-out;         
         }
 
+
+
         &.activo{
             @include m.tablet {
                 grid-template-columns: 8rem 1fr;
@@ -42,6 +44,14 @@
        
         grid-area: contenido;
         background-color: #eee;
+
+        
+        @media (width<=500px) {
+
+            width: 50rem;
+            //  height: 100rem;
+            
+        }
     }
 
 }

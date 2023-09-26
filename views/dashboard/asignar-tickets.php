@@ -2,7 +2,7 @@
 
     <div class="asignar-tickets__header">
         <h2 class="asignar-tickets__heading"><?php echo $titulo; ?></h2>
-        <p class="asignar-tickets__texto">Selecciona un empleado para asignar el <span>ticket #<?php echo $idTicket; ?></span></p>
+        <p class="asignar-tickets__texto">Selecciona un empleado para asignar el ticket<span> #<?php echo $idTicket; ?></span></p>
 
         <?php
         require_once __DIR__ . '/../templates/alertas.php';
@@ -18,21 +18,34 @@
             </div>
 
             <div class="tickets__informacion-desglose">
-                
-                <p class="tickets__informacion--texto"><span>Nombre:  </span><?php echo $nombreRequiere; ?></p>
-                <p class="tickets__informacion--texto"><span>Extensión:  </span><?php echo $extensionRequiere; ?></p>
-                <p class="tickets__informacion--texto"><span>Departamento:  </span><?php echo $departamentoRequiere; ?></p>
-                <p class="tickets__informacion--texto"><span>Clasificación:  </span><?php echo $clasificacion; ?></p>
-                <p class="tickets__informacion--texto"><span>Subclasificación:  </span><?php echo $subclasificacion; ?></p>
-                <p class="tickets__informacion--texto"><span>Comentario:  </span><?php echo $comentarios; ?></p>
+
+                <div class="tickets__informacion__detalles">
+
+
+                    <p class="tickets__informacion--texto"><span>Nombre: </span><?php echo $nombreRequiere; ?></p>
+                    <p class="tickets__informacion--texto"><span>Extensión: </span><?php echo $extensionRequiere; ?></p>
+                    <p class="tickets__informacion--texto"><span>Departamento: </span><?php echo $departamentoRequiere; ?></p>
+                    <p class="tickets__informacion--texto"><span>Clasificación: </span><?php echo $clasificacion; ?></p>
+                    <p class="tickets__informacion--texto"><span>Subclasificación: </span><?php echo $subclasificacion; ?></p>
+                    <div class="tickets__informacion--comentarios">
+
+                        <label class="tickets__informacion--texto--label">Comentarios:</label>
+                        <div class="textarea">
+
+                            <textarea class="tickets__informacion--texto--text-area" disabled><?php echo $comentarios; ?></textarea>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
 
         <div class="tickets__asignacion">
-            <form action="/dashboard/asignar-tickets?id=<?php echo $idTicket; ?>" class="formulario" method="POST">
-                <fieldset class="formulario__fieldset">
-                    <legend>Seleccione el empleado al que se le asignara el ticket</legend>
-                    <select class="formulario__campo select" name="idEmpAsignado" id="idEmpAsignado" autocomplete="on">
+            <form action="/dashboard/asignar-tickets?id=<?php echo $idTicket; ?>" class="formulario--asignar" method="POST">
+                <fieldset class="formulario__fieldset--asignar">
+                    <legend class="formulario__fieldset--leyenda">Seleccione el empleado al que se le asignara el ticket</legend>
+                    <select class="formulario__campo--asignar select" name="idEmpAsignado" id="idEmpAsignado" autocomplete="on">
                         <option value="" disabled selected>--Seleccionar--</option>
                         <?php foreach ($empleadosInformatica as $empleadoInformatica) { ?>
 
@@ -54,6 +67,7 @@
 
 <?php $script = "
 <script src='/build/js/dashboard.js' defer></script>
+<script src='/build/js/sidebar.js' defer></script>
 
 "
 

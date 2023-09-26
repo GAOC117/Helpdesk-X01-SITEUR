@@ -44,7 +44,7 @@
                             <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
                         </a>
                         
-                        <ul class="dashboard__sidebar-nav--sub-menu tickets">
+                        <ul class="dashboard__sidebar-nav--sub-menu">
                             <li>
                                 <a class="dashboard__sidebar-nav--enlace" href="/dashboard/ver-tickets">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-eye"></i>

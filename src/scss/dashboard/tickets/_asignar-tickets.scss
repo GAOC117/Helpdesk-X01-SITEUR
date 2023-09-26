@@ -2,70 +2,155 @@
 @use 'base/mixins' as m;
 
 
+.select2 .option {
+    font-size: 1rem;
+}
+
+.select2-results__options {
+    position: relative;
+}
+
+
+.select2-container {
+
+    width: 100% !important;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.asignar-tickets{
+    &__header{
+        margin-top: 4rem;
+    }
+    &__heading{
+        margin: 1rem 0 2rem 0;
+    }
+    &__texto {
+    text-align: center;
+    margin: 1rem 0;
+
+    & span {
+        color: green;
+        font-size: 1.8rem;
+        font-weight: v.$bold;
+    }
+}
+}
+
+
+.textarea {
+    padding-left: 3rem;
+}
+
 .tickets {
-
-
-    &__informacion {
-
-        &__encabezado {
-            font-size: 2rem;
-            padding-left: 0;
-            font-weight: v.$bold;
-
-            @include m.tablet {
-                font-size: 3rem;
-                padding-left: 5rem;
-            }
-        }
-
-        // padding-left: 5rem;
-
-        &--texto {
-
-            margin: 1rem;
-            font-size: 1.5rem;
-
-            @include m.tablet {
-
-                font-size: 2rem;
-                margin: 1.5rem;
-            }
-        }
+    font-size: 1.5rem;
+    width: 100%;
+    max-width: 100rem;
+    min-width: 50rem;
 
 
 
+    & .texto {
+        font-size: 1.8rem;
+        font-weight: v.$bold;
+        text-align: center;
+    }
 
-        &-desglose {
 
-            width: 30rem;
+    &__informacion{
+
+&__encabezado{
+    @media (width<768px) {
+        margin: 5rem 0;
+    }
+}
+
+        &-desglose{
             display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-            padding-left: 0;
+            justify-content: center;
+        }
 
-            @include m.tablet {
-                width: auto;
-                padding-left: 5rem;
+        &--comentarios{
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 2rem 0;
+
+            @media (width<768px) {
+                margin: 5rem 0;
             }
+        }
+    
+    &--texto {
+        display: flex;
+        justify-content: space-between;
+        gap: 8rem;
+        & span,
+        &--label {
+            font-size: 1.6rem;
+            font-weight: v.$bold;
+        }
 
+        &--text-area{
+            width: 25rem;
+            height: 8rem;
+            resize: none;
 
-            margin: 0 auto;
-
-            & span {
-                font-weight: v.$bold;
-                margin-right: 1rem;
+            @media (width<768px) {
+                height: 10rem;
             }
         }
 
     }
-
-    &__asignacion {
-
-        display: flex;
-        justify-content: center;
-    }
-
-
-    //para aumentar el largo cambiar en .formulario el width
 
 }
+
+&__asignacion{
+    
+    margin-top: 2rem;
+}
+
+}
+
+
+.formulario{
+
+    &--asignar{
+        width: 100%;
+        max-width: 100rem;
+        min-width: 50rem;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    &__fieldset{
+        &--leyenda{
+            font-size: 1.8rem;
+            font-weight: v.$bold;
+           
+        }
+        &--asignar{
+            width: 100%;
+            padding: 2rem 2rem 3rem 2rem;
+            
+            @media (width<768px) {
+                padding: 3rem 2rem 3rem 2rem;
+                
+            }
+    }
+    }
+    &__campo--asignar{
+        width: 100%;
+    }
+}
+
+.formulario__submit--asignar-ticket{
+    @media (width<768px) {
+        margin: 4rem 0;
+    }
+}
+
+

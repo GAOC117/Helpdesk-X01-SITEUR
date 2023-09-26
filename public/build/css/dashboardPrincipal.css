@@ -30,6 +30,11 @@
   grid-area: contenido;
   background-color: #eee;
 }
+@media (width <= 500px) {
+  .dashboard__contenido {
+    width: 50rem;
+  }
+}
 
 .dashboard__sidebar {
   position: relative;
@@ -535,48 +540,123 @@
   color: green;
 }
 
-.tickets__informacion__encabezado {
-  font-size: 2rem;
-  padding-left: 0;
+.select2 .option {
+  font-size: 1rem;
+}
+
+.select2-results__options {
+  position: relative;
+}
+
+.select2-container {
+  width: 100% !important;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.asignar-tickets__header {
+  margin-top: 4rem;
+}
+.asignar-tickets__heading {
+  margin: 1rem 0 2rem 0;
+}
+.asignar-tickets__texto {
+  text-align: center;
+  margin: 1rem 0;
+}
+.asignar-tickets__texto span {
+  color: green;
+  font-size: 1.8rem;
   font-weight: 700;
 }
-@media (min-width: 768px) {
-  .tickets__informacion__encabezado {
-    font-size: 3rem;
-    padding-left: 5rem;
-  }
+
+.textarea {
+  padding-left: 3rem;
 }
-.tickets__informacion--texto {
-  margin: 1rem;
+
+.tickets {
   font-size: 1.5rem;
+  width: 100%;
+  max-width: 100rem;
+  min-width: 50rem;
 }
-@media (min-width: 768px) {
-  .tickets__informacion--texto {
-    font-size: 2rem;
-    margin: 1.5rem;
+.tickets .texto {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+@media (width < 768px) {
+  .tickets__informacion__encabezado {
+    margin: 5rem 0;
   }
 }
 .tickets__informacion-desglose {
-  width: 30rem;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  padding-left: 0;
-  margin: 0 auto;
-}
-@media (min-width: 768px) {
-  .tickets__informacion-desglose {
-    width: auto;
-    padding-left: 5rem;
-  }
-}
-.tickets__informacion-desglose span {
-  font-weight: 700;
-  margin-right: 1rem;
-}
-.tickets__asignacion {
   display: flex;
   justify-content: center;
+}
+.tickets__informacion--comentarios {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin: 2rem 0;
+}
+@media (width < 768px) {
+  .tickets__informacion--comentarios {
+    margin: 5rem 0;
+  }
+}
+.tickets__informacion--texto {
+  display: flex;
+  justify-content: space-between;
+  gap: 8rem;
+}
+.tickets__informacion--texto span, .tickets__informacion--texto--label {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.tickets__informacion--texto--text-area {
+  width: 25rem;
+  height: 8rem;
+  resize: none;
+}
+@media (width < 768px) {
+  .tickets__informacion--texto--text-area {
+    height: 10rem;
+  }
+}
+.tickets__asignacion {
+  margin-top: 2rem;
+}
+
+.formulario--asignar {
+  width: 100%;
+  max-width: 100rem;
+  min-width: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.formulario__fieldset--leyenda {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.formulario__fieldset--asignar {
+  width: 100%;
+  padding: 2rem 2rem 3rem 2rem;
+}
+@media (width < 768px) {
+  .formulario__fieldset--asignar {
+    padding: 3rem 2rem 3rem 2rem;
+  }
+}
+.formulario__campo--asignar {
+  width: 100%;
+}
+
+@media (width < 768px) {
+  .formulario__submit--asignar-ticket {
+    margin: 4rem 0;
+  }
 }
 
 .alerta {
