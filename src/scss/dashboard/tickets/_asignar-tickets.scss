@@ -21,6 +21,10 @@
 .asignar-tickets{
     &__header{
         margin-top: 4rem;
+
+        @media (width<768px) {
+            margin-top: 8rem;
+        }
     }
     &__heading{
         margin: 1rem 0 2rem 0;
@@ -73,7 +77,7 @@
         &--comentarios{
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 6rem;
             margin: 2rem 0;
 
             @media (width<768px) {
@@ -154,3 +158,31 @@
 }
 
 
+.volver-asignar{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+
+    @media (width<768px) {
+        justify-content: center;
+        top: 8rem;
+    }
+    
+    
+    
+}
+
+
+.volver-ver-tickets-asignacion{
+ @include m.boton(v.$azul-siteur,v.$blanco );
+ padding: 0 0 0 2rem;
+
+ display: flex;
+ align-items: center;
+ gap: 2rem;
+
+ width: 20rem;
+ font-size: 1.5rem;
+}

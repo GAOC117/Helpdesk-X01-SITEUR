@@ -103,8 +103,8 @@
                         </div>
                     </div>
                 </fieldset>
-                <div class="formulario__comentarios">
-                    <textarea class="formulario__comentarios--text-area" name="comentariosReporte" id="comentariosReporte" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentariosReporte; ?></textarea>
+                <div class="formulario__comentarios--ticket-nuevo">
+                    <textarea class="formulario__comentarios--ticket-nuevo--text-area" name="comentariosReporte" id="comentariosReporte" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentariosReporte; ?></textarea>
                 </div>
             </div>
         </form>

@@ -489,12 +489,12 @@
     gap: 5rem;
   }
 }
-.formulario__comentarios {
+.formulario__comentarios--ticket-nuevo {
   width: 100%;
   padding-top: 2rem;
   font-size: 1.5rem;
 }
-.formulario__comentarios--text-area {
+.formulario__comentarios--ticket-nuevo--text-area {
   resize: none;
   width: 100%;
   min-height: 10rem;
@@ -557,6 +557,11 @@
 .asignar-tickets__header {
   margin-top: 4rem;
 }
+@media (width < 768px) {
+  .asignar-tickets__header {
+    margin-top: 8rem;
+  }
+}
 .asignar-tickets__heading {
   margin: 1rem 0 2rem 0;
 }
@@ -597,7 +602,7 @@
 .tickets__informacion--comentarios {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 6rem;
   margin: 2rem 0;
 }
 @media (width < 768px) {
@@ -659,6 +664,51 @@
   }
 }
 
+.volver-asignar {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+@media (width < 768px) {
+  .volver-asignar {
+    justify-content: center;
+    top: 8rem;
+  }
+}
+
+.volver-ver-tickets-asignacion {
+  background-color: rgb(33, 52, 92);
+  padding: 1.5rem 4rem;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  padding: 0 0 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 20rem;
+  font-size: 1.5rem;
+}
+.volver-ver-tickets-asignacion:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: #141f36;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
+  }
+}
+
 .alerta {
   padding-left: 5rem;
   padding-right: 5rem;
@@ -682,6 +732,7 @@
     grid-template-rows: 0.1fr 0.1fr 1fr;
     width: 100%;
     padding: 0 2rem;
+    height: 100%;
   }
 }
 .ver-tickets__header {
@@ -1030,11 +1081,18 @@
   font-size: 1.8rem;
 }
 
+@media (width < 768px) {
+  .historico-tickets {
+    height: 100rem;
+  }
+}
+
 .historico-tickets__header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  margin-top: 3rem;
 }
 @media (min-width: 768px) {
   .historico-tickets__header {
@@ -1073,5 +1131,48 @@
   0% {
     box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
   }
+}
+
+.boton-regresar {
+  padding: 0 0 0 2rem;
+}
+
+.filtro-historico {
+  padding: 5rem 1rem;
+  display: grid;
+  gap: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.pausar-ticket {
+  width: 100%;
+  max-width: 120rem;
+  min-width: 50rem;
+  margin: 0 auto;
+}
+@media (width < 768px) {
+  .pausar-ticket {
+    height: 100rem;
+  }
+}
+.pausar-ticket__header {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.formulario__comentarios {
+  padding: 5rem 2rem;
+}
+.formulario__comentarios-text-area {
+  resize: none;
+  width: 100%;
+  height: 10rem;
+}
+
+.pausar-ticket__submit {
+  display: flex;
+  justify-content: center;
 }
 /*# sourceMappingURL=dashboardPrincipal.css.map */

@@ -203,8 +203,8 @@ class DashboardController
             $idAsignado = $_POST['idEmpAsignado'];
 
             date_default_timezone_set('America/Mexico_City');
-            $fechaAsignacion =date('Y-m-d');
-          
+            $fechaAsignacion = date('Y-m-d');
+
 
 
             $informacionTicket->idEmpAsigna = $expedienteLogueado;
@@ -221,8 +221,8 @@ class DashboardController
 
                 $historico->idEmpAsignado = $idAsignado;
                 $historico->fecha = $fechaAsignacion;
-                $informacionTicket->ticketNuevo=1;
-           
+                $informacionTicket->ticketNuevo = 1;
+
                 $informacionTicket->guardar();
                 $historico->crearHistorico();
 
@@ -326,14 +326,24 @@ class DashboardController
 
         $idTicket = $_GET['id'];
 
+
+        $historico = new HistoricoTicket;
+        $tickets = new Tickets;
+        $empleado = new Empleado;
+        $cla = new Clasificacion;
+        $sub = new Subclasificacion;
+        $depto = new Departamento;
+
+        $ticket = $tickets->find($idTicket);
+       
+        
+        if (!$ticket)
+        header('Location: /dashboard/ver-tickets');
+        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $historico = new HistoricoTicket;
-            $tickets = new Tickets;
-            $empleado = new Empleado;
-            $cla = new Clasificacion;
-            $sub = new Subclasificacion;
-            $depto = new Departamento;
+           
 
 
             $historicoTicket = $historico->OneWhere('idTicket', $idTicket, 'id desc');
@@ -443,9 +453,14 @@ class DashboardController
 
 
         $idTicket = $_GET['id'];
+
+        //existe el ticket en base dedatos
+        $ticket = $tickets->find($idTicket);
+        if (!$ticket)
+            header('Location: /dashboard/ver-tickets');
         $informatica = $empleado->allInformatica('idDepartamento', 'asc');
 
-        $ticket = $tickets->find($idTicket);
+
         $idEmpAnterior = $ticket->idEmpAsignado;
 
         $empleadoAnterior = $empleado->find($idEmpAnterior);
@@ -530,8 +545,8 @@ class DashboardController
                 $_SESSION['mensaje'] = "El ticket #$idTicket fue escalado";
 
 
-                   if ($resultadoTicket && $resultadoHistorico)
-                       header('Location: /dashboard/ver-tickets');
+                if ($resultadoTicket && $resultadoHistorico)
+                    header('Location: /dashboard/ver-tickets');
             }
         }
 
@@ -584,7 +599,7 @@ class DashboardController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        
+
 
             $historico = new HistoricoTicket;
             $tickets = new Tickets;
@@ -596,9 +611,9 @@ class DashboardController
 
             $historicoTicket = $historico->OneWhere('idTicket', $idTicket, 'id desc');
 
-            
+
             $historicoTicket->comentarios = $_POST['comentarios'];
-            
+
             // debuguear($historicoTicket);
 
 
@@ -627,12 +642,12 @@ class DashboardController
                 $clasificacion = $cla->find($ticketToUpdate->idClasificacionProblema);
                 $subClasificacion = $sub->find($ticketToUpdate->idSubclasificacionProblema);
                 $motivo = $_POST['comentarios'];
-                
 
 
 
-                 $resultadoTicket = $ticketToUpdate->guardar();
-                 $resultadoHistorico = $historicoTicket->crearHistorico();
+
+                $resultadoTicket = $ticketToUpdate->guardar();
+                $resultadoHistorico = $historicoTicket->crearHistorico();
 
                 $email = new Email($empleadoReporta->email, $empleadoAsignado->nombre . ' ' . $empleadoReporta->apellidoPaterno . ' ' . $empleadoReporta->apellidoMaterno, '');
                 $email->cerrarTicket(
@@ -648,7 +663,7 @@ class DashboardController
                     $empleadoRequiere->extension,
                     $departamentoReporta->descripcion,
                     $departamentoRequiere->descripcion,
-                 $motivo
+                    $motivo
                 );
 
                 $_SESSION['mensaje'] = "El ticket #$idTicket fue cerrado";

@@ -1,26 +1,26 @@
-<div class="historico-tickets__header">
-    <div class="boton-regresar">
-        
-        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Volver</a>
+<main class="historico-tickets">
+
+<div class="boton-regresar">
+
+        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Ver tickets</a>
     </div>
-    <h2 class="asignar-tickets__heading"><?php echo $titulo; ?></h2>
-</div>
 
-<body>
+    <div class="historico-tickets__header">
+        
+        <h2 class="historial-tickets__heading"><?php echo $titulo; ?></h2>
+    </div>
 
 
 
-    <div class="jquery-script-clear"></div>
-
-    <div class='containerrrr'>
-        <div class='filters'>
+    <div class='container'>
+        <div class='filters filtro-historico'>
             <div class='filter-container'>
                 <label>Quién atiende: </label>
-                <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende el servicio' data-col='atiende' id="idAtiende" />
+                <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende' data-col='atiende' id="idAtiende" />
             </div>
             <div class='filter-container'>
                 <label>Fecha: </label>
-                <input autocomplete='off' class='filter' name='fecha' placeholder='Buscar fecha de captura de ticket' data-col='fecha' id="idFecha" />
+                <input autocomplete='off' class='filter' name='fecha' placeholder='Buscar fecha de captura' data-col='fecha' id="idFecha" />
             </div>
             <div class='filter-container'>
                 <label>Estado: </label>
@@ -33,12 +33,12 @@
 
 
 
-            <!-- <div class='clearfix'></div> -->
+
         </div>
     </div>
 
-    <div class="tabla__contenedor-container">
-        <div class='tabla__contenedor'>
+    <div class="tabla__contenedor-container-historico">
+        <div class='tabla__contenedor-historico'>
 
 
 
@@ -72,31 +72,11 @@
         </div>
     </div>
 
+</main>
 
-    <!-- <ul class="pagination pagination-lg pager" id="myPager"></ul> -->
-
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-36251023-1']);
-        _gaq.push(['_setDomainName', 'jqueryscript.net']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-
-</body>
-
-</html>
 
 <?php $script = "
-<script src='/build/js/dashboard.js' defer></script>
+<script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/ver-tickets.js' defer></script>
 
 "

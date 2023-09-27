@@ -187,12 +187,13 @@
 
     }
 
-    &__comentarios{
-        // background-color: lightblue;
+    &__comentarios--ticket-nuevo{
+        
+    // background-color: lightblue;
         width: 100%;
          padding-top: 2rem;
          font-size: 1.5rem;
-
+        
         &--text-area{
             // background-color: lawngreen;
             resize: none;

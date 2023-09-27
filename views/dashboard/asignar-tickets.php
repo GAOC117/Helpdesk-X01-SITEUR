@@ -1,5 +1,8 @@
 <main class="asignar-tickets">
+    <div class="boton-regresar">
 
+        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Ver tickets</a>
+    </div>
     <div class="asignar-tickets__header">
         <h2 class="asignar-tickets__heading"><?php echo $titulo; ?></h2>
         <p class="asignar-tickets__texto">Selecciona un empleado para asignar el ticket<span> #<?php echo $idTicket; ?></span></p>
@@ -33,10 +36,10 @@
                         <div class="textarea">
 
                             <textarea class="tickets__informacion--texto--text-area" disabled><?php echo $comentarios; ?></textarea>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

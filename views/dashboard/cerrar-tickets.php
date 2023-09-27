@@ -1,21 +1,25 @@
-<main class="generar-ticket">
+<main class="cerrar-ticket">
 
-    <div class="generar-ticket__header">
-        <h2 class="generar-ticket__heading"><?php echo $titulo; ?></h2>
-        <p class="generar-ticket__texto">Ingrese un comentario para cerrar el ticket</p>
+    <div class="boton-regresar">
+
+<a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Volver</a>
+</div>
+    <div class="cerrar-ticket__header">
+        <h2 class="cerrar-ticket__heading"><?php echo $titulo; ?></h2>
+        <p class="cerrar-ticket__texto">Ingrese un comentario para cerrar el ticket</p>
 
 
     </div>
-    <div class="generar-ticket__alertas">
+    <div class="cerrar-ticket__alertas">
 
         <?php
         require_once __DIR__ . '/../templates/alertas.php';
         ?>
 
     </div>
-    <div class="generar-ticket__datos">
+    <div class="cerrar-ticket__datos">
 
-        <form action="/dashboard/cerrar-tickets?id=<?php echo $idTicket; ?>" class="generar-ticket__formulario" method="POST">
+        <form action="/dashboard/cerrar-tickets?id=<?php echo $idTicket; ?>" class="cerrar-ticket__formulario" method="POST">
 
             <div class="formulario__comentarios">
                 <textarea class="formulario__comentarios-text-area" name="comentarios" id="comentarios" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentarios; ?></textarea>

@@ -1,6 +1,11 @@
 <main class="pausar-ticket">
+    <div class="boton-regresar">
+
+        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Volver</a>
+    </div>
 
     <div class="pausar-ticket__header">
+
         <h2 class="pausar-ticket__heading"><?php echo $titulo; ?></h2>
         <p class="pausar-ticket__texto">Indique el motivo de ser pausado el ticket</p>
 
@@ -40,9 +45,8 @@
 </main>
 
 <?php $script = "
-<script src='/build/js/app.js' defer></script>
 <script src='/build/js/dashboard.js' defer></script>
-<script src='/build/js/ticket-nuevo.js' defer></script>
+<script src='/build/js/sidebar.js' defer></script>
 "
 
 ?>

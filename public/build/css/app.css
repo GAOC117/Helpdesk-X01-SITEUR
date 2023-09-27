@@ -355,6 +355,20 @@ h3 {
   text-align: center;
 }
 
+.boton-regresar {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+@media (width < 768px) {
+  .boton-regresar {
+    justify-content: center;
+    top: 8rem;
+  }
+}
+
 .authl.login {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/build/img/mics.jpg");
   background-size: cover;
