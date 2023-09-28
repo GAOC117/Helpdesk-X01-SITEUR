@@ -369,6 +369,37 @@ h3 {
   }
 }
 
+.volver-ver-tickets {
+  background-color: rgb(33, 52, 92);
+  padding: 1.5rem 4rem;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  padding: 0 0 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 20rem;
+  font-size: 1.5rem;
+}
+.volver-ver-tickets:hover {
+  animation: pulsate 1s ease-in-out;
+  background-color: #141f36;
+  cursor: pointer;
+}
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
+  }
+}
+
 .authl.login {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/build/img/mics.jpg");
   background-size: cover;
