@@ -25,7 +25,7 @@ class DashboardController
 
 
 
-        $titulo = 'Inicio';
+        $titulo = 'Dashboard de '.$nombre;
 
 
         $router->renderView('dashboard/dashboard', [
@@ -45,6 +45,7 @@ class DashboardController
         $expedienteLogueado = $_SESSION['id'];
         $extension = $_SESSION['extension'];
 
+        esSoporte();
 
         $clasificaciones = Clasificacion::allOrderBy('descripcion asc');
 
@@ -237,7 +238,7 @@ class DashboardController
         }
 
 
-        $titulo = 'Asignar tickets';
+        $titulo = 'Asignar ticket #'.$idTicket;
 
 
         $router->renderView('dashboard/asignar-tickets', [
@@ -439,6 +440,7 @@ class DashboardController
         $extension = $_SESSION['extension'];
         $alertas = [];
 
+        esSoporte();
 
         idNotNumeric();
 

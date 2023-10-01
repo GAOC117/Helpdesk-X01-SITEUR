@@ -8,7 +8,7 @@
         <img src="/build/img/koala.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
         <?php } else {?>
        
-            <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+            <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="empleado" class="empleado__imagen--foto">
         <?php } ?>
     </div>
 
@@ -62,7 +62,9 @@
 <?php $script = "
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/dashboard.js' defer></script>
-"
+";
+if($idRol!=='4')
+$script.="<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>
 

@@ -361,6 +361,7 @@ h3 {
   top: 1rem;
   display: flex;
   justify-content: flex-end;
+  font-size: 1.5rem;
 }
 @media (width < 768px) {
   .boton-regresar {
@@ -387,14 +388,13 @@ h3 {
   align-items: center;
   gap: 2rem;
   width: 20rem;
-  font-size: 1.5rem;
 }
 .volver-ver-tickets:hover {
-  animation: pulsate 1s ease-in-out;
-  background-color: #141f36;
+  animation: pulsate-azul-siteur 1s ease-in-out;
+  background-color: rgb(33, 52, 92);
   cursor: pointer;
 }
-@keyframes pulsate {
+@keyframes pulsate-azul-siteur {
   0% {
     box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
   }
@@ -516,11 +516,11 @@ h3 {
   border-radius: 1rem;
 }
 .formulariol__submit:hover {
-  animation: pulsate 1s ease-in-out;
-  background-color: #141f36;
+  animation: pulsate-azul-siteur 1s ease-in-out;
+  background-color: rgb(33, 52, 92);
   cursor: pointer;
 }
-@keyframes pulsate {
+@keyframes pulsate-azul-siteur {
   0% {
     box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
   }
@@ -532,6 +532,11 @@ h3 {
   background-color: rgb(255, 255, 255);
   padding: 5rem 2rem 2rem;
   width: 70rem;
+}
+@media (width < 768px) {
+  .formulario {
+    width: 50rem;
+  }
 }
 .formulario__fieldset {
   padding: 2rem 2rem;
@@ -591,11 +596,11 @@ h3 {
   border-radius: 1rem;
 }
 .formulario__submit:hover {
-  animation: pulsate 1s ease-in-out;
-  background-color: #141f36;
+  animation: pulsate-azul-siteur 1s ease-in-out;
+  background-color: rgb(33, 52, 92);
   cursor: pointer;
 }
-@keyframes pulsate {
+@keyframes pulsate-azul-siteur {
   0% {
     box-shadow: 0 0 25px rgb(33, 52, 92), 0 0 50px rgb(33, 52, 92);
   }
@@ -619,11 +624,11 @@ h3 {
   border-radius: 1rem;
 }
 .formulario__submit--asignar-ticket:hover {
-  animation: pulsate 1s ease-in-out;
-  background-color: #85e722;
+  animation: pulsate-verde-limon 1s ease-in-out;
+  background-color: #9eec50;
   cursor: pointer;
 }
-@keyframes pulsate {
+@keyframes pulsate-verde-limon {
   0% {
     box-shadow: 0 0 25px #9eec50, 0 0 50px #9eec50;
   }
@@ -647,11 +652,11 @@ h3 {
   border-radius: 1rem;
 }
 .formulario__submit--pausar-ticket:hover {
-  animation: pulsate 1s ease-in-out;
-  background-color: gray;
+  animation: pulsate-gris 1s ease-in-out;
+  background-color: #999999;
   cursor: pointer;
 }
-@keyframes pulsate {
+@keyframes pulsate-gris {
   0% {
     box-shadow: 0 0 25px #999999, 0 0 50px #999999;
   }
@@ -675,11 +680,11 @@ h3 {
   border-radius: 1rem;
 }
 .formulario__submit--escalar-ticket:hover {
-  animation: pulsate 1s ease-in-out;
-  background-color: #d08508;
+  animation: pulsate-naranja 1s ease-in-out;
+  background-color: #F6A215;
   cursor: pointer;
 }
-@keyframes pulsate {
+@keyframes pulsate-naranja {
   0% {
     box-shadow: 0 0 25px #F6A215, 0 0 50px #F6A215;
   }
@@ -703,11 +708,11 @@ h3 {
   border-radius: 1rem;
 }
 .formulario__submit--cerrar-ticket:hover {
-  animation: pulsate 1s ease-in-out;
-  background-color: #3e8b41;
+  animation: pulsate-verde 1s ease-in-out;
+  background-color: #4EAE51;
   cursor: pointer;
 }
-@keyframes pulsate {
+@keyframes pulsate-verde {
   0% {
     box-shadow: 0 0 25px #4EAE51, 0 0 50px #4EAE51;
   }

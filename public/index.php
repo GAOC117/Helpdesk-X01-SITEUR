@@ -77,6 +77,8 @@ $router->get('/api/obtenerSubclasificacion', [ApiController::class, 'obtenerSubc
 $router->post('/api/generar-ticket', [ApiController::class, 'generarTicket']);
 $router->get('/api/obtenerTablaTickets', [ApiController::class, 'verTickets']);
 $router->get('/api/obtenerTablaHistorico', [ApiController::class, 'historialTickets']);
+$router->get('/api/obtenerNotificaciones', [ApiController::class, 'obtenerNotificaciones']);
+$router->get('/api/limpiarNotificaciones', [ApiController::class, 'limpiarNotificaciones']);
 
 
 $router->comprobarRutas();

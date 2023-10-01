@@ -2,7 +2,7 @@
 @use 'base/variables' as v;
 
 
-.pausar-ticket {
+.cerrar-ticket {
     width: 100%;
     max-width: 120rem;
     min-width: 50rem;
@@ -34,7 +34,7 @@
 }
 }
 
-.pausar-ticket__submit{
+.cerrar-ticket__submit{
     display: flex;
     justify-content: center;
 }

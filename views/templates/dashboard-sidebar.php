@@ -52,12 +52,14 @@
                                     <?php echo 'Mis tickets'; } ?></span>
                                 </a>
                             </li>
+                            <?php if($idRol!=='3'){ ?>
                             <li>
                                 <a href="/dashboard/generar-ticket">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-file-circle-plus"></i>
                                     <span class="dashboard__sidebar-nav--texto">Nuevo ticket</span>
                                 </a>
                             </li>
+                            <?php } ?>
 
                         </ul>
 
@@ -191,12 +193,16 @@
             
 
                 <ul class="menu--footer">
+                    <?php if($idRol!=='4') { ?>
                     <li class="notificaciones" >
-                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                        <a class="dashboard__sidebar-nav--enlace notificaciones-enlace" href="#">
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-bell"></i>
+                            <p class="notificaciones-icono"></p>
                             <span class="dashboard__sidebar-nav--texto">Notificaciones</span>
                         </a>
                     </li>
+
+                    <?php } ?>
                     
                     <li class="logout" >
                         <a class="dashboard__sidebar-nav--enlace enlace-logout" href="/logout">

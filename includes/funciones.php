@@ -26,3 +26,9 @@ function idNotNumeric(){
     if (!is_numeric($_GET['id']))
     header('Location: /dashboard/ver-tickets');
 }
+
+
+function esSoporte(){
+    if($_SESSION['idRol']==='3')
+    header('location:/dashboard/ver-tickets');
+}

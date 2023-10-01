@@ -35,7 +35,7 @@
     }
 
     &__submit {
-        @include m.boton(v.$azul-siteur, v.$blanco);
+        @include m.boton(v.$azul-siteur, v.$blanco, pulsate-azul-siteur);
         // @include m.boton(v.$blanco, v.$negro);
         // border: 5px solid v.$azul-siteur;
         margin: 3rem 0 2rem 0;
@@ -59,6 +59,10 @@
     background-color: rgba(255, 255, 255, 1);
     padding: 5rem 2rem 2rem;
     width: 70rem;
+
+    @media (width < 768px) {
+        width: 50rem;
+    }
 
     &__fieldset {
         padding: 2rem 2rem;
@@ -104,7 +108,7 @@
     }
 
     &__submit {
-        @include m.boton(v.$azul-siteur, v.$blanco);
+        @include m.boton(v.$azul-siteur, v.$blanco, pulsate-azul-siteur);
         // @include m.boton(v.$blanco, v.$negro);
         // border: 5px solid v.$azul-siteur;
         margin: 3rem 0 2rem 0;
@@ -114,7 +118,7 @@
 
         &--asignar-ticket{
 
-            @include m.boton(#9eec50, white);
+            @include m.boton(#9eec50, white, pulsate-verde-limon);
             // @include m.boton(v.$blanco, v.$negro);
             // border: 5px solid v.$azul-siteur;
             margin: 3rem 0 2rem 0;
@@ -125,7 +129,7 @@
         }
         &--pausar-ticket{
 
-            @include m.boton(#999999, white);
+            @include m.boton(#999999, white, pulsate-gris);
             // @include m.boton(v.$blanco, v.$negro);
             // border: 5px solid v.$azul-siteur;
             margin: 3rem 0 2rem 0;
@@ -136,7 +140,7 @@
         }
         &--escalar-ticket{
 
-            @include m.boton(#F6A215, white);
+            @include m.boton(#F6A215, white, pulsate-naranja);
             // @include m.boton(v.$blanco, v.$negro);
             // border: 5px solid v.$azul-siteur;
             margin: 3rem 0 2rem 0;
@@ -147,7 +151,7 @@
         }
         &--cerrar-ticket{
 
-            @include m.boton(#4EAE51, white);
+            @include m.boton(#4EAE51, white, pulsate-verde);
             // @include m.boton(v.$blanco, v.$negro);
             // border: 5px solid v.$azul-siteur;
             margin: 3rem 0 2rem 0;

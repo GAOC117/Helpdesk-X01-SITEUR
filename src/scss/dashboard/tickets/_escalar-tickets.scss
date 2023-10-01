@@ -18,7 +18,12 @@
     font-weight: normal;
 }
 
-.asignar-tickets{
+.escalar-tickets{
+    
+@media (width < 500px) {
+    height: 100rem;
+}
+
     &__header{
         margin-top: 4rem;
 
@@ -119,7 +124,8 @@
 
 .formulario{
 
-    &--asignar{
+    background-color: #eee;
+    &--escalar{
         width: 100%;
         max-width: 100rem;
         min-width: 50rem;
@@ -136,7 +142,7 @@
             font-weight: v.$bold;
            
         }
-        &--asignar{
+        &--escalar{
             width: 100%;
             padding: 2rem 2rem 3rem 2rem;
             
@@ -146,14 +152,17 @@
             }
     }
     }
-    &__campo--asignar{
+    &__campo--escalar{
         width: 100%;
     }
 }
 
-.formulario__submit--asignar-ticket{
+.formulario__submit--escalar-ticket{
     @media (width<768px) {
         margin: 4rem 0;
     }
 }
 
+.formulario__campo.select {
+    width: 100%;
+}

@@ -8,6 +8,7 @@
     top: 1rem;
     display: flex;
     justify-content: flex-end;
+    font-size: 1.5rem;
 
     @media (width<768px) {
         justify-content: center;
@@ -18,7 +19,7 @@
 
 
 .volver-ver-tickets{
-    @include m.boton(v.$azul-siteur,v.$blanco );
+    @include m.boton(v.$azul-siteur,v.$blanco, pulsate-azul-siteur );
  padding: 0 0 0 2rem;
 
  display: flex;
@@ -26,5 +27,5 @@
  gap: 2rem;
 
  width: 20rem;
- font-size: 1.5rem;
+//  font-size: 2rem !important;
 }

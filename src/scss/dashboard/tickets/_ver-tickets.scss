@@ -162,7 +162,7 @@
 
 
         &-azul {
-            @include m.boton(#108dbf, white);
+            @include m.boton(#108dbf, white, pulsate-azul);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
             width: 3rem;
@@ -175,7 +175,7 @@
         }
 
         &-gris {
-            @include m.boton(#999999, white);
+            @include m.boton(#999999, white, pulsate-gris);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
             width: 3rem;
@@ -188,7 +188,7 @@
         }
 
         &-naranja {
-            @include m.boton(#F6A215, white);
+            @include m.boton(#F6A215, white, pulsate-naranja);
             padding: 2rem 2rem;
             width: 3rem;
             height: 3rem;
@@ -200,7 +200,7 @@
         }
 
         &-verde {
-            @include m.boton(#4EAE51, white);
+            @include m.boton(#4EAE51, white, pulsate-verde);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
             width: 3rem;
@@ -212,7 +212,7 @@
         }
 
         &-verde-limon {
-            @include m.boton(#9eec50, white);
+            @include m.boton(#9eec50, white, pulsate-verde-limon);
             // padding: 1.2rem 0rem;
             padding: 2rem 2rem;
             width: 3rem;

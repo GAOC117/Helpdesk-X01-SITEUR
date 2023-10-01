@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, maximum-scale = 1.0 lang='es_MX'">
+    <meta name="viewport" content="width=device-width, maximum-scale = 1.0">
     <title id="tituloDashboard" behavior="scroll" direction="left">Helpdesk SITEUR - <?php echo $titulo; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src='/build/js/multifilter.js'></script>
    
-    <link href='style.css' media='screen' rel='stylesheet' type='text/css' />
+    <!-- <link href='style.css' media='screen' rel='stylesheet' type='text/css' /> -->
 </head>
 
 

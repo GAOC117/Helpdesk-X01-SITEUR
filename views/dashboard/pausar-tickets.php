@@ -1,9 +1,8 @@
 <main class="pausar-ticket">
-    <div class="boton-regresar">
+<div class="boton-regresar">
 
-        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Volver</a>
-    </div>
-
+<a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-2x"></i> Ver tickets</a>
+</div>
     <div class="pausar-ticket__header">
 
         <h2 class="pausar-ticket__heading"><?php echo $titulo; ?></h2>
@@ -47,6 +46,8 @@
 <?php $script = "
 <script src='/build/js/dashboard.js' defer></script>
 <script src='/build/js/sidebar.js' defer></script>
-"
+";
+if($idRol!=='4')
+$script.="<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>

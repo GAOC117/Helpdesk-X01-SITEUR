@@ -578,3 +578,28 @@
         
     }
 }
+
+.dashboard__grid .notificaciones-icono{
+   
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    transform: translate(-1.5rem, -1rem);
+    display: none;
+    justify-content: center;
+    align-items: center;    
+    cursor: pointer;
+    background-color: red;
+    
+}
+
+
+.dashboard__grid.activo .notificaciones-icono{
+    transform: translate(-1.2rem, -1.2rem);
+    // transform: translate(-1rem,-1rem);
+}
+
+

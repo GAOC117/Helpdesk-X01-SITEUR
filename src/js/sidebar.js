@@ -1,41 +1,34 @@
-// const titulo = document.querySelector('#tituloDashboard').textContent;
-
 
 const menuBtn = document.querySelector('.dashboard__sidebar__menu-btn');
 let menuClosed = false;
 
-menuBtn.addEventListener('click',()=>{
-    if(!menuClosed){
+menuBtn.addEventListener('click', () => {
+    if (!menuClosed) {
         menuBtn.classList.add('close');
-        menuClosed=true;
+        menuClosed = true;
     }
-    else{
+    else {
         menuBtn.classList.remove('close');
-        menuClosed=false;
+        menuClosed = false;
     }
 
 
     $(".dashboard__sidebar-contenedor").toggleClass("activo");
     $(".dashboard__grid").toggleClass("activo");
-    
-    
-
-})
 
 
-document.addEventListener('DOMContentLoaded', function () {
-
-    // marcarPaginaActual();
 
 })
 
 
 
-function marcarPaginaActual(){
+
+
+function marcarPaginaActual() {
 
     var clase = titulo.split('-')[1];
     clase = clase.toLowerCase().trim().split(' ');
-    clase = '.'+clase[0]+'-'+clase[1];
+    clase = '.' + clase[0] + '-' + clase[1];
 
     $(clase).parent().parent().find("ul").slideToggle(200);
     $(clase).parent().parent().addClass("activo");
@@ -60,6 +53,8 @@ $(".dashboard__sidebar-nav--menu > ul > li").click(function (e) {
     //remover clase activo de sub menu
     $(this).siblings().find("ul").find("li").removeClass("activo");
 })
+
+
 
 
 

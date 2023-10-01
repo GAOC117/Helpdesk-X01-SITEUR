@@ -1,4 +1,6 @@
 
+
+limpiarNotificaciones();
 document.addEventListener('DOMContentLoaded', function () {
 
 
@@ -7,10 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // mostrarMesEnCurso();
 
     llenarTablaTickets();
-    // obtenerRol();
+
 
 
 })
+
+
+
 
 const folio = document.querySelector('#idFolio');
 // const asigna = document.querySelector('#idAsigna');
@@ -30,6 +35,40 @@ setInterval(function () {
     }
 
 }, 2000);
+
+
+
+
+
+async function limpiarNotificaciones() {
+    
+    try {
+    
+
+    // par.innerHTML = '';
+    // const url = 'http://'+direccion+':3000/api/obtenerEmpleado?idEmp=' + expedienteEmpleado.value;
+    const url = '/api/limpiarNotificaciones';
+
+    const resultado = await fetch(url);
+    // const result = await resultado.json();
+
+    // if(result.idRol!=='4'){
+    //     const popup = document.querySelector('.notificaciones-icono');
+    // }
+
+
+ 
+
+
+
+} catch (error) {
+    console.log(error);
+}
+
+
+}
+
+
 
 
 
@@ -119,11 +158,13 @@ async function llenarTablaTickets() {
 
 
 
-            var mes;
-            if (fechaCaptura.split('-')[1] < 10)
-                mes = fechaCaptura.split('-')[1][1];
-            else
-                mes = fechaCaptura.split('-')[1];
+            // var mes;
+            // if (fechaCaptura.split('-')[1] < 10)
+            //     mes = fechaCaptura.split('-')[1][1];
+            // else
+            //     mes = fechaCaptura.split('-')[1];
+
+            //     console.log(mes);
 
 
             td_idTicket.textContent = idTicket;

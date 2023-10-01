@@ -2,7 +2,7 @@
 
 <div class="boton-regresar">
 
-        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Ver tickets</a>
+        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-2x"></i> Ver tickets</a>
     </div>
 
     <div class="historico-tickets__header">
@@ -79,6 +79,8 @@
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/ver-tickets.js' defer></script>
 
-"
+";
+if($idRol!=='4')
+$script.="<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>

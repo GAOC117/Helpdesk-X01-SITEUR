@@ -47,6 +47,7 @@ class ApiController
         $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $query = '';
         if ($idRol === '1' || $idRol === '2') { //si es mesa de ayuda
+        // if ($idRol === '2') { //si es mesa de ayuda
             //si el rol es de administrador o de mesa de ayuda
             // debuguear("primer if");
             
@@ -62,6 +63,7 @@ class ApiController
             $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
             $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema order by t.id desc";
         } else if ($idRol === '3') //si es soporte solo asignados a él
+        // } else if ($idRol==='1' || $idRol === '3') //si es soporte solo asignados a él
         {
             // debuguear("segundo if");
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
@@ -178,4 +180,73 @@ class ApiController
 
     }
 
+
+
+    public static function obtenerNotificaciones()
+    {
+        session_start();
+        $idRol = $_SESSION['idRol'];
+       
+
+        if($idRol==='1'||$idRol==='2' || $idRol==='3')
+        {
+            $expedienteLogueado = $_SESSION['id'];
+        
+
+            if($idRol ==='1'|| $idRol ==='3')
+            {
+             $query = " SELECT COUNT(*) as cantidad  FROM tickets WHERE idEmpAsignado = $expedienteLogueado AND ticketNuevo = 1 "; //obtener cuantos tickets hay
+             
+             $cantidad = Tickets::contar($query);
+             
+            }
+            if($idRol==='2'){
+                $query = " SELECT COUNT(*) as cantidad FROM tickets WHERE idEmpAsignado = 0 AND ticketNuevo = 1 ";
+                $cantidad = Tickets::contar($query);
+            }
+        }
+
+     
+        $resultado['idRol'] = $idRol; //envio el rol para no mostrar el popup con colaboradores
+        $resultado['cantidad'] = $cantidad['cantidad'];
+
+
+        echo json_encode($resultado);
+
+
+    }
+
+
+    public static function limpiarNotificaciones(){
+        session_start();
+        $idRol = $_SESSION['idRol'];
+       
+        
+
+        if($idRol==='1'||$idRol==='2' || $idRol==='3')
+        {
+            $expedienteLogueado = $_SESSION['id'];
+
+            if($idRol ==='1'|| $idRol ==='3')
+            {
+             
+             $query = " UPDATE tickets SET ticketNuevo = 0 WHERE idEmpAsignado = $expedienteLogueado AND ticketNuevo = 1"; //
+             Tickets::actualizarQuery($query);
+            }
+            if($idRol==='2'){
+                $query = " UPDATE tickets SET ticketNuevo = 0 WHERE idEmpAsignado = 0 AND ticketNuevo = 1"; //
+                Tickets::actualizarQuery($query);
+            }
+            
+        }
+
+        $resultado['idRol'] = $idRol; //envio el rol para no mostrar el popup con colaboradores
+        
+
+        echo json_encode($resultado);
+
+    }
 }
+
+
+

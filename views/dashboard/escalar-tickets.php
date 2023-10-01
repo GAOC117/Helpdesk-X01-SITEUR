@@ -1,13 +1,13 @@
-<main class="asignar-tickets">
+<main class="escalar-tickets">
 
     <div class="boton-regresar">
 
-        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-3x"></i> Volver</a>
+        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-2x"></i> Ver tickets</a>
     </div>
-    <div class="asignar-tickets__header">
-        <h2 class="asignar-tickets__heading"><?php echo $titulo; ?></h2>
-        <p class="asignar-tickets__texto">Selecciona un empleado para escalar el <span>ticket #<?php echo $idTicket; ?></span></p>
-        
+    <div class="escalar-tickets__header">
+        <h2 class="escalar-tickets__heading"><?php echo $titulo; ?></h2>
+        <p class="escalar-tickets__texto">Selecciona un empleado para escalar el <span>ticket #<?php echo $idTicket; ?></span></p>
+
         <?php
         require_once __DIR__ . '/../templates/alertas.php';
         ?>
@@ -23,13 +23,24 @@
 
             <div class="tickets__informacion-desglose">
 
+            <div class="tickets__informacion__detalles">
+
                 <p class="tickets__informacion--texto"><span>Nombre: </span><?php echo $nombreRequiere; ?></p>
                 <p class="tickets__informacion--texto"><span>Extensión: </span><?php echo $extensionRequiere; ?></p>
                 <p class="tickets__informacion--texto"><span>Departamento: </span><?php echo $departamentoRequiere; ?></p>
                 <p class="tickets__informacion--texto"><span>Clasificación: </span><?php echo $clasificacion; ?></p>
                 <p class="tickets__informacion--texto"><span>Subclasificación: </span><?php echo $subclasificacion; ?></p>
-                <p class="tickets__informacion--texto"><span>Comentario: </span><?php echo $comentarios; ?></p>
+                <div class="tickets__informacion--comentarios">
+
+                    <label class="tickets__informacion--texto--label">Comentarios:</label>
+                    <div class="textarea">
+
+                        <textarea class="tickets__informacion--texto--text-area" disabled><?php echo $comentarios; ?></textarea>
+
+                    </div>
+                </div>
                 <p class="tickets__informacion--texto"><span>ASIGNADO ANTERIORMENTE A: </span><?php echo $empleadoAnterior->nombre . ' ' . $empleadoAnterior->apellidoPaterno . ' ' . $empleadoAnterior->apellidoMaterno; ?></p>
+                </div>
             </div>
         </div>
 
@@ -66,7 +77,10 @@
 
 <?php $script = "
 <script src='/build/js/dashboard.js' defer></script>
+<script src='/build/js/sidebar.js' defer></script>
 
-"
+";
+if($idRol!=='4')
+$script.="<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>

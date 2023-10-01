@@ -120,6 +120,8 @@
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/ver-tickets.js' defer></script>
 
-"
+";
+if($idRol!=='4')
+$script.="<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>

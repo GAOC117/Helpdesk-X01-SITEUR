@@ -49,6 +49,12 @@ class ActiveRecord {
         return $array;
     }
 
+
+    public static function contar($query){
+        $resultado = self::$db->query($query);
+        return $resultado->fetch_assoc();
+    }
+
     // Crea el objeto en memoria que es igual al de la BD
     protected static function crearObjeto($registro) {
         $objeto = new static;
@@ -295,6 +301,12 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
         return $resultado;
     }
+
+public static function actualizarQuery($query){
+    $resultado = self::$db->query($query);
+    return $resultado;
+}
+
     public function actualizarEmpleado() {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributosEmpleado();
