@@ -151,7 +151,7 @@ class ActiveRecord {
 
 
     public static function allWhere($columna, $valor, $orden) {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' ORDER BY $orden";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' and estatus = 1 ORDER BY $orden";
         $resultado = self::consultarSQL($query);
         return  $resultado;
     }
@@ -171,6 +171,11 @@ class ActiveRecord {
 
     public static function allOrderBy($order) {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY $order";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+    public static function allOrderByWhere($order) {
+        $query = "SELECT * FROM " . static::$tabla . " where estatus = 1 ORDER BY $order ";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }

@@ -47,7 +47,7 @@ class DashboardController
 
         esSoporte();
 
-        $clasificaciones = Clasificacion::allOrderBy('descripcion asc');
+        $clasificaciones = Clasificacion::allOrderByWhere('descripcion asc');
 
 
 
