@@ -6,7 +6,7 @@ class Tickets extends ActiveRecord
 {
     protected static $tabla = 'tickets';
     protected static $columnasDB = [
-        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte', 'fechaAsignacion', 'fechaCierra', 'idEstado', 'idEmpReporta', 'idEmpRequiere', 'idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo', 'fechaCaptura'
+        'id', 'idEmpAsigna', 'idEmpAsignado', 'comentariosReporte', 'comentariosSoporte', 'fechaAsignacion', 'fechaCierra', 'idEstado', 'idEmpReporta', 'idEmpRequiere', 'idClasificacionProblema', 'idSubclasificacionProblema', 'ticketNuevo', 'fechaCaptura','estatus'
     ];
 
 
@@ -25,7 +25,8 @@ class Tickets extends ActiveRecord
     public $idSubclasificacionProblema;
     public $ticketNuevo;
     public $fechaCaptura;
-
+    public $estatus;
+    
 
 
     public function __construct($args = [])
@@ -45,6 +46,7 @@ class Tickets extends ActiveRecord
         $this->idSubclasificacionProblema = $args['idSubclasificacionProblema'] ?? 0;
         $this->ticketNuevo = $args['ticketNuevo'] ?? 1;
         $this->fechaCaptura = $args['fechaCaptura'] ?? date('0000-00-00');
+        $this->estatus = $args['estatus'] ?? 1;
     }
 
 

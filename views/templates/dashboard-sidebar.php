@@ -69,10 +69,10 @@
                         <a class="dashboard__sidebar-nav--enlace" href="#">
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-user"></i>
                             <span class="dashboard__sidebar-nav--texto">Empleado</span>
-                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                         
-                        <ul class="dashboard__sidebar-nav--sub-menu">
+                        <!-- <ul class="dashboard__sidebar-nav--sub-menu">
                             <li>
                                 <a class="dashboard__sidebar-nav--enlace" href="#">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-user-plus"></i>
@@ -91,17 +91,17 @@
                                     <span class="dashboard__sidebar-nav--texto">Eliminar empleado</span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
 
                     <li >
                         <a class="dashboard__sidebar-nav--enlace" href="#">
                             <i class="dashboard__sidebar-nav--icono fa-brands fa-jedi-order"></i>
                             <span class="dashboard__sidebar-nav--texto">Clasificación incidentes</span>
-                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                         
-                        <ul class="dashboard__sidebar-nav--sub-menu">
+                        <!-- <ul class="dashboard__sidebar-nav--sub-menu">
                             <li>
                                 <a class="dashboard__sidebar-nav--enlace" href="#">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-plus"></i>
@@ -120,17 +120,17 @@
                                     <span class="dashboard__sidebar-nav--texto">Eliminar clasificación</span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
 
                     <li >
                         <a class="dashboard__sidebar-nav--enlace" href="#">
                             <i class="dashboard__sidebar-nav--icono fa-brands fa-empire"></i>
                             <span class="dashboard__sidebar-nav--texto">Subclasificación incidentes</span>
-                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                         
-                        <ul class="dashboard__sidebar-nav--sub-menu">
+                        <!-- <ul class="dashboard__sidebar-nav--sub-menu">
                             <li>
                                 <a class="dashboard__sidebar-nav--enlace" href="#">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-plus"></i>
@@ -149,7 +149,7 @@
                                     <span class="dashboard__sidebar-nav--texto">Eliminar subclasificacion</span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
 
 
@@ -157,10 +157,10 @@
                         <a class="dashboard__sidebar-nav--enlace" href="#">
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-building"></i>
                             <span class="dashboard__sidebar-nav--texto">Departamentos</span>
-                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                         
-                        <ul class="dashboard__sidebar-nav--sub-menu">
+                        <!-- <ul class="dashboard__sidebar-nav--sub-menu">
                             <li>
                                 <a class="dashboard__sidebar-nav--enlace" href="#">
                                     <i class="dashboard__sidebar-nav--icono fa-solid fa-building-circle-arrow-right"></i>
@@ -179,7 +179,7 @@
                                     <span class="dashboard__sidebar-nav--texto">Eliminar departamento</span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
 <?php } ?>
 

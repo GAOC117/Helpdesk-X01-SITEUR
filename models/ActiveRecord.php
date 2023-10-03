@@ -163,7 +163,7 @@ class ActiveRecord {
     }
 
     public static function allInformatica($columna,  $orden) {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna in (52,87,32) ORDER BY nombre $orden";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE estatus = 1 AND $columna in (52,87,32) ORDER BY nombre $orden";
        
         $resultado = self::consultarSQL($query);
         return  $resultado;
@@ -182,14 +182,14 @@ class ActiveRecord {
 
     // Busca un registro por su id
     public static function find($id) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = ${id}";
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = $id AND estatus = 1";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
 
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT ${limite} ORDER BY id DESC" ;
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT $limite ORDER BY id DESC" ;
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -197,6 +197,11 @@ class ActiveRecord {
     // Busqueda Where con Columna 
     public static function where($columna, $valor) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor'";
+        $resultado = self::consultarSQL($query);
+        return array_shift( $resultado ) ;
+    }
+    public static function whereLogin($columna, $valor) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' AND estatus = 1";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -208,6 +213,11 @@ class ActiveRecord {
 
     public static function whereAnd($columna1, $valor1, $columna2, $valor2) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna1 = '$valor1' AND $columna2 = '$valor2' ";
+        $resultado = self::consultarSQL($query);
+        return array_shift( $resultado ) ;
+    }
+    public static function whereAndLogIn($columna1, $valor1, $columna2, $valor2) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE $columna1 = '$valor1' AND $columna2 = '$valor2' AND estatus = 1";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }

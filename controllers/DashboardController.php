@@ -79,56 +79,7 @@ class DashboardController
         $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $query = '';
 
-        // if ($idRol === '1' || $idRol === '2') { //si es mesa de ayuda
-        //     //si el rol es de administrador o de mesa de ayuda
-
-        //     $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-        //     $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-        //     $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
-        //     $query .= " e4.nombre AS nombreRequiere,";
-        //     $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios";
-        //     $query .= " FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
-        //     $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
-        //     $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
-        //     $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
-        //     $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-        //     $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema order by t.id desc";
-        // } else if ($idRol === '3') //si es soporte solo asignados a él
-        // {
-        //     $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-        //     $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-        //     $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
-        //     $query .= " e4.nombre AS nombreRequiere,";
-        //     $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios";
-        //     $query .= " FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
-        //     $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
-        //     $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
-        //     $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
-        //     $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-        //     $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpAsignado = $expedienteLogueado order by t.id desc";
-        // } else if ($idRol === '4') { //si es colaborador ver los reportados por el
-        //     $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-        //     $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-        //     $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE e2.nombre END AS atiende,";
-        //     $query .= " e4.nombre AS nombreRequiere,";
-        //     $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios";
-        //     $query .= " FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
-        //     $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
-        //     $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
-        //     $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
-        //     $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-        //     $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado order by t.id desc";
-        // }
-
-
-
-        // //si el perfil es de colaborador ver solo los registrados por él
-        // $tickets = VerTickets::SQL($query);
-
-
-        // // debuguear($tickets);
-
-
+      
 
         $titulo = 'Ver tickets';
 

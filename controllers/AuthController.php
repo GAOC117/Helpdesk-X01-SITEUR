@@ -35,7 +35,7 @@ class AuthController
 
             if (empty($alertas)) {
                 // Verificar quel el usuario exista
-                $usuario = Empleado::where('email', $usuario->email);
+                $usuario = Empleado::whereLogin('email', $usuario->email);
                 if (!$usuario || !$usuario->confirmado) {
                     Empleado::setAlerta('error', 'El Usuario no existe o no está confirmado');
                 } else {
@@ -108,9 +108,9 @@ class AuthController
            
             $alertas = $usuario->validar_cuenta();
 
-            $existeUsuarioCorreo = Empleado::whereAnd('id', $usuario->id, 'email', $usuario->email);
-                $existeExpediente = Empleado::where('id', $usuario->id);
-                $existeCorreo = Empleado::where('email', $usuario->email);
+            $existeUsuarioCorreo = Empleado::whereAndLogIn('id', $usuario->id, 'email', $usuario->email);
+                $existeExpediente = Empleado::whereLogin('id', $usuario->id);
+                $existeCorreo = Empleado::whereLogin('email', $usuario->email);
 
                 if ($existeUsuarioCorreo) {
                     Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente y correo');
@@ -174,7 +174,7 @@ class AuthController
 
             if (empty($alertas)) {
                 // Buscar el usuario
-                $usuario = Empleado::where('email', $usuario->email);
+                $usuario = Empleado::whereLogin('email', $usuario->email);
                 if ($usuario && $usuario->confirmado) {
 
                     // Generar un nuevo token
@@ -219,7 +219,7 @@ class AuthController
         if (!$token) header('Location: /');
 
         // Identificar el usuario con este token
-        $usuario = Empleado::where('token', $token);
+        $usuario = Empleado::whereLogin('token', $token);
 
         if (empty($usuario)) {
             Empleado::setAlerta('error', 'Token no válido, intenta de nuevo');
@@ -281,7 +281,7 @@ class AuthController
         if (!$token) header('Location: /');
 
         // Encontrar al usuario con este token
-        $usuario = Empleado::where('token', $token);
+        $usuario = Empleado::whereLogin('token', $token);
 
         if (empty($usuario)) {
             // No se encontró un usuario con ese token

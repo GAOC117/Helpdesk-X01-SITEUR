@@ -5,7 +5,7 @@ namespace Model;
 class Empleado extends ActiveRecord {
     protected static $tabla = 'empleado';
     protected static $columnasDB = ['id', 'nombre', 'apellidoPaterno','apellidoMaterno', 'email', 'password','extension', 'idDepartamento',
-                                    'idRol','activo','ticketNuevo','confirmado', 'token'];
+                                    'idRol','estatus','ticketNuevo','confirmado', 'token'];
 
     public $id;
     public $nombre;
@@ -17,7 +17,7 @@ class Empleado extends ActiveRecord {
     public $extension;
     public $idDepartamento;
     public $idRol;
-    public $activo;
+    public $estatus;
     public $ticketNuevo;
     public $confirmado;
     public $token;
@@ -39,7 +39,7 @@ class Empleado extends ActiveRecord {
         $this->extension = $args['extension'] ?? '';
         $this->idDepartamento = $args['idDepartamento'] ?? '';
         $this->idRol = $args['idRol'] ?? 4;
-        $this->activo = $args['activo'] ?? 1;
+        $this->estatus = $args['estatus'] ?? 1;
         $this->ticketNuevo = $args['ticketNuevo'] ?? 0; //para el dashboard principal ver cuantos nuevos tiene
         $this->confirmado = $args['confirmado'] ?? 0;
         $this->token = $args['token'] ?? '';

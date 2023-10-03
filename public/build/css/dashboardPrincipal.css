@@ -1213,9 +1213,15 @@
   display: flex;
   justify-content: center;
 }
+@media (width < 768px) {
+  .tickets__informacion-desglose {
+    padding: 0 3rem;
+  }
+}
 .tickets__informacion--comentarios {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 6rem;
   margin: 2rem 0;
 }
@@ -1227,7 +1233,7 @@
 .tickets__informacion--texto {
   display: flex;
   justify-content: space-between;
-  gap: 8rem;
+  gap: 5rem;
 }
 .tickets__informacion--texto span, .tickets__informacion--texto--label {
   font-size: 1.6rem;

@@ -365,7 +365,7 @@
             &--menu ul li a {
                 display: flex;
                 align-items: center;
-                gap: 1rem;
+                 gap: 1rem;
                 font-size: 1.3rem;
                 font-weight: v.$bold;
                 color: v.$blanco;
@@ -603,3 +603,7 @@
 }
 
 
+// .dashboard__grid.activo .enlace-icono{
+    
+//     padding-left: 2.5rem;
+// }
