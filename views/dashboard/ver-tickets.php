@@ -81,7 +81,7 @@
                     <tr class="tabla__header__pegar">
 
                         <th class="tabla__th">Folio#</th>
-                        <th class="tabla__th">Fecha registro (dd/ mm/ yyyy)</th>
+                        <th class="tabla__th">Fecha registro (dd/mm/yyyy)</th>
                         
                         <th class="tabla__th">Atiende</th>
                         <th class="tabla__th">Requiere</th>

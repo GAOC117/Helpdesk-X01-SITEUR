@@ -10,14 +10,14 @@
             <div class="dashboard__sidebar--empleado">
                 <div class="dashboard__sidebar--empleado-imagen">
                     <?php if ($expedienteLogueado === '4486') { ?>
-                        <img src="/build/img/vader.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="dashboard__empleado-imagen--foto">
+                        <img src="/build/img/vader.png" alt="empleado" class="dashboard__empleado-imagen--foto">
                     <?php }  ?>
                     <?php if ($expedienteLogueado === '4485') { ?>
-                        <img src="/build/img/koala.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="dashboard__empleado-imagen--foto">
+                        <img src="/build/img/koala.png" alt="empleado" class="dashboard__empleado-imagen--foto">
                     <?php }
                     if ($expedienteLogueado !== '4485' && $expedienteLogueado !== '4486') { ?>
 
-                        <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="<?php echo 'Foto de' . $nombre; ?>" class="dashboard__empleado-imagen--foto">
+                        <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="empleado" class="dashboard__empleado-imagen--foto">
                     <?php } ?>
                 </div>
                 <div class="dashboard__sidebar--empleado-nombre">

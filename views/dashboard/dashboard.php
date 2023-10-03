@@ -1,13 +1,14 @@
 <main class="dash-empleado">
 
     <div class="dash-empleado__imagen">
-        <?php if($expedienteLogueado==='4486') { ?>
-        <img src="/build/img/vader.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+        <?php if ($expedienteLogueado === '4486') { ?>
+            <img src="/build/img/vader.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
         <?php } ?>
-        <?php if($expedienteLogueado==='4485') { ?>
-        <img src="/build/img/koala.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
-        <?php } else {?>
-       
+        <?php if ($expedienteLogueado === '4485') { ?>
+            <img src="/build/img/koala.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+        <?php }
+        if ($expedienteLogueado !== '4485' && $expedienteLogueado !== '4486') { ?>
+
             <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="empleado" class="empleado__imagen--foto">
         <?php } ?>
     </div>
@@ -18,39 +19,31 @@
         <p class="dash-empleado__nombre--texto"><?php echo $nombre; ?></p>
     </div>
 
-        <div class="dash-empleado__informacion-tickete">
-            <!-- si es colaborador solo ver abiertos y cerrados -->
-            <a href="">
-                <div class="dash-empleado__informacion-tickete--total tickete--info">
-                    <p class="tickete--texto">Total de tickets</p>
-                    <p class="tickete--texto tickets--cantidad">53</p>
-                </div>
-            </a>
-            <a href="">
-                <div class="dash-empleado__informacion-tickete--abiertos tickete--info">
-                    <p class="tickete--texto">Tickets abiertos</p>
-                    <p class="tickete--texto tickets--cantidad">22</p>
-                </div>
-            </a>
-            <a href="">
-                <div class="dash-empleado__informacion-tickete--pausados tickete--info">
-                    <p class="tickete--texto">Tickets pausados</p>
-                    <p class="tickete--texto tickets--cantidad">3</p>
-                </div>
-            </a>
-            <a href="">
-                <div class="dash-empleado__informacion-tickete--cerrados tickete--info">
-                    <p class="tickete--texto">Tickets cerrados</p>
-                    <p class="tickete--texto tickets--cantidad">28</p>
-                </div>
-            </a>
-        </div> <!-- .empleado__informacion-tickets -->
-<div>
+    <div class="dash-empleado__informacion-tickete">
+        <!-- si es colaborador solo ver abiertos y cerrados -->
+        <div class="dash-empleado__informacion-tickete--total tickete--info">
+            <p class="tickete--texto">Tickets reportados</p>
+            <p class="tickete--texto tickete--cantidad">53</p>
+        </div>
+        <div class="dash-empleado__informacion-tickete--abiertos tickete--info">
+            <p class="tickete--texto">Tickets abiertos</p>
+            <p class="tickete--texto tickete--cantidad">22</p>
+        </div>
+        <div class="dash-empleado__informacion-tickete--pausados tickete--info">
+            <p class="tickete--texto">Tickets pausados</p>
+            <p class="tickete--texto tickete--cantidad">3</p>
+        </div>
+        <div class="dash-empleado__informacion-tickete--cerrados tickete--info">
+            <p class="tickete--texto">Tickets cerrados</p>
+            <p class="tickete--texto tickete--cantidad">28</p>
+        </div>
+    </div> <!-- .empleado__informacion-tickets -->
+
 
     <div class="dash-empleado__informacion-texto">
-      <p class="dash-empleado__informacion-texto--leyenda">La información mostrada corresponde al mes en curso</p>
+        <p class="dash-empleado__informacion-texto--leyenda">La información mostrada corresponde al mes en curso</p>
     </div>
-</div>
+
 
     <!-- </div> -->
     <!-- .empleado__informacion -->
@@ -63,8 +56,7 @@
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/dashboard.js' defer></script>
 ";
-if($idRol!=='4')
-$script.="<script src='/build/js/notificaciones.js' defer></script>"
+if ($idRol !== '4')
+    $script .= "<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>
-
