@@ -46,8 +46,8 @@ class ApiController
         $extension = $_SESSION['extension'];
         $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $query = '';
-        if ($idRol === '1' || $idRol === '2') { //si es mesa de ayuda
-        // if ($idRol === '2') { //si es mesa de ayuda
+        // if ($idRol === '1' || $idRol === '2') { //si es mesa de ayuda, aqui el admin si quiere todo el poder
+        if ($idRol === '2') { //si es mesa de ayuda
             //si el rol es de administrador o de mesa de ayuda
             // debuguear("primer if");
             
@@ -62,9 +62,10 @@ class ApiController
             $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
             $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
             $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema order by t.id desc";
-        } else if ($idRol === '3') //si es soporte solo asignados a él
-        // } else if ($idRol==='1' || $idRol === '3') //si es soporte solo asignados a él
+        // } else if ($idRol === '3') //si es soporte solo asignados a él
+        } else if ($idRol ==='1' || $idRol === '3') //si es soporte solo asignados a él , si admin quiere todo el poder, mover para arriba
         {
+            
             // debuguear("segundo if");
             $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
             // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
@@ -246,7 +247,81 @@ class ApiController
         echo json_encode($resultado);
 
     }
+
+
+    public static function getMonthlyTickets(){
+        session_start();
+        $idRol = $_SESSION['idRol'];
+        $expediente = $_SESSION['id'];
+        date_default_timezone_set('America/Mexico_City');
+        $mesActual = date('m');
+        $actualYear = date('Y');
+        debuguear($actualYear);
+        
+        
+
+        if($idRol === '2') //si es mesa de ayuda ve todos los tickets del mes
+        {
+            $query = "SELECT  COUNT(*) as abiertos from tickets where month(fechaCaptura) = $mesActual AND year(fechaCaptura) = $actualYear AND idEstado = 1";
+            $resultado['abiertos']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados from tickets where month(fechaCaptura) = $mesActual AND year(fechaCaptura) = $actualYear AND idEstado = 2";
+            $resultado['pausados'] =  Tickets::contar($query);
+            
+            $query = "SELECT  COUNT(*) as escalados from tickets where month(fechaCaptura) = $mesActual AND year(fechaCaptura) = $actualYear AND idEstado = 3";
+            $resultado['escalados'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados from tickets where month(fechaCaptura) = $mesActual AND year(fechaCaptura) = $actualYear AND idEstado = 4";
+            $resultado['cerrados'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total from tickets where month(fechaCaptura) = $mesActual AND year(fechaCaptura) = $actualYear";
+            $resultado['total'] =  Tickets::contar($query);
+
+        }
+
+        if($idRol === '1' || $idRol === '3') //si es mesa de ayuda ve todos los tickets del mes
+        {
+            
+            $query = "SELECT  COUNT(*) as abiertos from tickets where month(fechaAsignacion) = $mesActual AND year(fechaAsignacion) = $actualYear and idEstado = 1 and idEmpAsignado = $expediente";
+            $resultado['abiertos'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados from tickets where month(fechaAsignacion) = $mesActual AND year(fechaAsignacion) = $actualYear and idEstado = 2  and idEmpAsignado = $expediente";
+            $resultado['pausados'] = Tickets::contar($query);
+            
+            $query = "SELECT  COUNT(*) as escalados from tickets where month(fechaAsignacion) = $mesActual AND year(fechaAsignacion) = $actualYear and idEstado = 3  and idEmpAsignado = $expediente";
+            $resultado['escalados']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados from tickets where month(fechaAsignacion) = $mesActual AND year(fechaAsignacion) = $actualYear and idEstado = 4  and idEmpAsignado = $expediente";
+            $resultado['cerrados'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total from tickets where month(fechaAsignacion) = $mesActual AND year(fechaAsignacion) = $actualYear and idEmpAsignado = $expediente";
+            $resultado['total'] = Tickets::contar($query);
+
+        }
+
+        
+        if($idRol === '4') //si es mesa de ayuda ve todos los tickets del mes
+        {
+            $query = "SELECT  COUNT(*) as abiertos from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEstado = 1 and idEmpRequiere = $expediente";
+            $resultado['abiertos'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEstado = 2 and idEmpRequiere = $expediente";
+            $resultado['pausados'] = Tickets::contar($query);
+            
+            $query = "SELECT  COUNT(*) as escalados from tickets where month(fechaCaptura) = $mesActual  AND yea(fechaCaptura) = $actualYear and idEstado = 3 and idEmpRequiere = $expediente";
+            $resultado['escalados']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEstado = 4 and idEmpRequiere = $expediente";
+            $resultado['cerrados'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total from tickets where month(fechaCaptura) = $mesActual  AND yea(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
+            $resultado['total'] = Tickets::contar($query);
+
+        }
+
+        
+        echo json_encode($resultado);
+
+    }
 }
-
-
 

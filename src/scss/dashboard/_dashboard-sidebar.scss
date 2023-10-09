@@ -273,9 +273,10 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    border-radius: 50%;
+                    border-radius: 5%;
                     overflow: hidden;
                     border: 2px solid v.$blanco;
+                    
                     transition: width v.$tiempo v.$animacion;
                 }
 
@@ -607,3 +608,6 @@
     
 //     padding-left: 2.5rem;
 // }
+.img-empleado{
+    border-radius: 50%;
+}

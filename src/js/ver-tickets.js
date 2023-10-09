@@ -212,7 +212,7 @@ async function llenarTablaTickets() {
             div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-calendar-days fa-xl'></i></a>";
             // div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-clock fa-xl'></i></a>";
 
-            if (idRol === '1' || idRol === '2') 
+            if ( idRol === '2')  //poner aqui al admin tambien si se requiere
             {
                 if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') 
                 {
@@ -236,7 +236,7 @@ async function llenarTablaTickets() {
                     div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
                 }
             }
-            if (idRol === '3')
+            if (idRol === '1' ||idRol === '3') //cambiar el rol 1 de aqui hacia arriba donde esta mesa
              {
                  if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') 
                  {
@@ -249,6 +249,11 @@ async function llenarTablaTickets() {
                         {
                         div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a>";
                         
+                        //si comento el if no puede escalar tickets propios el admin
+                        if(idRol==='1') 
+                        {
+                            div_acciones.innerHTML += "<a href='/dashboard/escalar-tickets?id=" + idTicket + "' title='Escalar ticket' class='tabla__boton-naranja tabla__boton'><i class='fa-solid fa-arrow-trend-up fa-xl'></i></a>";  
+                        }
 
                         div_acciones.innerHTML += "<a href='/dashboard/cerrar-tickets?id=" + idTicket + "' title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>";
                         }

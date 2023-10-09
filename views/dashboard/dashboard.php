@@ -21,26 +21,27 @@
 
     <div class="dash-empleado__informacion-tickete">
         <!-- si es colaborador solo ver abiertos y cerrados -->
-        <div class="dash-empleado__informacion-tickete--total tickete--info">
-            <p class="tickete--texto">Tickets reportados</p>
-            <p class="tickete--texto tickete--cantidad">53</p>
-        </div>
         <div class="dash-empleado__informacion-tickete--abiertos tickete--info">
             <p class="tickete--texto">Tickets abiertos</p>
-            <p class="tickete--texto tickete--cantidad">22</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--abiertos">53</p>
         </div>
         <div class="dash-empleado__informacion-tickete--pausados tickete--info">
             <p class="tickete--texto">Tickets pausados</p>
-            <p class="tickete--texto tickete--cantidad">3</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--pausados">22</p>
+        </div>
+        <div class="dash-empleado__informacion-tickete--escalados tickete--info">
+            <p class="tickete--texto">Tickets escalados</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--escalados">3</p>
         </div>
         <div class="dash-empleado__informacion-tickete--cerrados tickete--info">
             <p class="tickete--texto">Tickets cerrados</p>
-            <p class="tickete--texto tickete--cantidad">28</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--cerrados">28</p>
         </div>
     </div> <!-- .empleado__informacion-tickets -->
 
 
     <div class="dash-empleado__informacion-texto">
+    <p class="dahs__empleado__informacion-texto--leyenda">Total de tickets: <span id="tickets--totales">50</span> </p>
         <p class="dash-empleado__informacion-texto--leyenda">La información mostrada corresponde al mes en curso</p>
     </div>
 
@@ -55,6 +56,8 @@
 <?php $script = "
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/dashboard.js' defer></script>
+<script src='/build/js/inicio.js' defer></script>
+
 ";
 if ($idRol !== '4')
     $script .= "<script src='/build/js/notificaciones.js' defer></script>"

@@ -171,7 +171,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    border-radius: 5%;
     overflow: hidden;
     border: 2px solid #fff;
     transition: width 0.5s ease;
@@ -382,20 +382,27 @@
   transform: translate(-1.2rem, -1.2rem);
 }
 
+.img-empleado {
+  border-radius: 50%;
+}
+
 .dash-empleado {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .dash-empleado__imagen {
-  background-color: red;
-  width: 20rem;
   margin: 5rem 0 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(18px 18px 10px rgba(0, 0, 0, 0.5));
 }
 .dash-empleado__nombre {
-  background-color: blue;
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 3rem;
+  color: #64748B;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 .dash-empleado__informacion-tickete {
   display: flex;
@@ -410,11 +417,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.dash-empleado__informacion-tickete--total {
-  background-color: #108dbf;
-}
 .dash-empleado__informacion-tickete--abiertos {
-  background-color: salmon;
+  background-color: rgb(248, 88, 88);
+}
+.dash-empleado__informacion-tickete--escalados {
+  background-color: #F6A215;
 }
 .dash-empleado__informacion-tickete--pausados {
   background-color: #999999;
@@ -423,15 +430,20 @@
   background-color: #3e8b41;
 }
 .dash-empleado__informacion-texto {
-  background-color: yellow;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: end;
   margin-top: 2rem;
+  text-align: center;
 }
 .dash-empleado__informacion-texto--leyenda {
   font-size: 1.3rem;
+}
+
+.empleado__imagen--foto {
+  width: 20rem;
+  border-radius: 5%;
 }
 
 .tickete--info {
@@ -440,17 +452,21 @@
   align-items: center;
   width: 20rem;
   border-radius: 2rem;
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
 }
 .tickete--texto {
-  background-color: purple;
   color: #fff;
   text-align: center;
 }
 .tickete--cantidad {
-  background-color: peru;
-  font-size: 5rem;
+  font-size: 8rem;
   font-weight: 700;
   margin: 0 0 2rem 0;
+}
+@media (width < 920px) {
+  .tickete--cantidad {
+    font-size: 5rem;
+  }
 }
 
 .swal2-popup {

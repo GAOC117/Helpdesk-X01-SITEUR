@@ -8,16 +8,16 @@
                 <p class="dashboard__sidebar__ip--texto">IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
             </div>
             <div class="dashboard__sidebar--empleado">
-                <div class="dashboard__sidebar--empleado-imagen">
+                <div class="dashboard__sidebar--empleado-imagen-x">
                     <?php if ($expedienteLogueado === '4486') { ?>
-                        <img src="/build/img/vader.png" alt="empleado" class="dashboard__empleado-imagen--foto">
+                        <img src="/build/img/vader.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado">
                     <?php }  ?>
                     <?php if ($expedienteLogueado === '4485') { ?>
-                        <img src="/build/img/koala.png" alt="empleado" class="dashboard__empleado-imagen--foto">
+                        <img src="/build/img/koala.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado">
                     <?php }
                     if ($expedienteLogueado !== '4485' && $expedienteLogueado !== '4486') { ?>
 
-                        <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="empleado" class="dashboard__empleado-imagen--foto">
+                        <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="empleado" class="dashboard__sidebar--empleado-imagen">
                     <?php } ?>
                 </div>
                 <div class="dashboard__sidebar--empleado-nombre">
@@ -199,6 +199,7 @@
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-bell"></i>
                             <p class="notificaciones-icono"></p>
                             <span class="dashboard__sidebar-nav--texto">Notificaciones</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                     </li>
 
@@ -208,6 +209,7 @@
                         <a class="dashboard__sidebar-nav--enlace enlace-logout" href="/logout">
                             <i class="dashboard__sidebar-nav--icono icono-logout fa-solid fa-arrow-right-from-bracket"></i>
                             <span class="dashboard__sidebar-nav--texto">Cerrar sesión</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                     </li>
                 </ul>
