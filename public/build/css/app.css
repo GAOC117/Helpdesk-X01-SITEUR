@@ -400,6 +400,89 @@ h3 {
   }
 }
 
+.boton-verde-limon {
+  background-color: #9eec50;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+}
+.boton-verde-limon:hover {
+  animation: pulsate-verde-limon 1s ease-in-out;
+  background-color: #9eec50;
+  cursor: pointer;
+}
+@keyframes pulsate-verde-limon {
+  0% {
+    box-shadow: 0 0 25px #9eec50, 0 0 50px #9eec50;
+  }
+}
+
+.boton-rojo {
+  background-color: rgb(169, 0, 0);
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+}
+.boton-rojo:hover {
+  animation: pulsate-rojo 1s ease-in-out;
+  background-color: rgb(169, 0, 0);
+  cursor: pointer;
+}
+@keyframes pulsate-rojo {
+  0% {
+    box-shadow: 0 0 25px rgb(169, 0, 0), 0 0 50px rgb(169, 0, 0);
+  }
+}
+
+.boton-azul {
+  background-color: #108dbf;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+.boton-azul:hover {
+  animation: pulsate-azul 1s ease-in-out;
+  background-color: #108dbf;
+  cursor: pointer;
+}
+@keyframes pulsate-azul {
+  0% {
+    box-shadow: 0 0 25px #108dbf, 0 0 50px #108dbf;
+  }
+}
+
+.boton-verde-limon,
+.boton-rojo,
+.boton-azul {
+  border-radius: 0;
+  padding: 0.5rem 3rem;
+}
+
 .authl.login {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/build/img/mics.jpg");
   background-size: cover;

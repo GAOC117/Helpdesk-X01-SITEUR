@@ -820,6 +820,9 @@
 .tabla__body {
   background-color: white;
 }
+.tabla__body-empleados {
+  background-color: white;
+}
 .tabla__contenedor {
   overflow-x: auto;
   width: 50rem;

@@ -53,6 +53,8 @@
 
 }
 
+
+
 .tabla {
 
     margin: 0 auto;
@@ -60,6 +62,11 @@
     &__body {
 
         background-color: white;
+        
+        &-empleados{
+            
+            background-color: white;
+        }
     }
 
     &__contenedor {

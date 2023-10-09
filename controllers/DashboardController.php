@@ -9,6 +9,7 @@ use Model\Empleado;
 use Model\HistoricoTicket;
 use Model\Subclasificacion;
 use Model\Tickets;
+use Model\VerEmpleados;
 use Model\VerTickets;
 use MVC\Router;
 
@@ -17,8 +18,8 @@ class DashboardController
 
     public static function index(Router $router)
     {
-        isLogged();
         session_start();
+        isLogged();
         $idRol = $_SESSION['idRol'];
         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
@@ -38,9 +39,9 @@ class DashboardController
 
     public static function generarTicket(Router $router)
     {
-        isLogged();
         session_start();
         $idRol = $_SESSION['idRol'];
+        isLogged();
         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $extension = $_SESSION['extension'];
@@ -70,8 +71,8 @@ class DashboardController
 
     public static function verTickets(Router $router)
     {
-        isLogged();
         session_start();
+        isLogged();
         $idRol = $_SESSION['idRol'];
         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
@@ -101,8 +102,8 @@ class DashboardController
 
     public static function asignarTickets(Router $router)
     {
-        isLogged();
         session_start();
+        isLogged();
         $idRol = $_SESSION['idRol'];
         $nombreLogueado = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
@@ -214,8 +215,8 @@ class DashboardController
     public static function historialTickets(Router $router)
     {
 
-        isLogged();
         session_start();
+        isLogged();
         $idRol = $_SESSION['idRol'];
         $expedienteLogueado = $_SESSION['id'];
         $nombreLogueado = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
@@ -264,8 +265,8 @@ class DashboardController
 
     public static function pausarTickets(Router $router)
     {
-        isLogged();
         session_start();
+        isLogged();
         $idRol = $_SESSION['idRol'];
         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
@@ -383,9 +384,9 @@ class DashboardController
 
     public static function escalarTickets(Router $router)
     {
-        isLogged();
         session_start();
         $idRol = $_SESSION['idRol'];
+        isLogged();
         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $extension = $_SESSION['extension'];
@@ -535,9 +536,9 @@ class DashboardController
 
     public static function  cerrarTickets(Router $router)
     {
-        isLogged();
         session_start();
         $idRol = $_SESSION['idRol'];
+        isLogged();
         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $extension = $_SESSION['extension'];
@@ -645,4 +646,39 @@ class DashboardController
 
         ]);
     }
+
+
+
+    public static function verEmpleados(Router $router)
+    {
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+         $expedienteLogueado = $_SESSION['id'];
+        // $extension = $_SESSION['extension'];
+        $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+        $query = 'SELECT  e.id, e.nombre, e.apellidoPaterno, e.apellidoMaterno,e.email, e.extension, d.descripcion as departamento, e.estatus FROM empleado as e left outer join departamento d on e.idDepartamento = d.id;
+        ';
+
+        $empleados = VerEmpleados::SQL($query);
+
+        
+
+      
+
+        $titulo = 'Empleados';
+
+
+        $router->renderView('dashboard/empleados', [
+
+            'titulo' => $titulo,
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'empleados' => $empleados
+
+        ]);
+    }
+    
 }

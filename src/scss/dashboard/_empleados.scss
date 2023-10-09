@@ -1,0 +1,18 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+
+.tabla {
+
+   
+
+    &__body {
+
+        
+        
+        &-empleados{
+            
+            background-color: white;
+        }
+    }
+}

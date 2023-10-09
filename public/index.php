@@ -69,6 +69,9 @@ $router->post('/dashboard/asignar-tickets', [DashboardController::class, 'asigna
 $router->get('/dashboard/cerrar-tickets', [DashboardController::class, 'cerrarTickets']);
 $router->post('/dashboard/cerrar-tickets', [DashboardController::class, 'cerrarTickets']);
 
+//empleados
+$router->get('/dashboard/empleados', [DashboardController::class, 'verEmpleados']);
+$router->post('/dashboard/empleados', [DashboardController::class, 'verEmpleados']);
 
 //API's
 $router->get('/api/obtenerEmpleado', [ApiController::class, 'obtenerEmpleado']);

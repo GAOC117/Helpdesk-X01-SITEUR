@@ -2,7 +2,7 @@
 @use 'base/variables' as v;
 
 
-.boton-regresar{
+.boton-regresar {
     position: absolute;
     right: 1rem;
     top: 1rem;
@@ -14,18 +14,42 @@
         justify-content: center;
         top: 8rem;
     }
-    
+
 }
 
 
-.volver-ver-tickets{
-    @include m.boton(v.$azul-siteur,v.$blanco, pulsate-azul-siteur );
- padding: 0 0 0 2rem;
+.volver-ver-tickets {
+    @include m.boton(v.$azul-siteur, v.$blanco, pulsate-azul-siteur);
+    padding: 0 0 0 2rem;
 
- display: flex;
- align-items: center;
- gap: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 
- width: 20rem;
-//  font-size: 2rem !important;
+    width: 20rem;
+    //  font-size: 2rem !important;
+}
+
+
+.boton-verde-limon {
+    @include m.boton(#9eec50, white, pulsate-verde-limon);
+}
+
+.boton-rojo {
+    @include m.boton(v.$rojo, white, pulsate-rojo);
+
+}
+
+
+.boton-azul {
+    @include m.boton(#108dbf, white, pulsate-azul);
+    margin-bottom: .5rem;
+
+}
+
+.boton-verde-limon,
+.boton-rojo,
+.boton-azul {
+    border-radius: 0;
+    padding: .5rem 3rem;
 }
