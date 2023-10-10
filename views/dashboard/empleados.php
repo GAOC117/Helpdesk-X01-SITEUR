@@ -46,7 +46,9 @@
 
     <?php endif; ?>
 
-    <table id="myTable" class="table table-hover tabla" cellspacing="0" cellpadding="0">
+    
+    <div class='tabla__contenedor-empleado'>
+    <table id="myTable" class="table table-hover tabla tabla-empleado" cellspacing="0" cellpadding="0">
 
 
 
@@ -54,15 +56,15 @@
 
         <?php if (count($empleados) > 0) : ?>
 
-            <thead class="tabla__header">
-                    <tr class="tabla__header__pegar">
+            <thead class="tabla__header tabla__header-empleado">
+                <tr class="tabla__header__pegar tr-empleado">
 
-                    <th class="tabla__th">Expediente</th>
-                    <th class="tabla__th">Nombre</th>
-                    <th class="tabla__th">Correo</th>
-                    <th class="tabla__th">Extensión</th>
-                    <th class="tabla__th">Departamento</th>
-                    <th class="tabla__th">Acciones</th>
+                    <th class="tabla__th th-empleado">Expediente</th>
+                    <th class="tabla__th th-empleado">Nombre</th>
+                    <th class="tabla__th th-empleado">Correo</th>
+                    <th class="tabla__th th-empleado">Extensión</th>
+                    <th class="tabla__th th-empleado">Departamento</th>
+                    <th class="tabla__th th-empleado">Acciones</th>
                 </tr>
             </thead>
 
@@ -71,21 +73,21 @@
 
                 <?php
                 foreach ($empleados as $empleado) : ?>
-<?php if($empleado->id === '0') continue; ?>
-                    
-                    <tr class="tabla__row">
-                        <td class="tabla__td"><?php echo $empleado->id; ?></td>
-                        <td class="tabla__td"><?php echo $empleado->nombre . ' ' . $empleado->apellidoPaterno . ' ' . $empleado->apellidoMaterno; ?></td>
-                        <td class="tabla__td"><?php echo $empleado->email; ?></td>
-                        <td class="tabla__td"><?php echo $empleado->extension; ?></td>
-                        <td class="tabla__td"><?php echo $empleado->departamento; ?></td>
-                        <td class="tabla__td">
+                    <?php if ($empleado->id === '0') continue; ?>
+
+                    <tr class="tabla__row tabla-row-empleado">
+                        <td class="tabla__td td-empleado"><?php echo $empleado->id; ?></td>
+                        <td class="tabla__td td-empleado"><?php echo $empleado->nombre . ' ' . $empleado->apellidoPaterno . ' ' . $empleado->apellidoMaterno; ?></td>
+                        <td class="tabla__td td-empleado"><?php echo $empleado->email; ?></td>
+                        <td class="tabla__td td-empleado"><?php echo $empleado->extension; ?></td>
+                        <td class="tabla__td td-empleado"><?php echo $empleado->departamento; ?></td>
+                        <td class="tabla__td td-empleado">
                             <?php if ($empleado->estatus === '1') { ?>
-                                <a href="/empleados/editar?id=<?php echo $empleado->id; ?>" class="boton-azul">Editar</a>
+                                <a href="/empleados/editar?id=<?php echo $empleado->id; ?>" class="boton-azul boton-accion">Editar</a>
                                 <form method="POST" action="/empleados/update">
                                     <input type="hidden" name="id" value="<?php echo $empleado->id; ?>">
                                     <input type="hidden" name="tipo" value="propiedad">
-                                    <input type="submit" class="boton-rojo" value="Dar de baja">
+                                    <input type="submit" class="boton-rojo boton-accion" value="Dar de baja">
                                 </form>
 
 
@@ -93,7 +95,7 @@
                                 <form method="POST" action="/empleados/update">
                                     <input type="hidden" name="id" value="<?php echo $empleado->id; ?>">
                                     <input type="hidden" name="tipo" value="propiedad">
-                                    <input type="submit" class="boton-verde-limon" value="Dar de alta">
+                                    <input type="submit" class="boton-verde-limon boton-accion" value="Dar de alta">
                                 </form>
                             <?php } ?>
                         </td>
@@ -102,6 +104,7 @@
             <?php endif; ?>
             </tbody>
     </table>
+    </div>
 
 
 </main>
@@ -111,7 +114,7 @@
 <script src='/build/js/ver-tickets.js' defer></script>
 
 ";
-if($idRol!=='4')
-$script.="<script src='/build/js/notificaciones.js' defer></script>"
+if ($idRol !== '4')
+    $script .= "<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>

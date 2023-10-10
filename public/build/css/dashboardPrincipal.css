@@ -391,6 +391,11 @@
   flex-direction: column;
   align-items: center;
 }
+@media (width < 500px) {
+  .dash-empleado {
+    height: 87rem;
+  }
+}
 .dash-empleado__imagen {
   margin: 5rem 0 2rem 0;
   display: flex;
@@ -466,6 +471,40 @@
 @media (width < 920px) {
   .tickete--cantidad {
     font-size: 5rem;
+  }
+}
+
+.tabla__body-empleados {
+  background-color: white;
+  overflow-x: auto;
+}
+.tabla__contenedor-empleado {
+  overflow-x: auto;
+  width: 100%;
+  height: 50rem;
+}
+@media (width < 768px) {
+  .tabla__contenedor-empleado {
+    margin-top: 5rem;
+    width: 100%;
+    max-width: 50rem;
+    min-width: 45rem;
+  }
+}
+
+.empleados {
+  max-width: 120rem;
+}
+@media (width < 768px) {
+  .empleados {
+    height: 100rem;
+  }
+}
+
+@media (width < 768px) {
+  .boton-accion,
+  .td-empleado {
+    font-size: 1rem;
   }
 }
 
@@ -818,9 +857,6 @@
   margin: 0 auto;
 }
 .tabla__body {
-  background-color: white;
-}
-.tabla__body-empleados {
   background-color: white;
 }
 .tabla__contenedor {
