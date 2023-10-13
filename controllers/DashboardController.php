@@ -713,8 +713,9 @@ class DashboardController
 
         $departamentos =  Departamento::allOrderBy('descripcion asc');
 
-
+// debuguear($usuario);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $expedienteAnterior = $usuario->id;
             //sincroniza los datos de post con los de la base de datos
             $usuario->sincronizar($_POST);
 
@@ -737,13 +738,12 @@ class DashboardController
             if (empty($alertas)) {
 
 
+//SINCRONIZAR CON POST
 
 
-
-                // Crear un nuevo usuario
-                $resultado =  $usuario->actualizarEmpleado();
-
-
+                //EDITAR EL EMPLEADO CON WHERE EL EXPEDIENTE ES EL ANTERIOR
+                // $resultado =  $usuario->actualizarEmpleado();
+$resultado=0; //para que no de errro abajo
                 if ($resultado) {
                     header('Location: /dashboard/empleados');
                 }
@@ -753,9 +753,11 @@ class DashboardController
         // Render a la vista
         $router->renderView('dashboard/editar-empleado', [
 
-            'titulo' => 'Editar empleados',
+            'titulo' => 'Editar empleado',
             'idRol' => $idRol,
-            'expedienteLogueado' => $expedienteLogueado
+            'expedienteLogueado' => $expedienteLogueado,
+            'empleado'=>$usuario
+        
            
 
         ]);

@@ -37,6 +37,12 @@ setInterval(function () {
 }, 2000);
 
 
+setTimeout(function () {
+
+    fadeOutAlerta();
+
+}, 2000);
+
 
 
 
@@ -314,7 +320,9 @@ async function llenarTablaTickets() {
 }
 
 
-
+function fadeOutAlerta(){
+    $('.div-ver-tickets').fadeOut(1000);
+}
 
 // async function obtenerRol() {
 

@@ -4,8 +4,6 @@
 
 .tabla {
 
-   
-
     &__body {
 
         
@@ -60,4 +58,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.editar-empleado{
+
+    &__texto{
+        text-align: center;
+    }
+
+    &__btn{
+        display: flex;
+        margin: 1rem auto 0 auto;
+    }
 }

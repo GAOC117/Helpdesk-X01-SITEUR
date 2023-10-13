@@ -1,0 +1,1 @@
+function quitarAlerta(){document.querySelector(".div-alerta")&&document.querySelector(".div-alerta").classList.remove(".div-alerta")}setTimeout((function(){quitarAlerta()}),2e3);

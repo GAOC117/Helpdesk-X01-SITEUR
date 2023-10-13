@@ -10,7 +10,7 @@
     <?php
     if ($_SESSION['mensaje']) { 
     ?>
-    <div class="ver-tickets--alerta">
+    <div class="ver-tickets--alerta div-ver-tickets">
 
         <p class="alerta alerta__exito">
             <?php

@@ -1435,4 +1435,12 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.editar-empleado__texto {
+  text-align: center;
+}
+.editar-empleado__btn {
+  display: flex;
+  margin: 1rem auto 0 auto;
+}
 /*# sourceMappingURL=dashboardPrincipal.css.map */
