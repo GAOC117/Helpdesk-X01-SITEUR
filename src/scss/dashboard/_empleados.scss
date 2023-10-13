@@ -50,3 +50,14 @@
         font-size: 1rem;
     }
 }
+
+.alerta-empleados{
+    position: unset;// !important;
+    margin: unset;// !important;
+}
+
+.ver-empleados__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

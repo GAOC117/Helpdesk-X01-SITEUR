@@ -23,25 +23,25 @@
         <!-- si es colaborador solo ver abiertos y cerrados -->
         <div class="dash-empleado__informacion-tickete--abiertos tickete--info">
             <p class="tickete--texto">Tickets abiertos</p>
-            <p class="tickete--texto tickete--cantidad" id="tickets--abiertos">53</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--abiertos"></p>
         </div>
         <div class="dash-empleado__informacion-tickete--pausados tickete--info">
             <p class="tickete--texto">Tickets pausados</p>
-            <p class="tickete--texto tickete--cantidad" id="tickets--pausados">22</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--pausados"></p>
         </div>
         <div class="dash-empleado__informacion-tickete--escalados tickete--info">
             <p class="tickete--texto">Tickets escalados</p>
-            <p class="tickete--texto tickete--cantidad" id="tickets--escalados">3</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--escalados"></p>
         </div>
         <div class="dash-empleado__informacion-tickete--cerrados tickete--info">
             <p class="tickete--texto">Tickets cerrados</p>
-            <p class="tickete--texto tickete--cantidad" id="tickets--cerrados">28</p>
+            <p class="tickete--texto tickete--cantidad" id="tickets--cerrados"></p>
         </div>
     </div> <!-- .empleado__informacion-tickets -->
 
 
     <div class="dash-empleado__informacion-texto">
-    <p class="dahs__empleado__informacion-texto--leyenda">Total de tickets: <span id="tickets--totales">50</span> </p>
+    <p class="dahs__empleado__informacion-texto--leyenda">Total de tickets: <span id="tickets--totales"></span> </p>
         <p class="dash-empleado__informacion-texto--leyenda">La información mostrada corresponde al mes en curso</p>
     </div>
 

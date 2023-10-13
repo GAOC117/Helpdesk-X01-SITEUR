@@ -256,7 +256,7 @@ class ApiController
         date_default_timezone_set('America/Mexico_City');
         $mesActual = date('m');
         $actualYear = date('Y');
-        debuguear($actualYear);
+      
         
         
 

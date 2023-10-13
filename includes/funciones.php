@@ -25,7 +25,7 @@ function isLogged()
 function idNotNumeric()
 {
     if (!is_numeric($_GET['id']))
-        header('Location: /dashboard/ver-tickets');
+        header('Location: /dashboard');
 }
 
 
@@ -40,5 +40,5 @@ function isAdmin()
 {
 
     if ($_SESSION['idRol'] !== '1')
-        header('location:/dashboard/ver-tickets');
+        header('location:/dashboard');
 }

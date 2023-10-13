@@ -72,6 +72,10 @@ $router->post('/dashboard/cerrar-tickets', [DashboardController::class, 'cerrarT
 //empleados
 $router->get('/dashboard/empleados', [DashboardController::class, 'verEmpleados']);
 $router->post('/dashboard/empleados', [DashboardController::class, 'verEmpleados']);
+$router->get('/dashboard/empleados/update', [DashboardController::class, 'altaBajaEmpleado']);
+$router->post('/dashboard/empleados/update', [DashboardController::class, 'altaBajaEmpleado']);
+$router->get('/dashboard/empleados/editar', [DashboardController::class, 'editarEmpleado']);
+$router->post('/dashboard/empleados/editar', [DashboardController::class, 'editarEmpleado']);
 
 //API's
 $router->get('/api/obtenerEmpleado', [ApiController::class, 'obtenerEmpleado']);

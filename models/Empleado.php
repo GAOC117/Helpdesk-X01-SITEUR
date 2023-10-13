@@ -91,10 +91,7 @@ class Empleado extends ActiveRecord {
             self::$alertas['error'][] = 'Las contraseñas no coinciden';
         }
 
-        if(!$this->extension) {
-            self::$alertas['error'][] = 'Debe indicar una extensión';
-        }
-
+     
         if(!$this->idDepartamento) {
             self::$alertas['error'][] = 'Debe indicar a que departamento pertenece';
         }
@@ -154,5 +151,34 @@ class Empleado extends ActiveRecord {
     // Generar un Token
     public function crearToken() : void {
         $this->token = uniqid();
+    }
+
+
+    public function validarEdicion(){
+        if(!$this->nombre) {
+            self::$alertas['error'][] = 'El nombre es obligatorio';
+        }
+        if(!$this->apellidoPaterno) {
+            self::$alertas['error'][] = 'El apellido paterno es obligatorio';
+        }
+        if(!$this->apellidoMaterno) {
+            self::$alertas['error'][] = 'El apellido materno es obligatorio';
+        }
+        if(!$this->id) {
+            self::$alertas['error'][] = 'El expediente es obligatorio';
+        }
+        if(!$this->extension) {
+            self::$alertas['error'][] = 'La extensión es obligatoria';
+        }
+        if(!$this->email) {
+            self::$alertas['error'][] = 'El correo es obligatorio';
+        }    
+
+        if(!$this->idDepartamento) {
+            self::$alertas['error'][] = 'Debe indicar a que departamento pertenece';
+        }
+
+
+        return self::$alertas;
     }
 }

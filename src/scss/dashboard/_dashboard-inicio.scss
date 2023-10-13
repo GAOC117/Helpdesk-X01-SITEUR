@@ -30,10 +30,19 @@
 
     &__nombre {
 
-        font-size: 3rem;
         margin-bottom: 3rem;
         color: v.$gris;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        
+        &--texto{
+            font-size: 3rem;
+            text-align: center;
+
+            @media (width<768px) {
+                font-size: 1.8rem;
+            }
+
+        }
 
     }
 

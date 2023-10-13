@@ -24,7 +24,7 @@ async function getMonthlyTickets() {
     
     const resultado = await fetch(url);
     const result = await resultado.json();
-    console.log(result);
+ 
     const abiertos = result.abiertos.abiertos;
     const pausados = result.pausados.pausados;
     const escalados = result.escalados.escalados;
@@ -32,7 +32,7 @@ async function getMonthlyTickets() {
     const totales = result.total.total;
     
 
-    console.log("abiertos: "+abiertos+" pausados: "+pausados+" escalados: "+escalados+" cerrados: "+cerrados+" Totales: "+totales);
+    // console.log("abiertos: "+abiertos+" pausados: "+pausados+" escalados: "+escalados+" cerrados: "+cerrados+" Totales: "+totales);
         const abierto = document.querySelector('#tickets--abiertos');
         const pausado = document.querySelector('#tickets--pausados');
         const escalado = document.querySelector('#tickets--escalados');

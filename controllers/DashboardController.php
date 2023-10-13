@@ -26,7 +26,7 @@ class DashboardController
 
 
 
-        $titulo = 'Dashboard de '.$nombre;
+        $titulo = 'Dashboard de ' . $nombre;
 
 
         $router->renderView('dashboard/dashboard', [
@@ -67,8 +67,6 @@ class DashboardController
         ]);
     }
 
-
-
     public static function verTickets(Router $router)
     {
         session_start();
@@ -80,7 +78,7 @@ class DashboardController
         $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $query = '';
 
-      
+
 
         $titulo = 'Ver tickets';
 
@@ -97,8 +95,6 @@ class DashboardController
 
         ]);
     }
-
-
 
     public static function asignarTickets(Router $router)
     {
@@ -190,7 +186,7 @@ class DashboardController
         }
 
 
-        $titulo = 'Asignar ticket #'.$idTicket;
+        $titulo = 'Asignar ticket #' . $idTicket;
 
 
         $router->renderView('dashboard/asignar-tickets', [
@@ -210,7 +206,6 @@ class DashboardController
 
         ]);
     }
-
 
     public static function historialTickets(Router $router)
     {
@@ -261,8 +256,6 @@ class DashboardController
         ]);
     }
 
-
-
     public static function pausarTickets(Router $router)
     {
         session_start();
@@ -288,15 +281,15 @@ class DashboardController
         $depto = new Departamento;
 
         $ticket = $tickets->find($idTicket);
-       
-        
+
+
         if (!$ticket)
-        header('Location: /dashboard/ver-tickets');
-        
+            header('Location: /dashboard/ver-tickets');
+
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-           
+
 
 
             $historicoTicket = $historico->OneWhere('idTicket', $idTicket, 'id desc');
@@ -380,7 +373,6 @@ class DashboardController
 
         ]);
     }
-
 
     public static function escalarTickets(Router $router)
     {
@@ -532,8 +524,6 @@ class DashboardController
         ]);
     }
 
-
-
     public static function  cerrarTickets(Router $router)
     {
         session_start();
@@ -647,8 +637,6 @@ class DashboardController
         ]);
     }
 
-
-
     public static function verEmpleados(Router $router)
     {
         session_start();
@@ -656,17 +644,16 @@ class DashboardController
         isAdmin();
         $idRol = $_SESSION['idRol'];
         // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
-         $expedienteLogueado = $_SESSION['id'];
+        $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
-        $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $query = 'SELECT  e.id, e.nombre, e.apellidoPaterno, e.apellidoMaterno,e.email, e.extension, d.descripcion as departamento, e.estatus FROM empleado as e left outer join departamento d on e.idDepartamento = d.id;
         ';
 
         $empleados = VerEmpleados::SQL($query);
 
-        
 
-      
+
+
 
         $titulo = 'Empleados';
 
@@ -680,5 +667,97 @@ class DashboardController
 
         ]);
     }
-    
+
+    public static function altaBajaEmpleado()
+    {
+
+        $id = $_POST['id'];
+
+        if (!is_numeric($id)) //si no es un numero regresar al dashboard
+            header('Location: /dashboard/empleados');
+
+        $empleado = Empleado::findEmpleado($id);
+        session_start();
+        if ($empleado->estatus === '1') {
+            $empleado->estatus = '0';
+            $_SESSION['mensaje'] = 'Empleado dado de baja';
+        } else {
+            $empleado->estatus = '1';
+            $_SESSION['mensaje'] = 'Empleado dado de alta';
+        }
+
+
+        $empleado->actualizarEmpleado();
+
+
+        header('Location: /dashboard/empleados');
+    }
+
+
+    public static function editarEmpleado(Router $router)
+    {
+
+
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+       
+        $expedienteLogueado = $_SESSION['id'];
+        $alertas = [];
+        $id = $_GET['id'];
+        idNotNumeric($id);
+
+        $usuario = Empleado::find($id);
+
+
+        $departamentos =  Departamento::allOrderBy('descripcion asc');
+
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //sincroniza los datos de post con los de la base de datos
+            $usuario->sincronizar($_POST);
+
+            $alertas = $usuario->validarEdicion();
+
+            $existeUsuarioCorreo = Empleado::whereAndLogIn('id', $usuario->id, 'email', $usuario->email);
+            $existeExpediente = Empleado::whereLogin('id', $usuario->id);
+            $existeCorreo = Empleado::whereLogin('email', $usuario->email);
+
+            if ($existeUsuarioCorreo) {
+                Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente y correo');
+            } else if ($existeExpediente) {
+                Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente');
+            } else if ($existeCorreo) {
+                Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
+            }
+
+            $alertas = Empleado::getAlertas();
+
+            if (empty($alertas)) {
+
+
+
+
+
+                // Crear un nuevo usuario
+                $resultado =  $usuario->actualizarEmpleado();
+
+
+                if ($resultado) {
+                    header('Location: /dashboard/empleados');
+                }
+            } //if alertas
+        }
+
+        // Render a la vista
+        $router->renderView('dashboard/editar-empleado', [
+
+            'titulo' => 'Editar empleados',
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado
+           
+
+        ]);
+    }
 }
