@@ -95,7 +95,7 @@
                     </li>
 
                     <li >
-                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                        <a class="dashboard__sidebar-nav--enlace" href="/dashboard/clasificaciones">
                             <i class="dashboard__sidebar-nav--icono fa-brands fa-jedi-order"></i>
                             <span class="dashboard__sidebar-nav--texto">Clasificación incidentes</span>
                             <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>

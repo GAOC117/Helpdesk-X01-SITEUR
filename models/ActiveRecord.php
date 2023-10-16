@@ -327,7 +327,7 @@ public static function actualizarQuery($query){
     return $resultado;
 }
 
-    public function actualizarEmpleado() {
+    public function actualizarEmpleado($id) {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributosEmpleado();
 
@@ -340,7 +340,7 @@ public static function actualizarQuery($query){
         // Consulta SQL
         $query = "UPDATE " . static::$tabla ." SET ";
         $query .=  join(', ', $valores );
-        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " WHERE id = '" . self::$db->escape_string($id) . "' ";
         $query .= " LIMIT 1 "; 
 
         // Actualizar BD

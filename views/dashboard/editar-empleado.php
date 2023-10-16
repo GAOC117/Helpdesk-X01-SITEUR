@@ -7,10 +7,12 @@
         <?php
         require_once __DIR__ . '/../templates/alertas.php';
         ?>
+       
+
     </div>
 
     <div class="editar-empleado__datos">
-        <form  class="editar-empleado__form formulario" method="POST">
+        <form class="editar-empleado__form formulario" method="POST">
 
             <div class="formulario__datos-empleado">
 
@@ -73,7 +75,7 @@
                         <option value="" disabled selected>--Seleccionar--</option>
                         <?php foreach ($roles as $rol) { ?>
 
-                            <option <?php echo  $usuario->idRol === $rol->id ? ' selected' : '' ?> value="<?php echo s($rol->id); ?>"><?php echo s($rol->descripcion); ?>
+                            <option <?php echo  $usuario->idRol === $rol->id ? ' selected' : '' ?> value="<?php echo s($rol->id); ?>"><?php echo s(ucfirst($rol->descripcion)); ?>
 
                             </option>
                         <?php } ?>
@@ -97,6 +99,8 @@
 
 <?php $script = "
 <script src='/build/js/sidebar.js' defer></script>
+<script src='/build/js/selects.js' defer></script>
+
 
 
 ";

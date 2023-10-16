@@ -6,7 +6,7 @@ class VerEmpleados extends ActiveRecord
 {
     protected static $tabla = 'empleado';
     protected static $columnasDB = [
-        'id', 'nombre','apellidoPaterno', 'apellidoMaterno', 'email', 'extension', 'departamento', 'estatus'];
+        'id', 'nombre','apellidoPaterno', 'apellidoMaterno', 'email', 'extension', 'departamento','rol', 'estatus'];
 
 
 
@@ -17,6 +17,7 @@ class VerEmpleados extends ActiveRecord
     public $email;
     public $extension;
     public $departamento;
+    public $rol;
     public $estatus;
  
    
@@ -32,6 +33,7 @@ class VerEmpleados extends ActiveRecord
         $this->email = $args['email'] ?? '';
         $this->extension = $args['extension'] ?? '';
         $this->departamento = $args['departamento'] ?? '';
+        $this->rol = $args['rol'] ?? '';
         $this->estatus = $args['estatus'] ?? '';
       
 

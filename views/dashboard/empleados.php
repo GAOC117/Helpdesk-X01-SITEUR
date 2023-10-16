@@ -71,6 +71,7 @@
                         <th class="tabla__th th-empleado">Correo</th>
                         <th class="tabla__th th-empleado">Extensión</th>
                         <th class="tabla__th th-empleado">Departamento</th>
+                        <th class="tabla__th th-empleado">Rol</th>
                         <th class="tabla__th th-empleado">Acciones</th>
                     </tr>
                 </thead>
@@ -88,6 +89,7 @@
                             <td class="tabla__td td-empleado"><?php echo $empleado->email; ?></td>
                             <td class="tabla__td td-empleado"><?php echo $empleado->extension; ?></td>
                             <td class="tabla__td td-empleado"><?php echo $empleado->departamento; ?></td>
+                            <td class="tabla__td td-empleado"><?php echo ucfirst($empleado->rol); ?></td>
                             <td class="tabla__td td-empleado">
                                 <?php if ($empleado->estatus === '1') { ?>
                                     <a href="/dashboard/empleados/editar?id=<?php echo $empleado->id; ?>" class="boton-azul boton-accion">Editar</a>
@@ -118,7 +120,7 @@
 
 <?php $script = "
 <script src='/build/js/sidebar.js' defer></script>
-<script src='/build/js/empleados.js' defer></script>
+<script src='/build/js/alertas.js' defer></script>
 
 ";
 if ($idRol !== '4')

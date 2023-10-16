@@ -647,7 +647,7 @@ class DashboardController
         // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
-        $query = 'SELECT  e.id, e.nombre, e.apellidoPaterno, e.apellidoMaterno,e.email, e.extension, d.descripcion as departamento, e.estatus FROM empleado as e left outer join departamento d on e.idDepartamento = d.id;
+        $query = 'SELECT  e.id, e.nombre, e.apellidoPaterno, e.apellidoMaterno,e.email, e.extension, r.descripcion as rol, d.descripcion as departamento, e.estatus FROM empleado as e left outer join departamento d on e.idDepartamento = d.id left outer join roles as r on e.idRol = r.id;
         ';
 
         $empleados = VerEmpleados::SQL($query);
@@ -721,15 +721,16 @@ class DashboardController
         // debuguear($usuario);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $expedienteAnterior = $usuario->id;
+            $correoAnterior = $usuario->email;
             //sincroniza los datos de post con los de la base de datos
             $usuario->sincronizar($_POST);
-            debuguear($usuario);
+
             $alertas = $usuario->validarEdicion();
 
             $existeUsuarioCorreo = Empleado::whereAndLogIn('id', $usuario->id, 'email', $usuario->email);
             $existeExpediente = Empleado::whereLogin('id', $usuario->id);
             $existeCorreo = Empleado::whereLogin('email', $usuario->email);
-            if ($expedienteAnterior != $usuario->id) {
+            if ($expedienteAnterior !== $usuario->id && $correoAnterior !== $usuario->email) {
 
                 if ($existeUsuarioCorreo) {
                     Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente y correo');
@@ -738,15 +739,23 @@ class DashboardController
                 } else if ($existeCorreo) {
                     Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
                 }
+            } else {
+                if ($expedienteAnterior !== $usuario->id) {
+                    if ($existeExpediente) {
+                        Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente');
+                    }
+                    if ($correoAnterior !== $usuario->email) {
+
+
+                        if ($existeCorreo) {
+                            Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
+                        }
+                    }
+                }
             }
-            else{
-                if ($existeCorreo) {
-                    Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
-            }
-        }
 
             $alertas = Empleado::getAlertas();
-        
+
 
             if (empty($alertas)) {
 
@@ -755,9 +764,11 @@ class DashboardController
 
 
                 //EDITAR EL EMPLEADO CON WHERE EL EXPEDIENTE ES EL ANTERIOR
-                // $resultado =  $usuario->actualizarEmpleado();
-                $resultado = 0; //para que no de errro abajo
+                $resultado =  $usuario->actualizarEmpleado($expedienteAnterior);
+
                 if ($resultado) {
+                    session_start();
+                    $_SESSION['mensaje'] = 'Empleado actualizado con éxito';
                     header('Location: /dashboard/empleados');
                 }
             } //if alertas
@@ -771,9 +782,40 @@ class DashboardController
             'expedienteLogueado' => $expedienteLogueado,
             'usuario' => $usuario,
             'departamentos' => $departamentos,
-            'roles' => $roles
+            'roles' => $roles,
+            'alertas' => $alertas
 
 
+
+        ]);
+    }
+
+
+    public static function verClasificaciones(Router $router)
+    {
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $expedienteLogueado = $_SESSION['id'];
+        // $extension = $_SESSION['extension'];
+        
+        $clasificaciones = Clasificacion::allOrderBy('id asc');
+        
+
+
+
+
+        $titulo = 'Clasificación de averias';
+
+
+        $router->renderView('dashboard/clasificaciones', [
+
+            'titulo' => $titulo,
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'clasificaciones' => $clasificaciones
 
         ]);
     }
