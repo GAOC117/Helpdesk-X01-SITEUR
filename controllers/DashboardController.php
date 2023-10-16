@@ -11,6 +11,7 @@ use Model\Subclasificacion;
 use Model\Tickets;
 use Model\VerEmpleados;
 use Model\VerTickets;
+use Model\Roles;
 use MVC\Router;
 
 class DashboardController
@@ -702,7 +703,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-       
+
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
         $id = $_GET['id'];
@@ -711,39 +712,51 @@ class DashboardController
         $usuario = Empleado::find($id);
 
 
-        $departamentos =  Departamento::allOrderBy('descripcion asc');
 
-// debuguear($usuario);
+        $departamentos =  Departamento::allOrderBy('descripcion asc');
+        $roles = Roles::allOrderby('id asc');
+
+
+
+        // debuguear($usuario);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $expedienteAnterior = $usuario->id;
             //sincroniza los datos de post con los de la base de datos
             $usuario->sincronizar($_POST);
-
+            debuguear($usuario);
             $alertas = $usuario->validarEdicion();
 
             $existeUsuarioCorreo = Empleado::whereAndLogIn('id', $usuario->id, 'email', $usuario->email);
             $existeExpediente = Empleado::whereLogin('id', $usuario->id);
             $existeCorreo = Empleado::whereLogin('email', $usuario->email);
+            if ($expedienteAnterior != $usuario->id) {
 
-            if ($existeUsuarioCorreo) {
-                Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente y correo');
-            } else if ($existeExpediente) {
-                Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente');
-            } else if ($existeCorreo) {
-                Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
+                if ($existeUsuarioCorreo) {
+                    Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente y correo');
+                } else if ($existeExpediente) {
+                    Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese expediente');
+                } else if ($existeCorreo) {
+                    Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
+                }
             }
+            else{
+                if ($existeCorreo) {
+                    Empleado::setAlerta('error', 'Ya existe un empleado registrado con ese correo');
+            }
+        }
 
             $alertas = Empleado::getAlertas();
+        
 
             if (empty($alertas)) {
 
 
-//SINCRONIZAR CON POST
+                //SINCRONIZAR CON POST
 
 
                 //EDITAR EL EMPLEADO CON WHERE EL EXPEDIENTE ES EL ANTERIOR
                 // $resultado =  $usuario->actualizarEmpleado();
-$resultado=0; //para que no de errro abajo
+                $resultado = 0; //para que no de errro abajo
                 if ($resultado) {
                     header('Location: /dashboard/empleados');
                 }
@@ -756,9 +769,11 @@ $resultado=0; //para que no de errro abajo
             'titulo' => 'Editar empleado',
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
-            'empleado'=>$usuario
-        
-           
+            'usuario' => $usuario,
+            'departamentos' => $departamentos,
+            'roles' => $roles
+
+
 
         ]);
     }
