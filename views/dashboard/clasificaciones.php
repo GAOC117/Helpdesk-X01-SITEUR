@@ -50,7 +50,7 @@
 
     <?php endif; ?>
 
-
+<a href="/dashboard/clasificaciones/agregar" class="botonNuevo">Nueva clasificación</a>
     <div class='tabla__contenedor-empleado'>
         <table id="myTable" class="table table-hover tabla tabla-empleado" cellspacing="0" cellpadding="0">
 
@@ -85,7 +85,7 @@
                             <td class="tabla__td td-empleado">
                                 <?php if ($clasificacion->estatus === '1') { ?>
                                     <a href="/dashboard/clasificaciones/editar?id=<?php echo $clasificacion->id; ?>" class="boton-azul boton-accion">Editar</a>
-                                    <form method="POST" action="/dashboard/clasificacion/update">
+                                    <form method="POST" action="/dashboard/clasificaciones/update">
                                         <input type="hidden" name="id" value="<?php echo $clasificacion->id; ?>">
 
                                         <input type="submit" class="boton-rojo boton-accion" value="Dar de baja">
@@ -93,7 +93,7 @@
 
 
                                 <?php } else { ?>
-                                    <form method="POST" action="/dashboard/clasificacion/update">
+                                    <form method="POST" action="/dashboard/clasificaciones/update">
                                         <input type="hidden" name="id" value="<?php echo $clasificacion->id; ?>">
 
                                         <input type="submit" class="boton-verde-limon boton-accion" value="Dar de alta">

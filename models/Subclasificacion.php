@@ -19,4 +19,10 @@ class Subclasificacion extends ActiveRecord
         $this->descripcion = $args['nombre'] ?? '';
         $this->estatus = $args['estatus'] ?? 1;
     }
+
+    public function validarDescripcion(){
+        if(!$this->descripcion) {
+            self::$alertas['error'][] = 'El campo de subclasificación no puede ir vacio';
+        }
+    }
 }

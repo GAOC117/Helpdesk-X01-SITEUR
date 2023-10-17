@@ -189,4 +189,7 @@ input[type="password"]:-webkit-autofill {
     }
 }
 
-
+.formulario__clasificacion{
+    display: flex;
+    flex-direction: column;
+}

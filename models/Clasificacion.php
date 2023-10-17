@@ -18,4 +18,14 @@ class Clasificacion extends ActiveRecord {
     }
 
 
+    public function validarDescripcion(){
+        if(!$this->descripcion) {
+            self::$alertas['error'][] = 'El campo de clasificación no puede ir vacio';
+        }
+
+
+        return self::$alertas;
+    }
+
+
 }

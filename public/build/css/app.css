@@ -478,9 +478,37 @@ h3 {
 
 .boton-verde-limon,
 .boton-rojo,
-.boton-azul {
+.boton-azul,
+.botonNuevo {
   border-radius: 0;
   padding: 0.5rem 3rem;
+}
+
+.botonNuevo {
+  background-color: green;
+  padding: 1.5rem 4rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  width: fit-content;
+}
+.botonNuevo:hover {
+  animation: pulsate-green 1s ease-in-out;
+  background-color: green;
+  cursor: pointer;
+}
+@keyframes pulsate-green {
+  0% {
+    box-shadow: 0 0 25px green, 0 0 50px green;
+  }
 }
 
 .authl.login {
@@ -821,6 +849,11 @@ input[type=password]:-webkit-autofill {
     gap: 2rem;
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.formulario__clasificacion {
+  display: flex;
+  flex-direction: column;
 }
 
 .accionesl {

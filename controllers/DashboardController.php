@@ -710,6 +710,8 @@ class DashboardController
         idNotNumeric($id);
 
         $usuario = Empleado::find($id);
+        if(!$usuario)
+        header('Location: /dashboard/empleados');
 
 
 
@@ -816,6 +818,131 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'clasificaciones' => $clasificaciones
+
+        ]);
+    }
+
+
+
+    public static function editarClasificacion(Router $router)
+    {
+
+
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+
+        $expedienteLogueado = $_SESSION['id'];
+        $alertas = [];
+        $id = $_GET['id'];
+        idNotNumeric($id);
+
+       $clasificacion = Clasificacion::find($id);
+       
+    
+
+
+
+        // debuguear($usuario);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          
+            $clasificacion->sincronizar($_POST);
+
+            $alertas = $clasificacion->validarDescripcion();
+
+           
+            $alertas = Clasificacion::getAlertas();
+
+
+            if (empty($alertas)) {
+
+
+                //SINCRONIZAR CON POST
+
+
+                //EDITAR EL EMPLEADO CON WHERE EL EXPEDIENTE ES EL ANTERIOR
+                $resultado =  $clasificacion->guardar();
+
+                if ($resultado) {
+                    session_start();
+                    $_SESSION['mensaje'] = 'Clasificación actualizada con éxito';
+                    header('Location: /dashboard/clasificaciones');
+                }
+            } //if alertas
+        }
+
+        // Render a la vista
+        $router->renderView('dashboard/editar-clasificacion', [
+
+            'titulo' => 'Editar clasificación',
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'clasificacion' => $clasificacion,
+            'alertas' => $alertas
+
+
+
+        ]);
+    }
+
+
+
+
+
+    public static function altaBajaClasificacion()
+    {
+
+        $id = $_POST['id'];
+        if (!is_numeric($id)) //si no es un numero regresar al dashboard
+        header('Location: /dashboard/clasificaciones');
+        
+        $clasificacion = Clasificacion::findWithOutEstatus($id);
+        
+        session_start();
+        
+        if ($clasificacion->estatus === '1') {
+            $clasificacion->estatus = '0';
+            $query = 'UPDATE subclasificacion_problema SET estatus = 0 WHERE idClasificacion = '.$id;
+            $_SESSION['mensaje'] = 'Clasificación dada de baja';
+        } 
+        else {
+            $clasificacion->estatus = '1';
+            $query = 'UPDATE subclasificacion_problema SET estatus = 1 WHERE idClasificacion = '.$id;
+            $_SESSION['mensaje'] = 'Clasificación dada de alta';
+        }
+
+
+        $clasificacion->guardar();
+        Subclasificacion::actualizarQuery($query);
+
+
+        header('Location: /dashboard/clasificaciones');
+    }
+
+
+
+    public static function agregarClasificaciones(Router $router){
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+
+        $expedienteLogueado = $_SESSION['id'];
+        $alertas = [];
+        // $id = $_GET['id'];
+        // idNotNumeric($id);
+
+
+        $router->renderView('dashboard/agregar-clasificacion', [
+
+            'titulo' => 'Agregar clasificación',
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            // 'clasificacion' => $clasificacion,
+            'alertas' => $alertas
+
+
 
         ]);
     }

@@ -80,15 +80,19 @@ $router->post('/dashboard/empleados/editar', [DashboardController::class, 'edita
 //clasificaciones
 $router->get('/dashboard/clasificaciones', [DashboardController::class, 'verClasificaciones']);
 $router->post('/dashboard/clasificaciones', [DashboardController::class, 'verClasificaciones']);
+$router->get('/dashboard/clasificaciones/agregar', [DashboardController::class, 'agregarClasificaciones']);
+$router->post('/dashboard/clasificaciones/agregar', [DashboardController::class, 'agregarClasificaciones']);
 $router->get('/dashboard/clasificaciones/update', [DashboardController::class, 'altaBajaClasificacion']);
 $router->post('/dashboard/clasificaciones/update', [DashboardController::class, 'altaBajaClasificacion']);
-$router->get('/dashboard/clasificaciones/editar', [DashboardController::class, 'editarEmpleado']);
-$router->post('/dashboard/clasificaciones/editar', [DashboardController::class, 'editarEmpleado']);
+$router->get('/dashboard/clasificaciones/editar', [DashboardController::class, 'editarClasificacion']);
+$router->post('/dashboard/clasificaciones/editar', [DashboardController::class, 'editarClasificacion']);
 
 
 //subclasificaciones
-$router->get('/dashboard/subclasificaciones', [DashboardController::class, 'versubclasificaciones']);
-$router->post('/dashboard/subclasificaciones', [DashboardController::class, 'versubclasificaciones']);
+$router->get('/dashboard/subclasificaciones', [DashboardController::class, 'verSubclasificaciones']);
+$router->post('/dashboard/subclasificaciones', [DashboardController::class, 'verSubclasificaciones']);
+$router->get('/dashboard/subclasificaciones/agregar', [DashboardController::class, 'agregarSubclasificaciones']);
+$router->post('/dashboard/subclasificaciones/agregar', [DashboardController::class, 'agregarSubclasificaciones']);
 $router->get('/dashboard/subclasificaciones/update', [DashboardController::class, 'altaBajaSubclasificacion']);
 $router->post('/dashboard/subclasificaciones/update', [DashboardController::class, 'altaBajaSubclasificacion']);
 $router->get('/dashboard/subclasificaciones/editar', [DashboardController::class, 'editarSubclasificacion']);
@@ -97,6 +101,8 @@ $router->post('/dashboard/subclasificaciones/editar', [DashboardController::clas
 //departamentos
 $router->get('/dashboard/departamentos', [DashboardController::class, 'verDepartamentos']);
 $router->post('/dashboard/departamentos', [DashboardController::class, 'verDepartamentos']);
+$router->get('/dashboard/departamentos/agregar', [DashboardController::class, 'agregarDepartamentos']);
+$router->post('/dashboard/departamentos/agregar', [DashboardController::class, 'agregarDepartamentos']);
 $router->get('/dashboard/departamentos/update', [DashboardController::class, 'altaBajaDepartamento']);
 $router->post('/dashboard/departamentos/update', [DashboardController::class, 'altaBajaDepartamento']);
 $router->get('/dashboard/departamentos/editar', [DashboardController::class, 'editarDepartamento']);

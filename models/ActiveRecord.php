@@ -186,6 +186,11 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
+    public static function findWithOutEstatus($id) {
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = $id";
+        $resultado = self::consultarSQL($query);
+        return array_shift( $resultado ) ;
+    }
     public static function findEmpleado($id) {
         $query = "SELECT * FROM " . static::$tabla  ." WHERE id = $id";
         $resultado = self::consultarSQL($query);

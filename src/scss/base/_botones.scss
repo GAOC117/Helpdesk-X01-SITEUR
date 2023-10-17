@@ -49,7 +49,15 @@
 
 .boton-verde-limon,
 .boton-rojo,
-.boton-azul {
+.boton-azul,
+.botonNuevo {
     border-radius: 0;
     padding: .5rem 3rem;
+}
+
+.botonNuevo{
+    @include m.boton(green, white, pulsate-green);
+    margin-bottom: .5rem;
+    width: fit-content;
+
 }
