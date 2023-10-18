@@ -10,7 +10,7 @@ use Model\HistoricoTicket;
 use Model\Subclasificacion;
 use Model\Tickets;
 use Model\VerEmpleados;
-use Model\VerTickets;
+use Model\VerSubclasificaciones;
 use Model\Roles;
 use MVC\Router;
 
@@ -710,8 +710,8 @@ class DashboardController
         idNotNumeric($id);
 
         $usuario = Empleado::find($id);
-        if(!$usuario)
-        header('Location: /dashboard/empleados');
+        if (!$usuario)
+            header('Location: /dashboard/empleados');
 
 
 
@@ -792,7 +792,6 @@ class DashboardController
         ]);
     }
 
-
     public static function verClasificaciones(Router $router)
     {
         session_start();
@@ -802,9 +801,9 @@ class DashboardController
         // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
-        
+
         $clasificaciones = Clasificacion::allOrderBy('id asc');
-        
+
 
 
 
@@ -822,8 +821,6 @@ class DashboardController
         ]);
     }
 
-
-
     public static function editarClasificacion(Router $router)
     {
 
@@ -838,20 +835,15 @@ class DashboardController
         $id = $_GET['id'];
         idNotNumeric($id);
 
-       $clasificacion = Clasificacion::find($id);
-       
-    
-
-
-
+        $clasificacion = Clasificacion::find($id);
         // debuguear($usuario);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          
+
             $clasificacion->sincronizar($_POST);
 
             $alertas = $clasificacion->validarDescripcion();
 
-           
+
             $alertas = Clasificacion::getAlertas();
 
 
@@ -887,28 +879,24 @@ class DashboardController
     }
 
 
-
-
-
     public static function altaBajaClasificacion()
     {
 
         $id = $_POST['id'];
         if (!is_numeric($id)) //si no es un numero regresar al dashboard
-        header('Location: /dashboard/clasificaciones');
-        
+            header('Location: /dashboard/clasificaciones');
+
         $clasificacion = Clasificacion::findWithOutEstatus($id);
-        
+
         session_start();
-        
+
         if ($clasificacion->estatus === '1') {
             $clasificacion->estatus = '0';
-            $query = 'UPDATE subclasificacion_problema SET estatus = 0 WHERE idClasificacion = '.$id;
+            $query = 'UPDATE subclasificacion_problema SET estatus = 0 WHERE idClasificacion = ' . $id;
             $_SESSION['mensaje'] = 'Clasificación dada de baja';
-        } 
-        else {
+        } else {
             $clasificacion->estatus = '1';
-            $query = 'UPDATE subclasificacion_problema SET estatus = 1 WHERE idClasificacion = '.$id;
+            $query = 'UPDATE subclasificacion_problema SET estatus = 1 WHERE idClasificacion = ' . $id;
             $_SESSION['mensaje'] = 'Clasificación dada de alta';
         }
 
@@ -920,9 +908,8 @@ class DashboardController
         header('Location: /dashboard/clasificaciones');
     }
 
-
-
-    public static function agregarClasificaciones(Router $router){
+    public static function agregarClasificaciones(Router $router)
+    {
         session_start();
         isLogged();
         isAdmin();
@@ -930,8 +917,24 @@ class DashboardController
 
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
-        // $id = $_GET['id'];
-        // idNotNumeric($id);
+        $clasificacion = new Clasificacion();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $clasificacion->sincronizar($_POST);
+
+            $alertas = $clasificacion->validarDescripcion();
+            // debuguear(empty($alertas));
+            if (empty($alertas)) {
+
+
+                $resultado = $clasificacion->guardar();
+                if ($resultado) {
+                    session_start();
+                    $_SESSION['mensaje'] = 'Clasificación registrada con éxito';
+                   
+                    header('Location: /dashboard/clasificaciones');
+                }
+            }
+        }
 
 
         $router->renderView('dashboard/agregar-clasificacion', [
@@ -943,6 +946,35 @@ class DashboardController
             'alertas' => $alertas
 
 
+
+        ]);
+    }
+
+
+    public static function verSubclasificaciones(Router $router)
+    {
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $expedienteLogueado = $_SESSION['id'];
+        // $extension = $_SESSION['extension'];
+
+        $query = "SELECT sp.id, sp.idClasificacion,cp.descripcion as clasificacion, sp.descripcion as subclasificacion, sp.estatus FROM subclasificacion_problema as sp left outer join clasificacion_problema as cp on cp.id = sp.idclasificacion";
+
+        $subclasificaciones = VerSubclasificaciones::SQL($query);
+        // debuguear($subclasificaciones);
+
+        $titulo = 'Subclasificaciones de averias';
+
+
+        $router->renderView('dashboard/subclasificaciones', [
+
+            'titulo' => $titulo,
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'subclasificaciones' => $subclasificaciones
 
         ]);
     }

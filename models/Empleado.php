@@ -29,7 +29,7 @@ class Empleado extends ActiveRecord {
     
     public function __construct($args = [])
     {
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
         $this->apellidoPaterno = $args['apellidoPaterno'] ?? '';
         $this->apellidoMaterno = $args['apellidoMaterno'] ?? '';

@@ -7,15 +7,15 @@
         </div>
 
             <?php
-
             if ($_SESSION['mensaje']) {
-            ?>
+                ?>
                 <div class="ver-tickets--alerta alerta-empleados div-alerta">
-
+                    
                     <p class="alerta alerta__exito">
                         <?php
                         echo $_SESSION['mensaje'];
                         $_SESSION['mensaje'] = '';
+                        // debuguear($_SESSION['mensaje']);
                         ?>
                     </p>
                 </div>

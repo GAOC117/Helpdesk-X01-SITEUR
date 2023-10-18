@@ -131,9 +131,10 @@ class ActiveRecord {
         $resultado = '';
 
         if(!is_null($this->id)) {
-           
-            $resultado = $this->actualizar();
+          
+           $resultado = $this->actualizar();
         } else {
+           
             // Creando un nuevo registro
             
            

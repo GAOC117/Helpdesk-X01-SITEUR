@@ -12,7 +12,7 @@ class Clasificacion extends ActiveRecord {
     
     public function __construct($args = [])
     {
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->descripcion = $args['descripcion'] ?? '';
         $this->estatus = $args['estatus'] ?? 1;
     }

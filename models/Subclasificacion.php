@@ -14,7 +14,7 @@ class Subclasificacion extends ActiveRecord
 
     public function __construct($args = [])
     {
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->idClasificacion = $args['idClasificacion'] ?? '';
         $this->descripcion = $args['nombre'] ?? '';
         $this->estatus = $args['estatus'] ?? 1;

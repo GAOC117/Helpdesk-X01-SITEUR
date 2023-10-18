@@ -124,7 +124,7 @@
                     </li>
 
                     <li >
-                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                        <a class="dashboard__sidebar-nav--enlace" href="/dashboard/subclasificaciones">
                             <i class="dashboard__sidebar-nav--icono fa-brands fa-empire"></i>
                             <span class="dashboard__sidebar-nav--texto">Subclasificación incidentes</span>
                             <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
