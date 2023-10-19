@@ -978,4 +978,98 @@ class DashboardController
 
         ]);
     }
+
+
+    public static function editarSubclasificacion(Router $router)
+    {
+
+
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+
+        $expedienteLogueado = $_SESSION['id'];
+        $alertas = [];
+        $id = $_GET['id'];
+        idNotNumeric($id);
+
+        $subclasificacion = Subclasificacion::find($id);
+  
+        $clasificaciones = Clasificacion::all();
+        // debuguear($subclasificacion);
+        // debuguear($usuario);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+           $subclasificacion->sincronizar($_POST);
+           $subclasificacion->idClasificacion = $_POST['idClasificacionProblema'];
+            $alertas = $subclasificacion->validarDescripcion();
+
+
+            $alertas = Subclasificacion::getAlertas();
+
+
+            if (empty($alertas)) {
+
+
+                //SINCRONIZAR CON POST
+
+
+                //EDITAR EL EMPLEADO CON WHERE EL EXPEDIENTE ES EL ANTERIOR
+                 $resultado =  $subclasificacion->guardar();
+
+                if ($resultado) {
+                    session_start();
+                    $_SESSION['mensaje'] = 'Sublasificación actualizada con éxito';
+                    header('Location: /dashboard/subclasificaciones');
+                }
+            } //if alertas
+        }
+
+        // Render a la vista
+        $router->renderView('dashboard/editar-subclasificacion', [
+
+            'titulo' => 'Editar clasificación',
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'clasificaciones' => $clasificaciones,
+            'subclasificacion'=> $subclasificacion,
+            'alertas' => $alertas
+
+
+
+        ]);
+    }
+
+
+    public static function altaBajaSubclasificacion()
+    {
+
+        $id = $_POST['id'];
+        if (!is_numeric($id)) //si no es un numero regresar al dashboard
+            header('Location: /dashboard/subclasificaciones');
+
+        $subclasificacion = Subclasificacion::findWithOutEstatus($id);
+
+        session_start();
+
+        if ($subclasificacion->estatus === '1') {
+            $subclasificacion->estatus = '0';
+         
+            $_SESSION['mensaje'] = 'Subclasificación dada de baja';
+        } else {
+            $subclasificacion->estatus = '1';
+           
+            $_SESSION['mensaje'] = 'Subclasificación dada de alta';
+        }
+
+
+        $subclasificacion->guardar();
+      
+
+
+        header('Location: /dashboard/subclasificaciones');
+    }
+
+
 }
