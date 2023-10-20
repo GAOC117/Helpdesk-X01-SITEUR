@@ -24,5 +24,7 @@ class Subclasificacion extends ActiveRecord
         if(!$this->descripcion) {
             self::$alertas['error'][] = 'El campo de subclasificación no puede ir vacio';
         }
+
+        return self::$alertas;
     }
 }

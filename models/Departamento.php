@@ -18,13 +18,13 @@ class Departamento extends ActiveRecord
         $this->estatus = $args['estatus'] ?? 1;
     }
 
-    // Validar que se digite el departamento
-    // public function validarLogin() {
-    //     if(!$this->descripcion) {
-    //         self::$alertas['error'][] = 'Debe indicar el departamento';
-    //     }  
-    //     return self::$alertas;
+    public function validarDescripcion(){
+        if(!$this->descripcion) {
+            self::$alertas['error'][] = 'El campo de departamento no puede ir vacio';
+        }
 
-    // }
+
+        return self::$alertas;
+    }
 
 }

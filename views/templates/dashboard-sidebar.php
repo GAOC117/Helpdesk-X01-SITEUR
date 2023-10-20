@@ -154,7 +154,7 @@
 
 
                     <li >
-                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                        <a class="dashboard__sidebar-nav--enlace" href="/dashboard/departamentos">
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-building"></i>
                             <span class="dashboard__sidebar-nav--texto">Departamentos</span>
                             <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>

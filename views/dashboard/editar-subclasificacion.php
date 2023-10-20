@@ -16,6 +16,7 @@
 
         <div class="formulario__datos-empleado formulario__clasificacion">
 
+            <label for="nombre" class="formulario__label">Clasificación:</label>
             <select class="formulario__campo select" name="idClasificacionProblema" id="idClasificacionProblema" autocomplete="on">
                 <option disabled selected>--Seleccionar--</option>
 
@@ -26,8 +27,8 @@
             </select>
 
             <div class="formulario__campo ">
-                <label for="nombre" class="formulario__label">Sublasificación:</label>
-                <input type="text" class="formulario__input" placeholder="clasificación" id="descripcion" name="descripcion" value="<?php echo $subclasificacion->descripcion ?>">
+                <label for="nombre" class="formulario__label">Subclasificación:</label>
+                <input type="text" class="formulario__input" placeholder="Subclasificación" id="descripcion" name="descripcion" value="<?php echo $subclasificacion->descripcion ?>">
             </div>
 
 

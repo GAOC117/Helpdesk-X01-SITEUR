@@ -930,7 +930,7 @@ class DashboardController
                 if ($resultado) {
                     session_start();
                     $_SESSION['mensaje'] = 'Clasificación registrada con éxito';
-                   
+
                     header('Location: /dashboard/clasificaciones');
                 }
             }
@@ -995,14 +995,14 @@ class DashboardController
         idNotNumeric($id);
 
         $subclasificacion = Subclasificacion::find($id);
-  
+
         $clasificaciones = Clasificacion::all();
         // debuguear($subclasificacion);
         // debuguear($usuario);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-           $subclasificacion->sincronizar($_POST);
-           $subclasificacion->idClasificacion = $_POST['idClasificacionProblema'];
+            $subclasificacion->sincronizar($_POST);
+            $subclasificacion->idClasificacion = $_POST['idClasificacionProblema'];
             $alertas = $subclasificacion->validarDescripcion();
 
 
@@ -1016,7 +1016,7 @@ class DashboardController
 
 
                 //EDITAR EL EMPLEADO CON WHERE EL EXPEDIENTE ES EL ANTERIOR
-                 $resultado =  $subclasificacion->guardar();
+                $resultado =  $subclasificacion->guardar();
 
                 if ($resultado) {
                     session_start();
@@ -1033,7 +1033,7 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'clasificaciones' => $clasificaciones,
-            'subclasificacion'=> $subclasificacion,
+            'subclasificacion' => $subclasificacion,
             'alertas' => $alertas
 
 
@@ -1055,21 +1055,234 @@ class DashboardController
 
         if ($subclasificacion->estatus === '1') {
             $subclasificacion->estatus = '0';
-         
+
             $_SESSION['mensaje'] = 'Subclasificación dada de baja';
         } else {
             $subclasificacion->estatus = '1';
-           
+
             $_SESSION['mensaje'] = 'Subclasificación dada de alta';
         }
 
 
         $subclasificacion->guardar();
-      
+
 
 
         header('Location: /dashboard/subclasificaciones');
     }
 
 
+
+    public static function agregarSubclasificaciones(Router $router)
+    {
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+
+        $expedienteLogueado = $_SESSION['id'];
+        $alertas = [];
+        $subclasificacion = new Subclasificacion();
+        $clasificaciones = Clasificacion::all();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!$_POST['idClasificacionProblema']) {
+                Clasificacion::setAlerta('error', 'Debe elegir la clasificación a la que pertenece la subclasificación');
+                $alertas = Clasificacion::getAlertas();
+            } else {
+
+                $subclasificacion->idClasificacion = $_POST['idClasificacionProblema'];
+            }
+
+            $subclasificacion->sincronizar($_POST);
+            $alertas = $subclasificacion->validarDescripcion();
+            
+
+            // debuguear(empty($alertas));
+            if (empty($alertas)) {
+
+
+                $resultado = $subclasificacion->guardar();
+                if ($resultado) {
+                    session_start();
+                    $_SESSION['mensaje'] = 'Sublasificación registrada con éxito';
+
+                    header('Location: /dashboard/subclasificaciones');
+                }
+            }
+        }
+
+
+        $router->renderView('dashboard/agregar-subclasificacion', [
+
+            'titulo' => 'Agregar clasificación',
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'clasificaciones' => $clasificaciones,
+            'subclasificaciones' => $subclasificacion,
+            'alertas' => $alertas
+
+
+
+        ]);
+    }
+
+
+
+    public static function verDepartamentos(Router $router)
+    {
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $expedienteLogueado = $_SESSION['id'];
+        // $extension = $_SESSION['extension'];
+
+        $departamentos = Departamento::allOrderBy('id asc');
+
+
+
+
+
+        $titulo = 'Departamentos';
+
+
+        $router->renderView('dashboard/departamentos', [
+
+            'titulo' => $titulo,
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'departamentos' => $departamentos
+
+        ]);
+    }
+
+    public static function editarDepartamento(Router $router)
+    {
+
+
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+
+        $expedienteLogueado = $_SESSION['id'];
+        $alertas = [];
+        $id = $_GET['id'];
+        idNotNumeric($id);
+
+        $departamentos = Departamento::find($id);
+        // debuguear($usuario);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $departamentos->sincronizar($_POST);
+
+            $alertas = $departamentos->validarDescripcion();
+
+            $alertas = Departamento::getAlertas();
+
+
+            if (empty($alertas)) {
+
+
+                //SINCRONIZAR CON POST
+
+
+                //EDITAR EL EMPLEADO CON WHERE EL EXPEDIENTE ES EL ANTERIOR
+                $resultado =  $departamentos->guardar();
+
+                if ($resultado) {
+                    session_start();
+                    $_SESSION['mensaje'] = 'Departamento actualizado con éxito';
+                    header('Location: /dashboard/departamentos');
+                }
+            } //if alertas
+        }
+
+        // Render a la vista
+        $router->renderView('dashboard/editar-departamento', [
+
+            'titulo' => 'Editar clasificación',
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+            'departamentos' => $departamentos,
+            'alertas' => $alertas
+
+
+
+        ]);
+    }
+
+
+    public static function altaBajaDepartamento()
+    {
+
+        $id = $_POST['id'];
+        if (!is_numeric($id)) //si no es un numero regresar al dashboard
+            header('Location: /dashboard/departamentos');
+
+        $departamentos = Departamento::findWithOutEstatus($id);
+
+        session_start();
+
+        if ($departamentos->estatus === '1') {
+            $departamentos->estatus = '0';
+           
+            $_SESSION['mensaje'] = 'Departamento dado de baja';
+        } else {
+            $departamentos->estatus = '1';
+            
+            $_SESSION['mensaje'] = 'Departamento dado de alta';
+        }
+
+
+        $departamentos->guardar();
+       
+
+
+        header('Location: /dashboard/departamentos');
+    }
+
+    public static function agregarDepartamentos(Router $router)
+    {
+        session_start();
+        isLogged();
+        isAdmin();
+        $idRol = $_SESSION['idRol'];
+
+        $expedienteLogueado = $_SESSION['id'];
+        $alertas = [];
+        $departamento = new Departamento();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $departamento->sincronizar($_POST);
+
+            $alertas = $departamento->validarDescripcion();
+            // debuguear(empty($alertas));
+            if (empty($alertas)) {
+
+
+                $resultado = $departamento->guardar();
+                if ($resultado) {
+                    session_start();
+                    $_SESSION['mensaje'] = 'Departamento registrado con éxito';
+
+                    header('Location: /dashboard/departamentos');
+                }
+            }
+        }
+
+
+        $router->renderView('dashboard/agregar-departamento', [
+
+            'titulo' => 'Agregar clasificación',
+            'idRol' => $idRol,
+            'expedienteLogueado' => $expedienteLogueado,
+             'departamentos' => $departamento,
+            'alertas' => $alertas
+
+
+
+        ]);
+    }
 }
