@@ -18,7 +18,7 @@
             <img class="imagen__logo" src="/build/img/Logo_de_SITEUR_T.png" alt="logo siteur">
 
         </div> -->
-        <form action="/registro" class="formulario" method="POST">
+        <form action="/registro" class="formulario formulario-registro" method="POST">
 
 
             <div class="formulario__datos-empleado">
@@ -74,7 +74,7 @@
             </div>
 
             <div class="formulario__campo ">
-                <fieldset class="formulario__fieldset">
+                <fieldset class="formulario__fieldset registro-fieldset">
                     <legend>Seleccione el departamento al que pertenece</legend>
                     <select  class="formulario__campo select" name="idDepartamento" id="idDepartamento" autocomplete="on">
                         <option value="" disabled selected>--Seleccionar--</option>

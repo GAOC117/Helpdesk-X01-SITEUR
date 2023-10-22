@@ -308,13 +308,13 @@ class ApiController
             $query = "SELECT  COUNT(*) as pausados from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEstado = 2 and idEmpRequiere = $expediente";
             $resultado['pausados'] = Tickets::contar($query);
             
-            $query = "SELECT  COUNT(*) as escalados from tickets where month(fechaCaptura) = $mesActual  AND yea(fechaCaptura) = $actualYear and idEstado = 3 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as escalados from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEstado = 3 and idEmpRequiere = $expediente";
             $resultado['escalados']  = Tickets::contar($query);
 
             $query = "SELECT  COUNT(*) as cerrados from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEstado = 4 and idEmpRequiere = $expediente";
             $resultado['cerrados'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as total from tickets where month(fechaCaptura) = $mesActual  AND yea(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as total from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
             $resultado['total'] = Tickets::contar($query);
 
         }

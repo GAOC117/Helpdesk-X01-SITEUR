@@ -611,3 +611,14 @@
 .img-empleado{
     border-radius: 50%;
 }
+
+.logo-sitiur{
+    width: 12rem;
+    margin: 1rem auto 0 auto;
+
+}
+
+
+.dashboard__grid.activo .logo-sitiur{
+    display: none;
+}

@@ -524,7 +524,7 @@ h3 {
 .authl__contenedor {
   width: min(95%, 40rem);
   margin: 0 auto;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 .authl__heading {
   color: #fff;
@@ -854,6 +854,18 @@ input[type=password]:-webkit-autofill {
 .formulario__clasificacion {
   display: flex;
   flex-direction: column;
+}
+
+.formulario-registro {
+  width: auto;
+}
+
+.registro-fieldset {
+  width: 50%;
+}
+
+.select2 {
+  width: 100% !important;
 }
 
 .accionesl {

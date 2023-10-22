@@ -386,6 +386,15 @@
   border-radius: 50%;
 }
 
+.logo-sitiur {
+  width: 12rem;
+  margin: 1rem auto 0 auto;
+}
+
+.dashboard__grid.activo .logo-sitiur {
+  display: none;
+}
+
 .dash-empleado {
   display: flex;
   flex-direction: column;
@@ -443,11 +452,10 @@
   background-color: #3e8b41;
 }
 .dash-empleado__informacion-texto {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: end;
-  margin-top: 2rem;
+  margin-top: 3rem;
   text-align: center;
 }
 .dash-empleado__informacion-texto--leyenda {

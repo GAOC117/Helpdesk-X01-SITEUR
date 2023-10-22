@@ -3,6 +3,13 @@
         <div class="dashboard__sidebar__menu-btn">
             <div class="dashboard__sidebar__menu-btn--burger"></div>
         </div>
+        <div class="logo-sitiur">
+        <a href="/">
+            <div class="dashboard__logo">
+                <img class="dashboard__imagen" src="/build/img/siteurBlancoWbg.png" alt="logo sitiur">
+            </div>
+        </a>
+        </div>
         <div class="dashboard__sidebar--header">
             <div class="dashboard__sidebar__ip">
                 <p class="dashboard__sidebar__ip--texto">IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
