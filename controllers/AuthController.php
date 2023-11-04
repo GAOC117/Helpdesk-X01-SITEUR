@@ -290,10 +290,11 @@ class AuthController
             // Confirmar la cuenta
             $usuario->confirmado = 1;
             $usuario->token = '';
+
             unset($usuario->password2);
 
             // Guardar en la BD
-            $usuario->actualizarEmpleado();
+            $usuario->actualizarEmpleadoToken($token);
 
             Empleado::setAlerta('exito', 'Cuenta comprobada con éxito');
         }

@@ -49,7 +49,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        // $mail->send();
+        $mail->send();
     }
 
     public function enviarInstrucciones()
@@ -81,7 +81,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        // $mail->send();
+        $mail->send();
     }
 
 
@@ -142,7 +142,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        // $mail->send();
+        $mail->send();
     }
 
 
@@ -206,7 +206,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        // $mail->send();
+        $mail->send();
     }
 
 
@@ -270,7 +270,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        // $mail->send();
+        $mail->send();
     }
 
     public function pausarTicket($nombreAsignado, $correoAsignado, $correoRequiere, $nombreRequiere, $folio, $clasificacion, $subclasificacion, $comentarios, $extensionReporta, $extensionRequiere, $departamentoReporta, $departamentoRequiere, $motivo)
@@ -332,7 +332,7 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        // $mail->send();
+        $mail->send();
     }
 
 
@@ -395,6 +395,6 @@ class Email
         $mail->Body = $contenido;
 
         //Enviar el mail
-        //  $mail->send();
+         $mail->send();
     }
 }

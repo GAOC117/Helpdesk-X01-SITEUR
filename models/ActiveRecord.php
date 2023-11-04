@@ -333,6 +333,26 @@ public static function actualizarQuery($query){
     return $resultado;
 }
 
+    public function actualizarEmpleadoToken($token) {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarAtributosEmpleado();
+
+        // Iterar para ir agregando cada campo de la BD
+        $valores = [];
+        foreach($atributos as $key => $value) {
+            $valores[] = "{$key}='{$value}'";
+        }
+
+        // Consulta SQL
+        $query = "UPDATE " . static::$tabla ." SET ";
+        $query .=  join(', ', $valores );
+        $query .= " WHERE token = '" . self::$db->escape_string($token) . "' ";
+        $query .= " LIMIT 1 "; 
+
+        // Actualizar BD
+        $resultado = self::$db->query($query);
+        return $resultado;
+    }
     public function actualizarEmpleado($id) {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributosEmpleado();

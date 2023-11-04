@@ -688,7 +688,7 @@ class DashboardController
         }
 
 
-        $empleado->actualizarEmpleado();
+        $empleado->actualizarEmpleado($id);
 
 
         header('Location: /dashboard/empleados');
