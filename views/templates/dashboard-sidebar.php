@@ -17,7 +17,8 @@
             <div class="dashboard__sidebar--empleado">
                 <div class="dashboard__sidebar--empleado-imagen-x">
                     <?php if ($expedienteLogueado === '4486') { ?>
-                        <img src="/build/img/vader.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado">
+                        <!-- <img src="/build/img/vader.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado"> -->
+                        <img src="/build/img/space.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado">
                     <?php }  ?>
                     <?php if ($expedienteLogueado === '4485') { ?>
                         <img src="/build/img/koala.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado">
