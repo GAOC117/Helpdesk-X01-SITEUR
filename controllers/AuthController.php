@@ -176,13 +176,13 @@ class AuthController
                 // Buscar el usuario
                 $usuario = Empleado::whereLogin('email', $usuario->email);
                 if ($usuario && $usuario->confirmado) {
-
                     // Generar un nuevo token
+                    
                     $usuario->crearToken();
                     unset($usuario->password2);
 
                     // Actualizar el usuario
-                    $usuario->actualizarEmpleado();
+                    $usuario->actualizarEmpleado($usuario->id);
 
                     // Enviar el email
                     $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
@@ -220,6 +220,7 @@ class AuthController
 
         // Identificar el usuario con este token
         $usuario = Empleado::whereLogin('token', $token);
+        
 
         if (empty($usuario)) {
             Empleado::setAlerta('error', 'Token no válido, intenta de nuevo');
@@ -246,7 +247,7 @@ class AuthController
                 unset($usuario->password2);
                 // Guardar el usuario en la BD
                 // $resultado = $usuario->guardar();
-                $resultado = $usuario->actualizarEmpleado();
+                $resultado = $usuario->actualizarEmpleado($usuario->id);
 
                 // Redireccionar
                 if ($resultado) {

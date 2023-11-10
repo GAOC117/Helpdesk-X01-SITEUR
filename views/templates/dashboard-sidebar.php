@@ -76,7 +76,7 @@
                     <li >
                         <a class="dashboard__sidebar-nav--enlace" href="/dashboard/empleados">
                             <i class="dashboard__sidebar-nav--icono fa-solid fa-user"></i>
-                            <span class="dashboard__sidebar-nav--texto">Empleado</span>
+                            <span class="dashboard__sidebar-nav--texto">Empleados</span>
                             <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
                         </a>
                         

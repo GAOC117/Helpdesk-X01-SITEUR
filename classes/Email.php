@@ -65,7 +65,7 @@ class Email
         $mail->Username = $_ENV['EMAIL_USER'];
         $mail->Password = $_ENV['EMAIL_PASS'];
 
-        $mail->setFrom($_ENV['EMAIL_USER']);
+        $mail->setFrom($_ENV['EMAIL_USER'], 'Helpdesk - SITEUR');
         $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'Reestablece tu contraseña de HelpDesk SITEUR';
 
