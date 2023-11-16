@@ -2,8 +2,8 @@
 
     <div class="dash-empleado__imagen">
         <?php if ($expedienteLogueado === '4486') { ?>
-            <!-- <img src="/build/img/vader.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto"> -->
-            <img src="/build/img/space.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+            <img src="/build/img/vader.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">
+            <!-- <img src="/build/img/space.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto"> -->
         <?php } ?>
         <?php if ($expedienteLogueado === '4485') { ?>
             <img src="/build/img/koala.png" alt="<?php echo 'Foto de' . $nombre; ?>" class="empleado__imagen--foto">

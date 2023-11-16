@@ -22,7 +22,7 @@
 
     <?php } 
     ?>
-
+<!-- <button id="botonsito">Click</button> -->
 
 <div class='contenedor'>
         <div class='filters'>
@@ -42,35 +42,35 @@
                 <label class="filter-label">Fecha: </label>
                 <input autocomplete='off' class='filter' name='fecha' placeholder='Fecha captura(dd/mm/aaaa)' data-col='fecha' id="idFecha" />
             </div>
-            <div class='filter-container'>
+            <!-- <div class='filter-container'>
                 <label class="filter-label">Quién requiere: </label>
                 <input autocomplete='off' class='filter' name='requiere' placeholder='Buscar quién requiere' data-col='requiere' id="idRequiere" />
-            </div>
+            </div> -->
             <div class='filter-container'>
                 <label class="filter-label">Estado: </label>
                 <input autocomplete='off' class='filter' name='estado' placeholder='Buscar estado del ticket' data-col='estado' id="idEstado">
             </div>
-            <div class='filter-container'>
+            <!-- <div class='filter-container'>
                 <label class="filter-label">Clasificación: </label>
                 <input autocomplete='off' class='filter' name='clasificacion' placeholder='Buscar clasificacion' data-col='clasificación' id="idClasificacion" />
-            </div>
+            </div> -->
             <div class='filter-container'>
                 <label class="filter-label">Subclasificación: </label>
                 <input autocomplete='off' class='filter' name='subclasificacion' placeholder='Buscar subclasificacion' data-col='subclasificación' id="idSubclasificacion" />
             </div>
-            <div class='filter-container'>
+            <!-- <div class='filter-container'>
                 <label class="filter-label">Comentarios de ticket: </label>
                 <input autocomplete='off' class='filter' name='captura' placeholder='Buscar comentarios' data-col='captura' id="idComentarios" />
             </div>
             <div class='filter-container'>
                 <label class="filter-label">Comentarios de soporte: </label>
                 <input autocomplete='off' class='filter' name='soporte' placeholder='Buscar comentarios' data-col='soporte' id="idComentariosSoporte" />
-            </div>
+            </div> -->
         </div>
     </div>
 
 
-    <div class="tabla__contenedor-container">
+    <div class="tabla__contenedor-container" id="divPaginacion">
 
         <div class='tabla__contenedor'>
 
@@ -99,8 +99,12 @@
                 </tbody>
             </table>
         </div>
+        
     </div>
-
+    <div class="paginacion">
+            <button class="boton-azul" id="btnAnterior"> &laquo; Anterior </button>
+            <button class="boton-azul" id="btnSiguiente">Siguiente &raquo;</button>
+    </div>
 
    
 

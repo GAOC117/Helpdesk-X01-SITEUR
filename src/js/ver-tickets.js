@@ -1,4 +1,12 @@
 
+var paginaActual=1;
+var pagina_siguiente;
+var pagina_anterior;
+var html_siguiente;
+const btnSiguiente = document.querySelector('#btnSiguiente');
+const btnAnterior = document.querySelector('#btnAnterior');
+
+
 
 limpiarNotificaciones();
 document.addEventListener('DOMContentLoaded', function () {
@@ -8,12 +16,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // mostrarMesEnCurso();
 
-    llenarTablaTickets();
+    // alerta();
+    llenarTablaTickets(paginaActual);
 
+    btnSiguiente.addEventListener('click',function(){
+        if(paginaActual<pagina_siguiente){
+        
+            paginaActual++;
+        }
 
+         llenarTablaTickets(paginaActual);
+        
+    
+    })
 
+    btnAnterior.addEventListener('click',function(){
+        if(paginaActual>=pagina_anterior){
+        
+            paginaActual--;
+        }
+
+        llenarTablaTickets(paginaActual);
+        
+    
+    })
 })
 
+
+// function alerta(){
+//     const boton = document.querySelector('#botonsito');
+
+//     boton.addEventListener('click',function(){
+//         console.log(paginaActual);
+//         paginaActual++;
+//     });
+// }
 
 
 
@@ -29,9 +66,9 @@ const comentarios = document.querySelector('#idComentarios');
 const comentariosSoporte = document.querySelector('#idComentariosSoporte');
 
 setInterval(function () {
-    if (folio.value === '' && atiende.value === '' && fecha.value === '' && requiere.value === '' && estado.value === '' && clasificacion.value === '' && subclasificacion.value === '' && comentarios.value === '' && comentariosSoporte.value === '') {
+    if (folio.value === '' && atiende.value === '' && fecha.value === ''  && estado.value === ''  && subclasificacion.value === '') {
         // alert("vacio");
-         llenarTablaTickets();
+         llenarTablaTickets(paginaActual);
     }
 
 }, 2000);
@@ -111,7 +148,7 @@ function busqueda() {
 }
 
 
-async function llenarTablaTickets() {
+async function llenarTablaTickets(page) {
 
     const tBody = document.querySelector('.tabla__body.tickets');
 
@@ -125,7 +162,8 @@ async function llenarTablaTickets() {
 
 
 
-        const url = '/api/obtenerTablaTickets';
+        const url = '/api/obtenerTablaTickets?page='+page;
+        
 
 
         const resultado = await fetch(url);
@@ -133,6 +171,9 @@ async function llenarTablaTickets() {
         const tablaRows = result.tablaRows;
         const idRol = result.idRol;
         const nombreLogueado = result.nombreLogueado;
+         pagina_siguiente = result.pagina_siguiente;
+         pagina_anterior = result.pagina_anterior;
+         html_siguiente = result.html_siguiente;
 
         const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
@@ -303,13 +344,36 @@ async function llenarTablaTickets() {
             tBody.appendChild(tr);
 
 
+            console.log('pagina siguiente: '+pagina_siguiente);
+            console.log('pagina actual: '+paginaActual);
+            
+            if(pagina_siguiente){
+               btnSiguiente.style.display = 'inline-block';
+            
+            }
+            else{
+                btnSiguiente.style.display = 'none';
+            }
 
-        });
-
+            if(pagina_anterior){
+                btnAnterior.style.display = 'inline-block';
+             
+             }
+             else{
+                 btnAnterior.style.display = 'none';
+             }
+             
+            
+            
+            
+        });//try
+        
+       
 
     } catch (error) {
         console.log(error);
     }
+
 
 
     $(document).ready(function () {
