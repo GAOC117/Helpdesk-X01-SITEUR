@@ -45,6 +45,8 @@
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/alertas.js' defer></script>
 <script src='/build/js/selects.js' defer></script>
+<script src='/build/js/bootstrap.bundle.min.js'></script>
+
 
 ";
 if ($idRol !== '4')

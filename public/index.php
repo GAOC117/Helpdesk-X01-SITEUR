@@ -114,6 +114,8 @@ $router->get('/api/obtenerEmpleadoRol', [ApiController::class, 'obtenerEmpleadoR
 $router->get('/api/obtenerSubclasificacion', [ApiController::class, 'obtenerSubclasificacion']);
 $router->post('/api/generar-ticket', [ApiController::class, 'generarTicket']);
 $router->get('/api/obtenerTablaTickets', [ApiController::class, 'verTickets']);
+$router->get('/api/exportarExcel', [ApiController::class, 'exportarExcel']);
+$router->get('/api/modal', [ApiController::class, 'modal']);
 $router->get('/api/obtenerTablaHistorico', [ApiController::class, 'historialTickets']);
 $router->get('/api/obtenerNotificaciones', [ApiController::class, 'obtenerNotificaciones']);
 $router->get('/api/limpiarNotificaciones', [ApiController::class, 'limpiarNotificaciones']);

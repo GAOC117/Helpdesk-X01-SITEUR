@@ -18,6 +18,7 @@
 
     <div class="dash-empleado__nombre">
         <p class="dash-empleado__nombre--texto"><?php echo $nombre; ?></p>
+        <!-- <p class="text-primary"><?php echo $nombre; ?></p> -->
     </div>
 
     <div class="dash-empleado__informacion-tickete">
@@ -58,6 +59,8 @@
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/dashboard.js' defer></script>
 <script src='/build/js/inicio.js' defer></script>
+<script src='/build/js/bootstrap.bundle.min.js'></script>
+
 
 ";
 if ($idRol !== '4')

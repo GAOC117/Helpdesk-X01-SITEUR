@@ -39,7 +39,7 @@ class Paginacion
         return ($siguiente <= $this->total_paginas()) ? $siguiente : false;
     }
 
-    public function paginacion() {
+    public function numeros_paginas() {
         
     }
 }

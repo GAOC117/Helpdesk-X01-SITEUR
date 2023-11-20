@@ -14,3 +14,9 @@
     </div>
     <?php } ?>
 </main>
+
+<?php $script = "
+
+<script src='/build/js/bootstrap.bundle.min.js'></script>
+
+";

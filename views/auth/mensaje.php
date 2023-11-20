@@ -4,3 +4,10 @@
         <p class="auth__texto">Es necesario confirmar tu cuenta, revisa tu <a class="linkGmail" href="https://www.gmail.com">bandeja de entrada</a> para hacerlo</p>
    
 </main>
+
+
+<?php $script = "
+
+<script src='/build/js/bootstrap.bundle.min.js'></script>
+
+";

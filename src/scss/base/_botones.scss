@@ -67,3 +67,26 @@
     margin-bottom: 2rem;
     border-radius: .5rem;
 }
+
+.botonPaginaActivo{
+    color: red;
+}
+
+.paginacion{
+    display: flex;
+}
+
+
+.btn-primary{
+    background-color: v.$azul-siteur!important;
+    border-color: v.$azul-siteur!important;
+    
+}
+.btn-outline-primary{
+    border-color: v.$azul-siteur!important;
+    color: v.$azul-siteur!important;
+}
+.btn-outline-primary:hover{
+    background-color: v.$azul-siteur!important;
+    color: white!important;
+}
