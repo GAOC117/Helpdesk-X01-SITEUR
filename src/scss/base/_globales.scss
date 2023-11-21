@@ -20,3 +20,32 @@ img {
     width: 100%;
     height: auto;
 }
+
+
+.input-placeholder::placeholder{
+    color: white!important;
+}
+
+.bg-primary{
+    background-color: v.$azul-siteur!important;
+}
+
+.input-placeholder{
+    border: none;
+    color: yellow;
+}
+
+.icono-boleto::before{
+    transform: rotate(-45deg)!important;
+    font-size: 5rem!important;
+}
+
+.btn-info{
+    background-color: rgb(88, 185, 87)!important;
+    border: none;
+    color: white;
+}
+
+textarea{
+    resize: none!important;
+}

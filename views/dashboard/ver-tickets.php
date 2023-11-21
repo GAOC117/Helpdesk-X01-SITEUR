@@ -2,10 +2,10 @@
 <input type="checkbox" name="" id="checo">
 <input type="date" id="desde" >
 <input type="date" id="hasta"> -->
-<main class="ver-tickets">
+<main class="d-flex flex-column justify-content-center">
 
-    <div class="ver-tickets__header">
-        <h2 class="ver-tickets__texto"><?php echo $titulo; ?></h2>
+    <div class="text-center mb-5">
+        <h2><i class="bi bi-ticket-perforated-fill me-3 icono-boleto"></i><?php echo $titulo; ?></h2>
     </div>
 
 
@@ -25,83 +25,79 @@
 
     <?php }
     ?>
-    <!-- <button id="botonsito">Click</button> -->
+    <div class="d-flex justify-content-between">
 
+        <div class="d-flex flex-column w-25 ">
+            <div class="ms-3 mb-3 d-flex">
+                <label class="me-3 fs-3" for="checkFechas">Filtrar por rango</label>
+                <input type="checkbox" id="checkFechas">
+            </div>
+            <div class=" mx-3 mb-3 d-flex">
+                <div class="me-3 d-flex">
+                    <label class="me-3 fs-3" for="fechaDesde">Desde</label>
+                    <input type="date" id="fechaDesde">
+                </div>
+                <div class="d-flex">
+                    <label class="me-3 fs-3" for="fechaHasta">Hasta</label>
+                    <input type="date" id="fechaHasta">
+                </div>
+            </div>
+        </div>
 
-    <div class='contenedor'>
-        <div class='filters'>
-            <div class='filter-container'>
-                <label class="filter-label">Folio: </label>
-                <!-- <input type="number" autocomplete='off' class='filter' name='folio' placeholder='Buscar folio' data-col='folio' id="folioBusqueda" /> -->
-            </div>
-            <!-- <div class='filter-container'>
-                <label>Quién asigna: </label>
-                <input autocomplete='off' class='filter' name='asigna' placeholder='Buscar quién asigna el ticket' data-col='asigna' id="idAsigna" />
-            </div> -->
-            <div class='filter-container'>
-                <label class="filter-label">Quién atiende: </label>
-                <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende' data-col='atiende' id="atiendeBusqueda" />
-            </div>
-            <div class='filter-container'>
-                <label class="filter-label">Fecha: </label>
-                <input autocomplete='off' class='filter' name='fecha' placeholder='Fecha captura(dd/mm/aaaa)' data-col='fecha' id="fechaBusqueda" />
-            </div>
-            <!-- <div class='filter-container'>
-                <label class="filter-label">Quién requiere: </label>
-                <input autocomplete='off' class='filter' name='requiere' placeholder='Buscar quién requiere' data-col='requiere' id="idRequiere" />
-            </div> -->
-            <div class='filter-container'>
-                <label class="filter-label">Estado: </label>
-                <input autocomplete='off' class='filter' name='estado' placeholder='Buscar estado del ticket' data-col='estado' id="estadoBusqueda">
-            </div>
-            <!-- <div class='filter-container'>
-                <label class="filter-label">Clasificación: </label>
-                <input autocomplete='off' class='filter' name='clasificacion' placeholder='Buscar clasificacion' data-col='clasificación' id="idClasificacion" />
-            </div> -->
-            <div class='filter-container'>
-                <label class="filter-label">Subclasificación: </label>
-                <input autocomplete='off' class='filter' name='subclasificacion' placeholder='Buscar subclasificacion' data-col='subclasificación' id="subclasificacionBusqueda" />
-            </div>
-            <!-- <div class='filter-container'>
-                <label class="filter-label">Comentarios de ticket: </label>
-                <input autocomplete='off' class='filter' name='captura' placeholder='Buscar comentarios' data-col='captura' id="idComentarios" />
-            </div>
-            <div class='filter-container'>
-                <label class="filter-label">Comentarios de soporte: </label>
-                <input autocomplete='off' class='filter' name='soporte' placeholder='Buscar comentarios' data-col='soporte' id="idComentariosSoporte" />
-            </div> -->
+        <div class="d-flex flex-column justify-content-center">
+            <button class="btn btn-outline-success fs-3 mb-3 me-3" id="exportarExcel"><i class="bi bi-file-earmark-excel me-2"></i>Exportar</button>
+            <button class="btn btn-outline-info fs-3 mb-3 me-3" id="limpiarFiltros">Limpiar filtros</button>
         </div>
     </div>
 
+    <!-- TABLA -->
+    <div class="table-responsive px-3">
 
-    <!-- <div class="tabla__contenedor-container" id="divPaginacion">
+        <table  class="table table-hover table-striped table-light align-middle table-bordered">
+            <thead class="fs-5">
+                <tr class="">
 
-        <div class='tabla__contenedor'> -->
+                    <?php if ($idRol === '2') { ?>
+                        <th class="table-primary text-white text-center" scope="col"><input class="my-auto text-center bg-primary input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder=" Fecha registro" id="fechaBusqueda"></th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col">Comentarios de ticket</th>
+                        <th class="table-primary text-white text-center" scope="col">Comentarios de soporte</th>
+                        <th class="table-primary text-white text-center" scope="col">Acciones</th>
+                    <?php } ?>
 
-    <div class="container-xl table-responsive-xl">
+                    <?php if ($idRol === '1' || $idRol === '3') { ?>
+                        <th class="table-primary text-white text-center" scope="col"><input class="my-auto text-center bg-primary input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder=" Fecha registro" id="fechaBusqueda"></th>
+                        <th class="table-primary text-white text-center" scope="col"><input disabled class="text-center bg-primary input-placeholder" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col">Comentarios de ticket</th>
+                        <th class="table-primary text-white text-center" scope="col">Comentarios de soporte</th>
+                        <th class="table-primary text-white text-center" scope="col">Acciones</th>
+                    <?php } ?>
 
-        <table id="myTable" class="table table-hover table-striped table-light">
-            <thead class="tabla__headerr fs-5">
-                <tr class="tabla__header__pegar">
+                    <?php if ($idRol === '4') { ?>
+                        <th class="table-primary text-white text-center" scope="col"><input class="my-auto text-center bg-primary input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder=" Fecha registro" id="fechaBusqueda"></th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input disabled class="text-center bg-primary input-placeholder" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col">Comentarios de ticket</th>
+                        <th class="table-primary text-white text-center" scope="col">Comentarios de soporte</th>
+                        <th class="table-primary text-white text-center" scope="col">Acciones</th>
+                    <?php } ?>
 
-                    <th class="tabla__thh table-primary text-white text-center" scope="col"> <input type="number" placeholder="Folio" id="folioBusqueda"> </th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Fecha registro (dd/mm/yyyy)</th>
-
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Atiende</th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Requiere</th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Estado</th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Clasificación</th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Subclasificación</th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Comentarios de ticket</th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Comentarios de soporte</th>
-                    <th class="tabla__thh table-primary text-white text-center" scope="col">Acciones</th>
                 </tr>
-                <!-- <tr>
-                        <td>
-                        <input type="number" autocomplete='off' class='filter' name='folio' placeholder='Buscar folio' data-col='folio' id="folioBusqueda" />
-                        </td>
-                    </tr> -->
-
+              
             </thead>
 
             <tbody class="tabla__body tickets">
@@ -109,10 +105,9 @@
             </tbody>
         </table>
     </div>
-    <!-- </div>
 
-    </div> -->
-    <div class="paginacion">
+
+    <div class="paginacion mb-3 ps-3">
         <button class="btn btn-primary fs-3 me-2" id="btnAnterior"> <i class="bi bi-chevron-double-left"></i></button>
         <div id="paginas"></div>
         <button class="btn btn-primary fs-3 ms-2" id="btnSiguiente"><i class="bi bi-chevron-double-right"></i></button>
@@ -122,7 +117,7 @@
 
 
 
-
+    <!-- MODAL -->
     <div class="modal fade" id="infoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -167,13 +162,13 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Comentarios ticket</span>
-                        <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="comentariosReporte">
+                        <span class="input-group-text fs-3">Comentarios ticket</span>
+                        <textarea disabled class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="comentariosReporte"></textarea>
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Comentarios de soporte</span>
-                        <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="comentariosSoporte">
+                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Comentarios soporte</span>
+                        <textarea disabled class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="comentariosSoporte"></textarea>
                     </div>
 
                     <div class="input-group mb-3">

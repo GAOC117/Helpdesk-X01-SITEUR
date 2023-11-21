@@ -81,7 +81,7 @@ class DashboardController
 
 
 
-        $titulo = 'Ver tickets';
+        $titulo = 'Tickets';
 
 
         $router->renderView('dashboard/ver-tickets', [

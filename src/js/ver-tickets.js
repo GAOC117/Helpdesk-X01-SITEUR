@@ -2,15 +2,32 @@
 var paginaActual = 1;
 var folioBusqueda = '';
 var fechaBusqueda = '';
+var clasificacionBusqueda = '';
 var subclasificacionBusqueda = '';
 var atiendeBusqueda = '';
+var requiereBusqueda = '';
 var estadoBusqueda = '';
+var rangoChecked = false;
 
 var pagina_siguiente;
 var pagina_anterior;
 var html_siguiente;
 const btnSiguiente = document.querySelector('#btnSiguiente');
 const btnAnterior = document.querySelector('#btnAnterior');
+const rangoCheck = document.querySelector("#checkFechas");
+const limpiarFiltros = document.querySelector('#limpiarFiltros');
+
+
+
+rangoCheck.addEventListener('change', function () {
+    if (rangoCheck.checked)
+        rangoChecked = true;
+    else
+        rangoChecked = false;
+
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+
+})
 var total_registros_anterior = 0;
 var folioModal;
 
@@ -21,14 +38,83 @@ busqueda();
 // paginas();
 document.addEventListener('DOMContentLoaded', function () {
 
-    llenarTablaTickets(paginaActual, folioBusqueda);
+
+    var date = new Date();
+
+    // Get year, month, and day part from the date
+    var year = date.toLocaleString("default", { year: "numeric" });
+    var month = date.toLocaleString("default", { month: "2-digit" });
+    var day = date.toLocaleString("default", { day: "2-digit" });
+
+    // Generate yyyy-mm-dd date string
+    var hoy = year + "-" + month + "-" + day;
+
+    const fechaDesde = document.querySelector('#fechaDesde');
+    const fechaHasta = document.querySelector('#fechaHasta');
+
+    fechaDesde.value = hoy;
+    fechaHasta.value = hoy;
+
+    fechaDesde.addEventListener('change',function(){
+
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        
+    })
+    fechaHasta.addEventListener('change',function(){
+        
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        
+    })
+
+
+    limpiarFiltros.addEventListener('click', function () {
+
+        const folio = document.querySelector("#folioBusqueda");
+        const fecha = document.querySelector("#fechaBusqueda");
+        const atiende = document.querySelector("#atiendeBusqueda");
+        const requiere = document.querySelector("#requiereBusqueda");
+        const estado = document.querySelector("#estadoBusqueda");
+        const clasificacion = document.querySelector("#clasificacionBusqueda");
+        const subclasificacion = document.querySelector("#subclasificacionBusqueda");
+
+        folio.value='';
+        fecha.value='';
+        atiende.value='';
+        requiere.value='';
+        estado.value='';
+        clasificacion.value='';
+        subclasificacion.value='';
+        fechaDesde.value=hoy;
+        fechaHasta.value=hoy;
+        rangoCheck.checked=false;
+        
+
+        paginaActual = 1;
+        folioBusqueda = '';
+        fechaBusqueda = '';
+        clasificacionBusqueda = '';
+        subclasificacionBusqueda = '';
+        atiendeBusqueda = '';
+        requiereBusqueda = '';
+        estadoBusqueda = '';
+        rangoChecked = false;
+
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+
+    })
+   
+ 
+
+
+
+    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
     btnSiguiente.addEventListener('click', function () {
         if (paginaActual < pagina_siguiente) {
 
             paginaActual++;
         }
 
-        llenarTablaTickets(paginaActual, folioBusqueda);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked,fechaDesde.value,fechaHasta.value);
 
 
     })
@@ -39,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
             paginaActual--;
         }
 
-        llenarTablaTickets(paginaActual, folioBusqueda);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked,fechaDesde.value,fechaHasta.value);
 
 
 
@@ -84,6 +170,8 @@ function prueba() {
 
 }
 
+
+
 const folio = document.querySelector('#idFolio');
 // const asigna = document.querySelector('#idAsigna');
 const atiende = document.querySelector('#idAtiende');
@@ -96,10 +184,12 @@ const comentarios = document.querySelector('#idComentarios');
 const comentariosSoporte = document.querySelector('#idComentariosSoporte');
 
 setInterval(function () {
-  //  if (folio.value === '' && atiende.value === '' && fecha.value === '' && estado.value === '' && subclasificacion.value === '') {
-        // alert("vacio");
-        llenarTablaTickets(paginaActual,folioBusqueda);
-   // }
+    //  if (folio.value === '' && atiende.value === '' && fecha.value === '' && estado.value === '' && subclasificacion.value === '') {
+    // alert("vacio");
+    // llenarTablaTickets(paginaActual, folioBusqueda);
+    // }
+
+    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
 
 }, 2000);
 
@@ -173,17 +263,59 @@ function mostrarMesEnCurso() {
 
 function busqueda() {
     const folio = document.querySelector("#folioBusqueda");
+    const fecha = document.querySelector("#fechaBusqueda");
+    const atiende = document.querySelector("#atiendeBusqueda");
+    const requiere = document.querySelector("#requiereBusqueda");
+    const estado = document.querySelector("#estadoBusqueda");
+    const clasificacion = document.querySelector("#clasificacionBusqueda");
+    const subclasificacion = document.querySelector("#subclasificacionBusqueda");
+
     folio.addEventListener('keyup', function () {
         folioBusqueda = folio.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+    });
+
+    fecha.addEventListener('keyup', function () {
+        fechaBusqueda = fecha.value;
+        paginaActual = 1;
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+    });
+
+    atiende.addEventListener('keyup', function () {
+        atiendeBusqueda = atiende.value;
+        paginaActual = 1;
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+    });
+
+    requiere.addEventListener('keyup', function () {
+        requiereBusqueda = requiere.value;
+        paginaActual = 1;
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+    });
+
+    estado.addEventListener('keyup', function () {
+        estadoBusqueda = estado.value;
+        paginaActual = 1;
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked,fechaDesde.value,fechaHasta.value);
+    });
+
+    clasificacion.addEventListener('keyup', function () {
+        clasificacionBusqueda = clasificacion.value;
+        paginaActual = 1;
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+    });
+
+    subclasificacion.addEventListener('keyup', function () {
+        subclasificacionBusqueda = subclasificacion.value;
+        paginaActual = 1;
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
     });
 
 }
 
 
-async function
-    llenarTablaTickets(page, folio) {
+async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado, clasificacion, subclasificacion, rangoBusqueda,desde,hasta) {
 
     const tBody = document.querySelector('.tabla__body.tickets');
     const paginas = document.querySelector('#paginas');
@@ -198,7 +330,9 @@ async function
 
 
 
-        const url = '/api/obtenerTablaTickets?page=' + page + '&folio=' + folio;
+        const url = '/api/obtenerTablaTickets?page=' + page + '&folio=' + folio + '&fecha=' + String(fecha) + '&atiende=' + atiende + '&requiere=' + requiere + '&estado=' + estado + '&clasificacion=' + clasificacion + '&subclasificacion=' + subclasificacion +'&rangoChecked='+rangoBusqueda+'&fechaDesde='+desde+'&fechaHasta='+hasta;
+        // console.log(url);
+
 
 
 
@@ -248,6 +382,7 @@ async function
             const td_atiende = document.createElement('td');
             const td_nombreRequiere = document.createElement('td');
             const td_estadoTicket = document.createElement('td');
+            const p_estadoTicket = document.createElement('p');
             const td_clasificacion = document.createElement('td');
             const td_subclasificacion = document.createElement('td');
             const td_comentarios = document.createElement('td');
@@ -262,13 +397,6 @@ async function
 
 
 
-            // var mes;
-            // if (fechaCaptura.split('-')[1] < 10)
-            //     mes = fechaCaptura.split('-')[1][1];
-            // else
-            //     mes = fechaCaptura.split('-')[1];
-
-            //     console.log(mes);
 
 
             // td_idTicket.textContent = idTicket;
@@ -278,18 +406,18 @@ async function
             btnId.setAttribute('data-bs-toggle', 'modal');
             btnId.setAttribute('data-bs-target', '#infoModal');
             // td_fechaCaptura.textContent = fechaCaptura.split('-')[2] + '/' + meses[mes - 1] + '/' + fechaCaptura.split('-')[0];
-            td_fechaCaptura.textContent = fechaCaptura.split('-')[2] + '/' + fechaCaptura.split('-')[1] + '/' + fechaCaptura.split('-')[0];
+            td_fechaCaptura.textContent = fechaCaptura;//.split('-')[2] + '/' + fechaCaptura.split('-')[1] + '/' + fechaCaptura.split('-')[0];
             // td_nombreAsigna.textContent = nombreAsigna;
             td_atiende.textContent = atiende;
             td_nombreRequiere.textContent = nombreRequiere;
-            td_estadoTicket.textContent = estadoTicket;
+            p_estadoTicket.textContent = estadoTicket;
             td_clasificacion.textContent = clasificacion;
             td_subclasificacion.textContent = subclasificacion;
             td_comentarios.textContent = comentarios;
             td_comentariosSoporte.textContent = comentariosSoporte;
 
             td_idTicket.classList.add('text-center');
-            btnId.classList.add('btn', 'btn-dark', 'text-center', 'btnFolio', 'fs-4');
+            btnId.classList.add('btn', 'btn-info', 'text-center', 'btnFolio', 'fs-4');
             td_fechaCaptura.classList.add('tabla__td', 'text-center');
             // td_nombreAsigna.classList.add('tabla__td');
             td_atiende.classList.add('tabla__td', 'text-center');
@@ -302,15 +430,15 @@ async function
             td_acciones.classList.add('tabla__td', 'text-center');
 
             if (estadoTicket === 'Abierto')
-                td_estadoTicket.classList.add('estado-abierto');
+                p_estadoTicket.classList.add('text-white', 'bg-danger', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
             if (estadoTicket === 'Pausado')
-                td_estadoTicket.classList.add('estado-pausado');
+                p_estadoTicket.classList.add('text-white', 'bg-secondary', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
             if (estadoTicket === 'Escalado')
-                td_estadoTicket.classList.add('estado-escalado');
+                p_estadoTicket.classList.add('text-white', 'bg-warning', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
             if (estadoTicket === 'Cerrado')
-                td_estadoTicket.classList.add('estado-cerrado');
+                p_estadoTicket.classList.add('text-white', 'bg-success', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
 
-
+            td_estadoTicket.appendChild(p_estadoTicket);
             //aqui designar clases para los colores de abierto, cerrado, escalado, cerrado
 
 
@@ -331,7 +459,7 @@ async function
                     if (atiende === 'Sin asignar') {
                         // div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='tabla__boton-verde-limon tabla__boton'><i class='fa-solid fa-person-walking-arrow-loop-left fa-xl'></i></i></a>";
                         // div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='tabla__boton-verde-limon tabla__boton'><i class='fa-solid fa-person-walking-arrow-loop-left fa-xl'></i></i></a>";
-                        div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='fs-2 btn btn-info btn-sm'><i class='bi bi-box-arrow-in-right'></i></i></a>";
+                        div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='fs-2 btn btn-info btn-sm'><i class='bi bi-person-up'></i></i></a>";
                     }
                     if (atiende !== 'Sin asignar') {
 
@@ -347,7 +475,7 @@ async function
 
                 }
                 else {
-                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='text-white bg-success bg-opacity-75 rounded-5 w-75 m-auto'>Ticket cerrado</p>";
                 }
             }
             if (idRol === '1' || idRol === '3') //cambiar el rol 1 de aqui hacia arriba donde esta mesa
@@ -377,7 +505,7 @@ async function
                     // }
                 }
                 else {
-                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='text-white bg-success bg-opacity-75 rounded-5 w-75 mx-auto m-auto'>Ticket cerrado</p>";
                 }
             }
             if (idRol === '4') {
@@ -479,7 +607,7 @@ async function
 
                     pagina = parseInt(e.target.dataset.pagina);
                     paginaActual = pagina;
-                    llenarTablaTickets(paginaActual, folioBusqueda);
+                    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
 
 
                 })
@@ -530,27 +658,7 @@ function fadeOutAlerta() {
     $('.div-ver-tickets').fadeOut(1000);
 }
 
-// async function obtenerRol() {
 
-//     let empleado;
-//     try {
-
-//         const url = '/api/obtenerEmpleadoRol';
-
-
-//         const resultado = await fetch(url);
-//         empleado = await resultado.json();
-
-
-
-//     } catch (error) {
-//         console.log(error);
-//     }
-
-
-//     return new Promise((res, rej) => res(empleado))
-
-// }
 
 
 function paginas() {
@@ -586,8 +694,6 @@ async function abrirModal(folio) {
     try {
 
 
-        // par.innerHTML = '';
-        // const url = 'http://'+direccion+':3000/api/obtenerEmpleado?idEmp=' + expedienteEmpleado.value;
         const url = '/api/modal?folio=' + folio;
 
         const resultado = await fetch(url);
@@ -619,13 +725,6 @@ async function abrirModal(folio) {
             comentariosSoporte.value = infoTicket.comentariosSoporte;
             atiende.value = infoTicket.atiende;
         })
-
-        // if(result.idRol!=='4'){
-        //     const popup = document.querySelector('.notificaciones-icono');
-        // }
-
-
-
 
 
 
