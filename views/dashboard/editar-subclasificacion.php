@@ -1,42 +1,49 @@
-<main class="editar-clasificaciones">
+<div class="text-center mb-5 pt-5 pt-md-0">
+    <h2><i class='fa-brands fa-empire me-3'></i><?php echo $titulo; ?></h2>
+</div>
+
+<div class="container-xl">
+
+<?php
+    require_once __DIR__ . '/../templates/alertas.php';
+    ?>
 
 
-    <div class="editar-empleado__header">
-        <h2 class="editar-empleado__texto"><?php echo $titulo; ?></h2>
+<form class="mt-5 " method="POST">
 
-        <?php
-        require_once __DIR__ . '/../templates/alertas.php';
-        ?>
+<div class='d-flex flex-column  mb-3 mb-md-0 width-control mx-auto'>
 
+    <label for="nombre" class="form-label fs-4">Clasificación:</label>
+    <select class="form-select select fs-4" name="idClasificacionProblema" id="idClasificacionProblema" autocomplete="on">
+        <option disabled selected>--Seleccionar--</option>
 
+        <?php foreach ($clasificaciones as $clasificacion) { ?>
+            <option <?php echo  $subclasificacion->idClasificacion === $clasificacion->id ? ' selected' : '' ?> value="<?php echo s($clasificacion->id); ?>"><?php echo s($clasificacion->descripcion); ?>
+            </option>
+        <?php } ?>
+    </select>
+
+    <div class="mt-5">
+        <label for="nombre" class="form-label fs-4">Subclasificación:</label>
+        <input type="text" class="form-control fs-4" placeholder="Subclasificación" id="descripcion" name="descripcion" value="<?php echo $subclasificacion->descripcion ?>">
     </div>
 
 
-    <form class="editar-empleado__form formulario " method="POST">
 
-        <div class="formulario__datos-empleado formulario__clasificacion">
 
-            <label for="nombre" class="formulario__label">Clasificación:</label>
-            <select class="formulario__campo select" name="idClasificacionProblema" id="idClasificacionProblema" autocomplete="on">
-                <option disabled selected>--Seleccionar--</option>
-
-                <?php foreach ($clasificaciones as $clasificacion) { ?>
-                    <option <?php echo  $subclasificacion->idClasificacion === $clasificacion->id ? ' selected' : '' ?> value="<?php echo s($clasificacion->id); ?>"><?php echo s($clasificacion->descripcion); ?>
-                    </option>
-                <?php } ?>
-            </select>
-
-            <div class="formulario__campo ">
-                <label for="nombre" class="formulario__label">Subclasificación:</label>
-                <input type="text" class="formulario__input" placeholder="Subclasificación" id="descripcion" name="descripcion" value="<?php echo $subclasificacion->descripcion ?>">
-            </div>
+    <div class="d-flex justify-content-center mt-5">
+    <input type="submit" class="btn btn-dark fs-4" value="Actualizar datos">
+    </div>
+</form>
 
 
 
 
+</div>
 
-            <input type="submit" class="formulario__submit editar-empleado__btn" value="Actualizar datos">
-    </form>
+
+
+   
 
 </main>
 
@@ -45,6 +52,7 @@
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/alertas.js' defer></script>
 <script src='/build/js/selects.js' defer></script>
+<script src='/build/js/bootstrap.bundle.min.js'></script>
 
 ";
 if ($idRol !== '4')

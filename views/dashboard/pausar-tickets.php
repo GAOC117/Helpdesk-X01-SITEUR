@@ -1,47 +1,49 @@
-<main class="pausar-ticket">
-<div class="boton-regresar">
-
-<a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-2x"></i> Ver tickets</a>
+<div class="position-fixed end-0 mt-3 me-3">
+    <a class="btn <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'btn-dark' : 'btn-primary'; ?>  d-flex align-items-center fs-3" href="/dashboard/ver-tickets"><i class="bi bi-arrow-bar-left fs-1 me-3"></i> Ver tickets</a>
 </div>
-    <div class="pausar-ticket__header">
-
-        <h2 class="pausar-ticket__heading"><?php echo $titulo; ?></h2>
-        <p class="pausar-ticket__texto">Indique el motivo de ser pausado el ticket</p>
 
 
+
+<div class="text-center mb-5 pt-5 pt-md-0">
+    <h2><i class='bi bi-check2-circle me-3'></i><?php echo $titulo; ?></h2>
+    <p class="asignar-tickets__texto fs-4 mb-5">Indique el motivo de ser pausado el ticket<span> #<?php echo $idTicket; ?></span></p>
+
+</div>
+
+<?php
+require_once __DIR__ . '/../templates/alertas.php';
+?>
+
+
+<div class="container-xl">
+    <div class="row align-items-center justify-content-center">
+       
+        <div class="col-md-6">
+
+            <form action="/dashboard/pausar-tickets?id=<?php echo $idTicket; ?>"  method="POST">
+
+                <div class="col-12 fs-4 mt-5 fw-bold">Comentarios del ticket:</div>
+
+                <div class="col-12 mb-5">
+                    <textarea class="form-control fs-4 mt-3" style="height: 7rem;" name="comentarios" id="comentarios" maxlength="250" placeholder="Motivo por el cuál se pausa el ticket"></textarea>
+                </div>
+
+
+                <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-secondary fs-2 my-3" value="Pausar ticket">
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+            <img src="/build/img/pausar.png" class="img-fluid img-pausar" alt="...">
+        </div>
     </div>
-    <div class="pausar-ticket__alertas">
-
-        <?php
-        require_once __DIR__ . '/../templates/alertas.php';
-        ?>
-
-    </div>
-    <div class="pausar-ticket__datos">
-
-        <form action="/dashboard/pausar-tickets?id=<?php echo $idTicket; ?>" class="pausar-ticket__formulario" method="POST">
-
-            <div class="formulario__comentarios">
-                <textarea class="formulario__comentarios-text-area" name="comentarios" id="comentarios" maxlength="250" placeholder="Comentarios"><?php echo $ticket->comentarios; ?></textarea>
-            </div>
-
-    </div><!-- grid -->
-
-    <div class="pausar-ticket__submit">
-
-        <!-- <i class="fa-solid fa-circle-pause fa-xl"> -->
-        <input type="submit" class="formulario__submit--pausar-ticket" value="Pausar ticket">
-    </div>
-
-    </form>
-
-
-    </div>
+</div>
 
 
 
-
-</main>
 
 <?php $script = "
 <script src='/build/js/dashboard.js' defer></script>
@@ -49,9 +51,7 @@
 <script src='/build/js/bootstrap.bundle.min.js'></script>
 
 ";
-if($idRol!=='4')
-$script.="<script src='/build/js/notificaciones.js' defer></script>"
+if ($idRol !== '4')
+    $script .= "<script src='/build/js/notificaciones.js' defer></script>"
 
 ?>
-
-

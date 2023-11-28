@@ -1,215 +1,224 @@
-<aside class="dashboard__sidebar">
+<aside class="">
+    <div class="dashboard__sidebar">
+        <div class="dashboard__sidebar__menu-btn">
+            <div class="dashboard__sidebar__menu-btn--burger"></div>
+        </div>
+        <div class="logo-sitiur">
+            <a href="/">
+                <div class="dashboard__logo">
+                    <img class="dashboard__imagen" src="/build/img/siteurBlancoWbg.png" alt="logo sitiur">
+                </div>
+            </a>
+        </div>
+        <div class="dashboard__sidebar--header">
+            <div class="dashboard__sidebar__ip">
+                <p class="dashboard__sidebar__ip--texto">IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
+            </div>
+            <div class="dashboard__sidebar--empleado">
+                <div class="dashboard__sidebar--empleado-imagen-x">
+                    <?php if ($expedienteLogueado === '4486') { ?>
+                        <img src="/build/img/vader.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado">
+                        <!-- <img src="/build/img/space.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado"> -->
+                    <?php }  ?>
+                    <?php if ($expedienteLogueado === '4485') { ?>
+                        <img src="/build/img/koala.png" alt="empleado" class="dashboard__sidebar--empleado-imagen img-empleado">
+                    <?php }
+                    if ($expedienteLogueado !== '4485' && $expedienteLogueado !== '4486') { ?>
 
-    <!-- <div class="dashboard__menus"> -->
-    <!-- <div class="dashboard__navegacion"> -->
+                        <img src="http://skynet.siteur.gob.mx/fotos/<?php echo $expedienteLogueado; ?>.jpg" alt="empleado" class="dashboard__sidebar--empleado-imagen">
+                    <?php } ?>
+                </div>
+                <div class="dashboard__sidebar--empleado-nombre">
+                    <p class="dashboard__sidebar--empleado-nombre--texto"><?php echo $nombre; ?></p>
+                </div>
+            </div>
+        </div><!-- .header -->
 
+        <div class="dashboard__sidebar-nav">
+            <div class="dashboard__sidebar-nav--menu">
+                <ul>
+                    <li>
+                        <a class="dashboard__sidebar-nav--enlace" href="/">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-house"></i>
+                            <span class="dashboard__sidebar-nav--texto">Inicio</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
+                        </a>
+                    </li>
 
-    <nav class="dashboard__menu">
-        <!-- <a  class="hamburguesas dashboard__enlace hamburguesa-menu">
-            <i class="hamburguesa hamburguesa-menu fa-solid fa-bars "></i>
-        </a> -->
-        <a href="/dashboard" class="house dashboard__enlace house-menu">
-            <i class="house house-icono fa-solid fa-house dashboard__icono"></i>
-            <span class="house dashboard__menu-texto">
-                Inicio
-            </span>
-        </a>
+                    <li>
+                        <a class="dashboard__sidebar-nav--enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-ticket"></i>
+                            <span class="dashboard__sidebar-nav--texto">Tickets</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right"></i>
+                        </a>
 
+                        <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="/dashboard/ver-tickets">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-eye"></i>
+                                    <span class="dashboard__sidebar-nav--texto"> <?php if ($idRol === '1' || $idRol === '2') echo 'Ver tickets';
+                                                                                    else { ?>
+                                        <?php echo 'Mis tickets';
+                                                                                    } ?></span>
+                                </a>
+                            </li>
+                            <?php if ($idRol !== '3') { ?>
+                                <li>
+                                    <a href="/dashboard/generar-ticket">
+                                        <i class="dashboard__sidebar-nav--icono fa-solid fa-file-circle-plus"></i>
+                                        <span class="dashboard__sidebar-nav--texto">Nuevo ticket</span>
+                                    </a>
+                                </li>
+                            <?php } ?>
 
-        <a class="tickets dashboard__enlace menu-principal">
-            <i class="tickets tickets-icono fa-solid fa-ticket dashboard__icono"></i>
-            <span class="tickets dashboard__menu-texto">
-                Tickets
-            </span>
-            <i class="tickets i-tickets fa-solid fa-chevron-right icono"></i>
-        </a>
+                        </ul>
 
-        <ul class="dashboard__lista tickets ul-tickets-hidden ul-tickets ull">
+                    </li>
+                    <?php if ($idRol === '1') { ?>
+                        <li>
+                            <a class="dashboard__sidebar-nav--enlace" href="/dashboard/empleados">
+                                <i class="dashboard__sidebar-nav--icono fa-solid fa-user"></i>
+                                <span class="dashboard__sidebar-nav--texto">Empleados</span>
+                                <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
+                            </a>
 
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/ver-tickets" class="ver-ticket dashboard__enlace">
-                    <i class="ver-ticket ver-ticket-icono fa-solid fa-eye dashboard__icono"></i>
-                    <span class="ver-ticket dashboard__menu-texto">
-                        <?php if ($idRol === '1'|| $idRol === '2') echo 'Ver tickets'; else { ?>
-                        <?php echo 'Mis tickets'; }?>
-                    </span>
-                </a>
-            </li>
-            <?php if ($idRol === '1'|| $idRol === '2') { ?>     
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/generar-ticket" class="generar-ticket dashboard__enlace">
-                    <i class="generar-ticket generar-ticket-icono fa-solid fa-file-circle-plus dashboard__icono"></i>
-                    <span class="generar-ticket dashboard__menu-texto">
-                        Generar ticket
-                    </span>
-                </a>
-            </li>
-            <?php }?>
-        </ul>
-<?php if($idRol === '1') { ?>
-        <a class="empleado dashboard__enlace menu-principal  empleado-menu">
-            <i class="empleado empleado-icono fa-solid fa-user dashboard__icono"></i>
-            <span class="empleado dashboard__menu-texto">
-                Empleados
-            </span>
-            <i class="empleado i-empleado fa-solid fa-chevron-right icono"></i>
-        </a>
-        <!-- <nav class="dashboard__menu"> -->
-        <ul class="dashboard__lista empleado ul-empleado ul-empleado-hidden ull">
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/nuevo-empleado" class="nuevo-empleado dashboard__enlace">
-                    <i class="nuevo-empleado nuevo-empleado-icono fa-solid fa-user-plus dashboard__icono"></i>
-                    <span class="nuevo-empleado dashboard__menu-texto">
-                        Nuevo empleado
-                    </span>
-                </a>
-            </li>
+                        </li>
 
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/editar-empleado" class="editar-empleado dashboard__enlace">
-                    <i class="editar-empleado editar-empleado-icono fa-solid fa-user-pen dashboard__icono"></i>
-                    <span class="editar-empleado dashboard__menu-texto">
-                        Editar empleado
-                    </span>
-                </a>
-            </li>
+                        <li>
+                            <a class="dashboard__sidebar-nav--enlace" href="/dashboard/clasificaciones">
+                                <i class="dashboard__sidebar-nav--icono fa-brands fa-jedi-order"></i>
+                                <span class="dashboard__sidebar-nav--texto">Clasificación incidentes</span>
+                                <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
+                            </a>
 
+                            <!-- <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-plus"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Agregar clasificación</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-pen"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Editar clasificación</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-xmark"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Eliminar clasificación</span>
+                                </a>
+                            </li>
+                        </ul> -->
+                        </li>
 
+                        <li>
+                            <a class="dashboard__sidebar-nav--enlace" href="/dashboard/subclasificaciones">
+                                <i class="dashboard__sidebar-nav--icono fa-brands fa-empire"></i>
+                                <span class="dashboard__sidebar-nav--texto">Subclasificación incidentes</span>
+                                <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
+                            </a>
 
-
-
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/eliminar-empleado" class="eliminar-empleado dashboard__enlace">
-                    <i class="eliminar-empleado eliminar-empleado-icono fa-solid fa-user-xmark dashboard__icono"></i>
-                    <span class="eliminar-empleado dashboard__menu-texto">
-                        Eliminar empleado
-                    </span>
-                </a>
-            </li>
-
-        </ul>
-
-
-
-        <a class="incidentes dashboard__enlace menu-principal incidentes-menu">
-
-            <i class="incidentes incidentes-icono fa-solid fa-person-falling-burst dashboard__icono"></i>
-            <span class="incidentes dashboard__menu-texto">
-                Incidentes
-            </span>
-            <i class="incidentes i-incidentes fa-solid fa-chevron-right icono"></i>
-        </a>
-
-
-        <ul class="dashboard__lista incidentes ul-incidentes ul-incidentes-hidden ull">
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/nuevo-incidentes" class="nuevo-incidentes dashboard__enlace">
-                    <i class="nuevo-incidentes nuevo-incidentes-icono fa-solid fa-circle-plus dashboard__icono"></i>
-                    <span class="nuevo-incidentes dashboard__menu-texto">
-                        Nueva clasificación
-                    </span>
-                </a>
-            </li>
-
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/editar-incidentes" class="editar-incidentes dashboard__enlace">
-                    <i class="editar-incidentes editar-incidentes-icono fa-solid fa-pen dashboard__icono"></i>
-                    <span class="editar-incidentes dashboard__menu-texto">
-                        Editar clasificación
-                    </span>
-                </a>
-            </li>
-
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/eliminar-incidentes" class="eliminar-incidentes dashboard__enlace">
-                    <i class="eliminar-incidentes eliminar-incidentes-icono fa-solid fa-circle-xmark dashboard__icono"></i>
-                    <span class="eliminar-incidentes dashboard__menu-texto">
-                        Eliminar clasificación
-                    </span>
-                </a>
-            </li>
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/nuevo-sub-incidentes" class="nuevo-sub-incidentes dashboard__enlace">
-                    <i class="nuevo-sub-incidentes nuevo-sub-incidentes-icono fa-solid fa-plus dashboard__icono"></i>
-                    <span class="nuevo-sub-incidentes dashboard__menu-texto">
-                        Nueva subclasificación
-                    </span>
-                </a>
-            </li>
-
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/editar-sub-incidentes" class="editar-sub-incidentes dashboard__enlace">
-                    <i class="editar-sub-incidentes editar-sub-incidentes-icono fa-solid fa-pencil dashboard__icono"></i>
-                    <span class="editar-sub-incidentes dashboard__menu-texto">
-                        Editar subclasificación
-                    </span>
-                </a>
-            </li>
-
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/eliminar-sub-incidentes" class="eliminar-sub-incidentes dashboard__enlace">
-                    <i class="eliminar-sub-incidentes eliminar-sub-incidentes-icono fa-solid fa-xmark dashboard__icono"></i>
-                    <span class="eliminar-sub-incidentes dashboard__menu-texto">
-                        Eliminar subclasificación
-                    </span>
-                </a>
-            </li>
+                            <!-- <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-plus"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Agregar subclasificacion</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-pen"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Editar subclasificacion</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-circle-xmark"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Eliminar subclasificacion</span>
+                                </a>
+                            </li>
+                        </ul> -->
+                        </li>
 
 
-        </ul>
+                        <li>
+                            <a class="dashboard__sidebar-nav--enlace" href="/dashboard/departamentos">
+                                <i class="dashboard__sidebar-nav--icono fa-solid fa-building"></i>
+                                <span class="dashboard__sidebar-nav--texto">Departamentos</span>
+                                <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
+                            </a>
+
+                            <!-- <ul class="dashboard__sidebar-nav--sub-menu">
+                            <li>
+                                <a class="dashboard__sidebar-nav--enlace" href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-building-circle-arrow-right"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Agregar departamento</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-building-circle-exclamation"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Editar departamento</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="dashboard__sidebar-nav--icono fa-solid fa-building-circle-xmark"></i>
+                                    <span class="dashboard__sidebar-nav--texto">Eliminar departamento</span>
+                                </a>
+                            </li>
+                        </ul> -->
+                        </li>
+                    <?php } ?>
 
 
 
-        <a class="departamento dashboard__enlace menu-principal departamento-menu">
+                </ul>
+            </div>
+        </div>
 
-            <i class="departamento departamento-icono fa-solid fa-building dashboard__icono"></i>
-            <span class="departamento dashboard__menu-texto">
-                Departamentos
-            </span>
-            <i class="departamento i-departamento fa-solid fa-chevron-right icono"></i>
-        </a>
+        <div class="dashboard__sidebar-nav--menu menu-footer">
 
 
-        <ul class="dashboard__lista departamento ul-departamento ul-departamento-hidden ull">
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/nuevo-departamento" class="nuevo-departamento dashboard__enlace">
-                    <i class="nuevo-departamento nuevo-departamento-icono fa-solid fa-building-circle-arrow-right dashboard__icono"></i>
-                    <span class="nuevo-departamento dashboard__menu-texto">
-                        Nuevo departamento
-                    </span>
-                </a>
-            </li>
+            <ul class="menu--footer">
+                <?php if ($idRol !== '4') { ?>
+                    <li class="notificaciones">
+                        <!-- <a class="dashboard__sidebar-nav--enlace notificaciones-enlace" href="#">
+                            <i class="dashboard__sidebar-nav--icono fa-solid fa-bell"></i>
+                            <p class="notificaciones-icono"></p>
+                            <span class="dashboard__sidebar-nav--texto">Notificaciones</span>
+                            <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
+                        </a> -->
+                    </li>
 
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/editar-departamento" class="editar-departamento dashboard__enlace">
-                    <i class="editar-departamento editar-departamento-icono fa-solid fa-building-circle-exclamation dashboard__icono"></i>
-                    <span class="editar-departamento dashboard__menu-texto">
-                        Editar departamento
-                    </span>
-                </a>
-            </li>
+                    <li>
+                        <button type="button" class="btn btn-primary position-relative dashboard__sidebar-nav--enlace notificaciones-enlace">
+                        <i class="dashboard__sidebar-nav--icono fa-solid fa-bell"></i><span class="btn-notificaciones ms-3 fs-3"></span>
+                            <span class="notificaciones-icono position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </button>
 
-            <li class="dashboard__lista-boton">
-                <a href="/dashboard/eliminar-departamento" class="eliminar-departamento dashboard__enlace">
-                    <i class="eliminar-departamento eliminar-departamento-icono fa-solid fa-building-circle-xmark dashboard__icono"></i>
-                    <span class="eliminar-departamento dashboard__menu-texto">
-                        Eliminar departamento
-                    </span>
-                </a>
-            </li>
+                    </li>
 
-        </ul>
-        <!-- </nav> -->
+                <?php } ?>
 
-    </nav>
+                <li class="logout">
+                    <a class="dashboard__sidebar-nav--enlace enlace-logout" href="/logout">
+                        <i class="dashboard__sidebar-nav--icono icono-logout fa-solid fa-arrow-right-from-bracket"></i>
+                        <span class="dashboard__sidebar-nav--texto">Cerrar sesión</span>
+                        <i class="dashboard__sidebar-nav--arrow fa-solid fa-chevron-right" style="opacity: 0"></i>
+                    </a>
+                </li>
+            </ul>
 
-    <?php } ?>
-    <!-- </div> -->
-    <div class="dashboard__ip">
-        <p class="dashboard__ip--texto">TU IP: <span> <?php echo empty($_SERVER["REMOTE_ADDR"]) ?  "&nbspDesconocida" : "&nbsp" . $_SERVER["REMOTE_ADDR"]; ?></span></p>
+        </div>
+
     </div>
 
-    <!-- </div> -->
 
 
 </aside>

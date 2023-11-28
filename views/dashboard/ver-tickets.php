@@ -1,10 +1,7 @@
-<!-- <label for="checo">Exportar con rango de fechas</label>
-<input type="checkbox" name="" id="checo">
-<input type="date" id="desde" >
-<input type="date" id="hasta"> -->
+
 <main class="d-flex flex-column justify-content-center">
 
-    <div class="text-center mb-5">
+    <div class="text-center mb-1">
         <h2><i class="bi bi-ticket-perforated-fill me-3 icono-boleto"></i><?php echo $titulo; ?></h2>
     </div>
 
@@ -13,7 +10,7 @@
     <?php
     if ($_SESSION['mensaje']) {
     ?>
-        <div class="ver-tickets--alerta div-ver-tickets">
+        <div class="ver-tickets--alerta div-ver-tickets mx-auto">
 
             <p class="alerta alerta__exito">
                 <?php
@@ -25,7 +22,7 @@
 
     <?php }
     ?>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between flex-column-reverse flex-md-row">
 
         <div class="d-flex flex-column w-25 ">
             <div class="ms-3 mb-3 d-flex">
@@ -45,55 +42,58 @@
         </div>
 
         <div class="d-flex flex-column justify-content-center">
-            <button class="btn btn-outline-success fs-3 mb-3 me-3" id="exportarExcel"><i class="bi bi-file-earmark-excel me-2"></i>Exportar</button>
-            <button class="btn btn-outline-info fs-3 mb-3 me-3" id="limpiarFiltros">Limpiar filtros</button>
+            <button class="btn btn-outline-success fs-3 mb-3 mx-3 mx-md-0 me-md-3" id="exportarExcel"><i class="bi bi-file-earmark-excel me-2"></i>Exportar</button>
+            <button class="btn btn-outline-info fs-3 mb-3 mx-3 mx-md-0 me-md-3" id="limpiarFiltros">Limpiar filtros</button>
         </div>
     </div>
 
     <!-- TABLA -->
-    <div class="table-responsive px-3">
+    <div class="table-responsive mx-3">
 
         <table  class="table table-hover table-striped table-light align-middle table-bordered">
             <thead class="fs-5">
-                <tr class="">
+                <tr class="bg-primary">
 
                     <?php if ($idRol === '2') { ?>
-                        <th class="table-primary text-white text-center" scope="col"><input class="my-auto text-center bg-primary input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder=" Fecha registro" id="fechaBusqueda"></th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"></th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder w-8" type="text" placeholder="Registrado" id="fechaBusqueda"></th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder w-name" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder w-name" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
                         <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
                         <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
                         <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
                         <th class="table-primary text-white text-center" scope="col">Comentarios de ticket</th>
                         <th class="table-primary text-white text-center" scope="col">Comentarios de soporte</th>
+                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder w-8" type="text" placeholder="Servicio" id="servicioBusqueda"></th>
                         <th class="table-primary text-white text-center" scope="col">Acciones</th>
                     <?php } ?>
 
                     <?php if ($idRol === '1' || $idRol === '3') { ?>
-                        <th class="table-primary text-white text-center" scope="col"><input class="my-auto text-center bg-primary input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder=" Fecha registro" id="fechaBusqueda"></th>
-                        <th class="table-primary text-white text-center" scope="col"><input disabled class="text-center bg-primary input-placeholder" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col">Comentarios de ticket</th>
-                        <th class="table-primary text-white text-center" scope="col">Comentarios de soporte</th>
-                        <th class="table-primary text-white text-center" scope="col">Acciones</th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"></th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-8" type="text" placeholder="Registrado" id="fechaBusqueda"></th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input disabled class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-name" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-name" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Comentarios de ticket</th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Comentarios de soporte</th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center  <?php echo $expedienteLogueado === '4486'  ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-8" type="text" placeholder="Servicio" id="servicioBusqueda"></th>
+                        <th class=" <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Acciones</th>
                     <?php } ?>
 
                     <?php if ($idRol === '4') { ?>
-                        <th class="table-primary text-white text-center" scope="col"><input class="my-auto text-center bg-primary input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder=" Fecha registro" id="fechaBusqueda"></th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input disabled class="text-center bg-primary input-placeholder" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col"><input class="text-center bg-primary input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
-                        <th class="table-primary text-white text-center" scope="col">Comentarios de ticket</th>
-                        <th class="table-primary text-white text-center" scope="col">Comentarios de soporte</th>
-                        <th class="table-primary text-white text-center" scope="col">Acciones</th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="my-auto text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="number" placeholder="Folio" id="folioBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-8" type="text" placeholder="Registrado" id="fechaBusqueda"></th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-name" type="text" placeholder="Atiende" id="atiendeBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input disabled class="text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-name" type="text" placeholder="Requiere" id="requiereBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="text" placeholder="Estado" id="estadoBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="text" placeholder="Clasificación" id="clasificacionBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder" type="text" placeholder="Subclasificación" id="subclasificacionBusqueda"> </th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Comentarios de ticket</th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Comentarios de soporte</th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col"><input class="text-center <?php echo $expedienteLogueado === '4485' ?  'bg-dark' : 'bg-primary'; ?> input-placeholder w-8" type="text" placeholder="Servicio" id="servicioBusqueda"></th>
+                        <th class=" <?php echo $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Acciones</th>
                     <?php } ?>
 
                 </tr>
@@ -107,10 +107,10 @@
     </div>
 
 
-    <div class="paginacion mb-3 ps-3">
-        <button class="btn btn-primary fs-3 me-2" id="btnAnterior"> <i class="bi bi-chevron-double-left"></i></button>
+    <div class="paginacion my-3 ps-3">
+        <button class="btn  <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'btn-dark' : 'btn-primary'; ?> fs-3 me-2" id="btnAnterior"> <i class="bi bi-chevron-double-left"></i></button>
         <div id="paginas"></div>
-        <button class="btn btn-primary fs-3 ms-2" id="btnSiguiente"><i class="bi bi-chevron-double-right"></i></button>
+        <button class="btn  <?php echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'btn-dark' : 'btn-primary'; ?> fs-3 ms-2" id="btnSiguiente"><i class="bi bi-chevron-double-right"></i></button>
     </div>
 
 
@@ -130,9 +130,13 @@
                         <span class="input-group-text fs-3" id="inputGroup-sizing-default">Folio</span>
                         <input disabled type="number" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="folio">
                     </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Estado</span>
+                        <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="estado">
+                    </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Requerido por</span>
+                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Requiere</span>
                         <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="requiere">
                     </div>
 
@@ -152,23 +156,28 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Clasificación ticket</span>
+                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Clasificación</span>
                         <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="clasificacion">
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Subclasificación ticket</span>
+                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Subclasificación</span>
                         <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="subclasificacion">
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text fs-3">Comentarios ticket</span>
+                        <span class="input-group-text fs-3 text-wrap text-start">Comentarios ticket</span>
                         <textarea disabled class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="comentariosReporte"></textarea>
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Comentarios soporte</span>
+                        <span class="input-group-text fs-3 text-wrap text-start" id="inputGroup-sizing-default">Comentarios soporte</span>
                         <textarea disabled class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="comentariosSoporte"></textarea>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text fs-3" id="inputGroup-sizing-default">Servicio</span>
+                        <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="tipoServicio">
                     </div>
 
                     <div class="input-group mb-3">

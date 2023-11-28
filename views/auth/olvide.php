@@ -1,48 +1,53 @@
-<main class="auth olvide">
-    <div class="auth__contenedor olvide">
+<div class="container-xl pb-5">
+    <div class="auth__header mt-5">
 
-        <div class="auth__header">
+        <h2 class="auth__heading"><?php echo $titulo; ?></h2>
+        <p class="auth__texto">Recupera tu acceso a Helpdesk SITEUR</p>
 
-            <h2 class="auth__heading"><?php echo $titulo; ?></h2>
-            <p class="auth__texto">Recupera tu acceso a Helpdesk SITEUR</p>
+    </div>
 
+    <?php
+    require_once __DIR__ . '/../templates/alertas.php';
+    ?>
+
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+            <img src="/build/img/forgot.png" class="img-fluid img-olvide" alt="...">
         </div>
 
-        <?php
-        require_once __DIR__ . '/../templates/alertas.php';
-        ?>
+        <div class="col-md-6">
 
-        <!-- <div class="imagen">
-
-            <img class="imagen__logo" src="/build/img/Logo_de_SITEUR_T.png" alt="logo siteur">
-
-        </div> -->
+            <form action="/olvide" class="mt-5" method="POST">
+                <div class="formulario__campo">
+                    <label for="email" class="form-label fs-4">Correo:</label>
+                    <input type="email" class="form-control fs-4" placeholder="Correo electrónico" id="email" name="email">
+                </div>
 
 
-        <form action="/olvide" class="formulario" method="POST">
-            <div class="formulario__campo">
-                <label for="email" class="formulario__label">Correo:</label>
-                <input type="email" class="formulario__input" placeholder="Correo electrónico" id="email" name="email">
+
+
+
+                <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-primary fs-4 my-5" value="Enviar instrucciones">
+                </div>
+
+            </form>
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <a href="/login" class="text-primary text-center">¿Ya tienes cuenta? Iniciar sesión</a>
+                <a href="/registro" class="text-primary text-center">¿Aún no tienes cuenta? Obtener una</a>
             </div>
-
-
-
-
-
-
-            <input type="submit" class="formulario__submit" value="Enviar instrucciones">
-
-
-        </form>
+        </div>
 
     </div>
+</div>
 
-    <div class="acciones">
-        <a href="/login" class="acciones__enlace">¿Ya tienes cuenta? Iniciar sesión</a>
-        <a href="/registro" class="acciones__enlace">¿Aún no tienes cuenta? Obtener una</a>
-    </div>
 
-</main>
+</div>
+
+
+
 
 
 

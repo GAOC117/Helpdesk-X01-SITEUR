@@ -1,126 +1,115 @@
-<main class="empleados">
+<div class="text-center mb-5 pt-5 pt-md-0">
+    <h2><i class='bi bi-people-fill me-3'></i><?php echo $titulo; ?></h2>
+</div>
 
-    <div class="ver-empleados__header">
-        <div class="heading">
 
-            <h2 class="ver-empleados__texto"><?php echo $titulo; ?></h2>
-        </div>
+<?php
 
+if ($_SESSION['mensaje']) {
+?>
+    <div class="mx-auto mx-5 w-50 div-alerta ">
+
+        <p class="alerta alerta__exito">
             <?php
-
-            if ($_SESSION['mensaje']) {
+            echo $_SESSION['mensaje'];
+            $_SESSION['mensaje'] = '';
             ?>
-                <div class="ver-tickets--alerta alerta-empleados div-alerta">
-
-                    <p class="alerta alerta__exito">
-                        <?php
-                        echo $_SESSION['mensaje'];
-                        $_SESSION['mensaje'] = '';
-                        ?>
-                    </p>
-                </div>
-
-            <?php }
-            ?>
-
+        </p>
     </div>
 
+<?php }
+?>
 
 
 
 
+<?php if (count($empleados) > 0) : ?>
 
+    <div class='container-xl'>
+        <div class='justify-content-center row mb-5 flex-column flex-md-row'>
+            <div class=' col-md-4 d-flex justify-content-between justify-content-md-center mb-3 mb-md-0'>
+                <label class="filter-label">Expediente: </label>
+                <input type="number" autocomplete='off' class='filter' name='expediente' placeholder='Buscar expediente' data-col='expediente' id="expediente" />
+            </div>
 
-
-
-
-    <?php if (count($empleados) > 0) : ?>
-
-        <div class='contenedor'>
-            <div class='filters'>
-                <div class='filter-container'>
-                    <label class="filter-label">Expediente: </label>
-                    <input type="number" autocomplete='off' class='filter' name='expediente' placeholder='Buscar expediente' data-col='expediente' id="expediente" />
-                </div>
-
-                <div class='filter-container'>
-                    <label class="filter-label">Nombre del empleado: </label>
-                    <input autocomplete='off' class='filter' name='nombre' placeholder='Buscar nombre' data-col='nombre' id="nombre" />
-                </div>
-
+            <div class=' col-md-4 d-flex  justify-content-between justify-content-md-center'>
+                <label class="filter-label">Nombre del empleado: </label>
+                <input autocomplete='off' class='filter' name='nombre' placeholder='Buscar nombre' data-col='nombre' id="nombre" />
             </div>
         </div>
-
-    <?php endif; ?>
-
-
-    <div class='tabla__contenedor-empleado'>
-        <table id="myTable" class="table table-hover tabla tabla-empleado" cellspacing="0" cellpadding="0">
-
-
-
-
-
-            <?php if (count($empleados) > 0) : ?>
-
-                <thead class="tabla__header tabla__header-empleado">
-                    <tr class="tabla__header__pegar tr-empleado">
-
-                        <th class="tabla__th th-empleado">Expediente</th>
-                        <th class="tabla__th th-empleado">Nombre</th>
-                        <th class="tabla__th th-empleado">Correo</th>
-                        <th class="tabla__th th-empleado">Extensión</th>
-                        <th class="tabla__th th-empleado">Departamento</th>
-                        <th class="tabla__th th-empleado">Rol</th>
-                        <th class="tabla__th th-empleado">Acciones</th>
-                    </tr>
-                </thead>
-
-                <!-- mostrar los resultados -->
-                <tbody class="tabla__body-empleados">
-
-                    <?php
-                    foreach ($empleados as $empleado) : ?>
-                        <?php if ($empleado->id === '0') continue; ?>
-
-                        <tr class="tabla__row tabla-row-empleado">
-                            <td class="tabla__td td-empleado"><?php echo $empleado->id; ?></td>
-                            <td class="tabla__td td-empleado"><?php echo $empleado->nombre . ' ' . $empleado->apellidoPaterno . ' ' . $empleado->apellidoMaterno; ?></td>
-                            <td class="tabla__td td-empleado"><?php echo $empleado->email; ?></td>
-                            <td class="tabla__td td-empleado"><?php echo $empleado->extension; ?></td>
-                            <td class="tabla__td td-empleado"><?php echo $empleado->departamento; ?></td>
-                            <td class="tabla__td td-empleado"><?php echo ucfirst($empleado->rol); ?></td>
-                            <td class="tabla__td td-empleado">
-                                <?php if ($empleado->estatus === '1') { ?>
-                                    <a href="/dashboard/empleados/editar?id=<?php echo $empleado->id; ?>" class="boton-azul boton-accion">Editar</a>
-                                    <form method="POST" action="/dashboard/empleados/update">
-                                        <input type="hidden" name="id" value="<?php echo $empleado->id; ?>">
-
-                                        <input type="submit" class="boton-rojo boton-accion" value="Dar de baja">
-                                    </form>
-
-
-                                <?php } else { ?>
-                                    <form method="POST" action="/dashboard/empleados/update">
-                                        <input type="hidden" name="id" value="<?php echo $empleado->id; ?>">
-
-                                        <input type="submit" class="boton-verde-limon boton-accion" value="Dar de alta">
-                                    </form>
-                                <?php } ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-                </tbody>
-        </table>
     </div>
 
+<?php endif; ?>
 
-</main>
+
+<div class='table-responsive mx-3'>
+    <table id="myTable" class="table table-hover table-striped table-light align-middle table-bordered" cellspacing="0" cellpadding="0">
+
+
+
+
+
+        <?php if (count($empleados) > 0) : ?>
+
+            <thead class="fs-5">
+                <tr class="bg-dark">
+
+                    <th class="table-dark text-white text-center">Expediente</th>
+                    <th class="table-dark text-white text-center">Nombre</th>
+                    <th class="table-dark text-white text-center">Correo</th>
+                    <th class="table-dark text-white text-center">Extensión</th>
+                    <th class="table-dark text-white text-center">Departamento</th>
+                    <th class="table-dark text-white text-center">Rol</th>
+                    <th class="table-dark text-white text-center">Acciones</th>
+                </tr>
+            </thead>
+
+            <!-- mostrar los resultados -->
+            <tbody class="">
+
+                <?php
+                foreach ($empleados as $empleado) : ?>
+                    <?php if ($empleado->id === '0') continue; ?>
+
+                    <tr class="fs-5">
+                        <td class="text-center fs-5""><?php echo $empleado->id; ?></td>
+                            <td class=" text-center fs-5""><?php echo $empleado->nombre . ' ' . $empleado->apellidoPaterno . ' ' . $empleado->apellidoMaterno; ?></td>
+                        <td class="text-center fs-5""><?php echo $empleado->email; ?></td>
+                            <td class=" text-center fs-5""><?php echo $empleado->extension; ?></td>
+                        <td class="text-center fs-5""><?php echo $empleado->departamento; ?></td>
+                            <td class=" text-center fs-5""><?php echo ucfirst($empleado->rol); ?></td>
+                        <td class="text-center fs-5"">
+                                <?php if ($empleado->estatus === '1') { ?>
+                                    <a href=" /dashboard/empleados/editar?id=<?php echo $empleado->id; ?>" class="w-100 btn btn-primary mb-1 fs-4">Editar</a>
+                            <form method="POST" action="/dashboard/empleados/update">
+                                <input type="hidden" name="id" value="<?php echo $empleado->id; ?>">
+
+                                <input type="submit" class="w-100 btn btn-danger fs-4" value="Dar de baja">
+                            </form>
+
+
+                        <?php } else { ?>
+                            <form method="POST" action="/dashboard/empleados/update">
+                                <input type="hidden" name="id" value="<?php echo $empleado->id; ?>">
+
+                                <input type="submit" class=" w-100 btn btn-info fs-4" value="Dar de alta">
+                            </form>
+                        <?php } ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            </tbody>
+    </table>
+</div>
+
+
+
 
 <?php $script = "
 <script src='/build/js/sidebar.js' defer></script>
 <script src='/build/js/alertas.js' defer></script>
+<script src='/build/js/bootstrap.bundle.min.js'></script>
 
 ";
 if ($idRol !== '4')

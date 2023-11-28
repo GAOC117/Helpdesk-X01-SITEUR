@@ -69,12 +69,12 @@
                 include_once __DIR__ .'/templates/dashboard-sidebar.php';  
             ?>
 
-            <main class="dashboard__contenido">
+            <!-- <main class="d"> -->
                 <?php 
                     echo $contenido; 
                 ?> 
               
-            </main>
+            <!-- </main> -->
        
 
 

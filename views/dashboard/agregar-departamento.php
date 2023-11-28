@@ -1,32 +1,29 @@
-<main class="agregar-clasificacion">
-    <div class="editar-empleado__header">
-        <h2 class="editar-empleado__texto"><?php echo $titulo; ?></h2>
-        
-        <?php
-        require_once __DIR__ . '/../templates/alertas.php';
-        ?>
+<div class="text-center mb-5 pt-5 pt-md-0">
+    <h2><i class='bi bi-building me-3'></i><?php echo $titulo; ?></h2>
+</div>
 
 
-    </div>
 
+<div class="container-xl">
+    <?php
+    require_once __DIR__ . '/../templates/alertas.php';
+    ?>
 
-    <form class="editar-empleado__form formulario" method="POST">
-
-        <div class="formulario__datos-empleado  formulario__clasificacion">
-
-            <div class="formulario__campo">
-                <label for="descripcion" class="formulario__label">Nuevo departamento:</label>
-                <input type="text" class="formulario__input" placeholder="Nuevo departamento" id="descripcion" name="descripcion" value="<?php echo $departamentos->descripcion ?>">
-            </div>
+    <form class="mt-5" method="POST">
+        <div class='d-flex flex-column  mb-3 mb-md-0 width-control mx-auto'>
+            <label for="descripcion" class="formulario__label">Nuevo departamento:</label>
+            <input type="text" class="formulario__input" placeholder="Nuevo departamento" id="descripcion" name="descripcion" value="<?php echo $departamentos->descripcion ?>">
+        </div>
 
 
 
 
-
-            <input type="submit" class="formulario__submit editar-empleado__btn" value="Agregar departamento">
+        <div class="d-flex justify-content-center mt-5">
+            <input type="submit" class="btn btn-dark fs-4" value="Agregar departamento">
+        </div>
     </form>
 
-</main>
+</div>
 
 <?php $script = "
 <script src='/build/js/sidebar.js' defer></script>

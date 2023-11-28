@@ -1,41 +1,4 @@
 /** Media Queries **/
-.dashboard__grid {
-  display: grid;
-  grid-template-rows: 5rem 1fr;
-  grid-template-columns: unset;
-  grid-template-areas: "side" "contenido";
-}
-@media (min-width: 768px) {
-  .dashboard__grid {
-    grid-template-columns: 30rem 1fr;
-    grid-template-rows: unset;
-    grid-template-areas: "side contenido";
-    transition: grid-template-columns 0.4s ease-in-out;
-  }
-}
-@media (min-width: 768px) {
-  .dashboard__grid.activo {
-    grid-template-columns: 8rem 1fr;
-    grid-template-rows: unset;
-    grid-template-areas: "side contenido";
-  }
-}
-.dashboard__sidebar-contenedor {
-  grid-area: side;
-  background-color: #eee;
-}
-.dashboard__contenido {
-  display: flex;
-  justify-content: center;
-  grid-area: contenido;
-  background-color: #eee;
-}
-@media (width <= 500px) {
-  .dashboard__contenido {
-    width: 50rem;
-  }
-}
-
 .dashboard__sidebar {
   position: relative;
   background-color: rgb(33, 52, 92);
@@ -395,37 +358,6 @@
   display: none;
 }
 
-.dash-empleado {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-@media (width < 500px) {
-  .dash-empleado {
-    height: 87rem;
-  }
-}
-.dash-empleado__imagen {
-  margin: 5rem 0 2rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  filter: drop-shadow(18px 18px 10px rgba(0, 0, 0, 0.5));
-}
-.dash-empleado__nombre {
-  margin-bottom: 3rem;
-  color: #64748B;
-  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-.dash-empleado__nombre--texto {
-  font-size: 3rem;
-  text-align: center;
-}
-@media (width < 768px) {
-  .dash-empleado__nombre--texto {
-    font-size: 1.8rem;
-  }
-}
 .dash-empleado__informacion-tickete {
   display: flex;
   justify-content: center;

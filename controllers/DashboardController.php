@@ -102,12 +102,13 @@ class DashboardController
         session_start();
         isLogged();
         $idRol = $_SESSION['idRol'];
-        $nombreLogueado = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $extension = $_SESSION['extension'];
 
 
-        if ($idRol  !== '1' && $idRol !== '2')
+        // if ($idRol  !== '1' && $idRol !== '2')
+        if ($idRol !== '2')
             header('Location: /dashboard/ver-tickets');
 
         //si el id no es un numero redirigir
@@ -149,7 +150,7 @@ class DashboardController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
+            
             $idAsignado = $_POST['idEmpAsignado'];
 
             date_default_timezone_set('America/Mexico_City');
@@ -203,6 +204,7 @@ class DashboardController
             'clasificacion' => $clasificacion->descripcion,
             'subclasificacion' => $subclasificacion->descripcion,
             'empleadosInformatica' => $informatica,
+            'nombre' =>$nombre,
             'alertas' => $alertas
 
         ]);
@@ -215,7 +217,7 @@ class DashboardController
         isLogged();
         $idRol = $_SESSION['idRol'];
         $expedienteLogueado = $_SESSION['id'];
-        $nombreLogueado = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
 
         $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
@@ -227,11 +229,13 @@ class DashboardController
 
         //en los alias se dejo como viene en la tabla original, asi no se crea un modelo mas para la consulta, ejemplo en e.nombre su alias es el nombre de la columna del historico
         $query =  "SELECT ht.id,ht.id,ht.idTicket, e2.descripcion as idEstado,";
-        $query .=  " case  e.nombre when '0' then 'Sin asignar' else e.nombre end idEmpAsignado , ht.fechaRegistro , ht.comentarios ";
+        // $query .=  " case  e.nombre when '0' then 'Sin asignar' else e.nombre end idEmpAsignado , ht.fechaRegistro , ht.comentarios ";
+        $query .= " concat(e.nombre,' ',e.apellidoPaterno,' ',e.apellidoMaterno)  idEmpAsignado , ht.fechaRegistro , ht.comentarios ";
         $query .= " from historico_ticket ht left outer join tickets t on t.id = ht.id ";
         $query .= " left outer join empleado e on e.id = ht.idEmpAsignado left outer join estados e2 on e2.id = ht.idEstado ";
         $query .= " where ht.idTicket = $idTicket order by ht.id desc";
 
+        
         $historialTicket = HistoricoTicket::SQL($query);
 
         // debuguear($historialTicket);
@@ -251,7 +255,7 @@ class DashboardController
             'meses' => $meses,
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
-            'nombre' => $nombreLogueado
+            'nombre' => $nombre
 
 
         ]);
@@ -400,9 +404,10 @@ class DashboardController
 
 
         $idTicket = $_GET['id'];
-
+        
         //existe el ticket en base dedatos
         $ticket = $tickets->find($idTicket);
+        
         if (!$ticket)
             header('Location: /dashboard/ver-tickets');
         $informatica = $empleado->allInformatica('idDepartamento', 'asc');
@@ -434,12 +439,22 @@ class DashboardController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            
             $ticket->comentariosSoporte = $_POST['comentariosSoporte'];
-            $ticket->idEmpAsignado = $_POST['idEmpAsignado'];
-            $empleadoAsignado = $empleado->find($ticket->idEmpAsignado);
+            
+                $ticket->idEmpAsignado = $_POST['idEmpAsignado'];
+                $alertas = $ticket->validarEscalarTicket();
+           
+             
+              
+
+           
+
+            // debuguear($ticket);
 
             // debuguear($_POST);
-            $alertas = $ticket->validarEscalarTicket();
+
+            // debuguear($alertas);
 
             $historicoTicket = $historico->OneWhere('idTicket', $idTicket, 'id desc');
 
@@ -451,6 +466,7 @@ class DashboardController
 
 
             if (empty($alertas)) {
+                $empleadoAsignado = $empleado->find($ticket->idEmpAsignado);
                 $historicoTicket->id = null;
                 date_default_timezone_set('America/Mexico_City');
                 $historicoTicket->fechaRegistro = date('Y-m-d');
@@ -538,12 +554,12 @@ class DashboardController
 
         idNotNumeric();
 
-
+        
         $idTicket = $_GET['id'];
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+           
 
 
             $historico = new HistoricoTicket;
@@ -558,11 +574,17 @@ class DashboardController
 
 
             $historicoTicket->comentarios = $_POST['comentarios'];
+            $tickets->tipoServicio = $_POST['tipoServicio'];
+
 
             // debuguear($historicoTicket);
 
 
             $alertas = $historicoTicket->validarComentarioTicketCerrado();
+            $alertas = $tickets->validarTipoServicio();
+
+            // debuguear($alertas);
+           
 
 
             if (empty($alertas)) {
@@ -576,6 +598,7 @@ class DashboardController
                 $ticketToUpdate->idEstado = 4;
                 $ticketToUpdate->ticketNuevo = 0;
                 $ticketToUpdate->comentariosSoporte = $_POST['comentarios'];
+                $ticketToUpdate->tipoServicio = $_POST['tipoServicio'];
 
                 $empleadoAsignado = $empleado->find($ticketToUpdate->idEmpAsigna);
                 $empleadoReporta = $empleado->find($ticketToUpdate->idEmpReporta);
@@ -632,7 +655,9 @@ class DashboardController
             'nombre' => $nombre,
             'extension' => $extension,
             'idTicket' => $idTicket,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'comentarios' => $_POST['comentarios'],
+            'tipoServicio' =>$_POST['tipoServicio']
 
 
         ]);
@@ -644,7 +669,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
         $query = 'SELECT  e.id, e.nombre, e.apellidoPaterno, e.apellidoMaterno,e.email, e.extension, r.descripcion as rol, d.descripcion as departamento, e.estatus FROM empleado as e left outer join departamento d on e.idDepartamento = d.id left outer join roles as r on e.idRol = r.id;
@@ -664,7 +689,8 @@ class DashboardController
             'titulo' => $titulo,
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
-            'empleados' => $empleados
+            'empleados' => $empleados,
+            'nombre'=>$nombre
 
         ]);
     }
@@ -703,7 +729,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
         $id = $_GET['id'];
@@ -785,7 +811,8 @@ class DashboardController
             'usuario' => $usuario,
             'departamentos' => $departamentos,
             'roles' => $roles,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'nombre'=>$nombre
 
 
 
@@ -798,7 +825,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
 
@@ -816,7 +843,8 @@ class DashboardController
             'titulo' => $titulo,
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
-            'clasificaciones' => $clasificaciones
+            'clasificaciones' => $clasificaciones,
+            'nombre'=>$nombre
 
         ]);
     }
@@ -829,7 +857,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
         $id = $_GET['id'];
@@ -871,7 +899,8 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'clasificacion' => $clasificacion,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'nombre' => $nombre
 
 
 
@@ -914,7 +943,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
         $clasificacion = new Clasificacion();
@@ -943,7 +972,8 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             // 'clasificacion' => $clasificacion,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'nombre' =>$nombre
 
 
 
@@ -957,7 +987,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
 
@@ -974,7 +1004,8 @@ class DashboardController
             'titulo' => $titulo,
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
-            'subclasificaciones' => $subclasificaciones
+            'subclasificaciones' => $subclasificaciones,
+            'nombre'=>$nombre
 
         ]);
     }
@@ -988,7 +1019,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
         $id = $_GET['id'];
@@ -1029,12 +1060,13 @@ class DashboardController
         // Render a la vista
         $router->renderView('dashboard/editar-subclasificacion', [
 
-            'titulo' => 'Editar clasificación',
+            'titulo' => 'Editar subclasificación',
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'clasificaciones' => $clasificaciones,
             'subclasificacion' => $subclasificacion,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'nombre'=>$nombre
 
 
 
@@ -1079,7 +1111,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
         $subclasificacion = new Subclasificacion();
@@ -1115,12 +1147,13 @@ class DashboardController
 
         $router->renderView('dashboard/agregar-subclasificacion', [
 
-            'titulo' => 'Agregar clasificación',
+            'titulo' => 'Agregar subclasificación',
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'clasificaciones' => $clasificaciones,
             'subclasificaciones' => $subclasificacion,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'nombre'=>$nombre
 
 
 
@@ -1135,7 +1168,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-        // $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
 
@@ -1153,7 +1186,8 @@ class DashboardController
             'titulo' => $titulo,
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
-            'departamentos' => $departamentos
+            'departamentos' => $departamentos,
+            'nombre'=>$nombre
 
         ]);
     }
@@ -1166,7 +1200,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
         $id = $_GET['id'];
@@ -1203,11 +1237,12 @@ class DashboardController
         // Render a la vista
         $router->renderView('dashboard/editar-departamento', [
 
-            'titulo' => 'Editar clasificación',
+            'titulo' => 'Editar departamento',
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'departamentos' => $departamentos,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'nombre'=>$nombre
 
 
 
@@ -1250,6 +1285,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
 
         $expedienteLogueado = $_SESSION['id'];
         $alertas = [];
@@ -1275,11 +1311,12 @@ class DashboardController
 
         $router->renderView('dashboard/agregar-departamento', [
 
-            'titulo' => 'Agregar clasificación',
+            'titulo' => 'Agregar departamento',
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
              'departamentos' => $departamento,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'nombre'=>$nombre
 
 
 

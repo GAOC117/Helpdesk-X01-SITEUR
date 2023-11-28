@@ -1,32 +1,31 @@
-<main class="agregar-clasificacion">
-    <div class="editar-empleado__header">
-        <h2 class="editar-empleado__texto"><?php echo $titulo; ?></h2>
-        
-        <?php
-        require_once __DIR__ . '/../templates/alertas.php';
-        ?>
+<div class="text-center mb-5 pt-5 pt-md-0">
+    <h2><i class='fa-brands fa-jedi-order me-3'></i><?php echo $titulo; ?></h2>
+</div>
 
 
-    </div>
+<div class="container-xl">
+    <?php
+    require_once __DIR__ . '/../templates/alertas.php';
+    ?>
 
+    <form class="mt-5" method="POST">
 
-    <form class="editar-empleado__form formulario" method="POST">
-
-        <div class="formulario__datos-empleado  formulario__clasificacion">
-
-            <div class="formulario__campo">
-                <label for="descripcion" class="formulario__label">Nueva clasificación:</label>
-                <input type="text" class="formulario__input" placeholder="Nueva clasificación" id="descripcion" name="descripcion" value="<?php echo $clasificacion->descripcion ?>">
-            </div>
+        <div class='d-flex flex-column  mb-3 mb-md-0 width-control mx-auto'>
+            <label for="descripcion" class="form-label fs-4">Nueva clasificación:</label>
+            <input type="text" class="form-control fs-4" placeholder="Nueva clasificación" id="descripcion" name="descripcion" value="<?php echo $clasificacion->descripcion ?>">
+        </div>
 
 
 
 
-
-            <input type="submit" class="formulario__submit editar-empleado__btn" value="Agregar clasificación">
+        <div class="d-flex justify-content-center mt-5">
+            <input type="submit" class="btn btn-dark fs-4" value="Agregar clasificación">
+        </div>
     </form>
 
-</main>
+</div>
+
+
 
 <?php $script = "
 <script src='/build/js/sidebar.js' defer></script>

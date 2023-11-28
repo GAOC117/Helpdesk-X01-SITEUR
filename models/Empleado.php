@@ -49,7 +49,7 @@ class Empleado extends ActiveRecord {
     // Validar el Login de Usuarios
     public function validarLogin() {
         if(!$this->email) {
-            self::$alertas['error'][] = 'El correo del usuario es obligatorio';
+            self::$alertas['error'][] = 'El correo es obligatorio';
         }
        else if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             self::$alertas['error'][] = 'Correo no válido';

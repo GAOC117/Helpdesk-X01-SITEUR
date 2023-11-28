@@ -7,7 +7,10 @@ var subclasificacionBusqueda = '';
 var atiendeBusqueda = '';
 var requiereBusqueda = '';
 var estadoBusqueda = '';
+var servicioBusqueda = '';
 var rangoChecked = false;
+var expedienteLogueado;
+
 
 var pagina_siguiente;
 var pagina_anterior;
@@ -16,7 +19,14 @@ const btnSiguiente = document.querySelector('#btnSiguiente');
 const btnAnterior = document.querySelector('#btnAnterior');
 const rangoCheck = document.querySelector("#checkFechas");
 const limpiarFiltros = document.querySelector('#limpiarFiltros');
+const excel = document.querySelector('#exportarExcel');
 
+
+excel.addEventListener('click', function () {
+
+
+    exportarExcel(folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
+});
 
 
 rangoCheck.addEventListener('change', function () {
@@ -25,7 +35,7 @@ rangoCheck.addEventListener('change', function () {
     else
         rangoChecked = false;
 
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
 })
 var total_registros_anterior = 0;
@@ -37,6 +47,7 @@ limpiarNotificaciones();
 busqueda();
 // paginas();
 document.addEventListener('DOMContentLoaded', function () {
+
 
 
     var date = new Date();
@@ -55,15 +66,15 @@ document.addEventListener('DOMContentLoaded', function () {
     fechaDesde.value = hoy;
     fechaHasta.value = hoy;
 
-    fechaDesde.addEventListener('change',function(){
+    fechaDesde.addEventListener('change', function () {
 
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
-        
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
+
     })
-    fechaHasta.addEventListener('change',function(){
-        
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
-        
+    fechaHasta.addEventListener('change', function () {
+
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
+
     })
 
 
@@ -76,18 +87,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const estado = document.querySelector("#estadoBusqueda");
         const clasificacion = document.querySelector("#clasificacionBusqueda");
         const subclasificacion = document.querySelector("#subclasificacionBusqueda");
+        const servicio = document.querySelector("#servicioBusqueda");
 
-        folio.value='';
-        fecha.value='';
-        atiende.value='';
-        requiere.value='';
-        estado.value='';
-        clasificacion.value='';
-        subclasificacion.value='';
-        fechaDesde.value=hoy;
-        fechaHasta.value=hoy;
-        rangoCheck.checked=false;
-        
+        folio.value = '';
+        fecha.value = '';
+        atiende.value = '';
+        requiere.value = '';
+        estado.value = '';
+        clasificacion.value = '';
+        subclasificacion.value = '';
+        fechaDesde.value = hoy;
+        fechaHasta.value = hoy;
+        rangoCheck.checked = false;
+        servicio.value = '';
+
 
         paginaActual = 1;
         folioBusqueda = '';
@@ -98,23 +111,24 @@ document.addEventListener('DOMContentLoaded', function () {
         requiereBusqueda = '';
         estadoBusqueda = '';
         rangoChecked = false;
+        servicioBusqueda = '';
 
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
     })
-   
- 
 
 
 
-    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+
+
+    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     btnSiguiente.addEventListener('click', function () {
         if (paginaActual < pagina_siguiente) {
 
             paginaActual++;
         }
 
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
 
     })
@@ -125,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
             paginaActual--;
         }
 
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
 
 
@@ -189,7 +203,7 @@ setInterval(function () {
     // llenarTablaTickets(paginaActual, folioBusqueda);
     // }
 
-    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
 }, 2000);
 
@@ -269,53 +283,60 @@ function busqueda() {
     const estado = document.querySelector("#estadoBusqueda");
     const clasificacion = document.querySelector("#clasificacionBusqueda");
     const subclasificacion = document.querySelector("#subclasificacionBusqueda");
+    const servicio = document.querySelector("#servicioBusqueda");
 
     folio.addEventListener('keyup', function () {
         folioBusqueda = folio.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     });
 
     fecha.addEventListener('keyup', function () {
         fechaBusqueda = fecha.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     });
 
     atiende.addEventListener('keyup', function () {
         atiendeBusqueda = atiende.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     });
 
     requiere.addEventListener('keyup', function () {
         requiereBusqueda = requiere.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     });
 
     estado.addEventListener('keyup', function () {
         estadoBusqueda = estado.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     });
 
     clasificacion.addEventListener('keyup', function () {
         clasificacionBusqueda = clasificacion.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     });
 
     subclasificacion.addEventListener('keyup', function () {
         subclasificacionBusqueda = subclasificacion.value;
         paginaActual = 1;
-        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
+    });
+
+    servicio.addEventListener('keyup', function () {
+        servicioBusqueda = servicio.value;
+        paginaActual = 1;
+        llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
     });
 
 }
 
 
-async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado, clasificacion, subclasificacion, rangoBusqueda,desde,hasta) {
+async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado, clasificacion, subclasificacion, rangoBusqueda, desde, hasta, servicio) {
 
     const tBody = document.querySelector('.tabla__body.tickets');
     const paginas = document.querySelector('#paginas');
@@ -330,7 +351,7 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
 
 
 
-        const url = '/api/obtenerTablaTickets?page=' + page + '&folio=' + folio + '&fecha=' + String(fecha) + '&atiende=' + atiende + '&requiere=' + requiere + '&estado=' + estado + '&clasificacion=' + clasificacion + '&subclasificacion=' + subclasificacion +'&rangoChecked='+rangoBusqueda+'&fechaDesde='+desde+'&fechaHasta='+hasta;
+        const url = '/api/obtenerTablaTickets?page=' + page + '&folio=' + folio + '&fecha=' + String(fecha) + '&atiende=' + atiende + '&requiere=' + requiere + '&estado=' + estado + '&clasificacion=' + clasificacion + '&subclasificacion=' + subclasificacion + '&rangoChecked=' + rangoBusqueda + '&fechaDesde=' + desde + '&fechaHasta=' + hasta + '&servicio=' + servicio;
         // console.log(url);
 
 
@@ -342,6 +363,7 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
 
 
         const tablaRows = result.tablaRows;
+        // console.log(tablaRows);
         const total_registros_actual = result.total_registros;
         const total_paginas = result.total_paginas;
 
@@ -355,6 +377,7 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
         }
 
         const idRol = result.idRol;
+        expedienteLogueado = result.expediente_logueado;
         const nombreLogueado = result.nombreLogueado;
         pagina_siguiente = result.pagina_siguiente;
         pagina_anterior = result.pagina_anterior;
@@ -387,11 +410,12 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             const td_subclasificacion = document.createElement('td');
             const td_comentarios = document.createElement('td');
             const td_comentariosSoporte = document.createElement('td');
+            const td_tipoServicio = document.createElement('td');
             const td_acciones = document.createElement('td');
             const div_acciones = document.createElement('DIV');
 
-            const { idTicket, fechaCaptura, atiende, nombreRequiere, estadoTicket, clasificacion, subclasificacion, comentarios, comentariosSoporte } = row;
-
+            const { idTicket, fechaCaptura, atiende, nombreRequiere, estadoTicket, clasificacion, subclasificacion, comentarios, comentariosSoporte, tipoServicio } = row;
+            console.log(atiende);
             // console.log(fechaCaptura);
             // tr.classList.add('tabla__row');
 
@@ -415,19 +439,21 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             td_subclasificacion.textContent = subclasificacion;
             td_comentarios.textContent = comentarios;
             td_comentariosSoporte.textContent = comentariosSoporte;
+            td_tipoServicio.textContent = tipoServicio;
 
             td_idTicket.classList.add('text-center');
             btnId.classList.add('btn', 'btn-info', 'text-center', 'btnFolio', 'fs-4');
-            td_fechaCaptura.classList.add('tabla__td', 'text-center');
-            // td_nombreAsigna.classList.add('tabla__td');
-            td_atiende.classList.add('tabla__td', 'text-center');
-            td_nombreRequiere.classList.add('tabla__td', 'text-center');
-            td_estadoTicket.classList.add('tabla__td', 'text-center');
-            td_clasificacion.classList.add('tabla__td', 'text-center');
-            td_subclasificacion.classList.add('tabla__td', 'text-center');
-            td_comentarios.classList.add('tabla__td', 'text-center');
-            td_comentariosSoporte.classList.add('tabla__td', 'text-center');
-            td_acciones.classList.add('tabla__td', 'text-center');
+            td_fechaCaptura.classList.add('text-center', 'fs-5');
+            // td_nombreAsigna.classList.add(
+            td_atiende.classList.add('text-center', 'fs-5');
+            td_nombreRequiere.classList.add('text-center', 'fs-5');
+            td_estadoTicket.classList.add('text-center', 'fs-5');
+            td_clasificacion.classList.add('text-center', 'fs-5');
+            td_subclasificacion.classList.add('text-center', 'fs-5');
+            td_comentarios.classList.add('text-center', 'fs-5');
+            td_comentariosSoporte.classList.add('text-center', 'fs-5');
+            td_tipoServicio.classList.add('text-center', 'fs-5');
+            td_acciones.classList.add('text-center', 'fs-5');
 
             if (estadoTicket === 'Abierto')
                 p_estadoTicket.classList.add('text-white', 'bg-danger', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
@@ -456,12 +482,12 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             if (idRol === '2')  //poner aqui al admin tambien si se requiere
             {
                 if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
-                    if (atiende === 'Sin asignar') {
+                    if (atiende.trim() === 'Sin asignar') {
                         // div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='tabla__boton-verde-limon tabla__boton'><i class='fa-solid fa-person-walking-arrow-loop-left fa-xl'></i></i></a>";
                         // div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='tabla__boton-verde-limon tabla__boton'><i class='fa-solid fa-person-walking-arrow-loop-left fa-xl'></i></i></a>";
                         div_acciones.innerHTML += "<a href='/dashboard/asignar-tickets?id=" + idTicket + "' title='Asignar ticket' class='fs-2 btn btn-info btn-sm'><i class='bi bi-person-up'></i></i></a>";
                     }
-                    if (atiende !== 'Sin asignar') {
+                    if (atiende.trim() !== 'Sin asignar') {
 
                         // div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a>";
                         div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='fs-2 btn btn-secondary btn-sm'><i class='bi bi-pause-circle'></i></a>";
@@ -483,9 +509,9 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
                 if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
 
 
-                    if (atiende !== 'Sin asignar') {
+                    if (atiende.trim() !== 'Sin asignar') {
 
-                        if (atiende === nombreLogueado) {
+                        if (atiende.trim() === nombreLogueado) {
                             // div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a>";
                             div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='fs-2 btn btn-secondary btn-sm'><i class='bi bi-pause-circle'></i></a>";
 
@@ -531,6 +557,7 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             tr.appendChild(td_subclasificacion);
             tr.appendChild(td_comentarios);
             tr.appendChild(td_comentariosSoporte);
+            tr.appendChild(td_tipoServicio);
             td_acciones.appendChild(div_acciones);
 
             tr.appendChild(td_acciones);
@@ -563,22 +590,47 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             var valorInicial = 1;
             var valorFinal = total_paginas;
 
-            if (total_paginas > 5) {
-                if (paginaActual <= numeroPaginasMostrar) {
-                    valorInicial = 1;
-                    valorFinal = numeroPaginasMostrar;
-                    // console.log("primer if");
-                }
-                else if (paginaActual + 2 === total_paginas || paginaActual + 2 > total_paginas) {
-                    valorInicial = total_paginas - 4;
-                    valorFinal = total_paginas;
 
-                    // console.log("segundo if");
-                }
-                else {
-                    var valorInicial = paginaActual - 2;
-                    var valorFinal = paginaActual + 2;
+            // if (total_paginas > 5) {
+            //     if (paginaActual <= numeroPaginasMostrar) {
+            //         valorInicial = 1;
+            //         valorFinal = numeroPaginasMostrar;
+            //         // console.log("primer if");
+            //     }
+            //     else if (paginaActual + 2 === total_paginas || paginaActual + 2 > total_paginas) {
+            //         valorInicial = total_paginas - 4;
+            //         valorFinal = total_paginas;
 
+            //         // console.log("segundo if");
+            //     }
+            //     else {
+            //         var valorInicial = paginaActual - 2;
+            //         var valorFinal = paginaActual + 2;
+
+            //     }
+            // }
+
+
+
+
+
+            // Calcular el rango de páginas que se deben mostrar
+
+
+            if (total_paginas <= numeroPaginasMostrar) {
+                // Si hay 5 o menos páginas en total, mostrar todas las páginas
+                valorInicial = 1;
+                valorFinal = total_paginas;
+            } else {
+                // Si hay más de 5 páginas, centrar la página actual en el rango
+                const mitadConjunto = Math.floor(numeroPaginasMostrar / 2);
+
+                valorInicial = Math.max(1, paginaActual - mitadConjunto);
+                valorFinal = Math.min(total_paginas, valorInicial + numeroPaginasMostrar - 1);
+
+                // Ajustar el rango si la página actual está cerca del final
+                if (valorFinal - valorInicial + 1 < numeroPaginasMostrar) {
+                    valorInicial = Math.max(1, valorFinal - numeroPaginasMostrar + 1);
                 }
             }
 
@@ -590,10 +642,15 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
 
 
             for (var i = valorInicial; i <= valorFinal; i++) {
-                html += ' <button  class="btn btn-outline-primary fs-3 botonPaginas" data-pagina =' + i + '>' + i + ' </button>'
+                if (expedienteLogueado === '4485' || expedienteLogueado === '4486')
+                    html += ' <button  class="btn btn-outline-dark fs-3 botonPaginas" data-pagina =' + i + '>' + i + ' </button>'
+                else
+                    html += ' <button  class="btn btn-outline-primary fs-3 botonPaginas" data-pagina =' + i + '>' + i + ' </button>'
             }
 
             paginas.innerHTML = html;
+            console.log('inicio ' + valorInicial + ' fin ' + valorFinal);
+            
 
 
 
@@ -607,7 +664,7 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
 
                     pagina = parseInt(e.target.dataset.pagina);
                     paginaActual = pagina;
-                    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda,rangoChecked,fechaDesde.value,fechaHasta.value);
+                    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
 
                 })
@@ -615,13 +672,25 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
                 if (parseInt(boton.dataset.pagina) === parseInt(paginaActual)) {
 
                     //    console.log('si'); 
-                    boton.classList.remove('btn-outline-primary');
-                    boton.classList.add('btn-primary');
+                    if (expedienteLogueado === '4485' || expedienteLogueado === '4486'){
+                        boton.classList.remove('btn-outline-dark');
+                        boton.classList.add('btn-dark');
+                    }
+                    else{
+                        boton.classList.remove('btn-outline-primary');
+                        boton.classList.add('btn-primary');
+                    }
                 }
 
                 else {
-                    boton.classList.add('btn-outline-primary');
-                    boton.classList.remove('btn-primary');
+                    if (expedienteLogueado === '4485' || expedienteLogueado === '4486'){
+                        boton.classList.add('btn-outline-dark');
+                        boton.classList.remove('btn-dark');
+                    }
+                    else{
+                        boton.classList.add('btn-outline-primary');
+                        boton.classList.remove('btn-primary');
+                    }
                 }
 
 
@@ -684,7 +753,8 @@ function paginas() {
 }
 
 
-//HACER FUNCION QUE SE LLAME CUANDO SE PRESIONA BOTON, UNA VEZ HECHO ESTO EXPORTAR EXCEL CON DICHA FUNCION
+
+
 
 
 async function abrirModal(folio) {
@@ -700,10 +770,12 @@ async function abrirModal(folio) {
         const result = await resultado.json();
         const infoTicket = result.infoTicket;
 
-        console.log(infoTicket);
+
+        // console.log(infoTicket.estadoTicket);
 
         modalInfoTicket.addEventListener('shown.bs.modal', e => {
             let inputFolio = modalInfoTicket.querySelector('.modal-body #folio');
+            let inputEstado = modalInfoTicket.querySelector('.modal-body #estado');
             let inputRequiere = modalInfoTicket.querySelector('.modal-body #requiere');
             let departamento = modalInfoTicket.querySelector('.modal-body #departamento');
             let extension = modalInfoTicket.querySelector('.modal-body #extension');
@@ -712,6 +784,7 @@ async function abrirModal(folio) {
             let subclasificacion = modalInfoTicket.querySelector('.modal-body #subclasificacion');
             let comentariosReporte = modalInfoTicket.querySelector('.modal-body #comentariosReporte');
             let comentariosSoporte = modalInfoTicket.querySelector('.modal-body #comentariosSoporte');
+            let tipoServicio = modalInfoTicket.querySelector('.modal-body #tipoServicio');
             let atiende = modalInfoTicket.querySelector('.modal-body #atiende');
 
             inputFolio.value = infoTicket.idTicket;
@@ -719,10 +792,12 @@ async function abrirModal(folio) {
             departamento.value = infoTicket.departamento;
             extension.value = infoTicket.extension;
             email.value = infoTicket.email;
+            inputEstado.value = infoTicket.estadoTicket;
             clasificacion.value = infoTicket.clasificacion;
             subclasificacion.value = infoTicket.subclasificacion;
             comentariosReporte.value = infoTicket.comentariosReporte;
-            comentariosSoporte.value = infoTicket.comentariosSoporte;
+            comentariosSoporte.value = infoTicket.comentariosSoporte === '' ? '-' : infoTicket.comentariosSoporte;
+            tipoServicio.value = infoTicket.tipoServicio;
             atiende.value = infoTicket.atiende;
         })
 
@@ -736,3 +811,84 @@ async function abrirModal(folio) {
 }
 
 
+
+//HACER FUNCION QUE SE LLAME CUANDO SE PRESIONA BOTON, UNA VEZ HECHO ESTO EXPORTAR EXCEL CON DICHA FUNCION
+
+
+async function exportarExcel(folio, fecha, atiende, requiere, estado, clasificacion, subclasificacion, rangoBusqueda, desde, hasta, servicio) {
+
+
+
+
+    try {
+
+
+
+
+
+
+        const url = '/api/exportarExcel?folio=' + folio + '&fecha=' + String(fecha) + '&atiende=' + atiende + '&requiere=' + requiere + '&estado=' + estado + '&clasificacion=' + clasificacion + '&subclasificacion=' + subclasificacion + '&rangoChecked=' + rangoBusqueda + '&fechaDesde=' + desde + '&fechaHasta=' + hasta + '&servicio=' + servicio;
+
+
+
+
+
+
+        const resultado = await fetch(url);
+        const result = await resultado.json();
+
+
+        const tablaRows = result.tablaRows;
+
+
+        let contenidoExcel = 'Folio,Fecha de captura, Quien atiende, Quien requiere el servicio,Estado del ticket, Clasificacion, Subclasificacion, Comentarios del reporte, Comentarios de soporte,Servicio\n';
+
+        tablaRows.forEach(row => {
+            let rows = row.idTicket + ',' + row.fechaCaptura + ',' + String(row.atiende).replace(',', ';').normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ',' + String(row.nombreRequiere).replace(',', ';').normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ',' + row.estadoTicket + ',' + String(row.clasificacion).replace(',', ';').normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ',' + String(row.subclasificacion).replace(',', ';').normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ',' + String(row.comentarios).replace(',', ';').normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ',' + String(row.comentariosSoporte).replace(',', ';').normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ',' + String(row.tipoServicio).replace(',', ';').normalize("NFD").replace(/[\u0300-\u036f]/g, "") + '\n';
+            contenidoExcel += rows;
+        });
+
+        var data = new Blob([contenidoExcel], { type: 'text/csv' });
+
+
+        var date = new Date();
+
+        // Get year, month, and day part from the date
+        var year = date.toLocaleString("default", { year: "numeric" });
+        var month = date.toLocaleString("default", { month: "2-digit" });
+        var day = date.toLocaleString("default", { day: "2-digit" });
+
+        // Generate yyyy-mm-dd date string
+        var hoy = year + "-" + month + "-" + day;
+
+        guardarExcel(data, "ReporteTickes" + hoy + '.csv');
+
+        //   console.log(tablaRows);
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+
+function guardarExcel(blob, nombreArchivo) {
+    if (window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, nombreArchivo);
+    }
+    else {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = nombreArchivo;
+        a.click();
+        setTimeout(() => {
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+
+        }, 0);
+
+    }
+
+}

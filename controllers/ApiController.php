@@ -70,6 +70,7 @@ class ApiController
         $estado = $_GET['estado'];
         $clasificacion = $_GET['clasificacion'];
         $subclasificacion = $_GET['subclasificacion'];
+        $servicio = $_GET['servicio'];
 
 
 
@@ -101,7 +102,7 @@ class ApiController
                 $query_total_registros .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' ";
                 $query_total_registros .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' ";
+                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%'";
             } else {
                 $query_total_registros = "SELECT COUNT(*) as cantidad FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado   AS e2 ON e2.id = t.idEmpAsignado ";
                 $query_total_registros .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
@@ -111,7 +112,7 @@ class ApiController
                 $query_total_registros .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' ";
                 $query_total_registros .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' ";
+                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%'AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' ";
             }
 
 
@@ -134,7 +135,7 @@ class ApiController
                 $query_total_registros .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  WHERE (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' ";
                 $query_total_registros .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' ";
+                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%'";
             } else {
                 $query_total_registros = "SELECT COUNT(*) as cantidad FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query_total_registros .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
@@ -144,7 +145,7 @@ class ApiController
                 $query_total_registros .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  WHERE (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' ";
                 $query_total_registros .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' ";
+                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' ";
             }
         } else if ($idRol === '4') { //si es colaborador ver los reportados por el
             // debuguear("tercer if");
@@ -160,9 +161,10 @@ class ApiController
                 $query_total_registros .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' ";
                 $query_total_registros .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' ";
+                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%'";
+                
             } else {
-
+                
                 $query_total_registros = "SELECT COUNT(*) as cantidad FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query_total_registros .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query_total_registros .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
@@ -171,11 +173,13 @@ class ApiController
                 $query_total_registros .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' ";
                 $query_total_registros .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' ";
+                $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' ";
+                
+                
             }
         }
 
-
+        
 
         $total_registros = VerTickets::contar($query_total_registros);
 
@@ -199,10 +203,11 @@ class ApiController
 
 
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
@@ -210,13 +215,17 @@ class ApiController
                 $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' ";
                 $query .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query .= " AND  sp.descripcion like '%$subclasificacion%' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
+
+                    
+                
             } else {
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
@@ -224,8 +233,9 @@ class ApiController
                 $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' ";
                 $query .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query .= " AND  sp.descripcion like '%$subclasificacion%'AND t.fechaCaptura BETWEEN '$desde' AND '$hasta'  order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
-
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta'  order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
+                
+                
                 // debuguear($query);
             }
             // } else if ($idRol === '3') //si es soporte solo asignados a él
@@ -238,10 +248,11 @@ class ApiController
 
                 // $query_total_registros = "SELECT COUNT(*) as cantidad  FROM tickets where idEmpAsignado = $expedienteLogueado OR idEmpRequiere = $expedienteLogueado";
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
@@ -249,13 +260,14 @@ class ApiController
                 $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' ";
                 $query .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query .= " AND  sp.descripcion like '%$subclasificacion%' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
             } else {
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
@@ -263,7 +275,7 @@ class ApiController
                 $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' ";
                 $query .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
             }
 
             // debuguear($query);
@@ -272,11 +284,12 @@ class ApiController
             if (!$rangoCheck) {
 
                 // $query_total_registros = "SELECT COUNT(*) as cantidad  FROM tickets where idEmpRequiere = $expedienteLogueado";
-                $query = "SELECT t.id as idT;icket, t.fechaCaptura as fechaCaptura,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
@@ -284,13 +297,14 @@ class ApiController
                 $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' ";
                 $query .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query .= " AND  sp.descripcion like '%$subclasificacion%' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
             } else {
-                $query = "SELECT t.id as idT;icket, t.fechaCaptura as fechaCaptura,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
@@ -298,7 +312,7 @@ class ApiController
                 $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' ";
                 $query .= " AND  concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
-                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
             }
         }
 
@@ -318,11 +332,27 @@ class ApiController
         $resultado['pagina_anterior'] = $pagina_anterior;
         $resultado['total_registros'] = $total_registros['cantidad'];
         $resultado['total_paginas'] = $total_paginas;
+        $resultado['expediente_logueado'] = $expedienteLogueado;
 
 
 
         echo json_encode($resultado);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public static function exportarExcel()
@@ -332,126 +362,157 @@ class ApiController
         $nombreLogueado = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
 
         $expedienteLogueado = $_SESSION['id'];
+        $extension = $_SESSION['extension'];
+        $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $query = '';
 
+        $rangoCheck = filter_var($_GET['rangoChecked'], FILTER_VALIDATE_BOOLEAN);
 
+
+
+        $desde = $_GET['fechaDesde'];
+        $hasta = $_GET['fechaHasta'];
         $folio = $_GET['folio'];
-        $aplicarRango = $_GET['rangoFechas'];
-        $fechaDesde = $_GET['fehcaDesde'];
-        $fechaHasta = $_GET['fechaHasta'];
-
-        // debuguear($_GET);
-
-
-        if (!$aplicarRango) {
-
+        $fecha = $_GET['fecha'];
+        $atiende = $_GET['atiende'];
+        $requiere = $_GET['requiere'];
+        $estado = $_GET['estado'];
+        $clasificacion = $_GET['clasificacion'];
+        $subclasificacion = $_GET['subclasificacion'];
+        $servicio = $_GET['servicio'];
 
 
-            // if ($idRol === '1' || $idRol === '2') { //si es mesa de ayuda, aqui el admin si quiere todo el poder
-            if ($idRol === '2') { //si es mesa de ayuda
+
+
+
+
+
+
+        // if ($idRol === '1' || $idRol === '2') { //si es mesa de ayuda, aqui el admin si quiere todo el poder
+        if ($idRol === '2') { //si es mesa de ayuda
+            //si el rol es de administrador o de mesa de ayuda
+            // debuguear("primer if");
+            // $query_total_registros = "SELECT COUNT(*) as cantidad  FROM tickets";
+            if (!$rangoCheck) {
+
 
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
                 $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' order by t.id desc";
-                // } else if ($idRol === '3') //si es soporte solo asignados a él
-            } else if ($idRol === '1' || $idRol === '3') //si es soporte solo asignados a él , si admin quiere todo el poder, mover para arriba
-            {
-
-                // debuguear("segundo if");
-
-                // $query_total_registros = "SELECT COUNT(*) as cantidad  FROM tickets where idEmpAsignado = $expedienteLogueado OR idEmpRequiere = $expedienteLogueado";
+                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' ";
+                $query .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
+                $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' order by t.id desc ";
+            } else {
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
                 $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' order by t.id desc";
-            } else if ($idRol === '4') { //si es colaborador ver los reportados por el
-                // debuguear("tercer if");
+                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' ";
+                $query .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
+                $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta'  order by t.id desc ";
 
-
-                // $query_total_registros = "SELECT COUNT(*) as cantidad  FROM tickets where idEmpRequiere = $expedienteLogueado";
-                $query = "SELECT t.id as idT;icket, t.fechaCaptura as fechaCaptura,";
-                // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
-                $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
-                $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
-                $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
-                $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
-                $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
-                $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' order by t.id desc";
+                // debuguear($query);
             }
-        } else { //SI APLICA TODO EL RANGO DE FECHAS
+            // } else if ($idRol === '3') //si es soporte solo asignados a él
+        } else if ($idRol === '1' || $idRol === '3') //si es soporte solo asignados a él , si admin quiere todo el poder, mover para arriba
+        {
 
-            if ($idRol === '2') { //si es mesa de ayuda
-
-                $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
-                $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
-                $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
-                $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
-                $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
-                $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
-                $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id like '%$folio%' order by t.id desc";
-                // } else if ($idRol === '3') //si es soporte solo asignados a él
-            } else if ($idRol === '1' || $idRol === '3') //si es soporte solo asignados a él , si admin quiere todo el poder, mover para arriba
-            {
-
+            if (!$rangoCheck) {
                 // debuguear("segundo if");
+
 
                 // $query_total_registros = "SELECT COUNT(*) as cantidad  FROM tickets where idEmpAsignado = $expedienteLogueado OR idEmpRequiere = $expedienteLogueado";
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
-                // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
                 $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' order by t.id";
-            } else if ($idRol === '4') { //si es colaborador ver los reportados por el
-                // debuguear("tercer if");
+                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' ";
+                $query .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
+                $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' order by t.id desc ";
+            } else {
+                $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
+                $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
+                $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
+                $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
+                $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
+                $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
+                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where (t.idEmpAsignado = $expedienteLogueado OR t.idEmpRequiere = $expedienteLogueado) and t.id like '%$folio%' ";
+                $query .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
+                $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' order by t.id desc ";
+            }
 
+            // debuguear($query);
+        } else if ($idRol === '4') { //si es colaborador ver los reportados por el
+            // debuguear("tercer if");
+            if (!$rangoCheck) {
 
                 // $query_total_registros = "SELECT COUNT(*) as cantidad  FROM tickets where idEmpRequiere = $expedienteLogueado";
-                $query = "SELECT t.id as idT;icket, t.fechaCaptura as fechaCaptura,";
-                // $query .= " CASE e.nombre WHEN '0' THEN 'Sin asignar' ELSE e.nombre END AS nombreAsigna,";
-                $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  AS atiende,";
                 $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
                 $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
-                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id ";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
                 $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
                 $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
-                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' order by t.id desc";
+                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' ";
+                $query .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
+                $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' order by t.id desc ";
+            } else {
+                $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
+                // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno)  END AS atiende,";
+                $query .= " concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) AS atiende,";
+                $query .= " concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno)  AS nombreRequiere,";
+                $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte AS comentarios,";
+                $query .= " CASE t.comentariosSoporte WHEN '' THEN 'Sin comentarios' ELSE t.comentariosSoporte END AS comentariosSoporte, t.tipoServicio AS tipoServicio FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
+                $query .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
+                $query .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
+                $query .= " LEFT OUTER JOIN estados AS e5 ON e5.id = t.idEstado";
+                $query .= " LEFT OUTER JOIN clasificacion_problema AS cp ON cp.id = t.idClasificacionProblema  ";
+                $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema  where t.idEmpRequiere = $expedienteLogueado and t.id like '%$folio%' ";
+                $query .= " AND  concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
+                $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
+                $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' order by t.id desc ";
             }
         }
+
 
         // $html_siguiente = $paginacion->enlace_siguiente();
         // debuguear($query);
         //si el perfil es de colaborador ver solo los registrados por él
         $tickets = VerTickets::SQL($query);
+
+        // debuguear($tickets);
 
 
         $resultado['tablaRows'] = $tickets;
@@ -460,8 +521,10 @@ class ApiController
 
 
 
+
         echo json_encode($resultado);
     }
+
 
 
     public static function obtenerSubclasificacion()
@@ -479,6 +542,7 @@ class ApiController
     public static function generarTicket()
     {
 
+        session_start();
 
         $ticket = new Tickets;
         $historico = new HistoricoTicket;
@@ -491,6 +555,10 @@ class ApiController
         // $email = new Email();
 
         $ticket->sincronizar($_POST);
+        if ($_SESSION['idRol'] === '2') //mesa
+            $ticket->ticketNuevo = 0;
+
+
         date_default_timezone_set('America/Mexico_City');
         $ticket->fechaCaptura = date('Y-m-d');
 
@@ -621,6 +689,38 @@ class ApiController
 
             $query = "SELECT  COUNT(*) as total from tickets where month(fechaCaptura) = $mesActual AND year(fechaCaptura) = $actualYear";
             $resultado['total'] =  Tickets::contar($query);
+
+            ///un mes anterior
+            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 1";
+            $resultado['abiertos1']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 2";
+            $resultado['pausados1'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 3";
+            $resultado['escalados1'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 4";
+            $resultado['cerrados1'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear";
+            $resultado['total1'] =  Tickets::contar($query);
+
+            //dos meses atras
+            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 1";
+            $resultado['abiertos2']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 2";
+            $resultado['pausados2'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 3";
+            $resultado['escalados2'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 4";
+            $resultado['cerrados2'] =  Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear";
+            $resultado['total2'] =  Tickets::contar($query);
         }
 
         if ($idRol === '1' || $idRol === '3') //si es mesa de ayuda ve todos los tickets del mes
@@ -640,6 +740,41 @@ class ApiController
 
             $query = "SELECT  COUNT(*) as total from tickets where month(fechaAsignacion) = $mesActual AND year(fechaAsignacion) = $actualYear and idEmpAsignado = $expediente";
             $resultado['total'] = Tickets::contar($query);
+            // debuguear($query);
+
+            //un mes atras
+            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 1 and idEmpAsignado = $expediente";
+            $resultado['abiertos1'] = Tickets::contar($query);
+
+
+            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 2  and idEmpAsignado = $expediente";
+            $resultado['pausados1'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 3  and idEmpAsignado = $expediente";
+            $resultado['escalados1']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 4  and idEmpAsignado = $expediente";
+            $resultado['cerrados1'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEmpAsignado = $expediente";
+            $resultado['total1'] = Tickets::contar($query);
+
+            //dos meses atras
+
+            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 1 and idEmpAsignado = $expediente";
+            $resultado['abiertos2'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 2  and idEmpAsignado = $expediente";
+            $resultado['pausados2'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 3  and idEmpAsignado = $expediente";
+            $resultado['escalados2']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 4  and idEmpAsignado = $expediente";
+            $resultado['cerrados2'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEmpAsignado = $expediente";
+            $resultado['total2'] = Tickets::contar($query);
         }
 
 
@@ -659,8 +794,41 @@ class ApiController
 
             $query = "SELECT  COUNT(*) as total from tickets where month(fechaCaptura) = $mesActual  AND year(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
             $resultado['total'] = Tickets::contar($query);
+
+            //un mes atras
+            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 1 and idEmpRequiere = $expediente";
+            $resultado['abiertos1'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 2 and idEmpRequiere = $expediente";
+            $resultado['pausados1'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 3 and idEmpRequiere = $expediente";
+            $resultado['escalados1']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 4 and idEmpRequiere = $expediente";
+            $resultado['cerrados1'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
+            $resultado['total1'] = Tickets::contar($query);
+
+            //dos meses atras
+            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 1 and idEmpRequiere = $expediente";
+            $resultado['abiertos2'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 2 and idEmpRequiere = $expediente";
+            $resultado['pausados2'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 3 and idEmpRequiere = $expediente";
+            $resultado['escalados2']  = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 4 and idEmpRequiere = $expediente";
+            $resultado['cerrados2'] = Tickets::contar($query);
+
+            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
+            $resultado['total2'] = Tickets::contar($query);
         }
 
+        $resultado['mesActual'] = $mesActual;
 
         echo json_encode($resultado);
     }
@@ -673,8 +841,9 @@ class ApiController
 
         $query = "SELECT t.id as idTicket,";
         $query .= " concat(e4.nombre,' ',e4.apellidoPaterno,' ',e4.apellidoMaterno) AS nombreRequiere, d.descripcion as departamento, e4.extension , e4.email, ";
-        $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte, t.comentariosSoporte,";
-        $query .= " CASE e2.nombre WHEN '0' THEN 'Aun sin asignar' ELSE concat(e2.nombre,' ',e2.apellidoPaterno,' ',e2.apellidoMaterno) END AS atiende";
+        $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte, t.comentariosSoporte, t.tipoServicio,";
+        // $query .= " CASE e2.nombre WHEN '0' THEN 'Aun sin asignar' ELSE concat(e2.nombre,' ',e2.apellidoPaterno,' ',e2.apellidoMaterno) END AS atiende";
+        $query .= " concat(e2.nombre,' ',e2.apellidoPaterno,' ',e2.apellidoMaterno) AS atiende";
         $query .= " FROM tickets AS t";
         $query .= " LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna ";
         $query .= " LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id";
@@ -686,9 +855,9 @@ class ApiController
         $query .= " LEFT OUTER JOIN subclasificacion_problema AS sp ON sp.id = t.idSubclasificacionProblema WHERE t.id=$folioModal";
 
 
-
         $tickets = InfoTicket::SQL($query);
         $resultado['infoTicket'] = $tickets[0];
+        // debuguear($tickets[0]);
 
 
 

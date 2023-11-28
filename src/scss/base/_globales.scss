@@ -30,12 +30,18 @@ img {
     background-color: v.$azul-siteur!important;
 }
 
+.bg-primary-darker{
+    // background-color: darken(v.$azul-siteur,5%)!important;
+    background-color: darken(rgba(33,52,92,.5),10%)!important;
+}
+
 .input-placeholder{
     border: none;
     color: yellow;
 }
 
-.icono-boleto::before{
+.icono-boleto::before,
+.icono-header::before{
     transform: rotate(-45deg)!important;
     font-size: 5rem!important;
 }
@@ -46,6 +52,159 @@ img {
     color: white;
 }
 
+.btn-info:hover{
+    background-color: darken( rgb(88, 185, 87),20%)!important;
+    border: none;
+    color: white;
+}
+
 textarea{
     resize: none!important;
+}
+
+.input-group-text{
+    width: 15rem!important;
+}
+
+.w-8{
+    width: 8rem!important;
+}
+
+.w-name{
+    width: 25rem!important;
+}
+
+
+.menu-sidebar{
+    margin-top: 3rem!important;
+}
+
+.icono-boleto-menu::before{
+    transform: rotate(-45deg)!important;
+   
+}
+
+.p-x{
+    padding-left: 8rem!important;
+}
+
+.top-x{
+    top: 1.5rem!important;
+}
+
+.start-x{
+    left: 26rem!important;
+}
+
+.pe-x{
+    padding-right: 4rem;
+}
+
+
+.empleado-foto{
+    width: 8rem;
+    border-radius: 5%;
+    
+    @media(width>768px){
+
+        width: 15rem;
+    }
+}
+.empleado-foto-1{
+    border-radius: 5%;
+    width: 8rem;
+    @media(width>768px){
+
+        width: 10rem;
+    }
+}
+
+.imagenEmpleado,
+.img-empleado{
+    border: 2px solid #fff;
+}
+
+.card{
+//    height: 12rem;
+   
+
+   &-info{
+    font-size: 5rem;
+    font-weight: bold;
+   }
+}
+
+.historico{
+    margin-top: 5rem;
+    @media (width>768px) {
+        margin-top: 0;
+    }
+}
+
+.img-nuevo-ticket{
+    width: 50rem;
+    top: 15rem;
+
+    @media (width < 1500px) {
+        width: 40rem;
+        // top: 20rem;
+    }
+
+    // &-div{
+    //     left: 50rem;
+    // }
+}
+
+
+.text-siteur{
+    color: v.$azul-siteur!important;
+}
+
+.img-asignar{
+    width: 40rem;
+}
+
+.img-pausar{
+    width: 40rem;
+}
+.img-cerrar{
+    width: 40rem;
+}
+.img-olvide{
+    width: 40rem;
+}
+.img-registro{
+    width: 40rem;
+}
+
+.pe-10{
+    padding-right: 10rem;
+}
+
+.ps-10{
+    padding-left: 10rem;
+}
+.me-10{
+    margin-right: 10rem;
+}
+
+.ms-10{
+    margin-left: 10rem;
+}
+
+.width-control{
+    width: 50%;
+
+    @media (width < 768px) {
+        width: 75%;
+    }
+}
+
+.fs-10{
+    font-size: 1.1rem;
+    padding-bottom: .5rem;
+}
+
+.text-primary{
+    color: v.$azul-siteur!important;
 }

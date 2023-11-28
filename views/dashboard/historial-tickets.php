@@ -1,55 +1,33 @@
-<main class="historico-tickets">
 
-<div class="boton-regresar">
 
-        <a href="/dashboard/ver-tickets" class="volver-ver-tickets"><i class="fa-solid fa-left-long fa-2x"></i> Ver tickets</a>
-    </div>
-
-    <div class="historico-tickets__header">
-        
-        <h2 class="historial-tickets__heading"><?php echo $titulo; ?></h2>
-    </div>
+<div class="position-fixed end-0 mt-3 me-3">
+    <a class="btn <?php session_start(); $expedienteLogueado = $_SESSION['id'];  echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'btn-dark' : 'btn-primary'; ?> d-flex align-items-center fs-3" href="/dashboard/ver-tickets"><i class="bi bi-arrow-bar-left fs-1 me-3"></i> Ver tickets</a>
+</div>
 
 
 
-    <div class='container'>
-        <div class='filters filtro-historico'>
-            <div class='filter-container'>
-                <label>Quién atiende: </label>
-                <input autocomplete='off' class='filter' name='atiende' placeholder='Buscar quién atiende' data-col='atiende' id="idAtiende" />
-            </div>
-            <div class='filter-container'>
-                <label>Fecha: </label>
-                <input autocomplete='off' class='filter' name='fecha' placeholder='Buscar fecha de captura' data-col='fecha' id="idFecha" />
-            </div>
-            <div class='filter-container'>
-                <label>Estado: </label>
-                <input autocomplete='off' class='filter' name='estado' placeholder='Buscar estado del ticket' data-col='estado' id="idEstado">
-            </div>
-            <div class='filter-container'>
-                <label>Comentarios: </label>
-                <input autocomplete='off' class='filter' name='comentarios' placeholder='Buscar comentarios del ticket' data-col='comentarios' id="idComentarios" />
-            </div>
+<div class="text-center mb-5 pt-5 pt-md-0">
+    <h2><i class='bi bi-calendar2-week me-3'></i><?php echo $titulo; ?></h2>
+    
+</div>
+
+
+    <!-- <div class="tabla__contenedor-container-historico"> -->
+        <div class='table-responsive mx-3'>
 
 
 
+            <table  class="table table-hover table-striped table-light align-middle table-bordered">
+                <thead class="fs-5">
+                    <tr class="bg-primary">
 
-        </div>
-    </div>
-
-    <div class="tabla__contenedor-container-historico">
-        <div class='tabla__contenedor-historico'>
-
-
-
-            <table id="myTable" class="table table-hover tabla" cellspacing="0" cellpadding="0">
-                <thead class="tabla__header">
-                    <th class="tabla__th">ID del evento</th>
-                    <th class="tabla__th">Ticket #</th>
-                    <th class="tabla__th">Estado</th>
-                    <th class="tabla__th">Atiende</th>
-                    <th class="tabla__th">Fecha del evento</th>
-                    <th class="tabla__th">Comentarios</th>
+                        <th class=" <?php session_start(); $expedienteLogueado = $_SESSION['id']; echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">ID del evento</th>
+                        <th class=" <?php session_start(); $expedienteLogueado = $_SESSION['id']; echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Ticket #</th>
+                        <th class=" <?php session_start(); $expedienteLogueado = $_SESSION['id']; echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Estado</th>
+                        <th class=" <?php session_start(); $expedienteLogueado = $_SESSION['id']; echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Atiende</th>
+                        <th class=" <?php session_start(); $expedienteLogueado = $_SESSION['id']; echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Fecha del evento</th>
+                        <th class=" <?php session_start(); $expedienteLogueado = $_SESSION['id']; echo $expedienteLogueado === '4486' || $expedienteLogueado === '4485' ?  'table-dark' : 'table-primary'; ?> text-white text-center" scope="col">Comentarios</th>
+                    </tr>
                 </thead>
                 </thead>
                 <tbody class="tabla__body">
@@ -57,12 +35,12 @@
                     foreach ($historialTicket as $historico) : ?>
 
                         <tr class="tabla__row">
-                            <td class="tabla__td"><?php echo $historico->id; ?></td>
-                            <td class="tabla__td"><?php echo $historico->idTicket; ?></td>
-                            <td class="tabla__td"><?php echo $historico->idEstado; ?></td>
-                            <td class="tabla__td"><?php echo $historico->idEmpAsignado; ?></td>
-                            <td class="tabla__td"><?php echo date('d', strtotime($historico->fechaRegistro)) . '/' . $meses[date('m', strtotime($historico->fechaRegistro)) - 1] . '/' . date('Y', strtotime($historico->fechaRegistro)); ?></td>
-                            <td class="tabla__td"><?php echo $historico->comentarios; ?></td>
+                            <td class="text-center fs-5"><?php echo $historico->id; ?></td>
+                            <td class="text-center fs-5"><?php echo $historico->idTicket; ?></td>
+                            <td class="text-center fs-5"><?php echo $historico->idEstado; ?></td>
+                            <td class="text-center fs-5"><?php echo $historico->idEmpAsignado; ?></td>
+                            <td class="text-center fs-5"><?php echo date('d', strtotime($historico->fechaRegistro)) . '/' . $meses[date('m', strtotime($historico->fechaRegistro)) - 1] . '/' . date('Y', strtotime($historico->fechaRegistro)); ?></td>
+                            <td class="text-center fs-5"><?php echo $historico->comentarios; ?></td>
 
 
                         </tr>
@@ -70,7 +48,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    <!-- </div> -->
 
 </main>
 

@@ -1,63 +1,53 @@
-<main class="empleados">
 
-    <div class="ver-empleados__header">
-        <div class="heading">
+<div class="text-center mb-5 pt-5 pt-md-0">
+    <h2><i class='fa-brands fa-empire me-3'></i><?php echo $titulo; ?></h2>
+</div>
 
-            <h2 class="ver-empleados__texto"><?php echo $titulo; ?></h2>
-        </div>
 
+<?php
+
+if ($_SESSION['mensaje']) {
+?>
+    <div class="mx-auto mx-5 w-50 div-alerta ">
+
+        <p class="alerta alerta__exito">
             <?php
-            if ($_SESSION['mensaje']) {
-                ?>
-                <div class="ver-tickets--alerta alerta-empleados div-alerta">
-                    
-                    <p class="alerta alerta__exito">
-                        <?php
-                        echo $_SESSION['mensaje'];
-                        $_SESSION['mensaje'] = '';
-                        // debuguear($_SESSION['mensaje']);
-                        ?>
-                    </p>
-                </div>
-
-            <?php }
+            echo $_SESSION['mensaje'];
+            $_SESSION['mensaje'] = '';
             ?>
-
+        </p>
     </div>
 
+<?php }
+?>
 
 
+<?php if (count($subclasificaciones) > 0) : ?>
 
-
-
-
-
-
-
-    <?php if (count($subclasificaciones) > 0) : ?>
-
-        <div class='contenedor'>
-            <div class='filters'>
-                <div class='filter-container'>
-                    <label class="filter-label">Clasificación: </label>
-                    <input type="text" autocomplete='off' class='filter' name='clasificación' placeholder='Buscar clasificación' data-col='clasificación' id="clasificación" />
-                </div>
-
-                <div class='filter-container'>
-                    <label class="filter-label">Subclasificación: </label>
-                    <input type="text" autocomplete='off' class='filter' name='subclasificación' placeholder='Buscar Subclasificación' data-col='subclasificación' id="subclasificación" />
-                </div>
-
-               
-
-            </div>
+<div class='container-xl'>
+<div class='justify-content-center row mb-5 flex-column flex-md-row'>
+<div class=' col-md-4 d-flex justify-content-between justify-content-md-center mb-3 mb-md-0'>
+            <label class="filter-label">Clasificación: </label>
+            <input type="text" autocomplete='off' class='filter' name='Clasificación' placeholder='Buscar clasificación' data-col='clasificación' id="clasificación" />
         </div>
 
-    <?php endif; ?>
+        <div class=' col-md-4 d-flex  justify-content-between justify-content-md-center'>
+            <label class="filter-label">Subclasificación: </label>
+            <input type="text" autocomplete='off' class='filter' name='Subclasificación' placeholder='Buscar Subclasificación' data-col='subclasificación' id="subclasificación" />
+        </div>
 
-<a href="/dashboard/subclasificaciones/agregar" class="botonNuevo">Nueva subclasificación</a>
-    <div class='tabla__contenedor-empleado'>
-        <table id="myTable" class="table table-hover tabla tabla-empleado" cellspacing="0" cellpadding="0">
+       
+
+    </div>
+</div>
+
+<?php endif; ?>   
+
+<a href="/dashboard/subclasificaciones/agregar" class="btn btn-success fs-4 mb-5 ms-3">Nueva subclasificación</a>
+
+<div class='table-responsive mx-3'>
+    <table id="myTable" class="table table-hover table-striped table-light align-middle table-bordered" cellspacing="0" cellpadding="0">
+
 
 
 
@@ -65,37 +55,37 @@
 
             <?php if (count($subclasificaciones) > 0) : ?>
 
-                <thead class="tabla__header tabla__header-empleado">
-                    <tr class="tabla__header__pegar tr-empleado">
+                <thead class="fs-5">
+                    <tr class="bg-dark">
 
-                        <th class="tabla__th th-empleado">id</th>
-                        <th class="tabla__th th-empleado">Clasificación</th>
-                        <th class="tabla__th th-empleado">Subclasificación</th>
-                        <th class="tabla__th th-empleado">Acciones</th>
+                        <th class="table-dark text-white text-center">id</th>
+                        <th class="table-dark text-white text-center">Clasificación</th>
+                        <th class="table-dark text-white text-center">Subclasificación</th>
+                        <th class="table-dark text-white text-center">Acciones</th>
                     </tr>
                 </thead>
 
                 <!-- mostrar los resultados -->
-                <tbody class="tabla__body-empleados">
+                <tbody class="">
 
                     <?php
                     foreach ($subclasificaciones as $subclasificacion) : ?>
                         
 
-                        <tr class="tabla__row tabla-row-empleado">
-                            <td class="tabla__td td-empleado"><?php echo $subclasificacion->id; ?></td>
+                        <tr class="fs-5">
+                            <td class="text-center fs-5"><?php echo $subclasificacion->id; ?></td>
                           
-                            <td class="tabla__td td-empleado"><?php echo $subclasificacion->clasificacion; ?></td>
-                            <td class="tabla__td td-empleado"><?php echo $subclasificacion->subclasificacion; ?></td>
+                            <td class="text-center fs-5"><?php echo $subclasificacion->clasificacion; ?></td>
+                            <td class="text-center fs-5"><?php echo $subclasificacion->subclasificacion; ?></td>
                           
                          
-                            <td class="tabla__td td-empleado">
+                            <td class="text-center fs-5">
                                 <?php if ($subclasificacion->estatus === '1') { ?>
-                                    <a href="/dashboard/subclasificaciones/editar?id=<?php echo $subclasificacion->id; ?>" class="boton-azul boton-accion">Editar</a>
+                                    <a href="/dashboard/subclasificaciones/editar?id=<?php echo $subclasificacion->id; ?>" class="w-100 btn btn-primary mb-1 fs-4">Editar</a>
                                     <form method="POST" action="/dashboard/subclasificaciones/update">
                                         <input type="hidden" name="id" value="<?php echo $subclasificacion->id; ?>">
 
-                                        <input type="submit" class="boton-rojo boton-accion" value="Dar de baja">
+                                        <input type="submit" class="w-100 btn btn-danger fs-4" value="Dar de baja">
                                     </form>
 
 
@@ -103,7 +93,7 @@
                                     <form method="POST" action="/dashboard/subclasificaciones/update">
                                         <input type="hidden" name="id" value="<?php echo $subclasificacion->id; ?>">
 
-                                        <input type="submit" class="boton-verde-limon boton-accion" value="Dar de alta">
+                                        <input type="submit" class="w-100 btn btn-info fs-4" value="Dar de alta">
                                     </form>
                                 <?php } ?>
                             </td>
