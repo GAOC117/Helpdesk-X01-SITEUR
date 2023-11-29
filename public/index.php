@@ -40,7 +40,7 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 
 //Area de dashboard
 $router->get('/dashboard', [DashboardController::class, 'index']);
-$router->get('/dashboard/', [DashboardController::class, 'index']);
+$router->post('/dashboard', [DashboardController::class, 'index']);
 
 //generar-ticket
 $router->get('/dashboard/generar-ticket', [DashboardController::class, 'generarTicket']);
