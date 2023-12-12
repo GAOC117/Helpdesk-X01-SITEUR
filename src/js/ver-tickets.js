@@ -456,13 +456,13 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             td_acciones.classList.add('text-center', 'fs-5');
 
             if (estadoTicket === 'Abierto')
-                p_estadoTicket.classList.add('text-white', 'bg-danger', 'bg-opacity-75', 'rounded-5',  'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-danger', 'bg-opacity-75', 'rounded-5',  'm-auto','w-75');
             if (estadoTicket === 'Pausado')
-                p_estadoTicket.classList.add('text-white', 'bg-secondary', 'bg-opacity-75', 'rounded-5',     'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-secondary', 'bg-opacity-75', 'rounded-5', 'm-auto','w-75');
             if (estadoTicket === 'Escalado')
-                p_estadoTicket.classList.add('text-white', 'bg-warning', 'bg-opacity-75', 'rounded-5',   'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-warning', 'bg-opacity-75', 'rounded-5',   'm-auto','w-75');
             if (estadoTicket === 'Cerrado')
-                p_estadoTicket.classList.add('text-white', 'bg-success', 'bg-opacity-75', 'rounded-5',   'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-success', 'bg-opacity-75', 'rounded-5',   'm-auto','w-75');
 
             td_estadoTicket.appendChild(p_estadoTicket);
             //aqui designar clases para los colores de abierto, cerrado, escalado, cerrado
@@ -500,7 +500,7 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
 
                 }
                 else {
-                    div_acciones.innerHTML += "<p class='text-white px-5 bg-success bg-opacity-75 rounded-5  m-auto'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='text-white px-3 bg-success bg-opacity-75 rounded-5  m-auto'>Ticket cerrado</p>";
                 }
             }
             if (idRol === '1' || idRol === '3') //SI ES ADMIN O SOPORTE cambiar el rol 1 de aqui hacia arriba donde esta mesa
@@ -535,13 +535,13 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
                     // }
                 }
                 else {
-                    div_acciones.innerHTML += "<p class='text-white px-5 bg-success bg-opacity-75 rounded-5 mx-auto m-auto'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='text-white px-3 bg-success bg-opacity-75 rounded-5 m-auto'>Ticket cerrado</p>";
                 }
             }
             if (idRol === '4') {
                 if (estadoTicket === 'Cerrado') {
 
-                    div_acciones.innerHTML += "<p class='tabla__cerrado  px-5'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='tabla__cerrado  px-3'>Ticket cerrado</p>";
                 }
 
             }
