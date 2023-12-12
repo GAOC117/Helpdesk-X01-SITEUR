@@ -204,7 +204,7 @@ setInterval(function () {
     // }
 
      llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
-
+    
 }, 2000);
 
 
