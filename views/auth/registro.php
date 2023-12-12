@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="extension" class="form-label fs-4">Extensión:</label>
-                        <input type="number" class="form-control fs-4 " placeholder="Extensión" id="extension" name="extension" value="<?php echo $usuario->extension; ?>">
+                        <input type="number" class="form-control fs-4 " placeholder="Extensión (opcional)" id="extension" name="extension" value="<?php echo $usuario->extension; ?>">
                     </div>
 
                     <div class="col-md-4 mb-3">

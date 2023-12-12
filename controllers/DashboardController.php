@@ -150,7 +150,7 @@ class DashboardController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            
+
             $idAsignado = $_POST['idEmpAsignado'];
 
             date_default_timezone_set('America/Mexico_City');
@@ -204,7 +204,7 @@ class DashboardController
             'clasificacion' => $clasificacion->descripcion,
             'subclasificacion' => $subclasificacion->descripcion,
             'empleadosInformatica' => $informatica,
-            'nombre' =>$nombre,
+            'nombre' => $nombre,
             'alertas' => $alertas
 
         ]);
@@ -235,7 +235,7 @@ class DashboardController
         $query .= " left outer join empleado e on e.id = ht.idEmpAsignado left outer join estados e2 on e2.id = ht.idEstado ";
         $query .= " where ht.idTicket = $idTicket order by ht.id desc";
 
-        
+
         $historialTicket = HistoricoTicket::SQL($query);
 
         // debuguear($historialTicket);
@@ -306,6 +306,20 @@ class DashboardController
 
             $alertas = $historicoTicket->validarComentarioTicketPausado();
 
+
+            $query = " SELECT * FROM tickets where id = $idTicket";
+            $resultadoConsulta = Tickets::SQL($query);
+            
+            if ($idRol !== '2') {
+
+                if ($resultadoConsulta[0]->idEmpAsignado !== $expedienteLogueado) {
+
+
+                    Tickets::setAlerta('error', 'El ticket fue reasignado y por eso no puede pausarse');
+
+                    $alertas = Tickets::getAlertas();
+                }
+            }
 
             if (empty($alertas)) {
                 $historicoTicket->id = null;
@@ -404,10 +418,10 @@ class DashboardController
 
 
         $idTicket = $_GET['id'];
-        
+
         //existe el ticket en base dedatos
         $ticket = $tickets->find($idTicket);
-        
+
         if (!$ticket)
             header('Location: /dashboard/ver-tickets');
         $informatica = $empleado->allInformatica('idDepartamento', 'asc');
@@ -439,16 +453,16 @@ class DashboardController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            
-            $ticket->comentariosSoporte = $_POST['comentariosSoporte'];
-            
-                $ticket->idEmpAsignado = $_POST['idEmpAsignado'];
-                $alertas = $ticket->validarEscalarTicket();
-           
-             
-              
 
-           
+            $ticket->comentariosSoporte = $_POST['comentariosSoporte'];
+
+            $ticket->idEmpAsignado = $_POST['idEmpAsignado'];
+            $alertas = $ticket->validarEscalarTicket();
+
+
+
+
+
 
             // debuguear($ticket);
 
@@ -554,12 +568,12 @@ class DashboardController
 
         idNotNumeric();
 
-        
+
         $idTicket = $_GET['id'];
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-           
+
 
 
             $historico = new HistoricoTicket;
@@ -583,11 +597,40 @@ class DashboardController
             $alertas = $historicoTicket->validarComentarioTicketCerrado();
             $alertas = $tickets->validarTipoServicio();
 
+            $query = " SELECT * FROM tickets where id = $idTicket";
+            $resultadoConsulta = Tickets::SQL($query);
+            
+            if ($idRol !== '2') {
+
+                if ($resultadoConsulta[0]->idEmpAsignado !== $expedienteLogueado) {
+
+
+                    Tickets::setAlerta('error', 'El ticket fue reasignado y por eso no puede cerrarse');
+
+                    $alertas = Tickets::getAlertas();
+                }
+            }
+
+            if ($resultadoConsulta[0]->idEstado === '4') {
+                Tickets::setAlerta('error', 'El ticket ya fue cerrado');
+
+                $alertas = Tickets::getAlertas();
+            }
+
+
+
+
+
+
+
             // debuguear($alertas);
-           
+
 
 
             if (empty($alertas)) {
+
+
+
                 $historicoTicket->id = null;
                 date_default_timezone_set('America/Mexico_City');
                 $historicoTicket->fechaRegistro = date('Y-m-d');
@@ -657,7 +700,7 @@ class DashboardController
             'idTicket' => $idTicket,
             'alertas' => $alertas,
             'comentarios' => $_POST['comentarios'],
-            'tipoServicio' =>$_POST['tipoServicio']
+            'tipoServicio' => $_POST['tipoServicio']
 
 
         ]);
@@ -669,7 +712,7 @@ class DashboardController
         isLogged();
         isAdmin();
         $idRol = $_SESSION['idRol'];
-         $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
+        $nombre = $_SESSION['nombre'] . ' ' . $_SESSION['apellidoPaterno'] . ' ' . $_SESSION['apellidoMaterno'];
         $expedienteLogueado = $_SESSION['id'];
         // $extension = $_SESSION['extension'];
         $query = 'SELECT  e.id, e.nombre, e.apellidoPaterno, e.apellidoMaterno,e.email, e.extension, r.descripcion as rol, d.descripcion as departamento, e.estatus FROM empleado as e left outer join departamento d on e.idDepartamento = d.id left outer join roles as r on e.idRol = r.id;
@@ -690,7 +733,7 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'empleados' => $empleados,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
         ]);
     }
@@ -812,7 +855,7 @@ class DashboardController
             'departamentos' => $departamentos,
             'roles' => $roles,
             'alertas' => $alertas,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
 
 
@@ -844,7 +887,7 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'clasificaciones' => $clasificaciones,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
         ]);
     }
@@ -973,7 +1016,7 @@ class DashboardController
             'expedienteLogueado' => $expedienteLogueado,
             // 'clasificacion' => $clasificacion,
             'alertas' => $alertas,
-            'nombre' =>$nombre
+            'nombre' => $nombre
 
 
 
@@ -1005,7 +1048,7 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'subclasificaciones' => $subclasificaciones,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
         ]);
     }
@@ -1066,7 +1109,7 @@ class DashboardController
             'clasificaciones' => $clasificaciones,
             'subclasificacion' => $subclasificacion,
             'alertas' => $alertas,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
 
 
@@ -1128,7 +1171,7 @@ class DashboardController
 
             $subclasificacion->sincronizar($_POST);
             $alertas = $subclasificacion->validarDescripcion();
-            
+
 
             // debuguear(empty($alertas));
             if (empty($alertas)) {
@@ -1153,7 +1196,7 @@ class DashboardController
             'clasificaciones' => $clasificaciones,
             'subclasificaciones' => $subclasificacion,
             'alertas' => $alertas,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
 
 
@@ -1187,7 +1230,7 @@ class DashboardController
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
             'departamentos' => $departamentos,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
         ]);
     }
@@ -1242,7 +1285,7 @@ class DashboardController
             'expedienteLogueado' => $expedienteLogueado,
             'departamentos' => $departamentos,
             'alertas' => $alertas,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
 
 
@@ -1263,17 +1306,17 @@ class DashboardController
 
         if ($departamentos->estatus === '1') {
             $departamentos->estatus = '0';
-           
+
             $_SESSION['mensaje'] = 'Departamento dado de baja';
         } else {
             $departamentos->estatus = '1';
-            
+
             $_SESSION['mensaje'] = 'Departamento dado de alta';
         }
 
 
         $departamentos->guardar();
-       
+
 
 
         header('Location: /dashboard/departamentos');
@@ -1314,9 +1357,9 @@ class DashboardController
             'titulo' => 'Agregar departamento',
             'idRol' => $idRol,
             'expedienteLogueado' => $expedienteLogueado,
-             'departamentos' => $departamento,
+            'departamentos' => $departamento,
             'alertas' => $alertas,
-            'nombre'=>$nombre
+            'nombre' => $nombre
 
 
 

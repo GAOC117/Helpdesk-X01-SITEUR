@@ -507,6 +507,21 @@ textarea {
   color: rgb(33, 52, 92) !important;
 }
 
+#imgRequiere,
+#imgAtiende {
+  width: 15rem;
+  margin: 0 auto;
+}
+
+.input-header {
+  min-width: 8rem;
+  width: 100%;
+}
+
+.acciones-header {
+  min-width: 20rem;
+}
+
 h1, h2, h3 {
   font-family: "Righteous", sans-serif;
   font-weight: 900;

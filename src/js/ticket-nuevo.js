@@ -232,6 +232,8 @@ function msg(){
 
 async function obtenerDatosTicket() {
     
+    const btn = document.querySelector('#botonRegistrar');
+    
     var mensaje = "Los siguientes campos (marcados en rojo) deben ser llenados:<br><br>";
     const expReporta = document.querySelector('#idEmpReporta');
     const extReporta = document.querySelector('#extensionReporta');
@@ -288,7 +290,7 @@ async function obtenerDatosTicket() {
 
     if (expReporta.value !== "" && extReporta.value !== "" && nombreReporta.value !== "" && expRequiere.value !== "" && extRequiere.value !== "" && nombreRequiere.value && idClasificacion.value !== "--Seleccionar--" && idSubclasificacion.value !=="--Seleccionar--" && comentariosReporte.value!="") 
     {
-     
+        btn.disabled=true;
         const datos = new FormData();
         datos.append('idEmpReporta', expReporta.value);
         datos.append('idEmpRequiere', expRequiere.value);
@@ -326,7 +328,12 @@ async function obtenerDatosTicket() {
                     }, 1000);
                 })
 
+                
+                
 
+            }
+            else{
+                btn.disabled=false;
             }
 
 

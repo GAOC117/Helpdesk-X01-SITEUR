@@ -1,8 +1,8 @@
 <main class="authl login">
     <div class="authl__contenedor mt-3 pt-3 ">
 
-        <h2 class="authl__heading mt-5 pt-5 text-center"><?php echo $titulo; ?></h2>
-        <p class="authl__texto">Inicia sesión en Helpdesk SITEUR</p>
+        <h2 class="authl__heading mt-5 pt-5 text-center fs-2"><?php echo $titulo; ?></h2>
+        <p class="authl__texto fs-5">Inicia sesión en Helpdesk SITEUR</p>
 
         <?php
         require_once __DIR__ . '/../templates/alertas.php';
@@ -33,8 +33,8 @@
    
 
         <div class="d-flex flex-md-row justify-content-md-center flex-column mb-5 pb-5 mb-md-0 pb-md-0 mt-md-5">
-            <a href="/registro" class="text-white text-center me-md-5">¿Aún no tienes cuenta? Obtener una</a>
-            <a href="/olvide" class="text-white text-center ms-md-5">¿Olvidaste tu contraseña? Recuperar</a>
+            <a href="/registro" class="text-white text-center me-md-5 fs-4">¿Aún no tienes cuenta? Obtener una</a>
+            <a href="/olvide" class="text-white text-center ms-md-5 fs-4">¿Olvidaste tu contraseña? Recuperar</a>
         </div>
 
 

@@ -164,7 +164,7 @@ class ActiveRecord {
     }
 
     public static function allInformatica($columna,  $orden) {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE estatus = 1 AND $columna in (52,87,32) ORDER BY nombre $orden";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE estatus = 1 AND $columna in (22,99,69) ORDER BY nombre $orden";
        
         $resultado = self::consultarSQL($query);
         return  $resultado;

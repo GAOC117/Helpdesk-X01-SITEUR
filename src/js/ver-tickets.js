@@ -203,7 +203,7 @@ setInterval(function () {
     // llenarTablaTickets(paginaActual, folioBusqueda);
     // }
 
-    llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
+    // llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
 }, 2000);
 
@@ -415,7 +415,7 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             const div_acciones = document.createElement('DIV');
 
             const { idTicket, fechaCaptura, atiende, nombreRequiere, estadoTicket, clasificacion, subclasificacion, comentarios, comentariosSoporte, tipoServicio } = row;
-            console.log(atiende);
+            // console.log(atiende);
             // console.log(fechaCaptura);
             // tr.classList.add('tabla__row');
 
@@ -456,30 +456,29 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             td_acciones.classList.add('text-center', 'fs-5');
 
             if (estadoTicket === 'Abierto')
-                p_estadoTicket.classList.add('text-white', 'bg-danger', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-danger', 'bg-opacity-75', 'rounded-5',  'm-auto');
             if (estadoTicket === 'Pausado')
-                p_estadoTicket.classList.add('text-white', 'bg-secondary', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-secondary', 'bg-opacity-75', 'rounded-5',     'm-auto');
             if (estadoTicket === 'Escalado')
-                p_estadoTicket.classList.add('text-white', 'bg-warning', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-warning', 'bg-opacity-75', 'rounded-5',   'm-auto');
             if (estadoTicket === 'Cerrado')
-                p_estadoTicket.classList.add('text-white', 'bg-success', 'bg-opacity-75', 'rounded-5', 'w-50', 'm-auto');
+                p_estadoTicket.classList.add('text-white', 'bg-success', 'bg-opacity-75', 'rounded-5',   'm-auto');
 
             td_estadoTicket.appendChild(p_estadoTicket);
             //aqui designar clases para los colores de abierto, cerrado, escalado, cerrado
 
 
-
             // div_acciones.classList.add('tabla__tickets--botones');
             // if (idRol === '4')
             //     div_acciones.classList.add('tabla__tickets--botones--colaborador');
-            div_acciones.classList.add('container', 'd-flex', 'gap-2');
+            div_acciones.classList.add('container', 'd-flex', 'gap-2', 'acciones-header', 'justify-content-center');
             if (idRol === '4')
                 div_acciones.classList.add('container', 'd-flex', 'gap-2');
             // div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='tabla__boton-azul tabla__boton'><i class='fa-solid fa-calendar-days fa-xl'></i></a>";
             div_acciones.innerHTML = "<a href='/dashboard/historial-tickets?id=" + idTicket + "' title='Historial del ticket' class='fs-2 btn btn-primary btn-sm'><i class='bi bi-calendar2-week'></i></a>";
 
 
-            if (idRol === '2')  //poner aqui al admin tambien si se requiere
+            if (idRol === '2')  //SI ES HELPDESK poner aqui al admin tambien si se requiere
             {
                 if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
                     if (atiende.trim() === 'Sin asignar') {
@@ -501,24 +500,29 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
 
                 }
                 else {
-                    div_acciones.innerHTML += "<p class='text-white bg-success bg-opacity-75 rounded-5 w-75 m-auto'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='text-white px-5 bg-success bg-opacity-75 rounded-5  m-auto'>Ticket cerrado</p>";
                 }
             }
-            if (idRol === '1' || idRol === '3') //cambiar el rol 1 de aqui hacia arriba donde esta mesa
+            if (idRol === '1' || idRol === '3') //SI ES ADMIN O SOPORTE cambiar el rol 1 de aqui hacia arriba donde esta mesa
             {
-                if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') {
+                
+                if (estadoTicket === 'Abierto' || estadoTicket === 'Pausado' || estadoTicket === 'Escalado') { //si esta abierto, pausado o escalado
 
+                    
+                    
+                    if (atiende.trim() !== 'Sin asignar') { //si el que atiende es alguien 
 
-                    if (atiende.trim() !== 'Sin asignar') {
-
-                        if (atiende.trim() === nombreLogueado) {
+                        
+                        if (atiende.trim() === nombreLogueado) { //si es el que esta logueado
+                            
                             // div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='tabla__boton-gris tabla__boton'><i class='fa-solid fa-circle-pause fa-xl'></i></a>";
                             div_acciones.innerHTML += "<a href='/dashboard/pausar-tickets?id=" + idTicket + "' title='Pausar ticket' class='fs-2 btn btn-secondary btn-sm'><i class='bi bi-pause-circle'></i></a>";
-
                             //si comento el if no puede escalar tickets propios el admin
                             if (idRol === '1') {
+                                
+                                
                                 // div_acciones.innerHTML += "<a href='/dashboard/escalar-tickets?id=" + idTicket + "' title='Escalar ticket' class='tabla__boton-naranja tabla__boton'><i class='fa-solid fa-arrow-trend-up fa-xl'></i></a>";
-                                div_acciones.innerHTML += "<a href='/dashboard/escalar-tickets?id=" + idTicket + "' title='Escalar ticket' class='fs-2 btn btn-warning btn-sm'><i class='bi bi-bezier2'></i></a>";
+                                // div_acciones.innerHTML += "<a href='/dashboard/escalar-tickets?id=" + idTicket + "' title='Escalar ticket' class='fs-2 btn btn-warning btn-sm'><i class='bi bi-bezier2'></i></a>";
                             }
 
                             // div_acciones.innerHTML += "<a href='/dashboard/cerrar-tickets?id=" + idTicket + "' title='Cerrar ticket' class='tabla__boton-verde tabla__boton'><i class='fa-solid fa-circle-check fa-xl'></i></a>";
@@ -531,13 +535,13 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
                     // }
                 }
                 else {
-                    div_acciones.innerHTML += "<p class='text-white bg-success bg-opacity-75 rounded-5 w-75 mx-auto m-auto'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='text-white px-5 bg-success bg-opacity-75 rounded-5 mx-auto m-auto'>Ticket cerrado</p>";
                 }
             }
             if (idRol === '4') {
                 if (estadoTicket === 'Cerrado') {
 
-                    div_acciones.innerHTML += "<p class='tabla__cerrado'>Ticket cerrado</p>";
+                    div_acciones.innerHTML += "<p class='tabla__cerrado  px-5'>Ticket cerrado</p>";
                 }
 
             }
@@ -649,8 +653,8 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
             }
 
             paginas.innerHTML = html;
-            console.log('inicio ' + valorInicial + ' fin ' + valorFinal);
-            
+            // console.log('inicio ' + valorInicial + ' fin ' + valorFinal);
+
 
 
 
@@ -672,22 +676,22 @@ async function llenarTablaTickets(page, folio, fecha, atiende, requiere, estado,
                 if (parseInt(boton.dataset.pagina) === parseInt(paginaActual)) {
 
                     //    console.log('si'); 
-                    if (expedienteLogueado === '4485' || expedienteLogueado === '4486'){
+                    if (expedienteLogueado === '4485' || expedienteLogueado === '4486') {
                         boton.classList.remove('btn-outline-dark');
                         boton.classList.add('btn-dark');
                     }
-                    else{
+                    else {
                         boton.classList.remove('btn-outline-primary');
                         boton.classList.add('btn-primary');
                     }
                 }
 
                 else {
-                    if (expedienteLogueado === '4485' || expedienteLogueado === '4486'){
+                    if (expedienteLogueado === '4485' || expedienteLogueado === '4486') {
                         boton.classList.add('btn-outline-dark');
                         boton.classList.remove('btn-dark');
                     }
-                    else{
+                    else {
                         boton.classList.add('btn-outline-primary');
                         boton.classList.remove('btn-primary');
                     }
@@ -753,8 +757,47 @@ function paginas() {
 }
 
 
+const modalInfoTicketCerrar = document.querySelector('#infoModal');
+
+modalInfoTicketCerrar.addEventListener('hidden.bs.modal', e => {
+
+    let inputFolio = modalInfoTicketCerrar.querySelector('.modal-body #folio');
+    let inputEstado = modalInfoTicketCerrar.querySelector('.modal-body #estado');
+    let inputRequiere = modalInfoTicketCerrar.querySelector('.modal-body #requiere');
+    let departamento = modalInfoTicketCerrar.querySelector('.modal-body #departamento');
+    let extension = modalInfoTicketCerrar.querySelector('.modal-body #extension');
+    let email = modalInfoTicketCerrar.querySelector('.modal-body #email');
+    let clasificacion = modalInfoTicketCerrar.querySelector('.modal-body #clasificacion');
+    let subclasificacion = modalInfoTicketCerrar.querySelector('.modal-body #subclasificacion');
+    let comentariosReporte = modalInfoTicketCerrar.querySelector('.modal-body #comentariosReporte');
+    let comentariosSoporte = modalInfoTicketCerrar.querySelector('.modal-body #comentariosSoporte');
+    let tipoServicio = modalInfoTicketCerrar.querySelector('.modal-body #tipoServicio');
+    let atiende = modalInfoTicketCerrar.querySelector('.modal-body #atiende');
+    let expRequiere = document.querySelector('#imgRequiere');
+    let expAtiende = document.querySelector('#imgAtiende');
+    let empRequiere = document.querySelector('.empRequiere');
+    let empAtiende = document.querySelector('.empAtiende');
+
+    inputFolio.value = "";
+    inputRequiere.innerHTML = "";
+    departamento.value = "";
+    extension.value = "";
+    email.value = "";
+    inputEstado.value = "";
+    clasificacion.value = "";
+    subclasificacion.value = "";
+    comentariosReporte.value = "";
+    comentariosSoporte.value = "";
+    tipoServicio.value = "";
+    atiende.innerHTML = "";
+    expRequiere.textContent = "";
+    expAtiende.textContent = "";
+    empRequiere.classList.remove('show');
+    empAtiende.classList.remove('show');
 
 
+
+})
 
 
 async function abrirModal(folio) {
@@ -769,6 +812,8 @@ async function abrirModal(folio) {
         const resultado = await fetch(url);
         const result = await resultado.json();
         const infoTicket = result.infoTicket;
+
+
 
 
         // console.log(infoTicket.estadoTicket);
@@ -786,9 +831,11 @@ async function abrirModal(folio) {
             let comentariosSoporte = modalInfoTicket.querySelector('.modal-body #comentariosSoporte');
             let tipoServicio = modalInfoTicket.querySelector('.modal-body #tipoServicio');
             let atiende = modalInfoTicket.querySelector('.modal-body #atiende');
+            let expRequiere = document.querySelector('#imgRequiere');
+            let expAtiende = document.querySelector('#imgAtiende');
 
             inputFolio.value = infoTicket.idTicket;
-            inputRequiere.value = infoTicket.nombreRequiere;
+            inputRequiere.innerHTML = infoTicket.nombreRequiere;
             departamento.value = infoTicket.departamento;
             extension.value = infoTicket.extension;
             email.value = infoTicket.email;
@@ -798,7 +845,30 @@ async function abrirModal(folio) {
             comentariosReporte.value = infoTicket.comentariosReporte;
             comentariosSoporte.value = infoTicket.comentariosSoporte === '' ? '-' : infoTicket.comentariosSoporte;
             tipoServicio.value = infoTicket.tipoServicio;
-            atiende.value = infoTicket.atiende;
+            atiende.innerHTML = infoTicket.atiende;
+
+            const imagenRequiere = document.createElement('IMG');
+            const imagenAtiende = document.createElement('IMG');
+            imagenRequiere.src = "http://skynet.siteur.gob.mx/fotos/" + infoTicket.expRequiere + ".jpg";
+            imagenAtiende.src = "http://skynet.siteur.gob.mx/fotos/" + infoTicket.expAtiende + ".jpg";
+
+            imagenRequiere.classList.add('img-fluid', 'accordion-body');
+
+            imagenAtiende.classList.add('img-fluid', 'accordion-body');
+
+            imagenRequiere.alt = 'imagen empleado';
+            imagenAtiende.alt = 'imagen empleado';
+
+
+            if (expRequiere)
+                expRequiere.textContent = "";
+            if (expAtiende)
+                expAtiende.textContent = "";
+
+            expRequiere.appendChild(imagenRequiere);
+            expAtiende.appendChild(imagenAtiende);
+            console.log("y aqui? :')")
+
         })
 
 

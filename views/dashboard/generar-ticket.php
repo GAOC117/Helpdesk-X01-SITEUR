@@ -2,7 +2,7 @@
 
     <div class="text-center mb-1">
         <h2><i class="bi bi-ticket-perforated-fill me-3 icono-boleto"></i><?php echo $titulo; ?></h2>
-        <p class="generar-ticket__texto">Rigistra un nuevo incidente para mesa de ayuda</p>
+        <p class="generar-ticket__texto">Registra un nuevo incidente para mesa de ayuda</p>
     </div>
 
     <!-- <div class="generar-ticket__alertas">

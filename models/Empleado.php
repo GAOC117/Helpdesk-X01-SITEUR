@@ -75,9 +75,9 @@ class Empleado extends ActiveRecord {
         if(!$this->id) {
             self::$alertas['error'][] = 'El expediente es obligatorio';
         }
-        if(!$this->extension) {
-            self::$alertas['error'][] = 'La extensión es obligatoria';
-        }
+        // if(!$this->extension) {
+        //     self::$alertas['error'][] = 'La extensión es obligatoria';
+        // }
         if(!$this->email) {
             self::$alertas['error'][] = 'El correo es obligatorio';
         }
