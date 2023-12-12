@@ -828,10 +828,10 @@ class ApiController
         $folioModal = $_GET['folio'];
 
         $query = "SELECT t.id as idTicket,";
-        $query .= " concat(e4.nombre,' ',e4.apellidoPaterno,' ',e4.apellidoMaterno) AS nombreRequiere, d.descripcion as departamento, e4.extension , e4.email, ";
+        $query .= " e4.id AS expRequiere, concat(e4.nombre,' ',e4.apellidoPaterno,' ',e4.apellidoMaterno) AS nombreRequiere, d.descripcion as departamento, e4.extension , e4.email, ";
         $query .= " e5.descripcion AS estadoTicket, cp.descripcion AS clasificacion , sp.descripcion AS subclasificacion ,t.comentariosReporte, t.comentariosSoporte, t.tipoServicio,";
         // $query .= " CASE e2.nombre WHEN '0' THEN 'Aun sin asignar' ELSE concat(e2.nombre,' ',e2.apellidoPaterno,' ',e2.apellidoMaterno) END AS atiende";
-        $query .= " concat(e2.nombre,' ',e2.apellidoPaterno,' ',e2.apellidoMaterno) AS atiende";
+        $query .= " e2.id AS expAtiende, concat(e2.nombre,' ',e2.apellidoPaterno,' ',e2.apellidoMaterno) AS atiende";
         $query .= " FROM tickets AS t";
         $query .= " LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna ";
         $query .= " LEFT OUTER JOIN empleado AS e2 ON t.idEmpAsignado = e2.id";

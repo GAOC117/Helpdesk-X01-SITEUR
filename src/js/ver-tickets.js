@@ -203,7 +203,7 @@ setInterval(function () {
     // llenarTablaTickets(paginaActual, folioBusqueda);
     // }
 
-    // llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
+     llenarTablaTickets(paginaActual, folioBusqueda, fechaBusqueda, atiendeBusqueda, requiereBusqueda, estadoBusqueda, clasificacionBusqueda, subclasificacionBusqueda, rangoChecked, fechaDesde.value, fechaHasta.value, servicioBusqueda);
 
 }, 2000);
 
@@ -846,6 +846,8 @@ async function abrirModal(folio) {
             comentariosSoporte.value = infoTicket.comentariosSoporte === '' ? '-' : infoTicket.comentariosSoporte;
             tipoServicio.value = infoTicket.tipoServicio;
             atiende.innerHTML = infoTicket.atiende;
+
+            console.log(infoTicket.expRequiere);
 
             const imagenRequiere = document.createElement('IMG');
             const imagenAtiende = document.createElement('IMG');

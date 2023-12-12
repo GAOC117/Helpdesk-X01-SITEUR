@@ -138,7 +138,7 @@
                         <span class="input-group-text fs-3" id="inputGroup-sizing-default">Requiere</span>
                         <!-- <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="requiere"> -->
                         <!-- <button class="btn btn-primary fs-3" id="requiere"> -->
-                        <button class="btn btn-primary fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#imgRequiere" aria-expanded="false" aria-controls="imgRequiere" id="requiere">  
+                        <button class="btn btn-primary fs-3 w-100" type="button" data-bs-toggle="collapse" data-bs-target="#imgRequiere" aria-expanded="false" aria-controls="imgRequiere" id="requiere">  
                         </button>
                         <div id="imgRequiere" class="accordion-collapse collapse empRequiere" data-bs-parent="#accordionFlushExample"></div>
                     </div>
@@ -187,7 +187,7 @@
                         <span class="input-group-text fs-3" id="inputGroup-sizing-default">Atendido por</span>
                         <!-- <input disabled type="text" class="form-control fs-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="atiende"> -->
                         <!-- <button class="btn btn-primary fs-3" id="atiende"> -->
-                        <button class="btn btn-primary fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#imgAtiende" aria-expanded="false" aria-controls="imgAtiende" id="atiende">  
+                        <button class="btn btn-primary fs-3 w-100" type="button" data-bs-toggle="collapse" data-bs-target="#imgAtiende" aria-expanded="false" aria-controls="imgAtiende" id="atiende">  
                         </button>
                         <div id="imgAtiende" class="accordion-collapse collapse empAtiende" data-bs-parent="#accordionFlushExample"></div>
                     </div>
