@@ -343,18 +343,6 @@ class ApiController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     public static function exportarExcel()
     {
         session_start();
