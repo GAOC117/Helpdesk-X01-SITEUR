@@ -657,8 +657,27 @@ class ApiController
         date_default_timezone_set('America/Mexico_City');
         $mesActual = date('m');
         $actualYear = date('Y');
+        $resultado = [];
+        
 
+        if ($mesActual === '01') {
 
+            $mesAnterior = 12;
+            $mesDobleAnterior = 11;
+            $lastYear = $actualYear - 1;
+          } else if ($mesActual == '02') {
+      
+            $mesAnterior = '01';
+            $mesDobleAnterior = '12';
+            $lastYear = $actualYear - 1;
+          }
+          else {
+            $mesAnterior = $mesActual - 1;
+            $mesDobleAnterior = $mesActual - 2;
+            $lastYear = $actualYear;
+          }
+
+// debuguear($mesActual.' '.$mesAnterior.' '.$mesDobleAnterior.' '.$actualYear.' '.$lastYear);
 
 
         if ($idRol === '2') //si es mesa de ayuda ve todos los tickets del mes
@@ -679,35 +698,35 @@ class ApiController
             $resultado['total'] =  Tickets::contar($query);
 
             ///un mes anterior
-            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 1";
+            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaCaptura) = $mesAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 1";
             $resultado['abiertos1']  = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 2";
+            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaCaptura) = $mesAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 2";
             $resultado['pausados1'] =  Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 3";
+            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaCaptura) = $mesAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 3";
             $resultado['escalados1'] =  Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear AND idEstado = 4";
+            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaCaptura) = $mesAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 4";
             $resultado['cerrados1'] =  Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaCaptura) = $mesActual-1 AND year(fechaCaptura) = $actualYear";
+            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaCaptura) = $mesAnterior AND year(fechaCaptura) = $lastYear";
             $resultado['total1'] =  Tickets::contar($query);
 
             //dos meses atras
-            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 1";
+            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaCaptura) = $mesDobleAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 1";
             $resultado['abiertos2']  = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 2";
+            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaCaptura) = $mesDobleAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 2";
             $resultado['pausados2'] =  Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 3";
+            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaCaptura) = $mesDobleAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 3";
             $resultado['escalados2'] =  Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear AND idEstado = 4";
+            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaCaptura) = $mesDobleAnterior AND year(fechaCaptura) = $lastYear AND idEstado = 4";
             $resultado['cerrados2'] =  Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaCaptura) = $mesActual-2 AND year(fechaCaptura) = $actualYear";
+            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaCaptura) = $mesDobleAnterior AND year(fechaCaptura) = $lastYear";
             $resultado['total2'] =  Tickets::contar($query);
         }
 
@@ -731,37 +750,37 @@ class ApiController
             // debuguear($query);
 
             //un mes atras
-            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 1 and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaAsignacion) = $mesAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 1 and idEmpAsignado = $expediente";
             $resultado['abiertos1'] = Tickets::contar($query);
 
 
-            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 2  and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaAsignacion) = $mesAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 2  and idEmpAsignado = $expediente";
             $resultado['pausados1'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 3  and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaAsignacion) = $mesAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 3  and idEmpAsignado = $expediente";
             $resultado['escalados1']  = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEstado = 4  and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaAsignacion) = $mesAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 4  and idEmpAsignado = $expediente";
             $resultado['cerrados1'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaAsignacion) = $mesActual-1 AND year(fechaAsignacion) = $actualYear and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaAsignacion) = $mesAnterior AND year(fechaAsignacion) = $lastYear and idEmpAsignado = $expediente";
             $resultado['total1'] = Tickets::contar($query);
 
             //dos meses atras
 
-            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 1 and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaAsignacion) = $mesDobleAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 1 and idEmpAsignado = $expediente";
             $resultado['abiertos2'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 2  and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaAsignacion) = $mesDobleAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 2  and idEmpAsignado = $expediente";
             $resultado['pausados2'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 3  and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaAsignacion) = $mesDobleAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 3  and idEmpAsignado = $expediente";
             $resultado['escalados2']  = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEstado = 4  and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaAsignacion) = $mesDobleAnterior AND year(fechaAsignacion) = $lastYear and idEstado = 4  and idEmpAsignado = $expediente";
             $resultado['cerrados2'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaAsignacion) = $mesActual-2 AND year(fechaAsignacion) = $actualYear and idEmpAsignado = $expediente";
+            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaAsignacion) = $mesDobleAnterior AND year(fechaAsignacion) = $lastYear and idEmpAsignado = $expediente";
             $resultado['total2'] = Tickets::contar($query);
         }
 
@@ -784,40 +803,41 @@ class ApiController
             $resultado['total'] = Tickets::contar($query);
 
             //un mes atras
-            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 1 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as abiertos1 from tickets where month(fechaCaptura) = $mesAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 1 and idEmpRequiere = $expediente";
             $resultado['abiertos1'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 2 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as pausados1 from tickets where month(fechaCaptura) = $mesAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 2 and idEmpRequiere = $expediente";
             $resultado['pausados1'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 3 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as escalados1 from tickets where month(fechaCaptura) = $mesAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 3 and idEmpRequiere = $expediente";
             $resultado['escalados1']  = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEstado = 4 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as cerrados1 from tickets where month(fechaCaptura) = $mesAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 4 and idEmpRequiere = $expediente";
             $resultado['cerrados1'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaCaptura) = $mesActual-1  AND year(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as total1 from tickets where month(fechaCaptura) = $mesAnterior  AND year(fechaCaptura) = $lastYear and idEmpRequiere = $expediente";
             $resultado['total1'] = Tickets::contar($query);
 
             //dos meses atras
-            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 1 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as abiertos2 from tickets where month(fechaCaptura) = $mesDobleAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 1 and idEmpRequiere = $expediente";
             $resultado['abiertos2'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 2 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as pausados2 from tickets where month(fechaCaptura) = $mesDobleAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 2 and idEmpRequiere = $expediente";
             $resultado['pausados2'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 3 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as escalados2 from tickets where month(fechaCaptura) = $mesDobleAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 3 and idEmpRequiere = $expediente";
             $resultado['escalados2']  = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEstado = 4 and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as cerrados2 from tickets where month(fechaCaptura) = $mesDobleAnterior  AND year(fechaCaptura) = $lastYear and idEstado = 4 and idEmpRequiere = $expediente";
             $resultado['cerrados2'] = Tickets::contar($query);
 
-            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaCaptura) = $mesActual-2  AND year(fechaCaptura) = $actualYear and idEmpRequiere = $expediente";
+            $query = "SELECT  COUNT(*) as total2 from tickets where month(fechaCaptura) = $mesDobleAnterior  AND year(fechaCaptura) = $lastYear and idEmpRequiere = $expediente";
             $resultado['total2'] = Tickets::contar($query);
         }
 
         $resultado['mesActual'] = $mesActual;
-
+        debuguear($resultado);
+        
         echo json_encode($resultado);
     }
 
