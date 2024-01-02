@@ -162,9 +162,8 @@ class ApiController
                 $query_total_registros .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
                 $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%'";
-                
             } else {
-                
+
                 $query_total_registros = "SELECT COUNT(*) as cantidad FROM tickets AS t LEFT OUTER JOIN empleado AS e ON e.id = t.idEmpAsigna LEFT OUTER JOIN empleado AS e2 ON e2.id = t.idEmpAsignado ";
                 $query_total_registros .= " LEFT OUTER JOIN empleado AS e3 ON e3.id = t.idEmpReporta ";
                 $query_total_registros .= " LEFT OUTER JOIN empleado AS e4 ON e4.id  = t.idEmpRequiere";
@@ -174,12 +173,10 @@ class ApiController
                 $query_total_registros .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query_total_registros .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
                 $query_total_registros .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta' ";
-                
-                
             }
         }
 
-        
+
 
         $total_registros = VerTickets::contar($query_total_registros);
 
@@ -216,9 +213,6 @@ class ApiController
                 $query .= " AND t.fechaCaptura like '%$fecha%'and concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
                 $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
-
-                    
-                
             } else {
                 $query = "SELECT t.id as idTicket, t.fechaCaptura as fechaCaptura,";
                 // $query .= " CASE e2.nombre WHEN '0' THEN 'Sin asignar' ELSE concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) END AS atiende,";
@@ -234,8 +228,8 @@ class ApiController
                 $query .= " AND concat(e2.nombre,' ', e2.apellidoPaterno,' ', e2.apellidoMaterno) like '%$atiende%' ";
                 $query .= " AND concat(e4.nombre,' ', e4.apellidoPaterno,' ', e4.apellidoMaterno) like '%$requiere%' and e5.descripcion like '%$estado%' and  cp.descripcion like '%$clasificacion%'  ";
                 $query .= " AND  sp.descripcion like '%$subclasificacion%' AND t.tipoServicio like '%$servicio%' AND t.fechaCaptura BETWEEN '$desde' AND '$hasta'  order by t.id desc LIMIT $registros_por_pagina OFFSET $offset";
-                
-                
+
+
                 // debuguear($query);
             }
             // } else if ($idRol === '3') //si es soporte solo asignados a él
@@ -658,26 +652,25 @@ class ApiController
         $mesActual = date('m');
         $actualYear = date('Y');
         $resultado = [];
-        
+
 
         if ($mesActual === '01') {
-
+            $mesActual = 1;
             $mesAnterior = 12;
             $mesDobleAnterior = 11;
             $lastYear = $actualYear - 1;
-          } else if ($mesActual == '02') {
-      
-            $mesAnterior = '01';
-            $mesDobleAnterior = '12';
+        } else if ($mesActual == '02') {
+            $mesActual = 2;
+            $mesAnterior = 1;
+            $mesDobleAnterior = 12;
             $lastYear = $actualYear - 1;
-          }
-          else {
+        } else {
             $mesAnterior = $mesActual - 1;
             $mesDobleAnterior = $mesActual - 2;
             $lastYear = $actualYear;
-          }
+        }
 
-// debuguear($mesActual.' '.$mesAnterior.' '.$mesDobleAnterior.' '.$actualYear.' '.$lastYear);
+        // debuguear($mesActual.' '.$mesAnterior.' '.$mesDobleAnterior.' '.$actualYear.' '.$lastYear);
 
 
         if ($idRol === '2') //si es mesa de ayuda ve todos los tickets del mes
@@ -836,8 +829,8 @@ class ApiController
         }
 
         $resultado['mesActual'] = $mesActual;
-        debuguear($resultado);
-        
+        // debuguear($resultado);
+
         echo json_encode($resultado);
     }
 

@@ -1,1 +1,1 @@
-{"version":3,"sources":["soporteLayout/_layout.scss"],"names":[],"mappings":"AAAA;EACI","file":"soporte.css","sourcesContent":["body{\r\n    background-color: purple;\r\n}"]}
+{"version":3,"sources":["soporteLayout/_layout.scss"],"names":[],"mappings":"AAAA;EACI","file":"soporte.css","sourcesContent":["body{\n    background-color: purple;\n}"]}

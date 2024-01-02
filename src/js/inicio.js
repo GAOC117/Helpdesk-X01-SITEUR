@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // pausadoAux = pausados;
   // escaladoAux = escalados;
   // cerradoAux = cerrados;
-  console.log(totales + ' ' + totales1 + ' ' + totales2);
+  // console.log(totales + ' ' + totales1 + ' ' + totales2);
   // generarChart();
   // graficoBarras(mesAct,abiertos,abiertos1,abiertos2,pausados,pausados1,pausados2,escalados,escalados1,escalados2,totales,totales1,totales2);
   // console.log("abiertos: "+abiertos+" pausados: "+pausados+" escalados: "+escalados+" cerrados: "+cerrados);
@@ -199,10 +199,10 @@ function graficoBarras(mes, a, a1, a2, p, p1, p2, e, e1, e2, c, c1, c2, t, t1, t
   setTimeout(() => {
 
 
-    console.log('a ver aqui ' + t + ' ' + t1 + ' ' + t2);
+    // console.log('a ver aqui ' + t + ' ' + t1 + ' ' + t2);
     meses = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     let mesActual = meses[mes];
-    console.log(meses[mes] + ' ' + meses[mes - 1] + ' ' + meses[mes - 2]);
+    // console.log(meses[mes] + ' ' + meses[mes - 1] + ' ' + meses[mes - 2]);
     let mesAnterior, mesDobleAnterior;
     if (mes === 1) {
 
@@ -218,7 +218,7 @@ function graficoBarras(mes, a, a1, a2, p, p1, p2, e, e1, e2, c, c1, c2, t, t1, t
       mesDobleAnterior = meses[mes - 2];
     }
 
-    // console.log(mesActual+' '+mesAnterior+' '+mesDobleAnterior);
+     console.log(mes+' '+mesActual+' '+mesAnterior+' '+mesDobleAnterior);
 
 
 
@@ -246,7 +246,7 @@ function graficoBarras(mes, a, a1, a2, p, p1, p2, e, e1, e2, c, c1, c2, t, t1, t
 
 
 
-    console.log(barra.height + ' ' + barra.width);
+    // console.log(barra.height + ' ' + barra.width);
 
     // if(graficoB)
     //         graficoB.destroy();
